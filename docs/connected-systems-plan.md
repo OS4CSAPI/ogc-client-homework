@@ -1,8 +1,8 @@
 # 🧭 Implementation Plan: OGC API Connected Systems Client
 
-This document outlines the step-by-step plan for integrating support for the OGC API - Connected Systems standard into the [`camptocamp/ogc-client`](https://github.com/camptocamp/ogc-client) TypeScript library. Development is tracked in [Sam-Bolling/ogc-client](https://github.com/Sam-Bolling/ogc-client) with the intent to contribute upstream via [Issue #118](https://github.com/camptocamp/ogc-client/issues/118).
+This document outlines the step-by-step plan for integrating support for the OGC API - Connected Systems standard into the [`camptocamp/ogc-client`](https://github.com/camptocamp/ogc-client) TypeScript library. Development is performed in [Sam-Bolling/ogc-client](https://github.com/Sam-Bolling/ogc-client) and tracked in [OS4CSAPI](https://github.com/users/Sam-Bolling/projects/1) with the intent to contribute upstream via [Issue #118](https://github.com/camptocamp/ogc-client/issues/118).
 
-This implementation follows a **Test-Driven Development (TDD)** workflow: each method will be defined by its expected behavior through failing tests before implementation begins. This ensures clarity, coverage, and contributor confidence.
+This implementation follows a Test-Driven Development (TDD) workflow: each method will be defined by its expected behavior through failing tests before implementation begins. This ensures clarity, coverage, and contributor confidence.
 
 ---
 
@@ -15,7 +15,7 @@ This implementation follows a **Test-Driven Development (TDD)** workflow: each m
 - Capability detection for conditional exposure  
 - Compliance with CSAPI spec via modular implementation  
 - Contribution to upstream repo with maintainable design  
-- **Test-Driven Development (TDD)** as a foundational workflow  
+- Test-Driven Development (TDD) as a foundational workflow  
 
 ---
 
@@ -112,7 +112,7 @@ This repo uses Jest and colocates tests with implementation files using `.spec.t
 </details>
 
 <details>
-<summary>🟩 Phase 2: Capability Detection (TDD)</summary>
+<summary>🟩 Phase 2: Capability Detection </summary>
 
 - [ ] Write test: `.connectedSystems` is undefined when CSAPI is not supported  
 - [ ] Write test: `.connectedSystems` is defined when CSAPI endpoints are present  
@@ -123,7 +123,7 @@ This repo uses Jest and colocates tests with implementation files using `.spec.t
 </details>
 
 <details>
-<summary>🟦 Phase 3: Method Implementation (TDD)</summary>
+<summary>🟦 Phase 3: Method Implementation </summary>
 
 For each method:
 
@@ -190,3 +190,4 @@ These methods will be considered after MVP completion:
 ## 📜 Compliance Note
 
 This implementation is compliant with the OGC API - Connected Systems specification based on modular support for core entities. Additional entities will be added incrementally. Capability detection ensures that unsupported endpoints are not exposed, preserving interoperability and graceful degradation.
+

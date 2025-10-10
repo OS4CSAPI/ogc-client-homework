@@ -1,5 +1,6 @@
 import {
   checkHasEnvironmentalDataRetrieval,
+  checkHasConnectedSystemsApi,
   checkHasFeatures,
   checkHasRecords,
   checkStyleConformance,

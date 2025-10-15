@@ -1,0 +1,6 @@
+{
+  "type": "Collection",
+  "members": [
+    { "id": "prop-001", "name": "temperature", "definition": "http://qudt.org/vocab/quantitykind/Temperature", "type": "Quantity" }
+  ]
+}

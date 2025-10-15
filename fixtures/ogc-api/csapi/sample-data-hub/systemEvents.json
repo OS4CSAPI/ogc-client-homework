@@ -1,0 +1,7 @@
+{
+  "type": "FeatureCollection",
+  "itemType": "SystemEvent",
+  "features": [
+    { "type": "Feature", "id": "evt-001", "properties": { "system": { "id": "sys-001" }, "eventType": "StatusChange" } }
+  ]
+}

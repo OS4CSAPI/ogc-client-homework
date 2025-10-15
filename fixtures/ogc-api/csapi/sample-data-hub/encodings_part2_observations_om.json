@@ -1,0 +1,7 @@
+{
+  "type": "FeatureCollection",
+  "itemType": "Observation",
+  "features": [
+    { "type": "Feature", "id": "obs-001", "properties": { "result": { "value": 22.4, "uom": "degC" }, "encodingType": "OM-JSON" } }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "type": "FeatureCollection",
+  "itemType": "Procedure",
+  "features": [
+    { "type": "Feature", "id": "proc-001", "properties": { "featureType": "sosa:Procedure" } }
+  ]
+}

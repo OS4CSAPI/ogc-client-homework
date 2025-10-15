@@ -1,0 +1,7 @@
+{
+  "type": "FeatureCollection",
+  "itemType": "Deployment",
+  "features": [
+    { "type": "Feature", "id": "dep-001", "properties": { "featureType": "sosa:Deployment" } }
+  ]
+}

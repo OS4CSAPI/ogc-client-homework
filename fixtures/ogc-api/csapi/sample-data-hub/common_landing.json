@@ -1,0 +1,13 @@
+{
+  "title": "Example CSAPI Service",
+  "links": [
+    { "rel": "self", "href": "https://example.csapi.server/" },
+    { "rel": "conformance", "href": "https://example.csapi.server/conformance" },
+    { "rel": "systems", "href": "https://example.csapi.server/systems" },
+    { "rel": "deployments", "href": "https://example.csapi.server/deployments" },
+    { "rel": "datastreams", "href": "https://example.csapi.server/datastreams" },
+    { "rel": "observations", "href": "https://example.csapi.server/observations" },
+    { "rel": "commands", "href": "https://example.csapi.server/commands" },
+    { "rel": "feasibility", "href": "https://example.csapi.server/feasibility" }
+  ]
+}

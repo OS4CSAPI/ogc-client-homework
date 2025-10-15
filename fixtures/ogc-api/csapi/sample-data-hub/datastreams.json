@@ -1,0 +1,7 @@
+{
+  "type": "FeatureCollection",
+  "itemType": "Datastream",
+  "features": [
+    { "type": "Feature", "id": "ds-001", "properties": { "observedProperty": "temperature" } }
+  ]
+}

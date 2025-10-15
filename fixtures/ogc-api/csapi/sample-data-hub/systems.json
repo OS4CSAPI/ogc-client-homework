@@ -1,0 +1,7 @@
+{
+  "type": "FeatureCollection",
+  "itemType": "System",
+  "features": [
+    { "type": "Feature", "id": "sys-001", "properties": { "name": "SystemA" } }
+  ]
+}

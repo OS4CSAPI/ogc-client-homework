@@ -175,3 +175,81 @@ export default class CSAPIQueryBuilder {
     return this.collection.data_queries.instances.link.href;
   }
 }
+
+/* -------------------------------------------------------------------------- */
+/*             CSAPI Canonical Endpoint URL Builders (for tests)              */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * These lightweight helper functions expose canonical CSAPI Part 1 & 2 endpoints.
+ * They are used by Jest test harnesses and higher-level client logic.
+ */
+
+export function getSystemsUrl(apiRoot: string): string {
+  return `${apiRoot}/systems`;
+}
+
+export function getSystemByIdUrl(apiRoot: string, systemId: string): string {
+  return `${apiRoot}/systems/${systemId}`;
+}
+
+export function getDeploymentsUrl(apiRoot: string): string {
+  return `${apiRoot}/deployments`;
+}
+
+export function getProceduresUrl(apiRoot: string): string {
+  return `${apiRoot}/procedures`;
+}
+
+export function getSamplingFeaturesUrl(apiRoot: string): string {
+  return `${apiRoot}/samplingFeatures`;
+}
+
+export function getPropertiesUrl(apiRoot: string): string {
+  return `${apiRoot}/properties`;
+}
+
+export function getDatastreamsUrl(apiRoot: string, systemId?: string, deploymentId?: string): string {
+  if (systemId) return `${apiRoot}/systems/${systemId}/datastreams`;
+  if (deploymentId) return `${apiRoot}/deployments/${deploymentId}/datastreams`;
+  return `${apiRoot}/datastreams`;
+}
+
+export function getObservationsUrl(apiRoot: string, datastreamId?: string): string {
+  return datastreamId
+    ? `${apiRoot}/datastreams/${datastreamId}/observations`
+    : `${apiRoot}/observations`;
+}
+
+export function getControlStreamsUrl(apiRoot: string): string {
+  return `${apiRoot}/controlstreams`;
+}
+
+export function getCommandsUrl(apiRoot: string): string {
+  return `${apiRoot}/commands`;
+}
+
+export function getFeasibilityUrl(apiRoot: string): string {
+  return `${apiRoot}/feasibility`;
+}
+
+export function getSystemEventsUrl(apiRoot: string, systemId?: string): string {
+  return systemId ? `${apiRoot}/systems/${systemId}/events` : `${apiRoot}/systemEvents`;
+}
+
+/**
+ * Canonical endpoint registry (Part 2 §7.4)
+ */
+export const CANONICAL_ENDPOINTS = [
+  "systems",
+  "deployments",
+  "procedures",
+  "samplingFeatures",
+  "properties",
+  "datastreams",
+  "observations",
+  "controlstreams",
+  "commands",
+  "feasibility",
+  "systemEvents",
+];

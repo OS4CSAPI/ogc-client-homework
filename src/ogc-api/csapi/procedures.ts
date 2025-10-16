@@ -1,65 +1,48 @@
 /**
- * OGC API – Connected Systems: Procedures Client
- * Implements client logic for CSAPI Procedures resources (Part 2 § 10–11)
+ * OGC API – Connected Systems Part 2: Procedures Client
+ * Implements client-side access for the /procedures collection.
  *
- * Follows the same design as Systems and Deployments clients.
+ * Traces to:
+ *   - /req/procedure/collection-endpoint  (23-002 §10.4)
+ *   - /req/procedure/items-endpoint       (23-002 §10.5)
+ *   - /req/procedure/canonical-url        (23-002 §7.4)
+ *
+ * Exports:
+ *   - ProceduresClient: main API client class
  */
 
-import { fetchJson } from "../../shared/http-utils";
-import { expandUrl } from "../../shared/url-utils";
+import { CSAPICollection } from "./model";
+import { maybeFetchOrLoad } from "./helpers";
 import { getProceduresUrl } from "./url_builder";
 
 /**
- * Procedure interface
- * Represents a process or operation definition executed by a System or Deployment.
+ * ProceduresClient
+ * Provides typed access to the /procedures collection and its items.
  */
-export interface Procedure {
-  id: string;
-  type: "Feature";
-  geometry?: any;
-  properties: {
-    name?: string;
-    description?: string;
-    inputs?: Record<string, any>;
-    outputs?: Record<string, any>;
-    linkedSystem?: {
-      id: string;
-      href?: string;
-    };
-    [key: string]: any;
-  };
-  links?: Array<{ href: string; rel: string; type?: string; title?: string }>;
-}
+export class ProceduresClient {
+  readonly apiRoot: string;
 
-/**
- * Retrieve the list of all Procedures (FeatureCollection).
- */
-export async function listProcedures(
-  apiRoot: string,
-  options?: { fetchFn?: typeof fetch }
-): Promise<{ type: string; features: Procedure[] }> {
-  const url = getProceduresUrl(apiRoot);
-  const expanded = expandUrl(url);
-  return fetchJson(expanded, options);
-}
+  constructor(apiRoot: string) {
+    this.apiRoot = apiRoot;
+  }
 
-/**
- * Retrieve a specific Procedure by ID.
- */
-export async function getProcedureById(
-  apiRoot: string,
-  id: string,
-  options?: { fetchFn?: typeof fetch }
-): Promise<Procedure> {
-  const url = `${getProceduresUrl(apiRoot)}/${encodeURIComponent(id)}`;
-  const expanded = expandUrl(url);
-  return fetchJson(expanded, options);
-}
+  /**
+   * Retrieves the procedures collection.
+   * Uses fixture "procedures" by default, or fetches live data when CSAPI_LIVE=true.
+   */
+  async list(): Promise<CSAPICollection> {
+    const url = getProceduresUrl(this.apiRoot);
+    const data = await maybeFetchOrLoad("procedures", url);
+    return data as CSAPICollection;
+  }
 
-/**
- * Convenience export
- */
-export const ProceduresClient = {
-  list: listProcedures,
-  get: getProcedureById,
-};
+  /**
+   * Retrieves a single procedure by ID.
+   * Example canonical path: /procedures/{procedureId}
+   */
+  async get(id: string): Promise<any> {
+    const url = `${getProceduresUrl(this.apiRoot)}/${id}`;
+    const data = await maybeFetchOrLoad(`procedure_${id}`, url);
+    return data;
+  }
+}

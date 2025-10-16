@@ -3,8 +3,8 @@
  * Implements client-side access for the /observations collection.
  *
  * Traces to:
- *   - /req/observation/collection-endpoint  (23-002 §10.13)
- *   - /req/observation/items-endpoint       (23-002 §10.14)
+ *   - /req/observation/collection-endpoint  (23-002 §10.11)
+ *   - /req/observation/items-endpoint       (23-002 §10.12)
  *   - /req/observation/canonical-url        (23-002 §7.4)
  *
  * Exports:

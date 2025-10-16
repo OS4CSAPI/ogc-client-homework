@@ -1,67 +1,48 @@
 /**
- * OGC API – Connected Systems: Deployments Client
- * Implements client logic for CSAPI Deployments resources (Part 2 §10–11)
+ * OGC API – Connected Systems Part 2: Deployments Client
+ * Implements client-side access for the /deployments collection.
  *
- * Mirrors Systems client structure to ensure consistent design.
+ * Traces to:
+ *   - /req/deployment/collection-endpoint  (23-002 §10.1)
+ *   - /req/deployment/items-endpoint       (23-002 §10.2)
+ *   - /req/deployment/canonical-url        (23-002 §7.4)
+ *
+ * Exports:
+ *   - DeploymentsClient: main API client class
  */
 
-import { fetchJson } from "../../shared/http-utils";
-import { expandUrl } from "../../shared/url-utils";
+import { CSAPICollection } from "./model";
+import { maybeFetchOrLoad } from "./helpers";
 import { getDeploymentsUrl } from "./url_builder";
 
 /**
- * Deployment interface
- * Represents a deployed configuration of Systems and Procedures.
+ * DeploymentsClient
+ * Provides typed access to the /deployments collection and its items.
  */
-export interface Deployment {
-  id: string;
-  type: "Feature";
-  geometry?: any;
-  properties: {
-    name?: string;
-    description?: string;
-    system?: {
-      id: string;
-      href?: string;
-    };
-    procedure?: {
-      id: string;
-      href?: string;
-    };
-    [key: string]: any;
-  };
-  links?: Array<{ href: string; rel: string; type?: string; title?: string }>;
-}
+export class DeploymentsClient {
+  readonly apiRoot: string;
 
-/**
- * Retrieve the list of all Deployments (FeatureCollection).
- */
-export async function listDeployments(
-  apiRoot: string,
-  options?: { fetchFn?: typeof fetch }
-): Promise<{ type: string; features: Deployment[] }> {
-  const url = getDeploymentsUrl(apiRoot);
-  const expanded = expandUrl(url);
-  return fetchJson(expanded, options);
-}
+  constructor(apiRoot: string) {
+    this.apiRoot = apiRoot;
+  }
 
-/**
- * Retrieve a specific Deployment by ID.
- */
-export async function getDeploymentById(
-  apiRoot: string,
-  id: string,
-  options?: { fetchFn?: typeof fetch }
-): Promise<Deployment> {
-  const url = `${getDeploymentsUrl(apiRoot)}/${encodeURIComponent(id)}`;
-  const expanded = expandUrl(url);
-  return fetchJson(expanded, options);
-}
+  /**
+   * Retrieves the deployments collection.
+   * Uses fixture "deployments" by default, or fetches live data when CSAPI_LIVE=true.
+   */
+  async list(): Promise<CSAPICollection> {
+    const url = getDeploymentsUrl(this.apiRoot);
+    const data = await maybeFetchOrLoad("deployments", url);
+    return data as CSAPICollection;
+  }
 
-/**
- * Convenience export
- */
-export const DeploymentsClient = {
-  list: listDeployments,
-  get: getDeploymentById,
-};
+  /**
+   * Retrieves a single deployment by ID.
+   * Example canonical path: /deployments/{deploymentId}
+   */
+  async get(id: string): Promise<any> {
+    const url = `${getDeploymentsUrl(this.apiRoot)}/${id}`;
+    const data = await maybeFetchOrLoad(`deployment_${id}`, url);
+    return data;
+  }
+}

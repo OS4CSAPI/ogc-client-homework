@@ -3,8 +3,8 @@
  * Implements client-side access for the /datastreams collection.
  *
  * Traces to:
- *   - /req/datastream/collection-endpoint  (23-002 §10.11)
- *   - /req/datastream/items-endpoint       (23-002 §10.12)
+ *   - /req/datastream/collection-endpoint  (23-002 §10.9)
+ *   - /req/datastream/items-endpoint       (23-002 §10.10)
  *   - /req/datastream/canonical-url        (23-002 §7.4)
  *
  * Exports:

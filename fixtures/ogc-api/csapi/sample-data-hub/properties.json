@@ -1,6 +1,19 @@
 {
   "type": "Collection",
   "members": [
-    { "id": "prop-001", "name": "temperature", "definition": "http://qudt.org/vocab/quantitykind/Temperature", "type": "Quantity" }
+    {
+      "id": "prop-001",
+      "name": "temperature",
+      "definition": "http://qudt.org/vocab/quantitykind/Temperature",
+      "type": "Quantity",
+      "unit": "http://qudt.org/vocab/unit/DegreeCelsius"
+    },
+    {
+      "id": "prop-002",
+      "name": "humidity",
+      "definition": "http://qudt.org/vocab/quantitykind/RelativeHumidity",
+      "type": "Quantity",
+      "unit": "http://qudt.org/vocab/unit/Percent"
+    }
   ]
 }

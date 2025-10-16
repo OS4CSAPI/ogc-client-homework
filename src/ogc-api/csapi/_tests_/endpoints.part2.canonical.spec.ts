@@ -24,7 +24,7 @@ const apiRoot = process.env.CSAPI_API_ROOT || "https://example.csapi.server";
  * The API landing page SHALL advertise all canonical CSAPI Part 2 endpoints.
  */
 test("Landing page advertises all canonical CSAPI Part 2 endpoints", async () => {
-  const data = await maybeFetchOrLoad("endpoints_part2_landing", apiRoot);
+  const data = await maybeFetchOrLoad("endpointsPart2Landing", apiRoot);
 
   expect(data).toBeDefined();
   expect(Array.isArray(data.links)).toBe(true);
@@ -49,27 +49,7 @@ test("Landing page advertises all canonical CSAPI Part 2 endpoints", async () =>
 test("All canonical CSAPI Part 2 endpoints are accessible and return collections", async () => {
   for (const endpoint of CANONICAL_ENDPOINTS) {
     const url = `${apiRoot}/${endpoint}`;
-
-    // Normalize fixture key to match lowerCamelCase fixture filenames
-    const endpointMap: Record<string, string> = {
-      controlstreams: "controlStreams",
-      samplingfeatures: "samplingFeatures",
-      systemevents: "systemEvents",
-      datastreams: "datastreams",
-      feasibility: "feasibility",
-      deployments: "deployments",
-      procedures: "procedures",
-      properties: "properties",
-      commands: "commands",
-      systems: "systems",
-      observations: "observations",
-    };
-
-    const normalizedEndpoint =
-      endpointMap[endpoint.toLowerCase()] ||
-      (endpoint.charAt(0).toLowerCase() + endpoint.slice(1));
-
-    const fixtureKey = `endpoint_${normalizedEndpoint}`;
+    const fixtureKey = `endpoint_${endpoint}`; // ✅ direct lowerCamelCase key
     const data = await maybeFetchOrLoad(fixtureKey, url);
 
     // Some endpoints (e.g., properties) may use "Collection" instead of "FeatureCollection"
@@ -77,7 +57,7 @@ test("All canonical CSAPI Part 2 endpoints are accessible and return collections
       expect(data).toHaveProperty("type", "Collection");
       expect(Array.isArray(data.members)).toBe(true);
     } else {
-      expectFeatureCollection(data); // Standard OGC FeatureCollection pattern
+      expectFeatureCollection(data);
     }
   }
 });
@@ -89,27 +69,7 @@ test("All canonical CSAPI Part 2 endpoints are accessible and return collections
 test("Each canonical endpoint collection includes expected metadata", async () => {
   for (const endpoint of CANONICAL_ENDPOINTS) {
     const url = `${apiRoot}/${endpoint}`;
-
-    // Same normalization mapping logic
-    const endpointMap: Record<string, string> = {
-      controlstreams: "controlStreams",
-      samplingfeatures: "samplingFeatures",
-      systemevents: "systemEvents",
-      datastreams: "datastreams",
-      feasibility: "feasibility",
-      deployments: "deployments",
-      procedures: "procedures",
-      properties: "properties",
-      commands: "commands",
-      systems: "systems",
-      observations: "observations",
-    };
-
-    const normalizedEndpoint =
-      endpointMap[endpoint.toLowerCase()] ||
-      (endpoint.charAt(0).toLowerCase() + endpoint.slice(1));
-
-    const fixtureKey = `endpoint_${normalizedEndpoint}`;
+    const fixtureKey = `endpoint_${endpoint}`; // ✅ direct lowerCamelCase key
     const data = await maybeFetchOrLoad(fixtureKey, url);
 
     if (data.links) {
@@ -119,7 +79,6 @@ test("Each canonical endpoint collection includes expected metadata", async () =
       expect(typeof data.title).toBe("string");
     }
 
-    // All collections must contain at least one item (Feature or member)
     const items = data.features || data.members || [];
     expect(Array.isArray(items)).toBe(true);
   }

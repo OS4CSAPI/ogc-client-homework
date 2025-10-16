@@ -50,11 +50,26 @@ test("All canonical CSAPI Part 2 endpoints are accessible and return collections
   for (const endpoint of CANONICAL_ENDPOINTS) {
     const url = `${apiRoot}/${endpoint}`;
 
-    // Normalize fixture key to lowerCamelCase for alignment with fixture filenames
-    const normalizedEndpoint =
-      endpoint.charAt(0).toLowerCase() + endpoint.slice(1);
-    const fixtureKey = `endpoint_${normalizedEndpoint}`;
+    // Normalize fixture key to match lowerCamelCase fixture filenames
+    const endpointMap: Record<string, string> = {
+      controlstreams: "controlStreams",
+      samplingfeatures: "samplingFeatures",
+      systemevents: "systemEvents",
+      datastreams: "datastreams",
+      feasibility: "feasibility",
+      deployments: "deployments",
+      procedures: "procedures",
+      properties: "properties",
+      commands: "commands",
+      systems: "systems",
+      observations: "observations",
+    };
 
+    const normalizedEndpoint =
+      endpointMap[endpoint.toLowerCase()] ||
+      (endpoint.charAt(0).toLowerCase() + endpoint.slice(1));
+
+    const fixtureKey = `endpoint_${normalizedEndpoint}`;
     const data = await maybeFetchOrLoad(fixtureKey, url);
 
     // Some endpoints (e.g., properties) may use "Collection" instead of "FeatureCollection"
@@ -75,10 +90,26 @@ test("Each canonical endpoint collection includes expected metadata", async () =
   for (const endpoint of CANONICAL_ENDPOINTS) {
     const url = `${apiRoot}/${endpoint}`;
 
-    const normalizedEndpoint =
-      endpoint.charAt(0).toLowerCase() + endpoint.slice(1);
-    const fixtureKey = `endpoint_${normalizedEndpoint}`;
+    // Same normalization mapping logic
+    const endpointMap: Record<string, string> = {
+      controlstreams: "controlStreams",
+      samplingfeatures: "samplingFeatures",
+      systemevents: "systemEvents",
+      datastreams: "datastreams",
+      feasibility: "feasibility",
+      deployments: "deployments",
+      procedures: "procedures",
+      properties: "properties",
+      commands: "commands",
+      systems: "systems",
+      observations: "observations",
+    };
 
+    const normalizedEndpoint =
+      endpointMap[endpoint.toLowerCase()] ||
+      (endpoint.charAt(0).toLowerCase() + endpoint.slice(1));
+
+    const fixtureKey = `endpoint_${normalizedEndpoint}`;
     const data = await maybeFetchOrLoad(fixtureKey, url);
 
     if (data.links) {

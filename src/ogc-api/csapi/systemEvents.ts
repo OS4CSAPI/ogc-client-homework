@@ -1,65 +1,48 @@
 /**
- * OGC API – Connected Systems: SystemEvents Client
- * Implements client logic for CSAPI SystemEvents resources (Part 2 §14–15)
+ * OGC API – Connected Systems Part 2: SystemEvents Client
+ * Implements client-side access for the /systemEvents collection.
  *
- * Provides access to system-level events and operational logs.
+ * Traces to:
+ *   - /req/systemevent/collection-endpoint  (23-002 §10.15)
+ *   - /req/systemevent/items-endpoint       (23-002 §10.16)
+ *   - /req/systemevent/canonical-url        (23-002 §7.4)
+ *
+ * Exports:
+ *   - SystemEventsClient: main API client class
  */
 
-import { fetchJson } from "../../shared/http-utils";
-import { expandUrl } from "../../shared/url-utils";
+import { CSAPICollection } from "./model";
+import { maybeFetchOrLoad } from "./helpers";
 import { getSystemEventsUrl } from "./url_builder";
 
 /**
- * SystemEvent interface
- * Represents a system-level event such as a state change, deployment update,
- * anomaly detection, or control/observation lifecycle notification.
+ * SystemEventsClient
+ * Provides typed access to the /systemEvents collection and its items.
  */
-export interface SystemEvent {
-  id: string;
-  type: "Feature";
-  properties: {
-    time?: string;
-    eventType?: string;
-    description?: string;
-    severity?: "info" | "warning" | "error" | "critical";
-    relatedSystem?: { id: string; href?: string };
-    relatedDeployment?: { id: string; href?: string };
-    relatedProcedure?: { id: string; href?: string };
-    [key: string]: any;
-  };
-  links?: Array<{ href: string; rel: string; type?: string; title?: string }>;
-  [key: string]: any;
-}
+export class SystemEventsClient {
+  readonly apiRoot: string;
 
-/**
- * Retrieve all SystemEvents (FeatureCollection).
- */
-export async function listSystemEvents(
-  apiRoot: string,
-  options?: { fetchFn?: typeof fetch }
-): Promise<{ type: string; features: SystemEvent[] }> {
-  const url = getSystemEventsUrl(apiRoot);
-  const expanded = expandUrl(url);
-  return fetchJson(expanded, options);
-}
+  constructor(apiRoot: string) {
+    this.apiRoot = apiRoot;
+  }
 
-/**
- * Retrieve a specific SystemEvent by ID.
- */
-export async function getSystemEventById(
-  apiRoot: string,
-  id: string,
-  options?: { fetchFn?: typeof fetch }
-): Promise<SystemEvent> {
-  const url = `${getSystemEventsUrl(apiRoot)}/${encodeURIComponent(id)}`;
-  const expanded = expandUrl(url);
-  return fetchJson(expanded, options);
-}
+  /**
+   * Retrieves the systemEvents collection.
+   * Uses fixture "systemEvents" by default, or fetches live data when CSAPI_LIVE=true.
+   */
+  async list(): Promise<CSAPICollection> {
+    const url = getSystemEventsUrl(this.apiRoot);
+    const data = await maybeFetchOrLoad("systemEvents", url);
+    return data as CSAPICollection;
+  }
 
-/**
- * Convenience export
- */
-export const SystemEventsClient = {
-  list: listSystemEvents,
-  get: getSystemEventById,
-};
+  /**
+   * Retrieves a single system event by ID.
+   * Example canonical path: /systemEvents/{systemEventId}
+   */
+  async get(id: string): Promise<any> {
+    const url = `${getSystemEventsUrl(this.apiRoot)}/${id}`;
+    const data = await maybeFetchOrLoad(`systemEvent_${id}`, url);
+    return data;
+  }
+}

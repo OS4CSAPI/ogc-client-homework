@@ -1,7 +1,7 @@
 /**
  * Tests for CSAPI Part 2 — Canonical Endpoints
  * Validates presence, discoverability, and accessibility of all canonical endpoints
- * defined in CSAPI Part 2 §7.4 (Req30–34).
+ * defined in OGC API – Connected Systems Part 2 (§7.4, Req30–34).
  *
  * Traces to:
  *   - /req/canonical-endpoints/listing       (23-002 §7.4 Req30)
@@ -9,8 +9,9 @@
  *   - /req/canonical-endpoints/collections   (23-002 §7.4 Req33–34)
  *
  * Test strategy:
- *   - Hybrid execution (fixtures by default, live endpoints when CSAPI_LIVE=true)
- *   - Validates landing page link relations and accessible canonical endpoints
+ *   - Hybrid execution: uses local fixtures by default, or live endpoints if CSAPI_LIVE=true.
+ *   - Verifies landing page link relations, accessibility, and collection structure
+ *     for all canonical CSAPI Part 2 endpoints.
  */
 
 import { CANONICAL_ENDPOINTS } from "../url_builder";
@@ -48,15 +49,20 @@ test("Landing page advertises all canonical CSAPI Part 2 endpoints", async () =>
 test("All canonical CSAPI Part 2 endpoints are accessible and return collections", async () => {
   for (const endpoint of CANONICAL_ENDPOINTS) {
     const url = `${apiRoot}/${endpoint}`;
-    const fixtureKey = `endpoint_${endpoint}`;
+
+    // Normalize fixture key to lowerCamelCase for alignment with fixture filenames
+    const normalizedEndpoint =
+      endpoint.charAt(0).toLowerCase() + endpoint.slice(1);
+    const fixtureKey = `endpoint_${normalizedEndpoint}`;
+
     const data = await maybeFetchOrLoad(fixtureKey, url);
 
-    // Skip non-feature collections like properties, which may not use FeatureCollection
+    // Some endpoints (e.g., properties) may use "Collection" instead of "FeatureCollection"
     if (data.type === "Collection" || data.members) {
       expect(data).toHaveProperty("type", "Collection");
       expect(Array.isArray(data.members)).toBe(true);
     } else {
-      expectFeatureCollection(data); // Standard FeatureCollection pattern
+      expectFeatureCollection(data); // Standard OGC FeatureCollection pattern
     }
   }
 });
@@ -68,7 +74,11 @@ test("All canonical CSAPI Part 2 endpoints are accessible and return collections
 test("Each canonical endpoint collection includes expected metadata", async () => {
   for (const endpoint of CANONICAL_ENDPOINTS) {
     const url = `${apiRoot}/${endpoint}`;
-    const fixtureKey = `endpoint_${endpoint.charAt(0).toLowerCase()}${endpoint.slice(1)}`;
+
+    const normalizedEndpoint =
+      endpoint.charAt(0).toLowerCase() + endpoint.slice(1);
+    const fixtureKey = `endpoint_${normalizedEndpoint}`;
+
     const data = await maybeFetchOrLoad(fixtureKey, url);
 
     if (data.links) {

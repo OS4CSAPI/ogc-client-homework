@@ -1,64 +1,48 @@
 /**
- * OGC API – Connected Systems: Feasibility Client
- * Implements client logic for CSAPI Feasibility resources (Part 2 §13)
+ * OGC API – Connected Systems Part 2: Feasibility Client
+ * Implements client-side access for the /feasibility collection.
  *
- * Provides access to feasibility evaluations linked to Commands and ControlStreams.
+ * Traces to:
+ *   - /req/feasibility/collection-endpoint  (23-002 §10.19)
+ *   - /req/feasibility/items-endpoint       (23-002 §10.19)
+ *   - /req/feasibility/canonical-url        (23-002 §7.4)
+ *
+ * Exports:
+ *   - FeasibilityClient: main API client class
  */
 
-import { fetchJson } from "../../shared/http-utils";
-import { expandUrl } from "../../shared/url-utils";
+import { CSAPICollection } from "./model";
+import { maybeFetchOrLoad } from "./helpers";
 import { getFeasibilityUrl } from "./url_builder";
 
 /**
- * Feasibility interface
- * Represents the outcome of a pre-execution evaluation for a proposed Command.
+ * FeasibilityClient
+ * Provides typed access to the /feasibility collection and its items.
  */
-export interface Feasibility {
-  id: string;
-  type: "Feature";
-  properties: {
-    evaluatedTime?: string;
-    commandType?: string;
-    isFeasible: boolean;
-    reason?: string;
-    parameters?: Record<string, any>;
-    system?: { id: string; href?: string };
-    controlStream?: { id: string; href?: string };
-    [key: string]: any;
-  };
-  links?: Array<{ href: string; rel: string; type?: string; title?: string }>;
-  [key: string]: any;
-}
+export class FeasibilityClient {
+  readonly apiRoot: string;
 
-/**
- * Retrieve all Feasibility results (FeatureCollection).
- */
-export async function listFeasibility(
-  apiRoot: string,
-  options?: { fetchFn?: typeof fetch }
-): Promise<{ type: string; features: Feasibility[] }> {
-  const url = getFeasibilityUrl(apiRoot);
-  const expanded = expandUrl(url);
-  return fetchJson(expanded, options);
-}
+  constructor(apiRoot: string) {
+    this.apiRoot = apiRoot;
+  }
 
-/**
- * Retrieve a specific Feasibility assessment by ID.
- */
-export async function getFeasibilityById(
-  apiRoot: string,
-  id: string,
-  options?: { fetchFn?: typeof fetch }
-): Promise<Feasibility> {
-  const url = `${getFeasibilityUrl(apiRoot)}/${encodeURIComponent(id)}`;
-  const expanded = expandUrl(url);
-  return fetchJson(expanded, options);
-}
+  /**
+   * Retrieves the feasibility collection.
+   * Uses fixture "feasibility" by default, or fetches live data when CSAPI_LIVE=true.
+   */
+  async list(): Promise<CSAPICollection> {
+    const url = getFeasibilityUrl(this.apiRoot);
+    const data = await maybeFetchOrLoad("feasibility", url);
+    return data as CSAPICollection;
+  }
 
-/**
- * Convenience export
- */
-export const FeasibilityClient = {
-  list: listFeasibility,
-  get: getFeasibilityById,
-};
+  /**
+   * Retrieves a single feasibility item by ID.
+   * Example canonical path: /feasibility/{feasibilityId}
+   */
+  async get(id: string): Promise<any> {
+    const url = `${getFeasibilityUrl(this.apiRoot)}/${id}`;
+    const data = await maybeFetchOrLoad(`feasibility_${id}`, url);
+    return data;
+  }
+}

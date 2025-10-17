@@ -2,6 +2,23 @@
   "type": "FeatureCollection",
   "itemType": "Datastream",
   "features": [
-    { "type": "Feature", "id": "ds-001", "properties": { "observedProperty": "temperature" } }
+    {
+      "id": "ds-001",
+      "type": "Feature",
+      "properties": {
+        "name": "DatastreamA",
+        "description": "Example Datastream fixture for CSAPI Part 2 linkage testing"
+      },
+      "links": [
+        {
+          "rel": "self",
+          "href": "https://example.csapi.server/datastreams/ds-001"
+        },
+        {
+          "rel": "observations",
+          "href": "https://example.csapi.server/observations"
+        }
+      ]
+    }
   ]
 }

@@ -48,7 +48,6 @@ export { ObservationsClient } from "./observations";
 export { ControlStreamsClient } from "./controlStreams";
 export { CommandsClient } from "./commands";
 export { FeasibilityClient } from "./feasibility";
-export { EventsClient } from "./events";
 export { SystemEventsClient } from "./systemEvents";
 
 /* -------------------------------------------------------------------------- */

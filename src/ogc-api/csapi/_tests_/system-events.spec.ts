@@ -76,7 +76,7 @@ test("System Events have canonical item URL at /systemEvents/{id}", async () => 
 test("GET /systems/{id}/events lists events for a System", async () => {
   const systemId = "sys-001"; // placeholder; can come from fixtures later
   const url = getSystemEventsForSystemUrl(apiRoot, systemId);
-  const data = await maybeFetchOrLoad("systemEvents_nested", url);
+  const data = await maybeFetchOrLoad("systemEvents_sys-001", url);
 
   expectFeatureCollection(data, "SystemEvent");
 

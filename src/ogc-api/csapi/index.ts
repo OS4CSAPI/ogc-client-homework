@@ -48,7 +48,8 @@ export { ObservationsClient } from "./observations";
 export { ControlStreamsClient } from "./controlStreams";
 export { CommandsClient } from "./commands";
 export { FeasibilityClient } from "./feasibility";
-export { SystemEventsClient } from "./events";
+export { EventsClient } from "./events";
+export { SystemEventsClient } from "./systemEvents";
 
 /* -------------------------------------------------------------------------- */
 /*                           Fallback / Aggregator Export                     */

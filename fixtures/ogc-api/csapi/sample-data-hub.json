@@ -1,0 +1,18 @@
+{
+  "title": "Sample Connected Systems API (CSAPI)",
+  "links": [
+    { "rel": "self", "type": "application/json", "href": "./?f=json" },
+    { "rel": "conformance", "type": "application/json", "href": "./conformance" },
+    { "rel": "data", "type": "application/json", "href": "./collections" }
+  ],
+  "conformsTo": [
+    "http://www.opengis.net/spec/ogcapi-connected-systems-1/1.0/conf/core",
+    "http://www.opengis.net/spec/ogcapi-connected-systems-2/1.0/conf/commands"
+  ],
+  "collections": [
+    { "id": "systems", "title": "Systems", "links": [] },
+    { "id": "datastreams", "title": "Datastreams", "links": [] },
+    { "id": "control-streams", "title": "Control Streams", "links": [] },
+    { "id": "observations", "title": "Observations", "links": [] }
+  ]
+}

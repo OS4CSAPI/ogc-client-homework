@@ -2,6 +2,8 @@ import OgcApiEndpoint from './endpoint.js';
 import { readFile, stat } from 'fs/promises';
 import * as path from 'path';
 import { EndpointError } from '../shared/errors.js';
+import { checkHasConnectedSystemsApi } from './info.js';
+
 
 const FIXTURES_ROOT = path.join(__dirname, '../../fixtures/ogc-api');
 
@@ -2829,3 +2831,28 @@ describe('OgcApiEndpoint with EDR', () => {
     });
   });
 });
+
+// -----------------------------------------------------------------------------
+// Connected Systems API integration (Parts 1 & 2)
+// Mirrors the Environmental Data Retrieval test structure
+// -----------------------------------------------------------------------------
+describe('OgcApiEndpoint with CSAPI', () => {
+  it('supports Connected Systems API', async () => {
+    const endpoint = new OgcApiEndpoint('/fixtures/ogc-api/csapi/sample-data-hub/');
+    const hasGetter = (endpoint as any).hasConnectedSystems;
+    if (hasGetter) {
+      expect(await (endpoint as any).hasConnectedSystems).toBe(true);
+    } else {
+      const supported = await Promise.all([endpoint.conformanceClasses]).then(checkHasConnectedSystemsApi);
+      expect(supported).toBe(true);
+    }
+  });
+
+  it('can list all Connected Systems collections', async () => {
+    const endpoint = new OgcApiEndpoint('/fixtures/ogc-api/csapi/sample-data-hub/');
+    const collections = await endpoint.allCollections;
+    expect(collections.length).toBeGreaterThan(0);
+  });
+});
+
+

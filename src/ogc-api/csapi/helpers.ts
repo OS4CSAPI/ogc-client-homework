@@ -10,7 +10,10 @@ import path from "path";
  * Extracts CSAPIParameter definitions from a parameter block.
  * Retained from original implementation.
  */
-export function extractParameters(parameterBlock: Record<string, any>): CSAPIParameter[] {
+export function extractParameters(parameterBlock: Record<string, any> | null | undefined): CSAPIParameter[] {
+  if (!parameterBlock || typeof parameterBlock !== "object") {
+    return [];
+  }
   return Object.values(parameterBlock) as CSAPIParameter[];
 }
 

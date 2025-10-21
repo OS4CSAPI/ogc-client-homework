@@ -46,6 +46,7 @@ export const getProceduresUrl       = (apiRoot: string = DEFAULT_API_ROOT, id?: 
 export const getSamplingFeaturesUrl = (apiRoot: string = DEFAULT_API_ROOT, id?: string) => buildCsapiUrl("samplingFeatures", id);
 export const getPropertiesUrl       = (apiRoot: string = DEFAULT_API_ROOT, id?: string) => buildCsapiUrl("properties", id);
 export const getDatastreamsUrl      = (apiRoot: string = DEFAULT_API_ROOT, id?: string) => buildCsapiUrl("datastreams", id);
+export const getDatastreamByIdUrl   = (apiRoot: string = DEFAULT_API_ROOT, datastreamId: string) => `${apiRoot}/datastreams/${datastreamId}`;
 export const getObservationsUrl     = (apiRoot: string = DEFAULT_API_ROOT, id?: string) => buildCsapiUrl("observations", id);
 export const getControlStreamsUrl   = (apiRoot: string = DEFAULT_API_ROOT, id?: string) => buildCsapiUrl("controlStreams", id);
 export const getCommandsUrl         = (apiRoot: string = DEFAULT_API_ROOT, id?: string) => buildCsapiUrl("commands", id);

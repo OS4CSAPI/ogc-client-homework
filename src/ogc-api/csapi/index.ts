@@ -51,29 +51,22 @@ export { FeasibilityClient } from "./feasibility";
 export { SystemEventsClient } from "./systemEvents";
 
 /* -------------------------------------------------------------------------- */
-/*                           Fallback / Aggregator Export                     */
+/*                      Aggregate Export for Harness Discovery                 */
 /* -------------------------------------------------------------------------- */
 /**
- * If consumers prefer to access all clients through a single aggregate
- * object, the following export provides that convenience.
+ * Provides a unified export of all client classes for the test harness or
+ * dynamic runtime discovery via helpers.ts (CSAPI_CLIENT_MODE).
  */
 export const CSAPIClients = {
-  SystemsClient: undefined as any,
-  DeploymentsClient: undefined as any,
-  ProceduresClient: undefined as any,
-  SamplingFeaturesClient: undefined as any,
-  PropertiesClient: undefined as any,
-  DatastreamsClient: undefined as any,
-  ObservationsClient: undefined as any,
-  ControlStreamsClient: undefined as any,
-  CommandsClient: undefined as any,
-  FeasibilityClient: undefined as any,
-  SystemEventsClient: undefined as any,
+  SystemsClient,
+  DeploymentsClient,
+  ProceduresClient,
+  SamplingFeaturesClient,
+  PropertiesClient,
+  DatastreamsClient,
+  ObservationsClient,
+  ControlStreamsClient,
+  CommandsClient,
+  FeasibilityClient,
+  SystemEventsClient,
 };
-
-/**
- * Note:
- * Each client will progressively replace its `undefined` placeholder
- * as actual implementations (e.g., SystemsClient, ProceduresClient)
- * are developed and imported above.
- */

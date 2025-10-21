@@ -12,7 +12,7 @@ export * from './observations';
 export * from './controlStreams';
 export * from './commands';
 export * from './feasibility';
-export * from './system-events';
+export * from './systemEvents';
 export * from './helpers';
 export * from './model';
 
@@ -30,7 +30,7 @@ import { ObservationsClient } from './observations';
 import { ControlStreamsClient } from './controlStreams';
 import { CommandsClient } from './commands';
 import { FeasibilityClient } from './feasibility';
-import { SystemEventsClient } from './system-events';
+import { SystemEventsClient } from './systemEvents';
 
 /* -------------------------------------------------------------------------- */
 /*                        Connected Systems Client Map                        */

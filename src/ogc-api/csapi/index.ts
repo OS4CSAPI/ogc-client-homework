@@ -5,7 +5,7 @@
 export * from './systems';
 export * from './deployments';
 export * from './procedures';
-export * from './sampling-features';
+export * from './samplingFeatures';
 export * from './properties';
 export * from './datastreams';
 export * from './observations';
@@ -23,7 +23,7 @@ export * from './model';
 import { SystemsClient } from './systems';
 import { DeploymentsClient } from './deployments';
 import { ProceduresClient } from './procedures';
-import { SamplingFeaturesClient } from './sampling-features';
+import { SamplingFeaturesClient } from './samplingFeatures';
 import { PropertiesClient } from './properties';
 import { DatastreamsClient } from './datastreams';
 import { ObservationsClient } from './observations';

@@ -2837,22 +2837,19 @@ describe('OgcApiEndpoint with EDR', () => {
 // Mirrors the Environmental Data Retrieval test structure
 // -----------------------------------------------------------------------------
 describe('OgcApiEndpoint with CSAPI', () => {
-  it('supports Connected Systems API', async () => {
-    const endpoint = new OgcApiEndpoint('http://local/csapi/sample-data-hub');
-    const hasGetter = (endpoint as any).hasConnectedSystems;
-    if (hasGetter) {
-      expect(await (endpoint as any).hasConnectedSystems).toBe(true);
-    } else {
-      const supported = await Promise.all([endpoint.conformanceClasses]).then(checkHasConnectedSystemsApi);
-      expect(supported).toBe(true);
-    }
-  });
+  let endpoint: OgcApiEndpoint;
+  describe('nominal case', () => {
+    beforeEach(() => {
+      endpoint = new OgcApiEndpoint('http://local/csapi/sample-data-hub');
+    });
 
-  it('can list all Connected Systems collections', async () => {
-    const endpoint = new OgcApiEndpoint('/fixtures/ogc-api/csapi/sample-data-hub/');
-    const collections = await endpoint.allCollections;
-    expect(collections.length).toBeGreaterThan(0);
+    it('supports Connected Systems API', async () => {
+      await expect(endpoint.hasConnectedSystems).resolves.toBe(true);
+    });
+
+    it('can list all Connected Systems collections', async () => {
+      const collections = await endpoint.allCollections;
+      expect(collections.length).toBeGreaterThan(0);
+    });
   });
 });
-
-

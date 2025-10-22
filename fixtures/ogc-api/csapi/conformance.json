@@ -2,6 +2,7 @@
   "conformsTo": [
     "http://www.opengis.net/spec/ogcapi-common-2/1.0/req/core",
     "http://www.opengis.net/spec/ogcapi-common-2/1.0/req/collections",
+    "http://www.opengis.net/spec/ogcapi-connected-systems/1.0/req/core",
     "http://www.opengis.net/spec/ogcapi-connected-systems-1/1.0/req/core",
     "http://www.opengis.net/spec/ogcapi-connected-systems-2/1.0/req/core"
   ]

@@ -17,12 +17,28 @@
     {
       "id": "systems",
       "title": "Systems",
-      "description": "A collection of connected systems exposed via CSAPI."
+      "description": "A collection of connected systems exposed via CSAPI.",
+      "links": [
+        {
+          "href": "http://local/csapi/collections/systems/items",
+          "rel": "items",
+          "type": "application/json",
+          "title": "Systems items"
+        }
+      ]
     },
     {
       "id": "datastreams",
       "title": "Datastreams",
-      "description": "A collection of datastreams exposed via CSAPI."
+      "description": "A collection of datastreams exposed via CSAPI.",
+      "links": [
+        {
+          "href": "http://local/csapi/collections/datastreams/items",
+          "rel": "items",
+          "type": "application/json",
+          "title": "Datastreams items"
+        }
+      ]
     }
   ]
 }

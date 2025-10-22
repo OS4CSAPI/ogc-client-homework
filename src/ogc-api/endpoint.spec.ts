@@ -2840,11 +2840,11 @@ describe('OgcApiEndpoint with CSAPI', () => {
   let endpoint: OgcApiEndpoint;
   describe('nominal case', () => {
     beforeEach(() => {
-      endpoint = new OgcApiEndpoint('http://local/csapi/sample-data-hub');
+      endpoint = new OgcApiEndpoint('http://local/csapi/sample-data-hub/');
     });
 
     it('supports Connected Systems API', async () => {
-      await expect(endpoint.hasConnectedSystems).resolves.toBe(true);
+      expect(endpoint.hasConnectedSystems).toBe(true);
     });
 
     it('can list all Connected Systems collections', async () => {

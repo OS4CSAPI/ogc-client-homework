@@ -2838,7 +2838,7 @@ describe('OgcApiEndpoint with EDR', () => {
 // -----------------------------------------------------------------------------
 describe('OgcApiEndpoint with CSAPI', () => {
   it('supports Connected Systems API', async () => {
-    const endpoint = new OgcApiEndpoint(''http://local/csapi/sample-data-hub');
+    const endpoint = new OgcApiEndpoint('http://local/csapi/sample-data-hub');
     const hasGetter = (endpoint as any).hasConnectedSystems;
     if (hasGetter) {
       expect(await (endpoint as any).hasConnectedSystems).toBe(true);

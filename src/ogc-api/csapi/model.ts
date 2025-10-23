@@ -12,14 +12,18 @@
  * Allows arbitrary extension fields while preserving type safety.
  * @see OGC 23-001 §7.2
  */
-export interface CSAPIResource<T = unknown> {
+export interface CSAPIResource<T extends Record<string, unknown> = Record<string, unknown>> {
   id: string;
   type: string;
-  [key: string]: string | T; // <-- allows string keys and T extension safely
-}
+  /** Arbitrary extension properties permitted by the CSAPI model. */
+  [key: string]: unknown;
 }
 
-export interface CSAPICollection<T = CSAPIResource> {
+/**
+ * Represents a FeatureCollection returned by a CSAPI endpoint.
+ * @see OGC 23-001 §7.4
+ */
+export interface CSAPICollection<T extends CSAPIResource = CSAPIResource> {
   type: "FeatureCollection";
   itemType?: string;
   features: T[];
@@ -45,7 +49,7 @@ export interface CSAPISystemLink {
  * Represents a System resource (Feature) in CSAPI Part 2.
  * @see OGC 23-002 §8.1
  */
-export interface CSAPISystem extends CSAPIResource<Record<string, unknown>> {
+export interface CSAPISystem extends CSAPIResource {
   id: string;
   name?: string;
   description?: string;
@@ -62,7 +66,7 @@ export interface CSAPISystemCollection extends CSAPICollection<CSAPISystem> {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                       Parameters and Other Shared Types                    */
+/*                       Parameters and Other Shared Types                     */
 /* -------------------------------------------------------------------------- */
 
 /**

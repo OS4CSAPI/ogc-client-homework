@@ -20,6 +20,31 @@ export function extractParameters(
 }
 
 /* -------------------------------------------------------------------------- */
+/*                         CSAPI Normalized Fetch Helper                      */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Normalized fetch wrapper for CSAPI live mode.
+ * Conformance-neutral: enforces OGC API media types only.
+ * @see OGC 23-001 §7.3, 23-002 §7.4
+ */
+export async function csapiFetch(url: string, options: RequestInit = {}): Promise<unknown> {
+  const headers = {
+    Accept: "application/json,application/schema+json",
+    ...(options.headers || {}),
+  };
+
+  const response = await fetch(url, { ...options, headers });
+
+  if (!response.ok) {
+    const msg = `[CSAPI] Fetch failed: ${response.status} ${response.statusText}`;
+    throw new Error(msg);
+  }
+
+  return response.json();
+}
+
+/* -------------------------------------------------------------------------- */
 /*         Hybrid Fixture / Live / Client Integration Helper Functions        */
 /* -------------------------------------------------------------------------- */
 
@@ -125,7 +150,7 @@ export async function maybeFetchOrLoad(
 
   // --- Mode 2: Live fetch mode ---
   if (USE_LIVE_MODE && liveUrl) {
-    return fetchCollection(liveUrl);
+    return csapiFetch(liveUrl);
   }
 
   // --- Mode 3: Fixture fallback (default) ---

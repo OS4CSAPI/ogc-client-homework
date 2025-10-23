@@ -10,7 +10,7 @@
  *
  * Test strategy:
  *   • Instantiate each *Client class under test
- *   • Verify .list() returns a valid FeatureCollection or Collection
+ *   • Verify .list() returns a valid FeatureCollection
  *   • Verify .get(id) returns a valid Feature or object
  */
 
@@ -48,13 +48,15 @@ const CLIENTS = [
 
 describe("CSAPI Client Lifecycle Tests", () => {
   for (const { name, cls, fixture } of CLIENTS) {
-    test(`${name}.list() returns valid collection for ${fixture}`, async () => {
+    test(`${name}.list() returns valid FeatureCollection for ${fixture}`, async () => {
       const client = new cls(apiRoot);
       const result = await client.list();
-      if (result.type === "Collection" || result.members) {
-        expect(result).toHaveProperty("type", "Collection");
-        expect(Array.isArray(result.members)).toBe(true);
+
+      if (result.type === "FeatureCollection" && Array.isArray(result.features)) {
+        expect(result).toHaveProperty("type", "FeatureCollection");
+        expect(Array.isArray(result.features)).toBe(true);
       } else {
+        // Fallback: validate against shared helper
         expectFeatureCollection(result);
       }
     });
@@ -62,12 +64,13 @@ describe("CSAPI Client Lifecycle Tests", () => {
     test(`${name}.get() returns a valid item for ${fixture}`, async () => {
       const client = new cls(apiRoot);
       const collection = await client.list();
-      const first = (collection.features?.[0] || collection.members?.[0]) ?? {};
-      if (!first.id) {
+      const first = collection.features?.[0] ?? {};
+
+      if (!("id" in first)) {
         // Tolerate missing ID in minimal fixture
         expect(first).toBeDefined();
       } else {
-        const item = await client.get(first.id);
+        const item = await client.get(first.id as string);
         expect(item).toBeDefined();
         expect(item).toHaveProperty("id", first.id);
       }

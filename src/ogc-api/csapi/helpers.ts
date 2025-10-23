@@ -1,6 +1,6 @@
 import { CSAPIParameter } from "./model";
-import fs from "fs";
-import path from "path";
+import * as fs from "fs";
+import * as path from "path";
 
 /* -------------------------------------------------------------------------- */
 /*                Core Parameter Extraction Utility (Unchanged)               */

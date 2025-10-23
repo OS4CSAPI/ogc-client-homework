@@ -15,7 +15,8 @@
 export interface CSAPIResource<T = unknown> {
   id: string;
   type: string;
-  [key: string]: T;
+  [key: string]: string | T; // <-- allows string keys and T extension safely
+}
 }
 
 export interface CSAPICollection<T = CSAPIResource> {

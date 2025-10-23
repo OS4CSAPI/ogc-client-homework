@@ -10,7 +10,9 @@ import * as path from "path";
  * Extracts CSAPIParameter definitions from a parameter block.
  * Retained from original implementation.
  */
-export function extractParameters(parameterBlock: Record<string, any> | null | undefined): CSAPIParameter[] {
+export function extractParameters(
+  parameterBlock: Record<string, unknown> | null | undefined
+): CSAPIParameter[] {
   if (!parameterBlock || typeof parameterBlock !== "object") {
     return [];
   }
@@ -37,7 +39,7 @@ export function extractParameters(parameterBlock: Record<string, any> | null | u
 /**
  * Fetch JSON from a live CSAPI endpoint.
  */
-export async function fetchCollection(url: string): Promise<any> {
+export async function fetchCollection(url: string): Promise<unknown> {
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`Fetch failed: ${response.status} ${response.statusText}`);
@@ -53,7 +55,7 @@ export async function fetchCollection(url: string): Promise<any> {
  * Load JSON from a local fixture path.
  * Example: fixtures/ogc-api/csapi/sample-data-hub/systems.json
  */
-export function loadFixture(fixtureName: string): any {
+export function loadFixture(fixtureName: string): unknown {
   const fixturePath = path.resolve(
     process.cwd(),
     `fixtures/ogc-api/csapi/sample-data-hub/${fixtureName}.json`
@@ -64,7 +66,7 @@ export function loadFixture(fixtureName: string): any {
   }
 
   const raw = fs.readFileSync(fixturePath, "utf-8");
-  return JSON.parse(raw);
+  return JSON.parse(raw) as unknown;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -83,14 +85,14 @@ export function loadFixture(fixtureName: string): any {
 export async function maybeFetchOrLoad(
   fixtureName: string,
   liveUrl?: string
-): Promise<any> {
+): Promise<unknown> {
   const USE_CLIENT_MODE = process.env.CSAPI_CLIENT_MODE === "true";
   const USE_LIVE_MODE = process.env.CSAPI_LIVE === "true";
 
   // --- Mode 1: Dynamic client invocation ---
   if (USE_CLIENT_MODE) {
     try {
-      const module = await import("./index");
+      const module: Record<string, any> = await import("./index");
 
       // Normalize fixture name (e.g., endpoint_systemEvents → SystemEventsClient)
       const base = fixtureName.replace(/^endpoint_/, "");
@@ -100,20 +102,24 @@ export async function maybeFetchOrLoad(
         .join("");
       const clientName = `${clientKey}Client`;
 
-      const client = (module as any)[clientName];
-      if (client?.list) {
-        const apiRoot =
-          process.env.CSAPI_API_ROOT || "https://example.csapi.server";
+      const client = module[clientName];
+      const apiRoot =
+        process.env.CSAPI_API_ROOT || "https://example.csapi.server";
+
+      if (typeof client?.list === "function") {
         return await client.list(apiRoot);
-      } else if (client?.get) {
-        const apiRoot =
-          process.env.CSAPI_API_ROOT || "https://example.csapi.server";
-        return await client.get(apiRoot);
-      } else {
-        console.warn(`[csapi:helpers] No callable client found for ${clientName}`);
       }
-    } catch (err: any) {
-      console.error(`[csapi:helpers] Client invocation failed: ${err.message}`);
+      if (typeof client?.get === "function") {
+        return await client.get(apiRoot);
+      }
+
+      console.warn(`[csapi:helpers] No callable client found for ${clientName}`);
+    } catch (err) {
+      if (err instanceof Error) {
+        console.error(`[csapi:helpers] Client invocation failed: ${err.message}`);
+      } else {
+        console.error("[csapi:helpers] Unknown client invocation error");
+      }
     }
   }
 
@@ -133,7 +139,10 @@ export async function maybeFetchOrLoad(
 /**
  * Validates that an object conforms to OGC FeatureCollection semantics.
  */
-export function expectFeatureCollection(data: any, itemType?: string) {
+export function expectFeatureCollection(
+  data: Record<string, unknown>,
+  itemType?: string
+): void {
   expect(data).toBeDefined();
   expect(data.type).toBe("FeatureCollection");
   expect(Array.isArray(data.features)).toBe(true);
@@ -143,6 +152,6 @@ export function expectFeatureCollection(data: any, itemType?: string) {
 /**
  * Validates that a URL matches a canonical CSAPI pattern.
  */
-export function expectCanonicalUrl(url: string, pattern: string | RegExp) {
+export function expectCanonicalUrl(url: string, pattern: string | RegExp): void {
   expect(url).toMatch(pattern);
 }

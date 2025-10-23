@@ -15,20 +15,21 @@
 
 import { maybeFetchOrLoad } from "../helpers";
 
-const apiRoot = process.env.CSAPI_API_ROOT || "https://example.csapi.server";
+const apiRoot: string = process.env.CSAPI_API_ROOT || "https://example.csapi.server";
 
 /**
  * Requirement: /req/landing-page/content
  * The API landing page SHALL provide a title and link relations for all primary resources.
  */
 test("Landing page contains expected metadata and canonical links", async () => {
-  const data = await maybeFetchOrLoad("common_landing", apiRoot);
+  const data: Record<string, unknown> = await maybeFetchOrLoad("common_landing", apiRoot);
 
   expect(data).toBeDefined();
-  expect(data.title).toBeDefined();
-  expect(Array.isArray(data.links)).toBe(true);
+  expect((data as any).title).toBeDefined();
+  expect(Array.isArray((data as any).links)).toBe(true);
 
-  const rels = data.links.map((l: any) => l.rel);
+  const links = (data as any).links as Array<{ rel: string }>;
+  const rels = links.map((l) => l.rel);
   expect(rels).toContain("self");
   expect(rels).toContain("conformance");
 
@@ -46,14 +47,15 @@ test("Landing page contains expected metadata and canonical links", async () => 
  */
 test("Conformance declaration lists valid CSAPI conformance classes", async () => {
   const url = `${apiRoot}/conformance`;
-  const data = await maybeFetchOrLoad("common_conformance", url);
+  const data: Record<string, unknown> = await maybeFetchOrLoad("common_conformance", url);
 
   expect(data).toBeDefined();
-  expect(Array.isArray(data.conformsTo)).toBe(true);
-  expect(data.conformsTo.length).toBeGreaterThan(0);
+  const conformsTo = (data as any).conformsTo as string[];
+  expect(Array.isArray(conformsTo)).toBe(true);
+  expect(conformsTo.length).toBeGreaterThan(0);
 
   // Check for at least one CSAPI and one Features conformance URI
-  const joined = data.conformsTo.join(" ");
+  const joined = conformsTo.join(" ");
   expect(joined).toMatch(/connected-systems/i);
   expect(joined).toMatch(/ogcapi-features/i);
 });
@@ -63,9 +65,10 @@ test("Conformance declaration lists valid CSAPI conformance classes", async () =
  * The landing page SHALL reference all canonical CSAPI extensions from Parts 1 & 2.
  */
 test("Landing page advertises CSAPI extension endpoints", async () => {
-  const data = await maybeFetchOrLoad("common_landing", apiRoot);
+  const data: Record<string, unknown> = await maybeFetchOrLoad("common_landing", apiRoot);
+  const links = (data as any).links as Array<{ rel: string }>;
+  const rels = links.map((l) => l.rel.toLowerCase());
 
-  const rels = data.links.map((l: any) => l.rel.toLowerCase());
   const expected = [
     "systems",
     "deployments",
@@ -78,7 +81,7 @@ test("Landing page advertises CSAPI extension endpoints", async () => {
   ];
 
   for (const rel of expected) {
-    const found = rels.some((r) => r.includes(rel));
+    const found = rels.some((r: string) => r.includes(rel));
     expect(found).toBe(true);
   }
 });

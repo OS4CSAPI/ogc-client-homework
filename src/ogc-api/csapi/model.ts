@@ -20,7 +20,9 @@ export interface CSAPIResource<T extends Record<string, unknown> = Record<string
 }
 
 /**
- * Represents a FeatureCollection returned by a CSAPI endpoint.
+ * Represents a generic CSAPI FeatureCollection or Collection container.
+ * Aligns with EDR and OGC API – Features schema semantics.
+ * @template T extends CSAPIResource
  * @see OGC 23-001 §7.4
  */
 export interface CSAPICollection<T extends CSAPIResource = CSAPIResource> {
@@ -66,7 +68,7 @@ export interface CSAPISystemCollection extends CSAPICollection<CSAPISystem> {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                       Parameters and Other Shared Types                     */
+/*                       Parameters and Other Shared Types                    */
 /* -------------------------------------------------------------------------- */
 
 /**

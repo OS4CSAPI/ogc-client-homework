@@ -1,0 +1,2467 @@
+{
+  "fork_only_commits": [
+    {
+      "hash": "74cf343",
+      "author": "Sam Bolling",
+      "date": "2025-10-06T12:39:01-04:00",
+      "subject": "Update README.md",
+      "files": [
+        {
+          "path": "README.md",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "1b9e204",
+      "author": "Sam Bolling",
+      "date": "2025-10-06T14:18:38-04:00",
+      "subject": "docs(plan): add implementation roadmap for CSAPI integration",
+      "files": [
+        {
+          "path": "docs/connected-systems-plan.md",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "3cb53fb",
+      "author": "Sam Bolling",
+      "date": "2025-10-06T14:31:04-04:00",
+      "subject": "docs(readme): add badge, tagline, and implementation plan link",
+      "files": [
+        {
+          "path": "README.md",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "19f3d38",
+      "author": "Sam Bolling",
+      "date": "2025-10-06T16:12:16-04:00",
+      "subject": "docs(plan): update implementation plan with TypeScript architecture and phase checklist",
+      "files": [
+        {
+          "path": "docs/connected-systems-plan.md",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "0149b8b",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T08:39:50-04:00",
+      "subject": "Update connected-systems-plan.md",
+      "files": [
+        {
+          "path": "docs/connected-systems-plan.md",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "fb3b43b",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T09:55:53-04:00",
+      "subject": "Merge pull request #22 from Sam-Bolling/docs/update-csapi-plan-tdd",
+      "files": []
+    },
+    {
+      "hash": "8ad57a0",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T11:49:43-04:00",
+      "subject": "docs: update CSAPI implementation plan with upstream-aligned structure and TDD workflow",
+      "files": [
+        {
+          "path": "docs/connected-systems-plan.md",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "2754654",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T12:00:04-04:00",
+      "subject": "Update connected-systems-plan.md",
+      "files": [
+        {
+          "path": "docs/connected-systems-plan.md",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "0bb6d41",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T12:02:34-04:00",
+      "subject": "Merge pull request #23 from Sam-Bolling/docs/update-csapi-plan-tdd",
+      "files": []
+    },
+    {
+      "hash": "04a4686",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T12:21:59-04:00",
+      "subject": "caffold CSAPI module structure under src/ogc-api/connected-systems",
+      "files": [
+        {
+          "path": "fixtures/ogc-api/connected-systems/sample-data-hub.json",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/connected-systems/ConnectedSystemsClient.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/connected-systems/ConnectedSystemsClient.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/connected-systems/endpoint.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/connected-systems/endpoint.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/connected-systems/helpers.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/connected-systems/helpers.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/connected-systems/index.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/connected-systems/info.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/connected-systems/link-utils.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/connected-systems/link-utils.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/connected-systems/model.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/connected-systems/model.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/connected-systems/url_builder.ts",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "c693f06",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T12:25:43-04:00",
+      "subject": "Merge pull request #24 from Sam-Bolling/capability/ogc-connected-systems",
+      "files": []
+    },
+    {
+      "hash": "45d01e2",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T12:28:28-04:00",
+      "subject": "Update connected-systems-plan.md",
+      "files": [
+        {
+          "path": "docs/connected-systems-plan.md",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "e1809d9",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T12:29:35-04:00",
+      "subject": "Merge pull request #25 from Sam-Bolling/docs/update-csapi-plan-tdd",
+      "files": []
+    },
+    {
+      "hash": "d081b3b",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T14:35:01-04:00",
+      "subject": "Delete src/ogc-api/connected-systems/ConnectedSystemsClient.spec.ts",
+      "files": [
+        {
+          "path": "src/ogc-api/connected-systems/ConnectedSystemsClient.spec.ts",
+          "change_type": "deleted"
+        }
+      ]
+    },
+    {
+      "hash": "17d00eb",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T14:35:31-04:00",
+      "subject": "Delete src/ogc-api/connected-systems/ConnectedSystemsClient.ts",
+      "files": [
+        {
+          "path": "src/ogc-api/connected-systems/ConnectedSystemsClient.ts",
+          "change_type": "deleted"
+        }
+      ]
+    },
+    {
+      "hash": "31e945b",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T14:44:04-04:00",
+      "subject": "Delete src/ogc-api/connected-systems/endpoint.spec.ts",
+      "files": [
+        {
+          "path": "src/ogc-api/connected-systems/endpoint.spec.ts",
+          "change_type": "deleted"
+        }
+      ]
+    },
+    {
+      "hash": "03ac4df",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T14:44:46-04:00",
+      "subject": "Delete src/ogc-api/connected-systems/endpoint.ts",
+      "files": [
+        {
+          "path": "src/ogc-api/connected-systems/endpoint.ts",
+          "change_type": "deleted"
+        }
+      ]
+    },
+    {
+      "hash": "eae5569",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T14:46:03-04:00",
+      "subject": "Delete src/ogc-api/connected-systems/info.ts",
+      "files": [
+        {
+          "path": "src/ogc-api/connected-systems/info.ts",
+          "change_type": "deleted"
+        }
+      ]
+    },
+    {
+      "hash": "ecb2866",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T14:47:25-04:00",
+      "subject": "Delete src/ogc-api/connected-systems/link-utils.spec.ts",
+      "files": [
+        {
+          "path": "src/ogc-api/connected-systems/link-utils.spec.ts",
+          "change_type": "deleted"
+        }
+      ]
+    },
+    {
+      "hash": "4088884",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T14:47:42-04:00",
+      "subject": "Delete src/ogc-api/connected-systems/link-utils.ts",
+      "files": [
+        {
+          "path": "src/ogc-api/connected-systems/link-utils.ts",
+          "change_type": "deleted"
+        }
+      ]
+    },
+    {
+      "hash": "a1d1d9b",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T14:52:58-04:00",
+      "subject": "Rename connected-systems folder to csapi for upstream alignment",
+      "files": [
+        {
+          "path": "src/ogc-api/connected-systems/helpers.spec.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/connected-systems/helpers.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/connected-systems/index.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/connected-systems/model.spec.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/connected-systems/model.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/connected-systems/url_builder.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/csapi/helpers.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/helpers.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/index.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/model.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/model.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/url_builder.ts",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "c197f1a",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T15:40:10-04:00",
+      "subject": "Update connected-systems-plan.md",
+      "files": [
+        {
+          "path": "docs/connected-systems-plan.md",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "e9cb9d9",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T15:40:57-04:00",
+      "subject": "Update connected-systems-plan.md",
+      "files": [
+        {
+          "path": "docs/connected-systems-plan.md",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "f58e1ae",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T15:44:26-04:00",
+      "subject": "updated folder name to match updated naming convention",
+      "files": [
+        {
+          "path": "fixtures/ogc-api/connected-systems/sample-data-hub.json",
+          "change_type": "deleted"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub.json",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "3f99d86",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T20:14:59-04:00",
+      "subject": "Update model.ts",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/model.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "033acb6",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T20:16:07-04:00",
+      "subject": "Update url_builder.ts",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/url_builder.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "4a4df14",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T20:16:47-04:00",
+      "subject": "Update helpers.ts",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/helpers.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "464da34",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T20:17:18-04:00",
+      "subject": "Update model.spec.ts",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/model.spec.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "216e43d",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T20:17:48-04:00",
+      "subject": "Update helpers.spec.ts",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/helpers.spec.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "b159e83",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T20:18:07-04:00",
+      "subject": "Delete src/ogc-api/csapi/index.ts",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/index.ts",
+          "change_type": "deleted"
+        }
+      ]
+    },
+    {
+      "hash": "b3e89b8",
+      "author": "Sam Bolling",
+      "date": "2025-10-09T21:15:30-04:00",
+      "subject": "Update endpoint.ts",
+      "files": [
+        {
+          "path": "src/ogc-api/endpoint.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "a5bd005",
+      "author": "Sam Bolling",
+      "date": "2025-10-10T19:46:00-04:00",
+      "subject": "Update url_builder.ts",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/url_builder.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "a1e94e0",
+      "author": "Sam Bolling",
+      "date": "2025-10-10T22:27:22-04:00",
+      "subject": "Update url_builder.ts",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/url_builder.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "7deda99",
+      "author": "Sam Bolling",
+      "date": "2025-10-13T14:34:39-04:00",
+      "subject": "Add files via upload",
+      "files": [
+        {
+          "path": "docs/CSAPI_Requirements_Register_v1.0.csv",
+          "change_type": "added"
+        },
+        {
+          "path": "docs/CSAPI_Requirements_Register_v1.0.md",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "80d45df",
+      "author": "Sam Bolling",
+      "date": "2025-10-13T16:00:21-04:00",
+      "subject": "File management",
+      "files": [
+        {
+          "path": "docs/CSAPI_Requirements_Register_v1.0.csv",
+          "change_type": "deleted"
+        },
+        {
+          "path": "docs/CSAPI_Requirements_Register_v1.0.md",
+          "change_type": "deleted"
+        },
+        {
+          "path": "docs/Plans/connected-systems-plan.md",
+          "change_type": "added"
+        },
+        {
+          "path": "docs/Requirements/CSAPI_Requirements_Register_v1.0.csv",
+          "change_type": "added"
+        },
+        {
+          "path": "docs/Requirements/CSAPI_Requirements_Register_v1.0.md",
+          "change_type": "added"
+        },
+        {
+          "path": "docs/connected-systems-plan.md",
+          "change_type": "deleted"
+        }
+      ]
+    },
+    {
+      "hash": "9f91c08",
+      "author": "Sam Bolling",
+      "date": "2025-10-13T16:04:05-04:00",
+      "subject": "documentation file management",
+      "files": [
+        {
+          "path": "docs/Plans/connected-systems-plan.md",
+          "change_type": "deleted"
+        },
+        {
+          "path": "docs/Requirements/CSAPI_Requirements_Register_v1.0.csv",
+          "change_type": "deleted"
+        },
+        {
+          "path": "docs/Requirements/CSAPI_Requirements_Register_v1.0.md",
+          "change_type": "deleted"
+        },
+        {
+          "path": "docs/csapi/plans/connected-systems-plan.md",
+          "change_type": "added"
+        },
+        {
+          "path": "docs/csapi/requirements/CSAPI_Requirements_Register_v1.0.csv",
+          "change_type": "added"
+        },
+        {
+          "path": "docs/csapi/requirements/CSAPI_Requirements_Register_v1.0.md",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "9a4f8f3",
+      "author": "Sam Bolling",
+      "date": "2025-10-13T16:16:16-04:00",
+      "subject": "adding test documents",
+      "files": [
+        {
+          "path": "docs/csapi/_tests_/CSAPI_Test_Design_Matrix_v1.0.csv",
+          "change_type": "added"
+        },
+        {
+          "path": "docs/csapi/_tests_/CSAPI_Test_Design_Matrix_v1.0.md",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "3a9cc1d",
+      "author": "Sam Bolling",
+      "date": "2025-10-15T04:40:57-04:00",
+      "subject": "added initial test harness files",
+      "files": [
+        {
+          "path": "docs/csapi/_tests_/CSAPI_Test_Traceability_Index.md",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/commands.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/common.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/controlstreams.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/datastreams.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/deployments.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/encodings.part1.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/encodings.part2.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/endpoints.part2.canonical.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/events.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/feasibility.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/observations.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/procedures.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/properties.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/sampling-features.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/systems.spec.ts",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "e6de033",
+      "author": "Sam Bolling",
+      "date": "2025-10-15T05:37:26-04:00",
+      "subject": "update CSAPI url_builders and helpers files based on updated test harness",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/helpers.ts",
+          "change_type": "modified"
+        },
+        {
+          "path": "src/ogc-api/csapi/url_builder.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "c12d574",
+      "author": "Sam Bolling",
+      "date": "2025-10-15T06:01:29-04:00",
+      "subject": "updates some of the test harness files so they are fully wired. will update the remainder this way, but needed to break for lunch",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/_tests_/commands.spec.ts",
+          "change_type": "modified"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/datastreams.spec.ts",
+          "change_type": "modified"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/observations.spec.ts",
+          "change_type": "modified"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/systems.spec.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "449ed2d",
+      "author": "Sam Bolling",
+      "date": "2025-10-15T07:38:36-04:00",
+      "subject": "updated the remainder of the files of the test harnes",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/_tests_/controlstreams.spec.ts",
+          "change_type": "modified"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/deployments.spec.ts",
+          "change_type": "modified"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/encodings.part1.spec.ts",
+          "change_type": "modified"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/encodings.part2.spec.ts",
+          "change_type": "modified"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/events.spec.ts",
+          "change_type": "modified"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/feasibility.spec.ts",
+          "change_type": "modified"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/procedures.spec.ts",
+          "change_type": "modified"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/properties.spec.ts",
+          "change_type": "modified"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/sampling-features.spec.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "2b5c423",
+      "author": "Sam Bolling",
+      "date": "2025-10-15T07:58:56-04:00",
+      "subject": "shores up the test harness by updating common and endpoint spec files",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/_tests_/common.spec.ts",
+          "change_type": "modified"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/endpoints.part2.canonical.spec.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "6dc059d",
+      "author": "Sam Bolling",
+      "date": "2025-10-15T09:28:15-04:00",
+      "subject": "added the sample data json stub files to the fixtures folder to complete the offline mode of the test harness",
+      "files": [
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/commands.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/common_conformance.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/common_landing.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/controlstreams.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/datastreams.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/datastreams_schema.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/deployments.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/encodings_part1_geojson.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/encodings_part1_sensorml.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/encodings_part2_observations_om.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/encodings_part2_observations_swe.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/encodings_part2_swecommon.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/endpoints_part2_landing.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/feasibility.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/observations.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/observations_nested.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/procedures.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/properties.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/samplingFeatures.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/systemEvents.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/systemEvents_nested.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/systems.json",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "2d4bf28",
+      "author": "Sam Bolling",
+      "date": "2025-10-15T09:39:39-04:00",
+      "subject": "added a fixture index to test documentation",
+      "files": [
+        {
+          "path": "docs/csapi/_tests_/Fixture_Index.md",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "cc8ad7c",
+      "author": "Sam Bolling",
+      "date": "2025-10-15T16:30:00-04:00",
+      "subject": "adding test harness guide",
+      "files": [
+        {
+          "path": "docs/csapi/_tests_/CSAPI_Test_Harness_Guide.md",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "cc4c025",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T02:54:43-04:00",
+      "subject": "adding index and first part of client code and a log",
+      "files": [
+        {
+          "path": "docs/csapi/implementation/Phase2_Step4_Substep1_Implementation_Log.md",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/index.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/systems.ts",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "b615e36",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T03:45:07-04:00",
+      "subject": "added function for getDatastreamByIDUrl to pass test",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/url_builder.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "15a0b1e",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T04:00:19-04:00",
+      "subject": "Phase 2 ┬╖ Step 4 ┬╖ Sub-Step 1 ΓÇö CSAPI Client Corrections and Fixture Enhancements",
+      "files": [
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/common_landing.json",
+          "change_type": "modified"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/endpoint_systems.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/properties.json",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "e435fe8",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T04:20:08-04:00",
+      "subject": "added an expected sample file for endpoint deployments to the fixtures for testing",
+      "files": [
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/endpoint_deployments.json",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "b9fe0fc",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T04:29:53-04:00",
+      "subject": "added an expected file missing from the test harness",
+      "files": [
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/endpoint_procedures.json",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "368dba4",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T05:05:51-04:00",
+      "subject": "adding remainder of canonical endpoint test files expected to refactor test in accordance with TDD loop",
+      "files": [
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/endpoint_commands.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/endpoint_controlStreams.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/endpoint_datastreams.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/endpoint_feasibility.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/endpoint_observations.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/endpoint_properties.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/endpoint_systemEvents.json",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "4794ada",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T05:13:45-04:00",
+      "subject": "maybe last expected file to complete current use of test harness and get full passing results for now",
+      "files": [
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/endpoint_samplingFeatures.json",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "1c6d314",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T05:32:24-04:00",
+      "subject": "it looks like the best naming convention for these json test files is all lowercase so updating them accordingly. this should pass the tests and also meet goals relating to consistent and ideal naming conventions",
+      "files": [
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/endpoint_controlStreams.json",
+          "change_type": "deleted"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/endpoint_controlstreams.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/endpoint_samplingFeatures.json",
+          "change_type": "deleted"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/endpoint_samplingfeatures.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/endpoint_systemEvents.json",
+          "change_type": "deleted"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/endpoint_systemevents.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/samplingFeatures.json",
+          "change_type": "deleted"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/samplingfeatures.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/systemEvents.json",
+          "change_type": "deleted"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/systemEvents_nested.json",
+          "change_type": "deleted"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/systemevents.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/systemevents_nested.json",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "94671e6",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T06:28:03-04:00",
+      "subject": "updating all fixture sample file names to be lowerCamelCase to be consistent with upstream repo and OGC standard style rules",
+      "files": [
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/controlStreams.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/controlstreams.json",
+          "change_type": "deleted"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/endpoint_controlStreams.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/endpoint_controlstreams.json",
+          "change_type": "deleted"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/endpoint_samplingFeatures.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/endpoint_samplingfeatures.json",
+          "change_type": "deleted"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/endpoint_systemEvents.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/endpoint_systemevents.json",
+          "change_type": "deleted"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/samplingFeatures.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/samplingfeatures.json",
+          "change_type": "deleted"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/systemEvents.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/systemEvents_nested.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/systemevents.json",
+          "change_type": "deleted"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/systemevents_nested.json",
+          "change_type": "deleted"
+        }
+      ]
+    },
+    {
+      "hash": "795b1a8",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T06:50:47-04:00",
+      "subject": "Align ControlStreams spec casing with lowerCamelCase convention",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/_tests_/controlstreams.spec.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "da1fa3a",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T06:54:50-04:00",
+      "subject": "Align endpoints.part2.canonical.spec.ts with lowerCamelCase fixture naming",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/_tests_/endpoints.part2.canonical.spec.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "3ba41b0",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T07:12:52-04:00",
+      "subject": "updates",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/_tests_/endpoints.part2.canonical.spec.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "8ed4c45",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T07:31:02-04:00",
+      "subject": "Finalize CSAPI Part 2 canonical endpoint tests with lowerCamelCase fixture normalization\"",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/_tests_/endpoints.part2.canonical.spec.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "1f6957e",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T07:39:35-04:00",
+      "subject": "Finalize CSAPI Part 2 canonical endpoint tests with endpoint mapping normalization",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/_tests_/endpoints.part2.canonical.spec.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "ff73da9",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T09:09:21-04:00",
+      "subject": "fix(tests): revert to strict lowerCamelCase fixture keys for canonical endpoints",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/_tests_/endpoints.part2.canonical.spec.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "363f673",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T09:40:53-04:00",
+      "subject": "fixing lowerCamelCase issue",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/url_builder.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "7623d51",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T09:47:23-04:00",
+      "subject": "fixing filename issue",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/_tests_/endpoints.part2.canonical.spec.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "6eed535",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T10:18:10-04:00",
+      "subject": "Implements the client logic for the OGC API ΓÇô Connected Systems Part 2 Deployments resource, following the established Systems client pattern.",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/deployments.ts",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "f91454d",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T10:38:32-04:00",
+      "subject": "Adds src/ogc-api/csapi/procedures.ts implementing the CSAPI Procedures client according to Part 2 ┬º 10ΓÇô11. Includes listProcedures() and getProcedureById() methods, using getProceduresUrl() and shared HTTP utilities. Verified against fixture endpoint_procedures.json.",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/procedures.ts",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "b2a463e",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T10:42:49-04:00",
+      "subject": "Adds src/ogc-api/csapi/sampling-features.ts implementing client logic for the CSAPI SamplingFeatures resource per Part 2 ┬º10ΓÇô11. Includes listSamplingFeatures() and getSamplingFeatureById() using getSamplingFeaturesUrl() and shared HTTP utilities. Validated against fixture endpoint_samplingFeatures.json.",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/sampling-features.ts",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "35f82a2",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T10:46:36-04:00",
+      "subject": "Adds src/ogc-api/csapi/properties.ts implementing client logic for CSAPI Properties resource (Part 2 ┬º10ΓÇô11). Defines Property interface, listProperties(), and getPropertyById(), using getPropertiesUrl() and shared HTTP utilities. Validated against fixture endpoint_properties.json.",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/properties.ts",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "1ed3d7a",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T10:53:05-04:00",
+      "subject": "Adds src/ogc-api/csapi/datastreams.ts implementing client logic for CSAPI Datastreams per Part 2 ┬º10ΓÇô11. Defines Datastream interface, listDatastreams(), and getDatastreamById() using getDatastreamsUrl() and shared HTTP utilities. Validated against fixture endpoint_datastreams.json.",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/datastreams.ts",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "d7d38ce",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T10:59:42-04:00",
+      "subject": "Adds src/ogc-api/csapi/observations.ts implementing client logic for CSAPI Observations per Part 2 ┬º10ΓÇô11. Defines Observation interface, listObservations(), and getObservationById() using getObservationsUrl() and shared HTTP utilities. Validated against fixture endpoint_observations.json.",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/observations.ts",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "b4eab5d",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T11:04:40-04:00",
+      "subject": "Adds src/ogc-api/csapi/controlStreams.ts implementing client logic for CSAPI ControlStreams per Part 2 ┬º10ΓÇô11. Defines ControlStream interface, listControlStreams(), and getControlStreamById() using getControlStreamsUrl() and shared HTTP utilities. Validated against fixture endpoint_controlStreams.json.",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/controlStream.ts",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "412343c",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T11:08:42-04:00",
+      "subject": "Adds src/ogc-api/csapi/commands.ts implementing client logic for CSAPI Commands per Part 2 ┬º11ΓÇô12. Defines Command interface, listCommands(), and getCommandById() using getCommandsUrl() and shared HTTP utilities. Validated against fixture endpoint_commands.json.",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/commands.ts",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "3d55f1a",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T11:15:06-04:00",
+      "subject": "Adds src/ogc-api/csapi/feasibility.ts implementing client logic for CSAPI Feasibility evaluations (Part 2 ┬º13). Defines Feasibility interface, listFeasibility(), and getFeasibilityById() using getFeasibilityUrl() and shared HTTP utilities. Validated against fixture endpoint_feasibility.json.",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/feasibility.ts",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "89edeb3",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T14:01:51-04:00",
+      "subject": "Adds src/ogc-api/csapi/systemEvents.ts implementing client logic for CSAPI SystemEvents per Part 2 ┬º14ΓÇô15. Defines SystemEvent interface, listSystemEvents(), and getSystemEventById() using getSystemEventsUrl() and shared HTTP utilities. Validated against fixture endpoint_systemEvents.json.",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/systemEvents.ts",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "c991c8b",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T14:40:24-04:00",
+      "subject": "feat(csapi): enable client-integration mode in helpers.ts",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/helpers.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "80ca890",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T15:22:46-04:00",
+      "subject": "chore(csapi): establish centralized client export module",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/index.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "5e07861",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T15:50:35-04:00",
+      "subject": "feat(csapi): add DeploymentsClient implementation",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/deployments.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "8eeb64d",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T16:01:24-04:00",
+      "subject": "feat(csapi): add ProceduresClient implementation",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/procedures.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "919bf45",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T16:05:56-04:00",
+      "subject": "feat(csapi): add SamplingFeaturesClient implementation",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/sampling-features.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "9299ea2",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T16:09:49-04:00",
+      "subject": "feat(csapi): add PropertiesClient implementation",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/properties.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "8a86b82",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T16:13:58-04:00",
+      "subject": "feat(csapi): add DatastreamsClient implementation",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/datastreams.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "7de0fab",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T16:17:14-04:00",
+      "subject": "feat(csapi): add ObservationsClient implementation",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/observations.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "3a8ac2a",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T16:27:56-04:00",
+      "subject": "feat(csapi): add ControlStreamsClient implementation",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/controlStream.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/csapi/controlStreams.ts",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "fbbe320",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T16:28:46-04:00",
+      "subject": "name change fix",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/index.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "ce0af17",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T16:39:01-04:00",
+      "subject": "feat(csapi): add CommandsClient implementation",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/commands.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "a8fde04",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T16:52:57-04:00",
+      "subject": "feat(csapi): add FeasibilityClient implementation",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/feasibility.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "f6890b1",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T16:58:04-04:00",
+      "subject": "feat(csapi): add SystemEventsClient implementation",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/systemEvents.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "16660dd",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T17:12:48-04:00",
+      "subject": "feat(csapi): add SamplingFeaturesClient implementation",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/index.ts",
+          "change_type": "modified"
+        },
+        {
+          "path": "src/ogc-api/csapi/sampling-features.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/csapi/samplingFeatures.ts",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "6861708",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T17:17:25-04:00",
+      "subject": "feat(csapi): add PropertiesClient implementation",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/properties.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "a6c0972",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T17:21:15-04:00",
+      "subject": "feat(csapi): add DatastreamsClient implementation",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/datastreams.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "0557b1d",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T17:24:11-04:00",
+      "subject": "feat(csapi): add ObservationsClient implementation",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/observations.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "1b4185d",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T18:11:38-04:00",
+      "subject": "Implement SystemsClient for CSAPI Part 2 /systems collection (Req10.1ΓÇô10.2)",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/systems.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "a656756",
+      "author": "Sam Bolling",
+      "date": "2025-10-16T18:26:54-04:00",
+      "subject": "Add CSAPI client lifecycle integration tests for all canonical endpoint clients",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/_tests_/clients.lifecycle.spec.ts",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "8c245bb",
+      "author": "Sam Bolling",
+      "date": "2025-10-17T02:50:29-04:00",
+      "subject": "Add EventsClient and correct SystemEventsClient export in CSAPI index",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/events.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/index.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "a6fbacc",
+      "author": "Sam Bolling",
+      "date": "2025-10-17T04:56:04-04:00",
+      "subject": "fixing semantics and functionality relating to system events and nested events of systems",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/_tests_/events.spec.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/system-events.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/index.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "7db2b28",
+      "author": "Sam Bolling",
+      "date": "2025-10-17T05:01:16-04:00",
+      "subject": "still fixing events vs systemEvents semantics",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/events.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/csapi/url_builder.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "96db6c7",
+      "author": "Sam Bolling",
+      "date": "2025-10-17T05:06:53-04:00",
+      "subject": "fixing logic to support system events and nested system events and not collections level events",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/_tests_/system-events.spec.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "323b347",
+      "author": "Sam Bolling",
+      "date": "2025-10-17T06:02:08-04:00",
+      "subject": "Test: add single-item CSAPI fixtures for lifecycle client tests",
+      "files": [
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/command_cmd-001.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/controlStream_ctrl-001.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/datastream_ds-001.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/deployment_dep-001.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/feasibility_feas-001.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/observation_obs-001.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/procedure_proc-001.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/property_prop-001.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/samplingFeature_sf-001.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/systemEvent_evt-001.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/system_sys-001.json",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "f966c31",
+      "author": "Sam Bolling",
+      "date": "2025-10-17T08:02:20-04:00",
+      "subject": "adding linked and nested system events sample data and tests",
+      "files": [
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/systemEvents.json",
+          "change_type": "modified"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/systemEvents_nested.json",
+          "change_type": "deleted"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/systemEvents_sys-001.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/system_sys-001.json",
+          "change_type": "modified"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/systems.spec.ts",
+          "change_type": "modified"
+        },
+        {
+          "path": "src/ogc-api/csapi/model.ts",
+          "change_type": "modified"
+        },
+        {
+          "path": "src/ogc-api/csapi/systems.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "98f48f8",
+      "author": "Sam Bolling",
+      "date": "2025-10-17T08:28:14-04:00",
+      "subject": "fix",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/_tests_/system-events.spec.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "2620215",
+      "author": "Sam Bolling",
+      "date": "2025-10-17T12:29:27-04:00",
+      "subject": "test(csapi): add cross-collection linkage tests for canonical CSAPI relationships",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/_tests_/linkage.spec.ts",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "ce1e175",
+      "author": "Sam Bolling",
+      "date": "2025-10-17T15:00:08-04:00",
+      "subject": "updated systems sample data file to support part 2 testing",
+      "files": [
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/systems.json",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "5c6e9de",
+      "author": "Sam Bolling",
+      "date": "2025-10-17T16:03:19-04:00",
+      "subject": "added links to support testing for part 2 compliance and functionality",
+      "files": [
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/deployments.json",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "ad4474d",
+      "author": "Sam Bolling",
+      "date": "2025-10-17T16:39:38-04:00",
+      "subject": "updated to support linked testing of part 2 capabilities",
+      "files": [
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub/datastreams.json",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "0d13faa",
+      "author": "Sam Bolling",
+      "date": "2025-10-17T22:22:41Z",
+      "subject": "docs(audit): add CSAPI_Consistency_Audit_v1.0 - Adds Phase 3 Consistency Audit Report for CSAPI implementation - Confirms cross-part consistency (Parts 1 & 2) - Verifies full fixture coverage and canonical endpoint mapping - Marks readiness for upstream PR integration",
+      "files": [
+        {
+          "path": "docs/csapi/audits/csapi_consistency_audit_v_1.md",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "28b2bc4",
+      "author": "Sam Bolling",
+      "date": "2025-10-18T04:53:24-04:00",
+      "subject": "Add files via upload",
+      "files": [
+        {
+          "path": "docs/csapi/plans/connected_systems_plan_v_2.md",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "7a7200d",
+      "author": "Sam Bolling",
+      "date": "2025-10-18T04:54:40-04:00",
+      "subject": "Revise executive summary for connected systems plan",
+      "files": [
+        {
+          "path": "docs/csapi/plans/connected_systems_plan_v_2.md",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "ccf0169",
+      "author": "Sam Bolling",
+      "date": "2025-10-21T16:00:23-04:00",
+      "subject": "normalizing test folder name",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/__tests__/clients.lifecycle.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/__tests__/commands.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/__tests__/common.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/__tests__/controlstreams.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/__tests__/datastreams.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/__tests__/deployments.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/__tests__/encodings.part1.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/__tests__/encodings.part2.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/__tests__/endpoints.part2.canonical.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/__tests__/feasibility.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/__tests__/linkage.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/__tests__/observations.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/__tests__/procedures.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/__tests__/properties.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/__tests__/sampling-features.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/__tests__/system-events.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/__tests__/systems.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/clients.lifecycle.spec.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/commands.spec.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/common.spec.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/controlstreams.spec.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/datastreams.spec.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/deployments.spec.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/encodings.part1.spec.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/encodings.part2.spec.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/endpoints.part2.canonical.spec.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/feasibility.spec.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/linkage.spec.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/observations.spec.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/procedures.spec.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/properties.spec.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/sampling-features.spec.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/system-events.spec.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/csapi/_tests_/systems.spec.ts",
+          "change_type": "deleted"
+        }
+      ]
+    },
+    {
+      "hash": "7a996d1",
+      "author": "Sam Bolling",
+      "date": "2025-10-21T16:01:50-04:00",
+      "subject": "moved model and helpers specs into test folder with rest of csapi tests",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/__tests__/helpers.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/__tests__/model.spec.ts",
+          "change_type": "added"
+        },
+        {
+          "path": "src/ogc-api/csapi/helpers.spec.ts",
+          "change_type": "deleted"
+        },
+        {
+          "path": "src/ogc-api/csapi/model.spec.ts",
+          "change_type": "deleted"
+        }
+      ]
+    },
+    {
+      "hash": "4709ae0",
+      "author": "Sam Bolling",
+      "date": "2025-10-21T16:08:44-04:00",
+      "subject": "csapi: finalize client export surface for Part 1 & 2 modules",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/index.ts",
+          "change_type": "modified"
+        },
+        {
+          "path": "src/ogc-api/csapi/url_builder.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "eabd30c",
+      "author": "Sam Bolling",
+      "date": "2025-10-21T16:23:16-04:00",
+      "subject": "csapi: finalize URL builder and helper test alignment for canonical CSAPI harness",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/__tests__/helpers.spec.ts",
+          "change_type": "modified"
+        },
+        {
+          "path": "src/ogc-api/csapi/url_builder.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "32dfe70",
+      "author": "Sam Bolling",
+      "date": "2025-10-21T17:00:11-04:00",
+      "subject": "csapi: finalize Connected Systems client harness and stabilize all CSAPI tests",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/helpers.ts",
+          "change_type": "modified"
+        },
+        {
+          "path": "src/ogc-api/csapi/index.ts",
+          "change_type": "modified"
+        },
+        {
+          "path": "src/ogc-api/csapi/url_builder.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "a254366",
+      "author": "Sam Bolling",
+      "date": "2025-10-21T17:10:54-04:00",
+      "subject": "csapi: fix samplingFeatures import/export path to match actual filename",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/index.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "7e56689",
+      "author": "Sam Bolling",
+      "date": "2025-10-21T17:13:07-04:00",
+      "subject": "csapi: fix controlStreams import/export path casing to match actual filename",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/index.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "280d7bd",
+      "author": "Sam Bolling",
+      "date": "2025-10-21T17:14:58-04:00",
+      "subject": "csapi: fix systemEvents import/export path to match actual filename",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/index.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "12fb450",
+      "author": "Sam Bolling",
+      "date": "2025-10-21T19:00:38-04:00",
+      "subject": "ogc-api: add Connected Systems API conformance detection",
+      "files": [
+        {
+          "path": "src/ogc-api/info.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "cbf7d08",
+      "author": "Sam Bolling",
+      "date": "2025-10-21T19:30:42-04:00",
+      "subject": "tests(ogc-api): add Connected Systems (CSAPI) integration tests to endpoint suite",
+      "files": [
+        {
+          "path": "src/ogc-api/endpoint.spec.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "1a51b1d",
+      "author": "Sam Bolling",
+      "date": "2025-10-21T19:41:28-04:00",
+      "subject": "tests(ogc-api): add CSAPI sample-data-hub fixture for endpoint integration",
+      "files": [
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub.json",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "41aa7b9",
+      "author": "Sam Bolling",
+      "date": "2025-10-21T20:18:59-04:00",
+      "subject": "trying to fix fixture for upstream test",
+      "files": [
+        {
+          "path": "fixtures/ogc-api/csapi/sample-data-hub.json",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "bc1b0b3",
+      "author": "Sam Bolling",
+      "date": "2025-10-21T20:51:01-04:00",
+      "subject": "fixing path bug",
+      "files": [
+        {
+          "path": "src/ogc-api/endpoint.spec.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "472ec93",
+      "author": "Sam Bolling",
+      "date": "2025-10-21T20:52:33-04:00",
+      "subject": "trying to fix bug",
+      "files": [
+        {
+          "path": "src/ogc-api/endpoint.spec.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "652e8ec",
+      "author": "Sam Bolling",
+      "date": "2025-10-21T20:54:19-04:00",
+      "subject": "still bug hunting",
+      "files": [
+        {
+          "path": "src/ogc-api/endpoint.spec.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "883e485",
+      "author": "Sam Bolling",
+      "date": "2025-10-21T21:01:04-04:00",
+      "subject": "bug fixing",
+      "files": [
+        {
+          "path": "src/ogc-api/endpoint.spec.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "7be1c1d",
+      "author": "Sam Bolling",
+      "date": "2025-10-21T21:06:35-04:00",
+      "subject": "tests(ogc-api): fix CSAPI endpoint test to use helper and correct root URL",
+      "files": [
+        {
+          "path": "src/ogc-api/endpoint.spec.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "253cf98",
+      "author": "Sam Bolling",
+      "date": "2025-10-21T21:13:42-04:00",
+      "subject": ".",
+      "files": [
+        {
+          "path": "fixtures/ogc-api/csapi.json",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "0da6a5d",
+      "author": "Sam Bolling",
+      "date": "2025-10-21T21:17:21-04:00",
+      "subject": "updating fixture contents",
+      "files": [
+        {
+          "path": "fixtures/ogc-api/csapi.json",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "af34084",
+      "author": "Sam Bolling",
+      "date": "2025-10-21T21:23:22-04:00",
+      "subject": "tests(fixtures): add CSAPI conformance and collections fixtures for endpoint tests",
+      "files": [
+        {
+          "path": "fixtures/ogc-api/csapi/collections.json",
+          "change_type": "added"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/conformance.json",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "71daa22",
+      "author": "Sam Bolling",
+      "date": "2025-10-21T21:26:09-04:00",
+      "subject": "updating fixtures for testing",
+      "files": [
+        {
+          "path": "fixtures/ogc-api/csapi/collections.json",
+          "change_type": "modified"
+        },
+        {
+          "path": "fixtures/ogc-api/csapi/conformance.json",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "30a198b",
+      "author": "Sam Bolling",
+      "date": "2025-10-21T21:30:37-04:00",
+      "subject": "tests(fixtures): update CSAPI conformance URIs to satisfy regex check",
+      "files": [
+        {
+          "path": "fixtures/ogc-api/csapi/conformance.json",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "6782dd1",
+      "author": "Sam Bolling",
+      "date": "2025-10-21T21:35:03-04:00",
+      "subject": "tests(fixtures): declare OGC API - Features core dependency for CSAPI endpoint",
+      "files": [
+        {
+          "path": "fixtures/ogc-api/csapi/conformance.json",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "f152101",
+      "author": "Sam Bolling",
+      "date": "2025-10-21T21:45:04-04:00",
+      "subject": "tests(fixtures): update CSAPI conformance URIs to use /conf/ endpoints per OGC spec",
+      "files": [
+        {
+          "path": "fixtures/ogc-api/csapi/conformance.json",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "4341cf7",
+      "author": "Sam Bolling",
+      "date": "2025-10-22T19:53:28-04:00",
+      "subject": "documentation for upstream integration audit",
+      "files": [
+        {
+          "path": "docs/csapi/audits/CSAPI_Upstream_Integration_Gap_Audit.md",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "ed1e076",
+      "author": "Sam Bolling",
+      "date": "2025-10-22T20:27:00-04:00",
+      "subject": "Enable strict TypeScript mode for stronger type safety and security",
+      "files": [
+        {
+          "path": "tsconfig.json",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "f884883",
+      "author": "Sam Bolling",
+      "date": "2025-10-22T20:30:10-04:00",
+      "subject": "- Enabled \"strict\", \"noImplicitAny\", and \"forceConsistentCasingInFileNames\" in tsconfig.json. - Removed JSON comments that were invalid for strict parsing. - Improves compile-time type safety without affecting runtime or API behavior.",
+      "files": [
+        {
+          "path": "tsconfig.json",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "2f76c71",
+      "author": "Sam Bolling",
+      "date": "2025-10-22T20:31:57-04:00",
+      "subject": "fix",
+      "files": [
+        {
+          "path": "tsconfig.json",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "b235d1c",
+      "author": "Sam Bolling",
+      "date": "2025-10-22T20:38:23-04:00",
+      "subject": "Harden CSAPIResource type and improve model typings for security and clarity - Replaced unsafe \"[key: string]: any\" with a generic type parameter <T = unknown>. - Updated CSAPICollection to support generic typing. - Replaced remaining Record<string, any> with Record<string, unknown>. - Added @see annotations to reference relevant CSAPI specification sections. - Improves type safety and maintainability without altering runtime behavior or schema conformance.",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/model.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "b4fbd81",
+      "author": "Sam Bolling",
+      "date": "2025-10-22T21:06:50-04:00",
+      "subject": "Fix CSAPI lifecycle tests for strict mode and FeatureCollection alignment - Updated lifecycle tests to use FeatureCollection/features instead of Collection/members. - Ensured .get() test handles optional id safely under strict typing. - Verified compatibility with final CSAPI model and strict TypeScript mode.",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/__tests__/clients.lifecycle.spec.ts",
+          "change_type": "modified"
+        },
+        {
+          "path": "src/ogc-api/csapi/helpers.ts",
+          "change_type": "modified"
+        },
+        {
+          "path": "src/ogc-api/csapi/model.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "c2a3b6c",
+      "author": "Sam Bolling",
+      "date": "2025-10-22T21:08:21-04:00",
+      "subject": "Make CSAPI common.spec.ts strict-mode compliant - Added explicit type annotations for fetched data and link arrays. - Removed implicit any usage flagged by strict TypeScript mode. - Verified functional equivalence with previous test behavior.",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/__tests__/common.spec.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "07f8944",
+      "author": "Sam Bolling",
+      "date": "2025-10-22T21:09:51-04:00",
+      "subject": "Fix CSAPI helpers.spec.ts for strict mode and model alignment - Updated Elevation parameter expectation to use .name instead of .id. - Added explicit Record<string, unknown> typings for test inputs. - Ensured safe null/undefined handling under strict mode.",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/__tests__/helpers.spec.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "9cd7f99",
+      "author": "Sam Bolling",
+      "date": "2025-10-22T21:11:26-04:00",
+      "subject": "Fix CSAPI model.spec.ts for strict mode and parameter model alignment - Updated test to reference CSAPIParameter.name instead of deprecated id. - Added schema and description to reflect realistic example structure. - Ensured file imports and typings are compatible with strict TypeScript mode.",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/__tests__/model.spec.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "e651425",
+      "author": "Sam Bolling",
+      "date": "2025-10-22T21:13:17-04:00",
+      "subject": "Make csapi/helpers.ts strict-mode compliant and type-safe - Added explicit typing for all function parameters and returns. - Replaced implicit any usages with unknown or Record<string, unknown>. - Added safe error handling for dynamic imports. - Verified compatibility with Node ESM import style under esModuleInterop.",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/helpers.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "3742d6b",
+      "author": "Sam Bolling",
+      "date": "2025-10-22T21:14:26-04:00",
+      "subject": "Fix csapi/model.ts for strict typing and standard compliance - Removed stray bracket and corrected index signature on CSAPIResource. - Replaced unsafe string|T union with Record<string, unknown>. - Ensured all interfaces compile under strict mode. - Verified conformance with OGC 23-001 and 23-002 section mappings.",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/model.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "4634436",
+      "author": "Sam Bolling",
+      "date": "2025-10-22T21:34:35-04:00",
+      "subject": "architecture documentation update",
+      "files": [
+        {
+          "path": "docs/csapi/architecture/csapi-integration.md",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "feaa650",
+      "author": "Sam Bolling",
+      "date": "2025-10-22T22:47:37-04:00",
+      "subject": "parity audit against edr pr and final repo choices",
+      "files": [
+        {
+          "path": "docs/csapi/audits/csapi_edr_functional_parity_map.md",
+          "change_type": "added"
+        }
+      ]
+    },
+    {
+      "hash": "1645428",
+      "author": "Sam Bolling",
+      "date": "2025-10-22T23:04:49-04:00",
+      "subject": "feat(csapi): add normalized fetch wrapper for parity with EDR shared/http-utils",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/helpers.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "6e22793",
+      "author": "Sam Bolling",
+      "date": "2025-10-22T23:06:04-04:00",
+      "subject": "refactor(csapi): align model generics with EDR type pattern",
+      "files": [
+        {
+          "path": "src/ogc-api/csapi/model.ts",
+          "change_type": "modified"
+        }
+      ]
+    },
+    {
+      "hash": "de253bc",
+      "author": "Sam Bolling",
+      "date": "2025-11-12T19:31:02-05:00",
+      "subject": "Merge pull request #26 from camptocamp/main",
+      "files": []
+    }
+  ]
+}

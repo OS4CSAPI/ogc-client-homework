@@ -1,0 +1,477 @@
+- 74cf343 | 2025-10-06T12:39:01-04:00 | Sam Bolling | Update README.md
+  - README.md (modified)
+- 1b9e204 | 2025-10-06T14:18:38-04:00 | Sam Bolling | docs(plan): add implementation roadmap for CSAPI integration
+  - docs/connected-systems-plan.md (added)
+- 3cb53fb | 2025-10-06T14:31:04-04:00 | Sam Bolling | docs(readme): add badge, tagline, and implementation plan link
+  - README.md (modified)
+- 19f3d38 | 2025-10-06T16:12:16-04:00 | Sam Bolling | docs(plan): update implementation plan with TypeScript architecture and phase checklist
+  - docs/connected-systems-plan.md (modified)
+- 0149b8b | 2025-10-09T08:39:50-04:00 | Sam Bolling | Update connected-systems-plan.md
+  - docs/connected-systems-plan.md (modified)
+- fb3b43b | 2025-10-09T09:55:53-04:00 | Sam Bolling | Merge pull request #22 from Sam-Bolling/docs/update-csapi-plan-tdd
+  - (no files recorded)
+- 8ad57a0 | 2025-10-09T11:49:43-04:00 | Sam Bolling | docs: update CSAPI implementation plan with upstream-aligned structure and TDD workflow
+  - docs/connected-systems-plan.md (modified)
+- 2754654 | 2025-10-09T12:00:04-04:00 | Sam Bolling | Update connected-systems-plan.md
+  - docs/connected-systems-plan.md (modified)
+- 0bb6d41 | 2025-10-09T12:02:34-04:00 | Sam Bolling | Merge pull request #23 from Sam-Bolling/docs/update-csapi-plan-tdd
+  - (no files recorded)
+- 04a4686 | 2025-10-09T12:21:59-04:00 | Sam Bolling | caffold CSAPI module structure under src/ogc-api/connected-systems
+  - fixtures/ogc-api/connected-systems/sample-data-hub.json (added)
+  - src/ogc-api/connected-systems/ConnectedSystemsClient.spec.ts (added)
+  - src/ogc-api/connected-systems/ConnectedSystemsClient.ts (added)
+  - src/ogc-api/connected-systems/endpoint.spec.ts (added)
+  - src/ogc-api/connected-systems/endpoint.ts (added)
+  - src/ogc-api/connected-systems/helpers.spec.ts (added)
+  - src/ogc-api/connected-systems/helpers.ts (added)
+  - src/ogc-api/connected-systems/index.ts (added)
+  - src/ogc-api/connected-systems/info.ts (added)
+  - src/ogc-api/connected-systems/link-utils.spec.ts (added)
+  - src/ogc-api/connected-systems/link-utils.ts (added)
+  - src/ogc-api/connected-systems/model.spec.ts (added)
+  - src/ogc-api/connected-systems/model.ts (added)
+  - src/ogc-api/connected-systems/url_builder.ts (added)
+- c693f06 | 2025-10-09T12:25:43-04:00 | Sam Bolling | Merge pull request #24 from Sam-Bolling/capability/ogc-connected-systems
+  - (no files recorded)
+- 45d01e2 | 2025-10-09T12:28:28-04:00 | Sam Bolling | Update connected-systems-plan.md
+  - docs/connected-systems-plan.md (modified)
+- e1809d9 | 2025-10-09T12:29:35-04:00 | Sam Bolling | Merge pull request #25 from Sam-Bolling/docs/update-csapi-plan-tdd
+  - (no files recorded)
+- d081b3b | 2025-10-09T14:35:01-04:00 | Sam Bolling | Delete src/ogc-api/connected-systems/ConnectedSystemsClient.spec.ts
+  - src/ogc-api/connected-systems/ConnectedSystemsClient.spec.ts (deleted)
+- 17d00eb | 2025-10-09T14:35:31-04:00 | Sam Bolling | Delete src/ogc-api/connected-systems/ConnectedSystemsClient.ts
+  - src/ogc-api/connected-systems/ConnectedSystemsClient.ts (deleted)
+- 31e945b | 2025-10-09T14:44:04-04:00 | Sam Bolling | Delete src/ogc-api/connected-systems/endpoint.spec.ts
+  - src/ogc-api/connected-systems/endpoint.spec.ts (deleted)
+- 03ac4df | 2025-10-09T14:44:46-04:00 | Sam Bolling | Delete src/ogc-api/connected-systems/endpoint.ts
+  - src/ogc-api/connected-systems/endpoint.ts (deleted)
+- eae5569 | 2025-10-09T14:46:03-04:00 | Sam Bolling | Delete src/ogc-api/connected-systems/info.ts
+  - src/ogc-api/connected-systems/info.ts (deleted)
+- ecb2866 | 2025-10-09T14:47:25-04:00 | Sam Bolling | Delete src/ogc-api/connected-systems/link-utils.spec.ts
+  - src/ogc-api/connected-systems/link-utils.spec.ts (deleted)
+- 4088884 | 2025-10-09T14:47:42-04:00 | Sam Bolling | Delete src/ogc-api/connected-systems/link-utils.ts
+  - src/ogc-api/connected-systems/link-utils.ts (deleted)
+- a1d1d9b | 2025-10-09T14:52:58-04:00 | Sam Bolling | Rename connected-systems folder to csapi for upstream alignment
+  - src/ogc-api/connected-systems/helpers.spec.ts (deleted)
+  - src/ogc-api/connected-systems/helpers.ts (deleted)
+  - src/ogc-api/connected-systems/index.ts (deleted)
+  - src/ogc-api/connected-systems/model.spec.ts (deleted)
+  - src/ogc-api/connected-systems/model.ts (deleted)
+  - src/ogc-api/connected-systems/url_builder.ts (deleted)
+  - src/ogc-api/csapi/helpers.spec.ts (added)
+  - src/ogc-api/csapi/helpers.ts (added)
+  - src/ogc-api/csapi/index.ts (added)
+  - src/ogc-api/csapi/model.spec.ts (added)
+  - src/ogc-api/csapi/model.ts (added)
+  - src/ogc-api/csapi/url_builder.ts (added)
+- c197f1a | 2025-10-09T15:40:10-04:00 | Sam Bolling | Update connected-systems-plan.md
+  - docs/connected-systems-plan.md (modified)
+- e9cb9d9 | 2025-10-09T15:40:57-04:00 | Sam Bolling | Update connected-systems-plan.md
+  - docs/connected-systems-plan.md (modified)
+- f58e1ae | 2025-10-09T15:44:26-04:00 | Sam Bolling | updated folder name to match updated naming convention
+  - fixtures/ogc-api/connected-systems/sample-data-hub.json (deleted)
+  - fixtures/ogc-api/csapi/sample-data-hub.json (added)
+- 3f99d86 | 2025-10-09T20:14:59-04:00 | Sam Bolling | Update model.ts
+  - src/ogc-api/csapi/model.ts (modified)
+- 033acb6 | 2025-10-09T20:16:07-04:00 | Sam Bolling | Update url_builder.ts
+  - src/ogc-api/csapi/url_builder.ts (modified)
+- 4a4df14 | 2025-10-09T20:16:47-04:00 | Sam Bolling | Update helpers.ts
+  - src/ogc-api/csapi/helpers.ts (modified)
+- 464da34 | 2025-10-09T20:17:18-04:00 | Sam Bolling | Update model.spec.ts
+  - src/ogc-api/csapi/model.spec.ts (modified)
+- 216e43d | 2025-10-09T20:17:48-04:00 | Sam Bolling | Update helpers.spec.ts
+  - src/ogc-api/csapi/helpers.spec.ts (modified)
+- b159e83 | 2025-10-09T20:18:07-04:00 | Sam Bolling | Delete src/ogc-api/csapi/index.ts
+  - src/ogc-api/csapi/index.ts (deleted)
+- b3e89b8 | 2025-10-09T21:15:30-04:00 | Sam Bolling | Update endpoint.ts
+  - src/ogc-api/endpoint.ts (modified)
+- a5bd005 | 2025-10-10T19:46:00-04:00 | Sam Bolling | Update url_builder.ts
+  - src/ogc-api/csapi/url_builder.ts (modified)
+- a1e94e0 | 2025-10-10T22:27:22-04:00 | Sam Bolling | Update url_builder.ts
+  - src/ogc-api/csapi/url_builder.ts (modified)
+- 7deda99 | 2025-10-13T14:34:39-04:00 | Sam Bolling | Add files via upload
+  - docs/CSAPI_Requirements_Register_v1.0.csv (added)
+  - docs/CSAPI_Requirements_Register_v1.0.md (added)
+- 80d45df | 2025-10-13T16:00:21-04:00 | Sam Bolling | File management
+  - docs/CSAPI_Requirements_Register_v1.0.csv (deleted)
+  - docs/CSAPI_Requirements_Register_v1.0.md (deleted)
+  - docs/Plans/connected-systems-plan.md (added)
+  - docs/Requirements/CSAPI_Requirements_Register_v1.0.csv (added)
+  - docs/Requirements/CSAPI_Requirements_Register_v1.0.md (added)
+  - docs/connected-systems-plan.md (deleted)
+- 9f91c08 | 2025-10-13T16:04:05-04:00 | Sam Bolling | documentation file management
+  - docs/Plans/connected-systems-plan.md (deleted)
+  - docs/Requirements/CSAPI_Requirements_Register_v1.0.csv (deleted)
+  - docs/Requirements/CSAPI_Requirements_Register_v1.0.md (deleted)
+  - docs/csapi/plans/connected-systems-plan.md (added)
+  - docs/csapi/requirements/CSAPI_Requirements_Register_v1.0.csv (added)
+  - docs/csapi/requirements/CSAPI_Requirements_Register_v1.0.md (added)
+- 9a4f8f3 | 2025-10-13T16:16:16-04:00 | Sam Bolling | adding test documents
+  - docs/csapi/_tests_/CSAPI_Test_Design_Matrix_v1.0.csv (added)
+  - docs/csapi/_tests_/CSAPI_Test_Design_Matrix_v1.0.md (added)
+- 3a9cc1d | 2025-10-15T04:40:57-04:00 | Sam Bolling | added initial test harness files
+  - docs/csapi/_tests_/CSAPI_Test_Traceability_Index.md (added)
+  - src/ogc-api/csapi/_tests_/commands.spec.ts (added)
+  - src/ogc-api/csapi/_tests_/common.spec.ts (added)
+  - src/ogc-api/csapi/_tests_/controlstreams.spec.ts (added)
+  - src/ogc-api/csapi/_tests_/datastreams.spec.ts (added)
+  - src/ogc-api/csapi/_tests_/deployments.spec.ts (added)
+  - src/ogc-api/csapi/_tests_/encodings.part1.spec.ts (added)
+  - src/ogc-api/csapi/_tests_/encodings.part2.spec.ts (added)
+  - src/ogc-api/csapi/_tests_/endpoints.part2.canonical.spec.ts (added)
+  - src/ogc-api/csapi/_tests_/events.spec.ts (added)
+  - src/ogc-api/csapi/_tests_/feasibility.spec.ts (added)
+  - src/ogc-api/csapi/_tests_/observations.spec.ts (added)
+  - src/ogc-api/csapi/_tests_/procedures.spec.ts (added)
+  - src/ogc-api/csapi/_tests_/properties.spec.ts (added)
+  - src/ogc-api/csapi/_tests_/sampling-features.spec.ts (added)
+  - src/ogc-api/csapi/_tests_/systems.spec.ts (added)
+- e6de033 | 2025-10-15T05:37:26-04:00 | Sam Bolling | update CSAPI url_builders and helpers files based on updated test harness
+  - src/ogc-api/csapi/helpers.ts (modified)
+  - src/ogc-api/csapi/url_builder.ts (modified)
+- c12d574 | 2025-10-15T06:01:29-04:00 | Sam Bolling | updates some of the test harness files so they are fully wired. will update the remainder this way, but needed to break for lunch
+  - src/ogc-api/csapi/_tests_/commands.spec.ts (modified)
+  - src/ogc-api/csapi/_tests_/datastreams.spec.ts (modified)
+  - src/ogc-api/csapi/_tests_/observations.spec.ts (modified)
+  - src/ogc-api/csapi/_tests_/systems.spec.ts (modified)
+- 449ed2d | 2025-10-15T07:38:36-04:00 | Sam Bolling | updated the remainder of the files of the test harnes
+  - src/ogc-api/csapi/_tests_/controlstreams.spec.ts (modified)
+  - src/ogc-api/csapi/_tests_/deployments.spec.ts (modified)
+  - src/ogc-api/csapi/_tests_/encodings.part1.spec.ts (modified)
+  - src/ogc-api/csapi/_tests_/encodings.part2.spec.ts (modified)
+  - src/ogc-api/csapi/_tests_/events.spec.ts (modified)
+  - src/ogc-api/csapi/_tests_/feasibility.spec.ts (modified)
+  - src/ogc-api/csapi/_tests_/procedures.spec.ts (modified)
+  - src/ogc-api/csapi/_tests_/properties.spec.ts (modified)
+  - src/ogc-api/csapi/_tests_/sampling-features.spec.ts (modified)
+- 2b5c423 | 2025-10-15T07:58:56-04:00 | Sam Bolling | shores up the test harness by updating common and endpoint spec files
+  - src/ogc-api/csapi/_tests_/common.spec.ts (modified)
+  - src/ogc-api/csapi/_tests_/endpoints.part2.canonical.spec.ts (modified)
+- 6dc059d | 2025-10-15T09:28:15-04:00 | Sam Bolling | added the sample data json stub files to the fixtures folder to complete the offline mode of the test harness
+  - fixtures/ogc-api/csapi/sample-data-hub/commands.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/common_conformance.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/common_landing.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/controlstreams.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/datastreams.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/datastreams_schema.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/deployments.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/encodings_part1_geojson.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/encodings_part1_sensorml.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/encodings_part2_observations_om.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/encodings_part2_observations_swe.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/encodings_part2_swecommon.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/endpoints_part2_landing.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/feasibility.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/observations.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/observations_nested.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/procedures.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/properties.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/samplingFeatures.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/systemEvents.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/systemEvents_nested.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/systems.json (added)
+- 2d4bf28 | 2025-10-15T09:39:39-04:00 | Sam Bolling | added a fixture index to test documentation
+  - docs/csapi/_tests_/Fixture_Index.md (added)
+- cc8ad7c | 2025-10-15T16:30:00-04:00 | Sam Bolling | adding test harness guide
+  - docs/csapi/_tests_/CSAPI_Test_Harness_Guide.md (added)
+- cc4c025 | 2025-10-16T02:54:43-04:00 | Sam Bolling | adding index and first part of client code and a log
+  - docs/csapi/implementation/Phase2_Step4_Substep1_Implementation_Log.md (added)
+  - src/ogc-api/csapi/index.ts (added)
+  - src/ogc-api/csapi/systems.ts (added)
+- b615e36 | 2025-10-16T03:45:07-04:00 | Sam Bolling | added function for getDatastreamByIDUrl to pass test
+  - src/ogc-api/csapi/url_builder.ts (modified)
+- 15a0b1e | 2025-10-16T04:00:19-04:00 | Sam Bolling | Phase 2 ┬╖ Step 4 ┬╖ Sub-Step 1 ΓÇö CSAPI Client Corrections and Fixture Enhancements
+  - fixtures/ogc-api/csapi/sample-data-hub/common_landing.json (modified)
+  - fixtures/ogc-api/csapi/sample-data-hub/endpoint_systems.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/properties.json (modified)
+- e435fe8 | 2025-10-16T04:20:08-04:00 | Sam Bolling | added an expected sample file for endpoint deployments to the fixtures for testing
+  - fixtures/ogc-api/csapi/sample-data-hub/endpoint_deployments.json (added)
+- b9fe0fc | 2025-10-16T04:29:53-04:00 | Sam Bolling | added an expected file missing from the test harness
+  - fixtures/ogc-api/csapi/sample-data-hub/endpoint_procedures.json (added)
+- 368dba4 | 2025-10-16T05:05:51-04:00 | Sam Bolling | adding remainder of canonical endpoint test files expected to refactor test in accordance with TDD loop
+  - fixtures/ogc-api/csapi/sample-data-hub/endpoint_commands.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/endpoint_controlStreams.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/endpoint_datastreams.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/endpoint_feasibility.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/endpoint_observations.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/endpoint_properties.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/endpoint_systemEvents.json (added)
+- 4794ada | 2025-10-16T05:13:45-04:00 | Sam Bolling | maybe last expected file to complete current use of test harness and get full passing results for now
+  - fixtures/ogc-api/csapi/sample-data-hub/endpoint_samplingFeatures.json (added)
+- 1c6d314 | 2025-10-16T05:32:24-04:00 | Sam Bolling | it looks like the best naming convention for these json test files is all lowercase so updating them accordingly. this should pass the tests and also meet goals relating to consistent and ideal naming conventions
+  - fixtures/ogc-api/csapi/sample-data-hub/endpoint_controlStreams.json (deleted)
+  - fixtures/ogc-api/csapi/sample-data-hub/endpoint_controlstreams.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/endpoint_samplingFeatures.json (deleted)
+  - fixtures/ogc-api/csapi/sample-data-hub/endpoint_samplingfeatures.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/endpoint_systemEvents.json (deleted)
+  - fixtures/ogc-api/csapi/sample-data-hub/endpoint_systemevents.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/samplingFeatures.json (deleted)
+  - fixtures/ogc-api/csapi/sample-data-hub/samplingfeatures.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/systemEvents.json (deleted)
+  - fixtures/ogc-api/csapi/sample-data-hub/systemEvents_nested.json (deleted)
+  - fixtures/ogc-api/csapi/sample-data-hub/systemevents.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/systemevents_nested.json (added)
+- 94671e6 | 2025-10-16T06:28:03-04:00 | Sam Bolling | updating all fixture sample file names to be lowerCamelCase to be consistent with upstream repo and OGC standard style rules
+  - fixtures/ogc-api/csapi/sample-data-hub/controlStreams.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/controlstreams.json (deleted)
+  - fixtures/ogc-api/csapi/sample-data-hub/endpoint_controlStreams.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/endpoint_controlstreams.json (deleted)
+  - fixtures/ogc-api/csapi/sample-data-hub/endpoint_samplingFeatures.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/endpoint_samplingfeatures.json (deleted)
+  - fixtures/ogc-api/csapi/sample-data-hub/endpoint_systemEvents.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/endpoint_systemevents.json (deleted)
+  - fixtures/ogc-api/csapi/sample-data-hub/samplingFeatures.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/samplingfeatures.json (deleted)
+  - fixtures/ogc-api/csapi/sample-data-hub/systemEvents.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/systemEvents_nested.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/systemevents.json (deleted)
+  - fixtures/ogc-api/csapi/sample-data-hub/systemevents_nested.json (deleted)
+- 795b1a8 | 2025-10-16T06:50:47-04:00 | Sam Bolling | Align ControlStreams spec casing with lowerCamelCase convention
+  - src/ogc-api/csapi/_tests_/controlstreams.spec.ts (modified)
+- da1fa3a | 2025-10-16T06:54:50-04:00 | Sam Bolling | Align endpoints.part2.canonical.spec.ts with lowerCamelCase fixture naming
+  - src/ogc-api/csapi/_tests_/endpoints.part2.canonical.spec.ts (modified)
+- 3ba41b0 | 2025-10-16T07:12:52-04:00 | Sam Bolling | updates
+  - src/ogc-api/csapi/_tests_/endpoints.part2.canonical.spec.ts (modified)
+- 8ed4c45 | 2025-10-16T07:31:02-04:00 | Sam Bolling | Finalize CSAPI Part 2 canonical endpoint tests with lowerCamelCase fixture normalization"
+  - src/ogc-api/csapi/_tests_/endpoints.part2.canonical.spec.ts (modified)
+- 1f6957e | 2025-10-16T07:39:35-04:00 | Sam Bolling | Finalize CSAPI Part 2 canonical endpoint tests with endpoint mapping normalization
+  - src/ogc-api/csapi/_tests_/endpoints.part2.canonical.spec.ts (modified)
+- ff73da9 | 2025-10-16T09:09:21-04:00 | Sam Bolling | fix(tests): revert to strict lowerCamelCase fixture keys for canonical endpoints
+  - src/ogc-api/csapi/_tests_/endpoints.part2.canonical.spec.ts (modified)
+- 363f673 | 2025-10-16T09:40:53-04:00 | Sam Bolling | fixing lowerCamelCase issue
+  - src/ogc-api/csapi/url_builder.ts (modified)
+- 7623d51 | 2025-10-16T09:47:23-04:00 | Sam Bolling | fixing filename issue
+  - src/ogc-api/csapi/_tests_/endpoints.part2.canonical.spec.ts (modified)
+- 6eed535 | 2025-10-16T10:18:10-04:00 | Sam Bolling | Implements the client logic for the OGC API ΓÇô Connected Systems Part 2 Deployments resource, following the established Systems client pattern.
+  - src/ogc-api/csapi/deployments.ts (added)
+- f91454d | 2025-10-16T10:38:32-04:00 | Sam Bolling | Adds src/ogc-api/csapi/procedures.ts implementing the CSAPI Procedures client according to Part 2 ┬º 10ΓÇô11. Includes listProcedures() and getProcedureById() methods, using getProceduresUrl() and shared HTTP utilities. Verified against fixture endpoint_procedures.json.
+  - src/ogc-api/csapi/procedures.ts (added)
+- b2a463e | 2025-10-16T10:42:49-04:00 | Sam Bolling | Adds src/ogc-api/csapi/sampling-features.ts implementing client logic for the CSAPI SamplingFeatures resource per Part 2 ┬º10ΓÇô11. Includes listSamplingFeatures() and getSamplingFeatureById() using getSamplingFeaturesUrl() and shared HTTP utilities. Validated against fixture endpoint_samplingFeatures.json.
+  - src/ogc-api/csapi/sampling-features.ts (added)
+- 35f82a2 | 2025-10-16T10:46:36-04:00 | Sam Bolling | Adds src/ogc-api/csapi/properties.ts implementing client logic for CSAPI Properties resource (Part 2 ┬º10ΓÇô11). Defines Property interface, listProperties(), and getPropertyById(), using getPropertiesUrl() and shared HTTP utilities. Validated against fixture endpoint_properties.json.
+  - src/ogc-api/csapi/properties.ts (added)
+- 1ed3d7a | 2025-10-16T10:53:05-04:00 | Sam Bolling | Adds src/ogc-api/csapi/datastreams.ts implementing client logic for CSAPI Datastreams per Part 2 ┬º10ΓÇô11. Defines Datastream interface, listDatastreams(), and getDatastreamById() using getDatastreamsUrl() and shared HTTP utilities. Validated against fixture endpoint_datastreams.json.
+  - src/ogc-api/csapi/datastreams.ts (added)
+- d7d38ce | 2025-10-16T10:59:42-04:00 | Sam Bolling | Adds src/ogc-api/csapi/observations.ts implementing client logic for CSAPI Observations per Part 2 ┬º10ΓÇô11. Defines Observation interface, listObservations(), and getObservationById() using getObservationsUrl() and shared HTTP utilities. Validated against fixture endpoint_observations.json.
+  - src/ogc-api/csapi/observations.ts (added)
+- b4eab5d | 2025-10-16T11:04:40-04:00 | Sam Bolling | Adds src/ogc-api/csapi/controlStreams.ts implementing client logic for CSAPI ControlStreams per Part 2 ┬º10ΓÇô11. Defines ControlStream interface, listControlStreams(), and getControlStreamById() using getControlStreamsUrl() and shared HTTP utilities. Validated against fixture endpoint_controlStreams.json.
+  - src/ogc-api/csapi/controlStream.ts (added)
+- 412343c | 2025-10-16T11:08:42-04:00 | Sam Bolling | Adds src/ogc-api/csapi/commands.ts implementing client logic for CSAPI Commands per Part 2 ┬º11ΓÇô12. Defines Command interface, listCommands(), and getCommandById() using getCommandsUrl() and shared HTTP utilities. Validated against fixture endpoint_commands.json.
+  - src/ogc-api/csapi/commands.ts (added)
+- 3d55f1a | 2025-10-16T11:15:06-04:00 | Sam Bolling | Adds src/ogc-api/csapi/feasibility.ts implementing client logic for CSAPI Feasibility evaluations (Part 2 ┬º13). Defines Feasibility interface, listFeasibility(), and getFeasibilityById() using getFeasibilityUrl() and shared HTTP utilities. Validated against fixture endpoint_feasibility.json.
+  - src/ogc-api/csapi/feasibility.ts (added)
+- 89edeb3 | 2025-10-16T14:01:51-04:00 | Sam Bolling | Adds src/ogc-api/csapi/systemEvents.ts implementing client logic for CSAPI SystemEvents per Part 2 ┬º14ΓÇô15. Defines SystemEvent interface, listSystemEvents(), and getSystemEventById() using getSystemEventsUrl() and shared HTTP utilities. Validated against fixture endpoint_systemEvents.json.
+  - src/ogc-api/csapi/systemEvents.ts (added)
+- c991c8b | 2025-10-16T14:40:24-04:00 | Sam Bolling | feat(csapi): enable client-integration mode in helpers.ts
+  - src/ogc-api/csapi/helpers.ts (modified)
+- 80ca890 | 2025-10-16T15:22:46-04:00 | Sam Bolling | chore(csapi): establish centralized client export module
+  - src/ogc-api/csapi/index.ts (modified)
+- 5e07861 | 2025-10-16T15:50:35-04:00 | Sam Bolling | feat(csapi): add DeploymentsClient implementation
+  - src/ogc-api/csapi/deployments.ts (modified)
+- 8eeb64d | 2025-10-16T16:01:24-04:00 | Sam Bolling | feat(csapi): add ProceduresClient implementation
+  - src/ogc-api/csapi/procedures.ts (modified)
+- 919bf45 | 2025-10-16T16:05:56-04:00 | Sam Bolling | feat(csapi): add SamplingFeaturesClient implementation
+  - src/ogc-api/csapi/sampling-features.ts (modified)
+- 9299ea2 | 2025-10-16T16:09:49-04:00 | Sam Bolling | feat(csapi): add PropertiesClient implementation
+  - src/ogc-api/csapi/properties.ts (modified)
+- 8a86b82 | 2025-10-16T16:13:58-04:00 | Sam Bolling | feat(csapi): add DatastreamsClient implementation
+  - src/ogc-api/csapi/datastreams.ts (modified)
+- 7de0fab | 2025-10-16T16:17:14-04:00 | Sam Bolling | feat(csapi): add ObservationsClient implementation
+  - src/ogc-api/csapi/observations.ts (modified)
+- 3a8ac2a | 2025-10-16T16:27:56-04:00 | Sam Bolling | feat(csapi): add ControlStreamsClient implementation
+  - src/ogc-api/csapi/controlStream.ts (deleted)
+  - src/ogc-api/csapi/controlStreams.ts (added)
+- fbbe320 | 2025-10-16T16:28:46-04:00 | Sam Bolling | name change fix
+  - src/ogc-api/csapi/index.ts (modified)
+- ce0af17 | 2025-10-16T16:39:01-04:00 | Sam Bolling | feat(csapi): add CommandsClient implementation
+  - src/ogc-api/csapi/commands.ts (modified)
+- a8fde04 | 2025-10-16T16:52:57-04:00 | Sam Bolling | feat(csapi): add FeasibilityClient implementation
+  - src/ogc-api/csapi/feasibility.ts (modified)
+- f6890b1 | 2025-10-16T16:58:04-04:00 | Sam Bolling | feat(csapi): add SystemEventsClient implementation
+  - src/ogc-api/csapi/systemEvents.ts (modified)
+- 16660dd | 2025-10-16T17:12:48-04:00 | Sam Bolling | feat(csapi): add SamplingFeaturesClient implementation
+  - src/ogc-api/csapi/index.ts (modified)
+  - src/ogc-api/csapi/sampling-features.ts (deleted)
+  - src/ogc-api/csapi/samplingFeatures.ts (added)
+- 6861708 | 2025-10-16T17:17:25-04:00 | Sam Bolling | feat(csapi): add PropertiesClient implementation
+  - src/ogc-api/csapi/properties.ts (modified)
+- a6c0972 | 2025-10-16T17:21:15-04:00 | Sam Bolling | feat(csapi): add DatastreamsClient implementation
+  - src/ogc-api/csapi/datastreams.ts (modified)
+- 0557b1d | 2025-10-16T17:24:11-04:00 | Sam Bolling | feat(csapi): add ObservationsClient implementation
+  - src/ogc-api/csapi/observations.ts (modified)
+- 1b4185d | 2025-10-16T18:11:38-04:00 | Sam Bolling | Implement SystemsClient for CSAPI Part 2 /systems collection (Req10.1ΓÇô10.2)
+  - src/ogc-api/csapi/systems.ts (modified)
+- a656756 | 2025-10-16T18:26:54-04:00 | Sam Bolling | Add CSAPI client lifecycle integration tests for all canonical endpoint clients
+  - src/ogc-api/csapi/_tests_/clients.lifecycle.spec.ts (added)
+- 8c245bb | 2025-10-17T02:50:29-04:00 | Sam Bolling | Add EventsClient and correct SystemEventsClient export in CSAPI index
+  - src/ogc-api/csapi/events.ts (added)
+  - src/ogc-api/csapi/index.ts (modified)
+- a6fbacc | 2025-10-17T04:56:04-04:00 | Sam Bolling | fixing semantics and functionality relating to system events and nested events of systems
+  - src/ogc-api/csapi/_tests_/events.spec.ts (deleted)
+  - src/ogc-api/csapi/_tests_/system-events.spec.ts (added)
+  - src/ogc-api/csapi/index.ts (modified)
+- 7db2b28 | 2025-10-17T05:01:16-04:00 | Sam Bolling | still fixing events vs systemEvents semantics
+  - src/ogc-api/csapi/events.ts (deleted)
+  - src/ogc-api/csapi/url_builder.ts (modified)
+- 96db6c7 | 2025-10-17T05:06:53-04:00 | Sam Bolling | fixing logic to support system events and nested system events and not collections level events
+  - src/ogc-api/csapi/_tests_/system-events.spec.ts (modified)
+- 323b347 | 2025-10-17T06:02:08-04:00 | Sam Bolling | Test: add single-item CSAPI fixtures for lifecycle client tests
+  - fixtures/ogc-api/csapi/sample-data-hub/command_cmd-001.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/controlStream_ctrl-001.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/datastream_ds-001.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/deployment_dep-001.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/feasibility_feas-001.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/observation_obs-001.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/procedure_proc-001.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/property_prop-001.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/samplingFeature_sf-001.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/systemEvent_evt-001.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/system_sys-001.json (added)
+- f966c31 | 2025-10-17T08:02:20-04:00 | Sam Bolling | adding linked and nested system events sample data and tests
+  - fixtures/ogc-api/csapi/sample-data-hub/systemEvents.json (modified)
+  - fixtures/ogc-api/csapi/sample-data-hub/systemEvents_nested.json (deleted)
+  - fixtures/ogc-api/csapi/sample-data-hub/systemEvents_sys-001.json (added)
+  - fixtures/ogc-api/csapi/sample-data-hub/system_sys-001.json (modified)
+  - src/ogc-api/csapi/_tests_/systems.spec.ts (modified)
+  - src/ogc-api/csapi/model.ts (modified)
+  - src/ogc-api/csapi/systems.ts (modified)
+- 98f48f8 | 2025-10-17T08:28:14-04:00 | Sam Bolling | fix
+  - src/ogc-api/csapi/_tests_/system-events.spec.ts (modified)
+- 2620215 | 2025-10-17T12:29:27-04:00 | Sam Bolling | test(csapi): add cross-collection linkage tests for canonical CSAPI relationships
+  - src/ogc-api/csapi/_tests_/linkage.spec.ts (added)
+- ce1e175 | 2025-10-17T15:00:08-04:00 | Sam Bolling | updated systems sample data file to support part 2 testing
+  - fixtures/ogc-api/csapi/sample-data-hub/systems.json (modified)
+- 5c6e9de | 2025-10-17T16:03:19-04:00 | Sam Bolling | added links to support testing for part 2 compliance and functionality
+  - fixtures/ogc-api/csapi/sample-data-hub/deployments.json (modified)
+- ad4474d | 2025-10-17T16:39:38-04:00 | Sam Bolling | updated to support linked testing of part 2 capabilities
+  - fixtures/ogc-api/csapi/sample-data-hub/datastreams.json (modified)
+- 0d13faa | 2025-10-17T22:22:41Z | Sam Bolling | docs(audit): add CSAPI_Consistency_Audit_v1.0 - Adds Phase 3 Consistency Audit Report for CSAPI implementation - Confirms cross-part consistency (Parts 1 & 2) - Verifies full fixture coverage and canonical endpoint mapping - Marks readiness for upstream PR integration
+  - docs/csapi/audits/csapi_consistency_audit_v_1.md (added)
+- 28b2bc4 | 2025-10-18T04:53:24-04:00 | Sam Bolling | Add files via upload
+  - docs/csapi/plans/connected_systems_plan_v_2.md (added)
+- 7a7200d | 2025-10-18T04:54:40-04:00 | Sam Bolling | Revise executive summary for connected systems plan
+  - docs/csapi/plans/connected_systems_plan_v_2.md (modified)
+- ccf0169 | 2025-10-21T16:00:23-04:00 | Sam Bolling | normalizing test folder name
+  - src/ogc-api/csapi/__tests__/clients.lifecycle.spec.ts (added)
+  - src/ogc-api/csapi/__tests__/commands.spec.ts (added)
+  - src/ogc-api/csapi/__tests__/common.spec.ts (added)
+  - src/ogc-api/csapi/__tests__/controlstreams.spec.ts (added)
+  - src/ogc-api/csapi/__tests__/datastreams.spec.ts (added)
+  - src/ogc-api/csapi/__tests__/deployments.spec.ts (added)
+  - src/ogc-api/csapi/__tests__/encodings.part1.spec.ts (added)
+  - src/ogc-api/csapi/__tests__/encodings.part2.spec.ts (added)
+  - src/ogc-api/csapi/__tests__/endpoints.part2.canonical.spec.ts (added)
+  - src/ogc-api/csapi/__tests__/feasibility.spec.ts (added)
+  - src/ogc-api/csapi/__tests__/linkage.spec.ts (added)
+  - src/ogc-api/csapi/__tests__/observations.spec.ts (added)
+  - src/ogc-api/csapi/__tests__/procedures.spec.ts (added)
+  - src/ogc-api/csapi/__tests__/properties.spec.ts (added)
+  - src/ogc-api/csapi/__tests__/sampling-features.spec.ts (added)
+  - src/ogc-api/csapi/__tests__/system-events.spec.ts (added)
+  - src/ogc-api/csapi/__tests__/systems.spec.ts (added)
+  - src/ogc-api/csapi/_tests_/clients.lifecycle.spec.ts (deleted)
+  - src/ogc-api/csapi/_tests_/commands.spec.ts (deleted)
+  - src/ogc-api/csapi/_tests_/common.spec.ts (deleted)
+  - src/ogc-api/csapi/_tests_/controlstreams.spec.ts (deleted)
+  - src/ogc-api/csapi/_tests_/datastreams.spec.ts (deleted)
+  - src/ogc-api/csapi/_tests_/deployments.spec.ts (deleted)
+  - src/ogc-api/csapi/_tests_/encodings.part1.spec.ts (deleted)
+  - src/ogc-api/csapi/_tests_/encodings.part2.spec.ts (deleted)
+  - src/ogc-api/csapi/_tests_/endpoints.part2.canonical.spec.ts (deleted)
+  - src/ogc-api/csapi/_tests_/feasibility.spec.ts (deleted)
+  - src/ogc-api/csapi/_tests_/linkage.spec.ts (deleted)
+  - src/ogc-api/csapi/_tests_/observations.spec.ts (deleted)
+  - src/ogc-api/csapi/_tests_/procedures.spec.ts (deleted)
+  - src/ogc-api/csapi/_tests_/properties.spec.ts (deleted)
+  - src/ogc-api/csapi/_tests_/sampling-features.spec.ts (deleted)
+  - src/ogc-api/csapi/_tests_/system-events.spec.ts (deleted)
+  - src/ogc-api/csapi/_tests_/systems.spec.ts (deleted)
+- 7a996d1 | 2025-10-21T16:01:50-04:00 | Sam Bolling | moved model and helpers specs into test folder with rest of csapi tests
+  - src/ogc-api/csapi/__tests__/helpers.spec.ts (added)
+  - src/ogc-api/csapi/__tests__/model.spec.ts (added)
+  - src/ogc-api/csapi/helpers.spec.ts (deleted)
+  - src/ogc-api/csapi/model.spec.ts (deleted)
+- 4709ae0 | 2025-10-21T16:08:44-04:00 | Sam Bolling | csapi: finalize client export surface for Part 1 & 2 modules
+  - src/ogc-api/csapi/index.ts (modified)
+  - src/ogc-api/csapi/url_builder.ts (modified)
+- eabd30c | 2025-10-21T16:23:16-04:00 | Sam Bolling | csapi: finalize URL builder and helper test alignment for canonical CSAPI harness
+  - src/ogc-api/csapi/__tests__/helpers.spec.ts (modified)
+  - src/ogc-api/csapi/url_builder.ts (modified)
+- 32dfe70 | 2025-10-21T17:00:11-04:00 | Sam Bolling | csapi: finalize Connected Systems client harness and stabilize all CSAPI tests
+  - src/ogc-api/csapi/helpers.ts (modified)
+  - src/ogc-api/csapi/index.ts (modified)
+  - src/ogc-api/csapi/url_builder.ts (modified)
+- a254366 | 2025-10-21T17:10:54-04:00 | Sam Bolling | csapi: fix samplingFeatures import/export path to match actual filename
+  - src/ogc-api/csapi/index.ts (modified)
+- 7e56689 | 2025-10-21T17:13:07-04:00 | Sam Bolling | csapi: fix controlStreams import/export path casing to match actual filename
+  - src/ogc-api/csapi/index.ts (modified)
+- 280d7bd | 2025-10-21T17:14:58-04:00 | Sam Bolling | csapi: fix systemEvents import/export path to match actual filename
+  - src/ogc-api/csapi/index.ts (modified)
+- 12fb450 | 2025-10-21T19:00:38-04:00 | Sam Bolling | ogc-api: add Connected Systems API conformance detection
+  - src/ogc-api/info.ts (modified)
+- cbf7d08 | 2025-10-21T19:30:42-04:00 | Sam Bolling | tests(ogc-api): add Connected Systems (CSAPI) integration tests to endpoint suite
+  - src/ogc-api/endpoint.spec.ts (modified)
+- 1a51b1d | 2025-10-21T19:41:28-04:00 | Sam Bolling | tests(ogc-api): add CSAPI sample-data-hub fixture for endpoint integration
+  - fixtures/ogc-api/csapi/sample-data-hub.json (modified)
+- 41aa7b9 | 2025-10-21T20:18:59-04:00 | Sam Bolling | trying to fix fixture for upstream test
+  - fixtures/ogc-api/csapi/sample-data-hub.json (modified)
+- bc1b0b3 | 2025-10-21T20:51:01-04:00 | Sam Bolling | fixing path bug
+  - src/ogc-api/endpoint.spec.ts (modified)
+- 472ec93 | 2025-10-21T20:52:33-04:00 | Sam Bolling | trying to fix bug
+  - src/ogc-api/endpoint.spec.ts (modified)
+- 652e8ec | 2025-10-21T20:54:19-04:00 | Sam Bolling | still bug hunting
+  - src/ogc-api/endpoint.spec.ts (modified)
+- 883e485 | 2025-10-21T21:01:04-04:00 | Sam Bolling | bug fixing
+  - src/ogc-api/endpoint.spec.ts (modified)
+- 7be1c1d | 2025-10-21T21:06:35-04:00 | Sam Bolling | tests(ogc-api): fix CSAPI endpoint test to use helper and correct root URL
+  - src/ogc-api/endpoint.spec.ts (modified)
+- 253cf98 | 2025-10-21T21:13:42-04:00 | Sam Bolling | .
+  - fixtures/ogc-api/csapi.json (added)
+- 0da6a5d | 2025-10-21T21:17:21-04:00 | Sam Bolling | updating fixture contents
+  - fixtures/ogc-api/csapi.json (modified)
+- af34084 | 2025-10-21T21:23:22-04:00 | Sam Bolling | tests(fixtures): add CSAPI conformance and collections fixtures for endpoint tests
+  - fixtures/ogc-api/csapi/collections.json (added)
+  - fixtures/ogc-api/csapi/conformance.json (added)
+- 71daa22 | 2025-10-21T21:26:09-04:00 | Sam Bolling | updating fixtures for testing
+  - fixtures/ogc-api/csapi/collections.json (modified)
+  - fixtures/ogc-api/csapi/conformance.json (modified)
+- 30a198b | 2025-10-21T21:30:37-04:00 | Sam Bolling | tests(fixtures): update CSAPI conformance URIs to satisfy regex check
+  - fixtures/ogc-api/csapi/conformance.json (modified)
+- 6782dd1 | 2025-10-21T21:35:03-04:00 | Sam Bolling | tests(fixtures): declare OGC API - Features core dependency for CSAPI endpoint
+  - fixtures/ogc-api/csapi/conformance.json (modified)
+- f152101 | 2025-10-21T21:45:04-04:00 | Sam Bolling | tests(fixtures): update CSAPI conformance URIs to use /conf/ endpoints per OGC spec
+  - fixtures/ogc-api/csapi/conformance.json (modified)
+- 4341cf7 | 2025-10-22T19:53:28-04:00 | Sam Bolling | documentation for upstream integration audit
+  - docs/csapi/audits/CSAPI_Upstream_Integration_Gap_Audit.md (added)
+- ed1e076 | 2025-10-22T20:27:00-04:00 | Sam Bolling | Enable strict TypeScript mode for stronger type safety and security
+  - tsconfig.json (modified)
+- f884883 | 2025-10-22T20:30:10-04:00 | Sam Bolling | - Enabled "strict", "noImplicitAny", and "forceConsistentCasingInFileNames" in tsconfig.json. - Removed JSON comments that were invalid for strict parsing. - Improves compile-time type safety without affecting runtime or API behavior.
+  - tsconfig.json (modified)
+- 2f76c71 | 2025-10-22T20:31:57-04:00 | Sam Bolling | fix
+  - tsconfig.json (modified)
+- b235d1c | 2025-10-22T20:38:23-04:00 | Sam Bolling | Harden CSAPIResource type and improve model typings for security and clarity - Replaced unsafe "[key: string]: any" with a generic type parameter <T = unknown>. - Updated CSAPICollection to support generic typing. - Replaced remaining Record<string, any> with Record<string, unknown>. - Added @see annotations to reference relevant CSAPI specification sections. - Improves type safety and maintainability without altering runtime behavior or schema conformance.
+  - src/ogc-api/csapi/model.ts (modified)
+- b4fbd81 | 2025-10-22T21:06:50-04:00 | Sam Bolling | Fix CSAPI lifecycle tests for strict mode and FeatureCollection alignment - Updated lifecycle tests to use FeatureCollection/features instead of Collection/members. - Ensured .get() test handles optional id safely under strict typing. - Verified compatibility with final CSAPI model and strict TypeScript mode.
+  - src/ogc-api/csapi/__tests__/clients.lifecycle.spec.ts (modified)
+  - src/ogc-api/csapi/helpers.ts (modified)
+  - src/ogc-api/csapi/model.ts (modified)
+- c2a3b6c | 2025-10-22T21:08:21-04:00 | Sam Bolling | Make CSAPI common.spec.ts strict-mode compliant - Added explicit type annotations for fetched data and link arrays. - Removed implicit any usage flagged by strict TypeScript mode. - Verified functional equivalence with previous test behavior.
+  - src/ogc-api/csapi/__tests__/common.spec.ts (modified)
+- 07f8944 | 2025-10-22T21:09:51-04:00 | Sam Bolling | Fix CSAPI helpers.spec.ts for strict mode and model alignment - Updated Elevation parameter expectation to use .name instead of .id. - Added explicit Record<string, unknown> typings for test inputs. - Ensured safe null/undefined handling under strict mode.
+  - src/ogc-api/csapi/__tests__/helpers.spec.ts (modified)
+- 9cd7f99 | 2025-10-22T21:11:26-04:00 | Sam Bolling | Fix CSAPI model.spec.ts for strict mode and parameter model alignment - Updated test to reference CSAPIParameter.name instead of deprecated id. - Added schema and description to reflect realistic example structure. - Ensured file imports and typings are compatible with strict TypeScript mode.
+  - src/ogc-api/csapi/__tests__/model.spec.ts (modified)
+- e651425 | 2025-10-22T21:13:17-04:00 | Sam Bolling | Make csapi/helpers.ts strict-mode compliant and type-safe - Added explicit typing for all function parameters and returns. - Replaced implicit any usages with unknown or Record<string, unknown>. - Added safe error handling for dynamic imports. - Verified compatibility with Node ESM import style under esModuleInterop.
+  - src/ogc-api/csapi/helpers.ts (modified)
+- 3742d6b | 2025-10-22T21:14:26-04:00 | Sam Bolling | Fix csapi/model.ts for strict typing and standard compliance - Removed stray bracket and corrected index signature on CSAPIResource. - Replaced unsafe string
+  - src/ogc-api/csapi/model.ts (modified)
+- 4634436 | 2025-10-22T21:34:35-04:00 | Sam Bolling | architecture documentation update
+  - docs/csapi/architecture/csapi-integration.md (added)
+- feaa650 | 2025-10-22T22:47:37-04:00 | Sam Bolling | parity audit against edr pr and final repo choices
+  - docs/csapi/audits/csapi_edr_functional_parity_map.md (added)
+- 1645428 | 2025-10-22T23:04:49-04:00 | Sam Bolling | feat(csapi): add normalized fetch wrapper for parity with EDR shared/http-utils
+  - src/ogc-api/csapi/helpers.ts (modified)
+- 6e22793 | 2025-10-22T23:06:04-04:00 | Sam Bolling | refactor(csapi): align model generics with EDR type pattern
+  - src/ogc-api/csapi/model.ts (modified)
+- de253bc | 2025-11-12T19:31:02-05:00 | Sam Bolling | Merge pull request #26 from camptocamp/main
+  - (no files recorded)

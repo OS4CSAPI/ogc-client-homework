@@ -2843,11 +2843,10 @@ describe('OgcApiEndpoint with CSAPI', () => {
       endpoint = new OgcApiEndpoint('http://local/csapi/');
     });
 
-    it('supports Connected Systems API', async () => {
-      const supported = await Promise.all([endpoint.conformanceClasses])
-        .then(checkHasConnectedSystemsApi);
-      expect(supported).toBe(true);
+        it('supports Connected Systems API', async () => {
+      await expect(endpoint.hasConnectedSystemsApi).resolves.toBe(true);
     });
+
 
     it('can list all Connected Systems collections', async () => {
       const collections = await endpoint.allCollections;
@@ -2855,3 +2854,8 @@ describe('OgcApiEndpoint with CSAPI', () => {
     });
   });
 });
+
+    it('does not report CSAPI support on a non-CSAPI endpoint', async () => {
+      const nonCsapiEndpoint = new OgcApiEndpoint('http://local/sample-data/');
+      await expect(nonCsapiEndpoint.hasConnectedSystemsApi).resolves.toBe(false);
+    });

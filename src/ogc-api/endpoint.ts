@@ -295,6 +295,15 @@ ${e.message}`);
     return result;
   }
 
+    /**
+   * A Promise which resolves to a boolean indicating whether the endpoint offers Connected Systems API (CSAPI) capabilities.
+   */
+  get hasConnectedSystemsApi(): Promise<boolean> {
+    return this.conformanceClasses.then((classes) =>
+      checkHasConnectedSystemsApi([classes])
+    );
+  }
+
   /**
    * Retrieve the tile matrix sets identifiers advertised by the endpoint. Empty if tiles are not supported
    */

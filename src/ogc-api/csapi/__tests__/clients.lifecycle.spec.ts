@@ -48,15 +48,20 @@ const CLIENTS = [
 
 describe("CSAPI Client Lifecycle Tests", () => {
   for (const { name, cls, fixture } of CLIENTS) {
-    test(`${name}.list() returns valid FeatureCollection for ${fixture}`, async () => {
+        test(`${name}.list() returns a valid collection for ${fixture}`, async () => {
       const client = new cls(apiRoot);
       const result = await client.list();
 
-      if (result.type === "FeatureCollection" && Array.isArray(result.features)) {
-        expect(result).toHaveProperty("type", "FeatureCollection");
-        expect(Array.isArray(result.features)).toBe(true);
+      if (fixture === "properties") {
+        // Properties are CSAPI metadata collections, not GeoJSON FeatureCollections
+        expect(result).toBeDefined();
+        expect(result.type).toBe("Collection");
+        expect(
+          Array.isArray((result as any).items) ||
+          Array.isArray((result as any).members)
+        ).toBe(true);
       } else {
-        // Fallback: validate against shared helper
+        // All other canonical resources should expose a FeatureCollection response
         expectFeatureCollection(result);
       }
     });

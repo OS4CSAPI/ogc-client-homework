@@ -155,6 +155,9 @@ Author: Sam Bolling · Date: 2025-10-13
 | `/req/command/canonical-url` | “Canonical URL {api_root}/commands/{id}.” | 23-002 §7.4 | Canonical URL. | New | — | csapi/url_builder.ts | Implement | commands.canonical-url.spec.ts |
 | `/req/command/resources-endpoint` | “GET supports `limit`, `datetime`; 200.” | 23-002 §10–11 | List/filter commands. | New | 17-069r4 | csapi/helpers.ts | Implement | commands.endpoint.spec.ts |
 | `/req/command/status-result` | “Status and Result resources for a command.” | 23-002 §10–11 | Separate status/result resources. | New | — | csapi/model.ts, parsers | Implement | commands.status-result.spec.ts |
+| `/req/controlstream/ref-from-system` (TBD) | **TBD verbatim from Part 2 PDF** — requirement defining nested access to ControlStreams from a System. | 23-002 §TBD | ControlStream resources SHALL be accessible from a nested endpoint `{api_root}/systems/{systemId}/controlstreams`. | New | System → ControlStream linkage | csapi/url_builder.ts | Implement | controlstreams.bySystem.spec.ts |
+| `/req/controlstream/schema-op` (TBD) | **TBD verbatim from Part 2 PDF** — requirement defining the schema operation for a ControlStream. | 23-002 §TBD | The operation at `{api_root}/controlstreams/{controlStreamId}/schema` SHALL expose the schema associated with commands on that ControlStream. | New | ControlStream schema operation | csapi/helpers.ts | Implement | controlstreams.schema.spec.ts |
+| `/req/command/ref-from-controlstream` (TBD) | **TBD verbatim from Part 2 PDF** — requirement defining nested access to Commands from a ControlStream. | 23-002 §TBD | Commands SHALL be accessible from a nested endpoint `{api_root}/controlstreams/{controlStreamId}/commands`. | New | ControlStream → Command linkage | csapi/url_builder.ts | Implement | commands.byControlStream.spec.ts |
 
 ### C4. Feasibility
 
@@ -173,6 +176,13 @@ Author: Sam Bolling · Date: 2025-10-13
 | `/req/system-event/canonical-endpoint` | “Expose {api_root}/systemEvents.” | 23-002 §7.4/Req42 | Canonical resources endpoint. | New | — | csapi/url_builder.ts | Implement | events.canonical.spec.ts |
 | `/req/system-event/ref-from-system` | “Nested `/systems/{sysId}/events`.” | 23-002 §7.4/Req43 | Events by System. | New | — | csapi/url_builder.ts | Implement | events.bySystem.spec.ts |
 | `/req/system-event/collections` | “Collections itemType=SystemEvent behave like endpoint.” | 23-002 §7.4/Req44 | Collections semantics. | New | §8.3 | info.ts | Map | events.collections.spec.ts |
+
+### C6. System History
+
+| Ref ID | Verbatim (abridged) | Source Citation | Plain Summary | Inheritance Type | Referenced From | Implementation Target | Status / Action | Test Placeholder |
+|---|---|---|---|---|---|---|---|---|
+| `/req/system-history/resources-endpoint` (TBD) | **TBD verbatim from Part 2 PDF** — requirement defining access to history resources for a System. | 23-002 §TBD | The server SHALL expose a history resources endpoint at `{api_root}/systems/{systemId}/history` listing available revisions of the System. | New | System → History linkage | csapi/helpers.ts | Implement | history.endpoint.spec.ts |
+| `/req/system-history/canonical-url` (TBD) | **TBD verbatim from Part 2 PDF** — requirement defining canonical URLs for individual system history revisions. | 23-002 §TBD | Each system history revision SHALL be accessible at a canonical URL of the form `{api_root}/systems/{systemId}/history/{revId}`. | New | System → History canonical URL | csapi/url_builder.ts | Implement | history.canonical-url.spec.ts |
 
 ## D) Encodings
 

@@ -149,7 +149,7 @@ Author: Sam Bolling · Date: 2025-10-13
 | `/req/observation/ref-from-datastream` | Association | “A DataStream SHALL expose its Observations at `/datastreams/{datastreamId}/observations`.” | 23-002 §9.8 | Nested endpoint listing Observations belonging to the given DataStream. | New | — | csapi/url_builder.ts | Implement | observations.byStream.spec.ts |
 | `/req/observation/collections` | Collections | “An Observations collection SHALL declare `itemType=Observation` and behave as a standard resources collection.” | 23-002 §8.3, §9.7 | Defines metadata and behavior of Observation collections. | New | — | info.ts | Map | observations.collections.spec.ts |
 
-### C4. ControlStreams & Commands
+### C4. ControlStreams
 
 | Ref ID | Verbatim (abridged) | Source Citation | Plain Summary | Inheritance Type | Referenced From | Implementation Target | Status / Action | Test Placeholder |
 |---|---|---|---|---|---|---|---|---|

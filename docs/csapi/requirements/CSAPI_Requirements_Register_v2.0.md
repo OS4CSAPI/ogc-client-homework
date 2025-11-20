@@ -42,7 +42,8 @@ Author: Sam Bolling · Date: 2025-10-13
 | `/req/deployment/resources-endpoint` | “GET follows Features clauses.” | 23-001 §11 | Listing/filtering rules. | Specialized | 17-069r4 | csapi/helpers.ts | Implement | deployments.endpoint.spec.ts |
 | `/req/deployment/canonical-endpoint` | “Expose {api_root}/deployments.” | 23-001 §11 | Canonical resources endpoint. | Specialized | Collections | csapi/url_builder.ts | Implement | deployments.canonical.spec.ts |
 | `/req/deployment/collections` | “Feature collection featureType Deployment; items act like endpoint.” | 23-001 §11 | Collections semantics. | Specialized | 17-069r4 | info.ts | Map | deployments.collections.spec.ts |
-| `/req/deployment/ref-from-system` | "For each System, expose `{api_root}/systems/{sysId}/deployments`; `deployments` link points to it." | 23-001 §11 | For each System resource, the server SHALL expose a nested Deployment resources endpoint at `/systems/{sysId}/deployments` listing only that System’s Deployments, and the System’s `deployments` association SHALL be represented as a link to this endpoint (`sysId` corresponds to the System’s identifier, exposed as `{systemId}` in the OpenAPI paths). | Specialized | System & Deployment Features | csapi/url_builder.ts, csapi/model.ts | Implement | deployments.from-system.spec.ts |
+| `/req/deployment/ref-from-system` | "For each System, expose `{api_root}/systems/{sysId}/deployments`; `deployments` link points to it." | 23-001 §11 | For each System resource, the server SHALL expose a nested Deployment resources endpoint at `/systems/{systemId}/deployments`
+ listing only that System’s Deployments, and the System’s `deployments` association SHALL be represented as a link to this endpoint (`sysId` corresponds to the System’s identifier, exposed as `{systemId}` in the OpenAPI paths). | Specialized | System & Deployment Features | csapi/url_builder.ts, csapi/model.ts | Implement | deployments.from-system.spec.ts |
 | `/req/subdeployment/collection` | "Subdeployments are Deployment resources made available as a sub-collection of a parent deployment." | 23-001 §12 | For each Deployment, the server SHALL expose subdeployment resources as a sub-collection (e.g. `/deployments/{deploymentId}/subdeployments`) containing only Deployment resources whose parent is the identified deployment. | New | Deployment Features | csapi/url_builder.ts, csapi/model.ts | Implement | subdeployments.collection.spec.ts |
 | `/req/subdeployment/recursive-param` | "The server SHALL support a `recursive` query parameter on subdeployment sub-collections." | 23-001 §12 | Deployment/subdeployment sub-collection endpoints SHALL support an optional boolean `recursive` query parameter in the query string to control whether only direct subdeployments or the entire hierarchy is returned. | New | Deployment Features | csapi/filters.ts | Implement | subdeployments.recursive-param.spec.ts |
 | `/req/subdeployment/recursive-search-deployments` | "Recursive search SHALL include deployments reachable via nested subdeployment relationships." | 23-001 §12 | When `recursive=true` is applied to deployment resources queries, the server SHALL include all Deployment resources reachable via nested subdeployment relationships, not only direct children. | New | Deployment Features | csapi/filters.ts | Implement | subdeployments.recursive-deployments.spec.ts |
@@ -66,7 +67,7 @@ Author: Sam Bolling · Date: 2025-10-13
 | `/req/sf/canonical-url` | “Canonical URL {api_root}/samplingFeatures/{id}.” | 23-001 §14 | Canonical URL. | Specialized | Features Items | csapi/url_builder.ts | Implement | sf.canonical-url.spec.ts |
 | `/req/sf/resources-endpoint` | “GET supports Features collection clauses.” | 23-001 §14 | Listing/filtering. | Specialized | 17-069r4 | csapi/helpers.ts | Implement | sf.endpoint.spec.ts |
 | `/req/sf/canonical-endpoint` | “Expose {api_root}/samplingFeatures.” | 23-001 §14 | Canonical endpoint. | Specialized | Collections | csapi/url_builder.ts | Implement | sf.canonical.spec.ts |
-| `/req/sf/ref-from-system` | "For each System, expose `{api_root}/systems/{sysId}/samplingFeatures`; `samplingFeatures` link points to it." | 23-001 §14 | For each System resource, the server SHALL expose a nested Sampling Feature resources endpoint at `/systems/{sysId}/samplingFeatures` listing only that System’s Sampling Features, and the System’s `samplingFeatures` association SHALL be represented as a link to this endpoint. In the Part 1 OpenAPI, this identifier is exposed as the `{systemId}` path parameter. | Specialized | System Features | csapi/url_builder.ts, csapi/model.ts | Implement | sf.from-system.spec.ts |
+| `/req/sf/ref-from-system` | "For each System, expose `{api_root}/systems/{sysId}/samplingFeatures`; `samplingFeatures` link points to it." | 23-001 §14 | For each System resource, the server SHALL expose a nested Sampling Feature resources endpoint at `/systems/{systemId}/samplingFeatures` listing only that System’s Sampling Features, and the System’s `samplingFeatures` association SHALL be represented as a link to this endpoint. In the Part 1 OpenAPI, this identifier is exposed as the `{systemId}` path parameter. | Specialized | System Features | csapi/url_builder.ts, csapi/model.ts | Implement | sf.from-system.spec.ts |
 | `/req/sf/collections` | “Feature collection featureType SamplingFeature; items behave as endpoint.” | 23-001 §14 | Collections semantics. | Specialized | 17-069r4 | info.ts | Map | sf.collections.spec.ts |
 
 ### B6. Property Definitions (non-feature)
@@ -157,11 +158,13 @@ Author: Sam Bolling · Date: 2025-10-13
 | `/req/controlstream/resources-endpoint` | Core | “A GET on `/controlstreams` SHALL return 200 and support `limit` and `datetime` parameters.” | 23-002 §10.3 | ControlStream collections SHALL support listing and filtering using Features-style parameters. | New | 17-069r4 §7.15 | csapi/helpers.ts | Implement | controlstreams.endpoint.spec.ts |
 | `/req/controlstream/ref-from-system` | Association | “A System SHALL expose its ControlStreams at `/systems/{systemId}/controlstreams`.” | 23-002 §10.4 | Nested endpoint listing only ControlStreams associated with the given System. | New | System → ControlStream linkage | csapi/url_builder.ts | Implement | controlstreams.bySystem.spec.ts |
 | `/req/controlstream/schema-op` | Operation | “A GET on `/controlstreams/{controlStreamId}/schema` SHALL return the Command schema advertised for that ControlStream.” | 23-002 §10.5 | Defines the schema negotiation operation for a ControlStream. | New | ControlStream schema operation | csapi/helpers.ts | Implement | controlstreams.schema.spec.ts |
+| `/req/controlstream/collections` | Collections | “A ControlStreams collection SHALL declare `itemType=ControlStream` and behave as a standard resources collection.” | 23-002 §8.3, §10.3 | Defines metadata and behavior of ControlStream collections. | New | — | info.ts | Map | controlstreams.collections.spec.ts |
 
 ### C5. Commands
 | `/req/command/canonical-url` | Core | “A Command SHALL be accessible at `{api_root}/commands/{commandId}`.” | 23-002 §10.6 | Defines the canonical URL pattern for a Command resource. | New | — | csapi/url_builder.ts | Implement | commands.canonical-url.spec.ts |
 | `/req/command/resources-endpoint` | Core | “A GET on `/commands` SHALL return 200 and support `limit` and `datetime` parameters.” | 23-002 §10.7 | Command collections SHALL support listing and filtering using Features-style parameters. | New | 17-069r4 §7.15 | csapi/helpers.ts | Implement | commands.endpoint.spec.ts |
 | `/req/command/ref-from-controlstream` | Association | “A ControlStream SHALL expose its Commands at `/controlstreams/{controlStreamId}/commands`.” | 23-002 §10.10 | Nested endpoint listing Commands associated with the given ControlStream. | New | ControlStream → Command linkage | csapi/url_builder.ts | Implement | commands.byControlStream.spec.ts |
+| `/req/command/collections` | Collections | “A Commands collection SHALL declare `itemType=Command` and behave as a standard resources collection.” | 23-002 §8.3, §10.7 | Defines metadata and behavior of Command collections. | New | — | info.ts | Map | commands.collections.spec.ts |
 
 ### C6. Feasibility
 
@@ -175,22 +178,35 @@ Author: Sam Bolling · Date: 2025-10-13
 | `/req/command/result` | Lifecycle | “The CommandResult resource SHALL report the outcome of a completed Command.” | 23-002 §10.9 | Defines the result resource for completed Commands. | New | — | csapi/model.ts, parsers | Implement | command.result.spec.ts |
 | `/req/feasibility/result` | Lifecycle | “The FeasibilityResult resource SHALL report the outcome of a Feasibility request.” | 23-002 §11 | Defines the result resource returned once a Feasibility request has been evaluated. | New | — | csapi/model.ts, parsers | Implement | feasibility.result.spec.ts |
 
-### C7. System Events
+### C8. System Events
 
 | Ref ID | Verbatim (abridged) | Source Citation | Plain Summary | Inheritance Type | Referenced From | Implementation Target | Status / Action | Test Placeholder |
 |---|---|---|---|---|---|---|---|---|
 | `/req/system-event/canonical-url` | Core | “A SystemEvent SHALL be accessible at `{api_root}/systemEvents/{eventId}` and link to its canonical URL.” | 23-002 §12.3–12.4 (Req40) | Defines the canonical URL pattern for a SystemEvent resource and requires a rel=canonical link when accessed via any other URL. | New | — | csapi/url_builder.ts | Implement | events.canonical-url.spec.ts |
 | `/req/system-event/resources-endpoint` | Core | “A GET at the SystemEvent resources endpoint SHALL return 200 and support `limit` and `datetime`.” | 23-002 §12.4 (Req41) | SystemEvent collections SHALL support listing and filtering using Features-style collection parameters. | New | 17-069r4 §7.15 | csapi/helpers.ts | Implement | events.endpoint.spec.ts |
 | `/req/system-event/canonical-endpoint` | Core | “The API SHALL expose a SystemEvent resources endpoint at `{api_root}/systemEvents`.” | 23-002 §12.4.2 (Req42) | Defines the canonical SystemEvent resources endpoint exposing all SystemEvents. | New | — | csapi/url_builder.ts | Implement | events.canonical.spec.ts |
-| `/req/system-event/ref-from-system` | Association | “A System SHALL expose its SystemEvents at `/systems/{systemId}/events`.” | 23-002 §12.4 (Req43) | Nested endpoint listing SystemEvents related to the given System. | New | — | csapi/url_builder.ts | Implement | events.bySystem.spec.ts |
+| `/req/system-event/ref-from-system` | Association | “A System SHALL expose its SystemEvents at `/systems/{systemId}/events`.” | 23-002 §12.4 (Req43) | Nested endpoint `/systems/{systemId}/events` listing SystemEvents related to the System. | New | — | csapi/url_builder.ts | Implement | events.bySystem.spec.ts |
 | `/req/system-event/collections` | Collections | “A SystemEvents collection SHALL declare `itemType=SystemEvent` and behave as a standard resources collection.” | 23-002 §8.3, §12.4 (Req44) | Defines metadata and behavior of SystemEvent collections, including itemType and collection semantics. | New | — | info.ts | Map | events.collections.spec.ts |
 
-### C8. System History
+### C9. System History
 
 | Ref ID | Verbatim (abridged) | Source Citation | Plain Summary | Inheritance Type | Referenced From | Implementation Target | Status / Action | Test Placeholder |
 |---|---|---|---|---|---|---|---|---|
 | `/req/system-history/resources-endpoint` | Core | “The server SHALL expose a history resources endpoint at `/systems/{systemId}/history` listing revisions of that System.” | 23-002 §12 (System history) | Defines the nested System history endpoint that lists the available historical versions of a System. | New | System → History linkage | csapi/helpers.ts | Implement | history.endpoint.spec.ts |
 | `/req/system-history/canonical-url` | Core | “Each System history revision SHALL be accessible at `{api_root}/systems/{systemId}/history/{revisionId}`.” | 23-002 §12 (System history) | Defines the canonical URL pattern for individual System history revision resources. | New | System → History canonical URL | csapi/url_builder.ts | Implement | history.canonical-url.spec.ts |
+
+### C10. Dynamic Data Encodings
+
+*(Summarizes Part 2 dynamic data encodings. Normative rows appear in Section D.)*
+
+### C11. Associations (Summary of Nested Endpoints)
+
+*(Summarizes all nested endpoint relationships for Datastreams, Observations, ControlStreams,
+Commands, Feasibility, SystemEvents, and SystemHistory. No new normative requirements.)*
+
+### C12. Canonical Endpoints (Summary)
+
+*(Summarizes all canonical endpoints required by Part 2. Requirements already defined in C2–C9.)*
 
 ## D) Encodings
 

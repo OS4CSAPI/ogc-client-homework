@@ -7,8 +7,8 @@ This matrix lists *all* requirements (Inherited, Specialized, New) and their cor
 
 - Note: For inherited Features core requirements, the test file path is intentionally generic (“Upstream OGC API Features core tests”) because they are covered by the existing core/endpoint tests, not CSAPI-specific specs.
 
-| Ref ID | Section | Inheritance Type | Test File Path | Test Case Goal | Code Target(s) |
-|:-------|:--------|:-----------------|:---------------|:---------------|:---------------|
+| Ref ID | Section | Inheritance Type | Test File Path | Test Case Goal | Code Target(s) | Test Implementation Status |
+|:-------|:--------|:-----------------|:---------------|:---------------|:---------------|:----------------------------|
 | /req/core/root-op | A) Imported Requirements — OGC API Features Part 1 (Core) (used by CSAPI) | Inherited | Upstream OGC API Features core tests | Landing page GET at `/`. | src/ogc-api/endpoint.ts |
 | /req/core/root-success | A) Imported Requirements — OGC API Features Part 1 (Core) (used by CSAPI) | Inherited | Upstream OGC API Features core tests | Landing page content and links. | endpoint.ts, info.ts |
 | /req/core/conformance-op | A) Imported Requirements — OGC API Features Part 1 (Core) (used by CSAPI) | Inherited | Upstream OGC API Features core tests | GET `/conformance` returns a 200 response containing the list of conformance classes implemented by the API. | src/ogc-api/endpoint.ts |

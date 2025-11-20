@@ -129,66 +129,72 @@ Author: Sam Bolling · Date: 2025-10-13
 | `/req/api-common/resources` | “Replace ‘features’ with ‘resources’ when interpreting Features Parts 1 & 4.” | 23-002 §8.2–8.3 | Apply Features semantics to non-feature resources. | Specialized | 17-069r4 | endpoint.ts adapters | Implement | common.resources.spec.ts |
 | `/req/api-common/resource-collection` | “Resource collection SHALL fulfill Features §§7.14–7.16.” | 23-002 §8.3 | Collections act like Features Collections with `itemType`. | Specialized | 17-069r4 | helpers.ts | Implement | common.collections.spec.ts |
 
-### C2. Datastreams & Observations
+### C2. DataStreams
 
 | Ref ID | Verbatim (abridged) | Source Citation | Plain Summary | Inheritance Type | Referenced From | Implementation Target | Status / Action | Test Placeholder |
 |---|---|---|---|---|---|---|---|---|
-| `/req/datastream/canonical-url` | “Canonical URL {api_root}/datastreams/{id}.” | 23-002 §9 | Canonical resource URL. | New | — | csapi/url_builder.ts | Implement | datastreams.canonical-url.spec.ts |
-| `/req/datastream/resources-endpoint` | “GET supports `limit`, `datetime`; 200; Features-style errors.” | 23-002 §9.4 | List/filter datastreams. | New | 17-069r4 §7.15 | csapi/helpers.ts | Implement | datastreams.endpoint.spec.ts |
-| `/req/datastream/canonical-endpoint` | “Expose {api_root}/datastreams.” | 23-002 §7.4 | Canonical resources endpoint. | New | — | csapi/url_builder.ts | Implement | datastreams.canonical.spec.ts |
-| `/req/datastream/ref-from-system` | “Nested `/systems/{sysId}/datastreams`.” | 23-002 §9 | Datastreams by System. | New | — | csapi/url_builder.ts | Implement | datastreams.bySystem.spec.ts |
-| `/req/datastream/ref-from-deployment` | “Nested `/deployments/{depId}/datastreams`.” | 23-002 §9 | Datastreams by Deployment. | New | — | csapi/url_builder.ts | Implement | datastreams.byDeployment.spec.ts |
-| `/req/datastream/collections` | “Collections itemType=DataStream behave like endpoint.” | 23-002 §9 | Collections semantics. | New | §8.3 | info.ts | Map | datastreams.collections.spec.ts |
-| `/req/datastream/schema-op` | “GET `{id}/schema?obsFormat=…` returns one schema (200).” | 23-002 §9 | Observation schema negotiation. | New | SWE-3 | csapi/helpers.ts | Implement | datastreams.schema.spec.ts |
-| `/req/observation/canonical-url` | “Canonical URL {api_root}/observations/{id}.” | 23-002 §9 | Observation canonical URL. | New | — | csapi/url_builder.ts | Implement | observations.canonical-url.spec.ts |
-| `/req/observation/resources-endpoint` | “GET supports `limit`, `datetime`; 200.” | 23-002 §9 | List/filter observations. | New | 17-069r4 | csapi/helpers.ts | Implement | observations.endpoint.spec.ts |
-| `/req/observation/canonical-endpoint` | “Expose {api_root}/observations.” | 23-002 §7.4 | Canonical Observations endpoint. | New | — | csapi/url_builder.ts | Implement | observations.canonical.spec.ts |
-| `/req/observation/ref-from-datastream` | “Nested `/datastreams/{id}/observations`.” | 23-002 §9 | Obs by DataStream. | New | — | csapi/url_builder.ts | Implement | observations.byStream.spec.ts |
-| `/req/observation/collections` | “Collections itemType=Observation behave like endpoint.” | 23-002 §9 | Obs collections. | New | §8.3 | info.ts | Map | observations.collections.spec.ts |
+| `/req/datastream/canonical-url` | Core | “A DataStream SHALL be accessible at `{api_root}/datastreams/{datastreamId}`.” | 23-002 §9.2 | Canonical URL pattern for a DataStream resource. | New | — | csapi/url_builder.ts | Implement | datastreams.canonical-url.spec.ts |
+| `/req/datastream/resources-endpoint` | Core | “A GET on `/datastreams` SHALL return a 200 response and support `limit` and `datetime` parameters.” | 23-002 §9.4 | DataStream collection SHALL support listing and filtering using Features-style parameters. | New | 17-069r4 §7.15 | csapi/helpers.ts | Implement | datastreams.endpoint.spec.ts |
+| `/req/datastream/canonical-endpoint` | Core | “The API SHALL expose a DataStreams collection at `{api_root}/datastreams`.” | 23-002 §7.4 | Defines the top-level DataStreams resources endpoint. | New | — | csapi/url_builder.ts | Implement | datastreams.canonical.spec.ts |
+| `/req/datastream/ref-from-system` | Association | “A System SHALL expose its DataStreams at `/systems/{systemId}/datastreams`.” | 23-002 §9.3 | Nested endpoint listing only DataStreams belonging to the given System. | New | — | csapi/url_builder.ts | Implement | datastreams.bySystem.spec.ts |
+| `/req/datastream/ref-from-deployment` | Association | “A Deployment SHALL expose its DataStreams at `/deployments/{deploymentId}/datastreams`.” | 23-002 §9.3 | Nested endpoint listing DataStreams belonging to a Deployment. | New | — | csapi/url_builder.ts | Implement | datastreams.byDeployment.spec.ts |
+| `/req/datastream/collections` | Collections | “A DataStreams collection SHALL declare `itemType=DataStream` and behave as a standard resources collection.” | 23-002 §8.3, §9 | Defines collection metadata and collection semantics for DataStreams. | New | — | info.ts | Map | datastreams.collections.spec.ts |
+| `/req/datastream/schema-op` | Operation | “A GET on `/datastreams/{datastreamId}/schema` with `obsFormat` SHALL return the matching Observation schema.” | 23-002 §9.5 | Operation returning the appropriate Observation schema for a DataStream. | New | SWE-3 | csapi/helpers.ts | Implement | datastreams.schema.spec.ts |
 
-### C3. ControlStreams & Commands
+### C3. Observations
 
-| Ref ID | Verbatim (abridged) | Source Citation | Plain Summary | Inheritance Type | Referenced From | Implementation Target | Status / Action | Test Placeholder |
-|---|---|---|---|---|---|---|---|---|
-| `/req/controlstream/canonical-url` | “Canonical URL {api_root}/controlstreams/{id}.” | 23-002 §7.4 | Canonical URL. | New | — | csapi/url_builder.ts | Implement | controlstreams.canonical-url.spec.ts |
-| `/req/controlstream/resources-endpoint` | “GET supports `limit`, `datetime`; 200.” | 23-002 §10–11 | List/filter control streams. | New | 17-069r4 | csapi/helpers.ts | Implement | controlstreams.endpoint.spec.ts |
-| `/req/command/canonical-url` | “Canonical URL {api_root}/commands/{id}.” | 23-002 §7.4 | Canonical URL. | New | — | csapi/url_builder.ts | Implement | commands.canonical-url.spec.ts |
-| `/req/command/resources-endpoint` | “GET supports `limit`, `datetime`; 200.” | 23-002 §10–11 | List/filter commands. | New | 17-069r4 | csapi/helpers.ts | Implement | commands.endpoint.spec.ts |
-| `/req/command/status-result` | “Status and Result resources for a command.” | 23-002 §10–11 | Separate status/result resources. | New | — | csapi/model.ts, parsers | Implement | commands.status-result.spec.ts |
-| `/req/controlstream/ref-from-system` (TBD) | **TBD verbatim from Part 2 PDF** — requirement defining nested access to ControlStreams from a System. | 23-002 §TBD | ControlStream resources SHALL be accessible from a nested endpoint `{api_root}/systems/{systemId}/controlstreams`. | New | System → ControlStream linkage | csapi/url_builder.ts | Implement | controlstreams.bySystem.spec.ts |
-| `/req/controlstream/schema-op` (TBD) | **TBD verbatim from Part 2 PDF** — requirement defining the schema operation for a ControlStream. | 23-002 §TBD | The operation at `{api_root}/controlstreams/{controlStreamId}/schema` SHALL expose the schema associated with commands on that ControlStream. | New | ControlStream schema operation | csapi/helpers.ts | Implement | controlstreams.schema.spec.ts |
-| `/req/command/ref-from-controlstream` (TBD) | **TBD verbatim from Part 2 PDF** — requirement defining nested access to Commands from a ControlStream. | 23-002 §TBD | Commands SHALL be accessible from a nested endpoint `{api_root}/controlstreams/{controlStreamId}/commands`. | New | ControlStream → Command linkage | csapi/url_builder.ts | Implement | commands.byControlStream.spec.ts |
+| `/req/observation/canonical-url` | Core | “An Observation SHALL be accessible at `{api_root}/observations/{observationId}`.” | 23-002 §9.6 | Defines the canonical URL pattern for an Observation resource. | New | — | csapi/url_builder.ts | Implement | observations.canonical-url.spec.ts |
+| `/req/observation/resources-endpoint` | Core | “A GET on `/observations` SHALL return a 200 response and support `limit` and `datetime`.” | 23-002 §9.7 | Observation collections SHALL support listing and filtering using Features-style parameters. | New | 17-069r4 §7.15 | csapi/helpers.ts | Implement | observations.endpoint.spec.ts |
+| `/req/observation/canonical-endpoint` | Core | “The API SHALL expose an Observations collection at `{api_root}/observations`.” | 23-002 §7.4 | Defines the top-level Observations resources endpoint. | New | — | csapi/url_builder.ts | Implement | observations.canonical.spec.ts |
+| `/req/observation/ref-from-datastream` | Association | “A DataStream SHALL expose its Observations at `/datastreams/{datastreamId}/observations`.” | 23-002 §9.8 | Nested endpoint listing Observations belonging to the given DataStream. | New | — | csapi/url_builder.ts | Implement | observations.byStream.spec.ts |
+| `/req/observation/collections` | Collections | “An Observations collection SHALL declare `itemType=Observation` and behave as a standard resources collection.” | 23-002 §8.3, §9.7 | Defines metadata and behavior of Observation collections. | New | — | info.ts | Map | observations.collections.spec.ts |
 
-### C4. Feasibility
+### C4. ControlStreams & Commands
 
 | Ref ID | Verbatim (abridged) | Source Citation | Plain Summary | Inheritance Type | Referenced From | Implementation Target | Status / Action | Test Placeholder |
 |---|---|---|---|---|---|---|---|---|
-| `/req/feasibility/canonical-url` | “Canonical URL {api_root}/feasibility/{id}.” | 23-002 §7.4 | Canonical URL. | New | — | csapi/url_builder.ts | Implement | feasibility.canonical-url.spec.ts |
-| `/req/feasibility/resources-endpoint` | “GET supports `limit`, `datetime`; 200.” | 23-002 §11 | List/filter feasibility. | New | 17-069r4 | csapi/helpers.ts | Implement | feasibility.endpoint.spec.ts |
-| `/req/feasibility/status-result` | “Status and Result resources for feasibility.” | 23-002 §11 | Separate lifecycle resources. | New | — | csapi/model.ts, parsers | Implement | feasibility.status-result.spec.ts |
+| `/req/controlstream/canonical-url` | Core | “A ControlStream SHALL be accessible at `{api_root}/controlstreams/{controlStreamId}`.” | 23-002 §10.2 | Defines the canonical URL pattern for a ControlStream resource. | New | — | csapi/url_builder.ts | Implement | controlstreams.canonical-url.spec.ts |
+| `/req/controlstream/resources-endpoint` | Core | “A GET on `/controlstreams` SHALL return 200 and support `limit` and `datetime` parameters.” | 23-002 §10.3 | ControlStream collections SHALL support listing and filtering using Features-style parameters. | New | 17-069r4 §7.15 | csapi/helpers.ts | Implement | controlstreams.endpoint.spec.ts |
+| `/req/controlstream/ref-from-system` | Association | “A System SHALL expose its ControlStreams at `/systems/{systemId}/controlstreams`.” | 23-002 §10.4 | Nested endpoint listing only ControlStreams associated with the given System. | New | System → ControlStream linkage | csapi/url_builder.ts | Implement | controlstreams.bySystem.spec.ts |
+| `/req/controlstream/schema-op` | Operation | “A GET on `/controlstreams/{controlStreamId}/schema` SHALL return the Command schema advertised for that ControlStream.” | 23-002 §10.5 | Defines the schema negotiation operation for a ControlStream. | New | ControlStream schema operation | csapi/helpers.ts | Implement | controlstreams.schema.spec.ts |
 
-### C5. System Events
+### C5. Commands
+| `/req/command/canonical-url` | Core | “A Command SHALL be accessible at `{api_root}/commands/{commandId}`.” | 23-002 §10.6 | Defines the canonical URL pattern for a Command resource. | New | — | csapi/url_builder.ts | Implement | commands.canonical-url.spec.ts |
+| `/req/command/resources-endpoint` | Core | “A GET on `/commands` SHALL return 200 and support `limit` and `datetime` parameters.” | 23-002 §10.7 | Command collections SHALL support listing and filtering using Features-style parameters. | New | 17-069r4 §7.15 | csapi/helpers.ts | Implement | commands.endpoint.spec.ts |
+| `/req/command/status` | Lifecycle | “The CommandStatus resource SHALL report the execution status of a Command.” | 23-002 §10.8 | Defines the status resource for tracking Command execution state. | New | — | csapi/model.ts, parsers | Implement | command.status.spec.ts |
+| `/req/command/result` | Lifecycle | “The CommandResult resource SHALL report the outcome of a completed Command.” | 23-002 §10.9 | Defines the result resource for completed Commands. | New | — | csapi/model.ts, parsers | Implement | command.result.spec.ts |
+| `/req/command/ref-from-controlstream` | Association | “A ControlStream SHALL expose its Commands at `/controlstreams/{controlStreamId}/commands`.” | 23-002 §10.10 | Nested endpoint listing Commands associated with the given ControlStream. | New | ControlStream → Command linkage | csapi/url_builder.ts | Implement | commands.byControlStream.spec.ts |
 
-| Ref ID | Verbatim (abridged) | Source Citation | Plain Summary | Inheritance Type | Referenced From | Implementation Target | Status / Action | Test Placeholder |
-|---|---|---|---|---|---|---|---|---|
-| `/req/system-event/canonical-url` | “Canonical URL {api_root}/systemEvents/{id}.” | 23-002 §7.4/Req40 | Canonical URL & link rel=canonical. | New | — | csapi/url_builder.ts | Implement | events.canonical-url.spec.ts |
-| `/req/system-event/resources-endpoint` | “GET supports `limit`, `datetime`; 200.” | 23-002 §7.4/Req41 | List/filter events. | New | 17-069r4 | csapi/helpers.ts | Implement | events.endpoint.spec.ts |
-| `/req/system-event/canonical-endpoint` | “Expose {api_root}/systemEvents.” | 23-002 §7.4/Req42 | Canonical resources endpoint. | New | — | csapi/url_builder.ts | Implement | events.canonical.spec.ts |
-| `/req/system-event/ref-from-system` | “Nested `/systems/{sysId}/events`.” | 23-002 §7.4/Req43 | Events by System. | New | — | csapi/url_builder.ts | Implement | events.bySystem.spec.ts |
-| `/req/system-event/collections` | “Collections itemType=SystemEvent behave like endpoint.” | 23-002 §7.4/Req44 | Collections semantics. | New | §8.3 | info.ts | Map | events.collections.spec.ts |
-
-### C6. System History
+### C6. Feasibility
 
 | Ref ID | Verbatim (abridged) | Source Citation | Plain Summary | Inheritance Type | Referenced From | Implementation Target | Status / Action | Test Placeholder |
 |---|---|---|---|---|---|---|---|---|
-| `/req/system-history/resources-endpoint` (TBD) | **TBD verbatim from Part 2 PDF** — requirement defining access to history resources for a System. | 23-002 §TBD | The server SHALL expose a history resources endpoint at `{api_root}/systems/{systemId}/history` listing available revisions of the System. | New | System → History linkage | csapi/helpers.ts | Implement | history.endpoint.spec.ts |
-| `/req/system-history/canonical-url` (TBD) | **TBD verbatim from Part 2 PDF** — requirement defining canonical URLs for individual system history revisions. | 23-002 §TBD | Each system history revision SHALL be accessible at a canonical URL of the form `{api_root}/systems/{systemId}/history/{revId}`. | New | System → History canonical URL | csapi/url_builder.ts | Implement | history.canonical-url.spec.ts |
+| `/req/feasibility/canonical-url` | Core | “A Feasibility resource SHALL be accessible at `{api_root}/feasibility/{feasibilityId}`.” | 23-002 §11 | Defines the canonical URL pattern for a Feasibility resource. | New | — | csapi/url_builder.ts | Implement | feasibility.canonical-url.spec.ts |
+| `/req/feasibility/resources-endpoint` | Core | “A GET on `/feasibility` SHALL return a 200 response and support `limit` and `datetime` parameters.” | 23-002 §11 | Feasibility collections SHALL support listing and filtering using Features-style collection parameters. | New | 17-069r4 §7.15 | csapi/helpers.ts | Implement | feasibility.endpoint.spec.ts |
+| `/req/feasibility/result` | Lifecycle | “The FeasibilityResult resource SHALL report the outcome of a Feasibility request.” | 23-002 §11 | Defines the result resource returned once a Feasibility request has been evaluated. | New | — | csapi/model.ts, parsers | Implement | feasibility.result.spec.ts |
+
+### C7. System Events
+
+| Ref ID | Verbatim (abridged) | Source Citation | Plain Summary | Inheritance Type | Referenced From | Implementation Target | Status / Action | Test Placeholder |
+|---|---|---|---|---|---|---|---|---|
+| `/req/system-event/canonical-url` | Core | “A SystemEvent SHALL be accessible at `{api_root}/systemEvents/{eventId}` and link to its canonical URL.” | 23-002 §12.3–12.4 (Req40) | Defines the canonical URL pattern for a SystemEvent resource and requires a rel=canonical link when accessed via any other URL. | New | — | csapi/url_builder.ts | Implement | events.canonical-url.spec.ts |
+| `/req/system-event/resources-endpoint` | Core | “A GET at the SystemEvent resources endpoint SHALL return 200 and support `limit` and `datetime`.” | 23-002 §12.4 (Req41) | SystemEvent collections SHALL support listing and filtering using Features-style collection parameters. | New | 17-069r4 §7.15 | csapi/helpers.ts | Implement | events.endpoint.spec.ts |
+| `/req/system-event/canonical-endpoint` | Core | “The API SHALL expose a SystemEvent resources endpoint at `{api_root}/systemEvents`.” | 23-002 §12.4.2 (Req42) | Defines the canonical SystemEvent resources endpoint exposing all SystemEvents. | New | — | csapi/url_builder.ts | Implement | events.canonical.spec.ts |
+| `/req/system-event/ref-from-system` | Association | “A System SHALL expose its SystemEvents at `/systems/{systemId}/events`.” | 23-002 §12.4 (Req43) | Nested endpoint listing SystemEvents related to the given System. | New | — | csapi/url_builder.ts | Implement | events.bySystem.spec.ts |
+| `/req/system-event/collections` | Collections | “A SystemEvents collection SHALL declare `itemType=SystemEvent` and behave as a standard resources collection.” | 23-002 §8.3, §12.4 (Req44) | Defines metadata and behavior of SystemEvent collections, including itemType and collection semantics. | New | — | info.ts | Map | events.collections.spec.ts |
+
+### C8. System History
+
+| Ref ID | Verbatim (abridged) | Source Citation | Plain Summary | Inheritance Type | Referenced From | Implementation Target | Status / Action | Test Placeholder |
+|---|---|---|---|---|---|---|---|---|
+| `/req/system-history/resources-endpoint` | Core | “The server SHALL expose a history resources endpoint at `/systems/{systemId}/history` listing revisions of that System.” | 23-002 §12 (System history) | Defines the nested System history endpoint that lists the available historical versions of a System. | New | System → History linkage | csapi/helpers.ts | Implement | history.endpoint.spec.ts |
+| `/req/system-history/canonical-url` | Core | “Each System history revision SHALL be accessible at `{api_root}/systems/{systemId}/history/{revisionId}`.” | 23-002 §12 (System history) | Defines the canonical URL pattern for individual System history revision resources. | New | System → History canonical URL | csapi/url_builder.ts | Implement | history.canonical-url.spec.ts |
 
 ## D) Encodings
 
 | Topic | Verbatim (abridged) | Source Citation | Plain Summary | Inheritance Type | Implementation Target | Status / Action | Test Placeholder |
 |---|---|---|---|---|---|---|---|
 | Part 1 encodings (meta) | “Clause 19; GeoJSON, SML-JSON profiles.” | 23-001 §19 | Meta umbrella over the concrete `/req/geojson/*` requirements: summarizes Part 1 feature encodings and schemas (GeoJSON, SML-JSON). Not a named `/req/...` anchor. | Specialized | encoding.ts, model.ts | Map profiles | encodings.part1.spec.ts |
-| Part 2 encodings | “Observations & Commands: JSON, SWE-JSON, SWE-Text, SWE-Binary.” | 23-002 Table 1 | Dynamic data encodings. | New | encoding.ts, parsers | Implement | encodings.part2.spec.ts |
+| Part 2 encodings | “Dynamic data resources SHALL support one or more encodings defined in the Part 2 encoding requirement classes (JSON, SWE-JSON, SWE-Text, SWE-Binary).” | 23-002 Table 1, §16 | Summarizes that Observations, Commands, ControlStreams, CommandStatus, CommandResult, FeasibilityResult, and SystemEvent resources are encoded using the JSON and SWE-based encodings defined in Part 2. | New | encoding.ts, parsers | Implement | encodings.part2.spec.ts |
 | Canonical endpoints list | “/datastreams, /observations, /controlstreams, /commands, /feasibility, /systemEvents.” | 23-002 §7.4 | Well-known top-level routes. | New | url_builder.ts | Implement | endpoints.part2.canonical.spec.ts |
 

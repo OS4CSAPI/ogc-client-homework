@@ -1,5 +1,5 @@
-# OGC Client – CSAPI Requirements Register v2.0
-Author: Sam Bolling · Date: 2025-10-13
+# OGC Client – CSAPI Requirements Register v2.3
+Author: Sam Bolling · Date: 2025-11-19
 
 
 > Purpose: Map every normative requirement relevant to a CSAPI client to clear implementation targets and tests, preserving traceability to the standards.

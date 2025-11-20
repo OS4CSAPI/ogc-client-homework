@@ -161,8 +161,6 @@ Author: Sam Bolling · Date: 2025-10-13
 ### C5. Commands
 | `/req/command/canonical-url` | Core | “A Command SHALL be accessible at `{api_root}/commands/{commandId}`.” | 23-002 §10.6 | Defines the canonical URL pattern for a Command resource. | New | — | csapi/url_builder.ts | Implement | commands.canonical-url.spec.ts |
 | `/req/command/resources-endpoint` | Core | “A GET on `/commands` SHALL return 200 and support `limit` and `datetime` parameters.” | 23-002 §10.7 | Command collections SHALL support listing and filtering using Features-style parameters. | New | 17-069r4 §7.15 | csapi/helpers.ts | Implement | commands.endpoint.spec.ts |
-| `/req/command/status` | Lifecycle | “The CommandStatus resource SHALL report the execution status of a Command.” | 23-002 §10.8 | Defines the status resource for tracking Command execution state. | New | — | csapi/model.ts, parsers | Implement | command.status.spec.ts |
-| `/req/command/result` | Lifecycle | “The CommandResult resource SHALL report the outcome of a completed Command.” | 23-002 §10.9 | Defines the result resource for completed Commands. | New | — | csapi/model.ts, parsers | Implement | command.result.spec.ts |
 | `/req/command/ref-from-controlstream` | Association | “A ControlStream SHALL expose its Commands at `/controlstreams/{controlStreamId}/commands`.” | 23-002 §10.10 | Nested endpoint listing Commands associated with the given ControlStream. | New | ControlStream → Command linkage | csapi/url_builder.ts | Implement | commands.byControlStream.spec.ts |
 
 ### C6. Feasibility
@@ -171,6 +169,10 @@ Author: Sam Bolling · Date: 2025-10-13
 |---|---|---|---|---|---|---|---|---|
 | `/req/feasibility/canonical-url` | Core | “A Feasibility resource SHALL be accessible at `{api_root}/feasibility/{feasibilityId}`.” | 23-002 §11 | Defines the canonical URL pattern for a Feasibility resource. | New | — | csapi/url_builder.ts | Implement | feasibility.canonical-url.spec.ts |
 | `/req/feasibility/resources-endpoint` | Core | “A GET on `/feasibility` SHALL return a 200 response and support `limit` and `datetime` parameters.” | 23-002 §11 | Feasibility collections SHALL support listing and filtering using Features-style collection parameters. | New | 17-069r4 §7.15 | csapi/helpers.ts | Implement | feasibility.endpoint.spec.ts |
+
+### C7. Status & Result Resources
+| `/req/command/status` | Lifecycle | “The CommandStatus resource SHALL report the execution status of a Command.” | 23-002 §10.8 | Defines the status resource for tracking Command execution state. | New | — | csapi/model.ts, parsers | Implement | command.status.spec.ts |
+| `/req/command/result` | Lifecycle | “The CommandResult resource SHALL report the outcome of a completed Command.” | 23-002 §10.9 | Defines the result resource for completed Commands. | New | — | csapi/model.ts, parsers | Implement | command.result.spec.ts |
 | `/req/feasibility/result` | Lifecycle | “The FeasibilityResult resource SHALL report the outcome of a Feasibility request.” | 23-002 §11 | Defines the result resource returned once a Feasibility request has been evaluated. | New | — | csapi/model.ts, parsers | Implement | feasibility.result.spec.ts |
 
 ### C7. System Events

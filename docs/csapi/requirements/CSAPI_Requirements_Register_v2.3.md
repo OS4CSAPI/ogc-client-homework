@@ -144,6 +144,8 @@ Author: Sam Bolling · Date: 2025-11-19
 
 ### C3. Observations
 
+| Ref ID | Requirement Class | Verbatim (abridged) | Source Citation | Plain Summary | Inheritance Type | Referenced From | Implementation Target | Status / Action | Test Placeholder |
+|---|---|---|---|---|---|---|---|---|---|
 | `/req/observation/canonical-url` | Core | “An Observation SHALL be accessible at `{api_root}/observations/{observationId}`.” | 23-002 §9.6 | Defines the canonical URL pattern for an Observation resource. | New | — | csapi/url_builder.ts | Implement | observations.canonical-url.spec.ts |
 | `/req/observation/resources-endpoint` | Core | “A GET on `/observations` SHALL return a 200 response and support `limit` and `datetime`.” | 23-002 §9.7 | Observation collections SHALL support listing and filtering using Features-style parameters. | New | 17-069r4 §7.15 | csapi/helpers.ts | Implement | observations.endpoint.spec.ts |
 | `/req/observation/canonical-endpoint` | Core | “The API SHALL expose an Observations collection at `{api_root}/observations`.” | 23-002 §7.4 | Defines the top-level Observations resources endpoint. | New | — | csapi/url_builder.ts | Implement | observations.canonical.spec.ts |
@@ -161,6 +163,9 @@ Author: Sam Bolling · Date: 2025-11-19
 | `/req/controlstream/collections` | Collections | “A ControlStreams collection SHALL declare `itemType=ControlStream` and behave as a standard resources collection.” | 23-002 §8.3, §10.3 | Defines metadata and behavior of ControlStream collections. | New | — | info.ts | Map | controlstreams.collections.spec.ts |
 
 ### C5. Commands
+
+| Ref ID | Requirement Class | Verbatim (abridged) | Source Citation | Plain Summary | Inheritance Type | Referenced From | Implementation Target | Status / Action | Test Placeholder |
+|---|---|---|---|---|---|---|---|---|---|
 | `/req/command/canonical-url` | Core | “A Command SHALL be accessible at `{api_root}/commands/{commandId}`.” | 23-002 §10.6 | Defines the canonical URL pattern for a Command resource. | New | — | csapi/url_builder.ts | Implement | commands.canonical-url.spec.ts |
 | `/req/command/resources-endpoint` | Core | “A GET on `/commands` SHALL return 200 and support `limit` and `datetime` parameters.” | 23-002 §10.7 | Command collections SHALL support listing and filtering using Features-style parameters. | New | 17-069r4 §7.15 | csapi/helpers.ts | Implement | commands.endpoint.spec.ts |
 | `/req/command/ref-from-controlstream` | Association | “A ControlStream SHALL expose its Commands at `/controlstreams/{controlStreamId}/commands`.” | 23-002 §10.10 | Nested endpoint listing Commands associated with the given ControlStream. | New | ControlStream → Command linkage | csapi/url_builder.ts | Implement | commands.byControlStream.spec.ts |
@@ -174,6 +179,9 @@ Author: Sam Bolling · Date: 2025-11-19
 | `/req/feasibility/resources-endpoint` | Core | “A GET on `/feasibility` SHALL return a 200 response and support `limit` and `datetime` parameters.” | 23-002 §11 | Feasibility collections SHALL support listing and filtering using Features-style collection parameters. | New | 17-069r4 §7.15 | csapi/helpers.ts | Implement | feasibility.endpoint.spec.ts |
 
 ### C7. Status & Result Resources
+
+| Ref ID | Requirement Class | Verbatim (abridged) | Source Citation | Plain Summary | Inheritance Type | Referenced From | Implementation Target | Status / Action | Test Placeholder |
+|---|---|---|---|---|---|---|---|---|---|
 | `/req/command/status` | Lifecycle | “The CommandStatus resource SHALL report the execution status of a Command.” | 23-002 §10.8 | Defines the status resource for tracking Command execution state. | New | — | csapi/model.ts, parsers | Implement | command.status.spec.ts |
 | `/req/command/result` | Lifecycle | “The CommandResult resource SHALL report the outcome of a completed Command.” | 23-002 §10.9 | Defines the result resource for completed Commands. | New | — | csapi/model.ts, parsers | Implement | command.result.spec.ts |
 | `/req/feasibility/result` | Lifecycle | “The FeasibilityResult resource SHALL report the outcome of a Feasibility request.” | 23-002 §11 | Defines the result resource returned once a Feasibility request has been evaluated. | New | — | csapi/model.ts, parsers | Implement | feasibility.result.spec.ts |

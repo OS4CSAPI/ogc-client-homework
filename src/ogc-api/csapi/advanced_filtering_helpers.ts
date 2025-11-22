@@ -1,8 +1,6 @@
 /**
  * Advanced Filtering Helpers (B7)
- * Original file was in __tests__; relocated to src/ogc-api/csapi/ for reuse.
- * Provides pure in-memory filtering over existing fixture data.
- * Geometry filtering remains a placeholder until spatial logic is added.
+ * Adds normalization so JSON fixtures can be either a raw array or an object holding the array.
  */
 import systemsData from '../../../fixtures/ogc-api/csapi/sample-data-hub/systems.json';
 import deploymentsData from '../../../fixtures/ogc-api/csapi/sample-data-hub/deployments.json';
@@ -48,11 +46,19 @@ export interface PropertyDef {
   objectTypes?: string[];
 }
 
-export const systems: System[] = systemsData as System[];
-export const deployments: Deployment[] = deploymentsData as Deployment[];
-export const procedures: Procedure[] = proceduresData as Procedure[];
-export const samplingFeatures: SamplingFeature[] = samplingFeaturesData as SamplingFeature[];
-export const propertyDefs: PropertyDef[] = propertiesData as PropertyDef[];
+// Normalization: if data is an object, try plural key, otherwise assume array.
+function normalize<T = any>(raw: any, pluralKey: string): T[] {
+  if (Array.isArray(raw)) return raw as T[];
+  if (raw && Array.isArray(raw[pluralKey])) return raw[pluralKey] as T[];
+  // Fall back to empty array to avoid runtime errors.
+  return [];
+}
+
+export const systems: System[] = normalize<System>(systemsData, 'systems');
+export const deployments: Deployment[] = normalize<Deployment>(deploymentsData, 'deployments');
+export const procedures: Procedure[] = normalize<Procedure>(proceduresData, 'procedures');
+export const samplingFeatures: SamplingFeature[] = normalize<SamplingFeature>(samplingFeaturesData, 'samplingFeatures');
+export const propertyDefs: PropertyDef[] = normalize<PropertyDef>(propertiesData, 'properties');
 
 type IdList = string[] | undefined;
 
@@ -161,6 +167,5 @@ export function intersection<T extends { id: string }>(a: T[], b: T[]): T[] {
 }
 
 export function geometryFilterPlaceholder<T>(items: T[], _geom?: string): T[] {
-  // TODO: spatial filtering when geometry parser is available.
-  return items;
+  return items; // Spatial logic pending.
 }

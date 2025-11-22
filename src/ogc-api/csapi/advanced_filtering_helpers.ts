@@ -1,6 +1,7 @@
 /**
  * Advanced Filtering Helpers (B7)
- * Adds normalization so JSON fixtures can be either a raw array or an object holding the array.
+ * Provides pure in-memory filtering over existing fixture data.
+ * Geometry filtering remains a placeholder until spatial logic is added.
  */
 import systemsData from '../../../fixtures/ogc-api/csapi/sample-data-hub/systems.json';
 import deploymentsData from '../../../fixtures/ogc-api/csapi/sample-data-hub/deployments.json';
@@ -46,12 +47,29 @@ export interface PropertyDef {
   objectTypes?: string[];
 }
 
-// Normalization: if data is an object, try plural key, otherwise assume array.
+/**
+ * normalize: Accepts JSON that may be:
+ * - A bare array
+ * - An object with a known plural key (e.g. systems, deployments)
+ * - An object with a default property containing the array (ESM interop)
+ * - An object with any first array-valued property
+ */
 function normalize<T = any>(raw: any, pluralKey: string): T[] {
   if (Array.isArray(raw)) return raw as T[];
+  if (raw?.default && Array.isArray(raw.default)) return raw.default as T[];
   if (raw && Array.isArray(raw[pluralKey])) return raw[pluralKey] as T[];
-  // Fall back to empty array to avoid runtime errors.
-  return [];
+  if (raw && typeof raw === 'object') {
+    for (const [k, v] of Object.entries(raw)) {
+      if (Array.isArray(v)) return v as T[];
+    }
+  }
+  // eslint-disable-next-line no-console
+  console.warn(
+    `[advanced-filtering] Normalization produced empty array for key '${pluralKey}'. Raw keys: ${
+      raw && typeof raw === 'object' ? Object.keys(raw).join(',') : typeof raw
+    }`
+  );
+  return [] as T[];
 }
 
 export const systems: System[] = normalize<System>(systemsData, 'systems');
@@ -64,7 +82,7 @@ type IdList = string[] | undefined;
 
 function matchId(id: string, patterns: IdList): boolean {
   if (!patterns || patterns.length === 0) return true;
-  return patterns.some(p => p.endsWith('*') ? id.startsWith(p.slice(0, -1)) : id === p);
+  return patterns.some(p => (p.endsWith('*') ? id.startsWith(p.slice(0, -1)) : id === p));
 }
 
 function matchList(values: string[] | undefined, required: string[] | undefined): boolean {
@@ -167,5 +185,5 @@ export function intersection<T extends { id: string }>(a: T[], b: T[]): T[] {
 }
 
 export function geometryFilterPlaceholder<T>(items: T[], _geom?: string): T[] {
-  return items; // Spatial logic pending.
+  return items;
 }

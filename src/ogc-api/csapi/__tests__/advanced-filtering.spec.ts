@@ -156,6 +156,10 @@ describe('/req/advanced-filtering/combined-filters', () => {
 });
 
 /* ---------------------- Negative / edge-case filtering ------------------ */
+/**
+ * These tests are not tied to a specific requirement ID; they validate
+ * robustness of the filtering semantics (AND logic, wildcard miss, empty set).
+ */
 describe('Advanced Filtering negative / edge cases', () => {
   test('No match for non-existent system id yields empty array', () => {
     const out = filterSystems({ id: ['__no_such_id__'] });
@@ -181,6 +185,7 @@ describe('Advanced Filtering negative / edge cases', () => {
 
   test('Empty filter object returns all systems (baseline sanity)', () => {
     const out = filterSystems({});
+    // Should return full fixture set
     expect(out.length).toBe(systems.length);
   });
 

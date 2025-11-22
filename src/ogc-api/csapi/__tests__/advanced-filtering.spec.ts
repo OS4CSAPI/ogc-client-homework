@@ -12,7 +12,7 @@ import {
   intersection,
   geometryFilterPlaceholder,
   systems
-} from './advanced-filtering.helpers';
+} from '../advanced_filtering_helpers';
 
 /* ---------------- /req/advanced-filtering/resource-by-id ---------------- */
 describe('/req/advanced-filtering/resource-by-id', () => {

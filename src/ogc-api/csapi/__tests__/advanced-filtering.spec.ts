@@ -2,18 +2,15 @@
  * Advanced Filtering Tests (B7)
  * Requirement IDs appear verbatim for traceability.
  * Geometry test is skipped (placeholder until spatial parser exists).
- *
- * Uses profile-aware fixture loading; set 'advanced' here.
+ * Uses profile-aware fixture loading; 'advanced' profile must be set
+ * BEFORE importing filtering helpers so the fixtures resolve correctly.
  */
-beforeAll(() => {
-  process.env.CSAPI_FIXTURE_PROFILE = 'advanced';
-});
 
-afterAll(() => {
-  delete process.env.CSAPI_FIXTURE_PROFILE;
-});
+// Set profile before requiring the helper module.
+process.env.CSAPI_FIXTURE_PROFILE = 'advanced';
 
-import {
+// Dynamically load after env var set.
+const {
   filterSystems,
   filterDeployments,
   filterProcedures,
@@ -22,7 +19,7 @@ import {
   intersection,
   geometryFilterPlaceholder,
   systems
-} from '../advanced_filtering_helpers';
+} = require('../advanced_filtering_helpers');
 
 /* ---------------- /req/advanced-filtering/resource-by-id ---------------- */
 describe('/req/advanced-filtering/resource-by-id', () => {

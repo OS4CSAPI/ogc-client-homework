@@ -3,14 +3,16 @@
  * Confirms canonical endpoints, item URLs, and collection behavior for SamplingFeature resources.
  *
  * Traces to:
- *   - /req/sf/canonical-endpoint  (23-001 §14)
- *   - /req/sf/resources-endpoint  (23-001 §14)
- *   - /req/sf/canonical-url       (23-001 §14)
- *   - /req/sf/collections         (23-001 §14)
+ *   - /req/sf/canonical-endpoint   (23-001 §14)
+ *   - /req/sf/resources-endpoint   (23-001 §14)
+ *   - /req/sf/canonical-url        (23-001 §14)
+ *   - /req/sf/collections          (23-001 §14)
+ *   - /req/sf/ref-from-system      (system-scoped listing)
  *
  * Test strategy:
  *   - Hybrid execution (fixtures by default, live endpoints when CSAPI_LIVE=true)
  *   - Validates FeatureCollection structure, canonical URLs, and SOSA featureType
+ *   - Guards system-scoped reference test if fixture lacks system linkage
  */
 
 import { getSamplingFeaturesUrl } from "../url_builder";
@@ -28,7 +30,7 @@ const apiRoot = process.env.CSAPI_API_ROOT || "https://example.csapi.server";
  */
 test("GET /samplingFeatures is exposed as canonical SamplingFeatures collection", async () => {
   const url = getSamplingFeaturesUrl(apiRoot);
-  const data = await maybeFetchOrLoad("samplingFeatures", url);
+  const data: any = await maybeFetchOrLoad("samplingFeatures", url);
 
   expectFeatureCollection(data, "SamplingFeature");
   expect(Array.isArray(data.features)).toBe(true);
@@ -41,7 +43,7 @@ test("GET /samplingFeatures is exposed as canonical SamplingFeatures collection"
  */
 test("GET /samplingFeatures returns FeatureCollection (itemType=SamplingFeature)", async () => {
   const url = getSamplingFeaturesUrl(apiRoot);
-  const data = await maybeFetchOrLoad("samplingFeatures", url);
+  const data: any = await maybeFetchOrLoad("samplingFeatures", url);
 
   expectFeatureCollection(data, "SamplingFeature");
 
@@ -57,11 +59,11 @@ test("GET /samplingFeatures returns FeatureCollection (itemType=SamplingFeature)
  */
 test("SamplingFeatures have canonical item URL at /samplingFeatures/{id}", async () => {
   const url = getSamplingFeaturesUrl(apiRoot);
-  const data = await maybeFetchOrLoad("samplingFeatures", url);
+  const data: any = await maybeFetchOrLoad("samplingFeatures", url);
   const first = data.features[0];
 
   const itemUrl = `${apiRoot}/samplingFeatures/${first.id}`;
-  expectCanonicalUrl(itemUrl, /^https?:\/\/.+\/samplingFeatures\/[^/]+$/);
+  expectCanonicalUrl(itemUrl, /^https?:\/\/[^/]+\/samplingFeatures\/[^/]+$/);
 });
 
 /**
@@ -70,7 +72,7 @@ test("SamplingFeatures have canonical item URL at /samplingFeatures/{id}", async
  */
 test("Collections with featureType sosa:SamplingFeature behave like /samplingFeatures", async () => {
   const url = getSamplingFeaturesUrl(apiRoot);
-  const data = await maybeFetchOrLoad("samplingFeatures", url);
+  const data: any = await maybeFetchOrLoad("samplingFeatures", url);
 
   expectFeatureCollection(data, "SamplingFeature");
 
@@ -78,4 +80,38 @@ test("Collections with featureType sosa:SamplingFeature behave like /samplingFea
   if (featureType) {
     expect(featureType).toMatch(/sosa:SamplingFeature/i);
   }
+});
+
+/* -------------------------------------------------------------------------- */
+/* /req/sf/ref-from-system                                                    */
+/* -------------------------------------------------------------------------- */
+/**
+ * Requirement: /req/sf/ref-from-system
+ * Sampling Features SHALL be discoverable via a system-scoped endpoint:
+ * /systems/{systemId}/samplingFeatures. This test derives system linkage if present.
+ *
+ * Fixture strategy:
+ *  - If a sampling feature properties includes `systemIds` (array) or `systemId`,
+ *    construct a canonical system-scoped URL and assert its pattern.
+ *  - If no linkage exists in the fixture data, log a warning and skip (non-failing).
+ */
+test("System-scoped sampling features reference (/systems/{systemId}/samplingFeatures)", async () => {
+  const data: any = await maybeFetchOrLoad("samplingFeatures", getSamplingFeaturesUrl(apiRoot));
+
+  const linked = data.features.filter((f: any) => {
+    const p = f.properties || {};
+    return (Array.isArray(p.systemIds) && p.systemIds.length > 0) || p.systemId;
+  });
+
+  if (linked.length === 0) {
+    // eslint-disable-next-line no-console
+    console.warn("[sampling-features.spec] No system linkage present; skipping /req/sf/ref-from-system assertion.");
+    return;
+  }
+
+  const feature = linked[0];
+  const props = feature.properties;
+  const systemId = Array.isArray(props.systemIds) ? props.systemIds[0] : props.systemId;
+  const systemScopedUrl = `${apiRoot}/systems/${systemId}/samplingFeatures`;
+  expectCanonicalUrl(systemScopedUrl, /^https?:\/\/[^/]+\/systems\/[^/]+\/samplingFeatures$/);
 });

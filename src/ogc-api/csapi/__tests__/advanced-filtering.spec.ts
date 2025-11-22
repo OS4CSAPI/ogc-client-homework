@@ -176,6 +176,11 @@ describe('Advanced Filtering negative / edge cases', () => {
     expect(out).toHaveLength(0);
   });
 
+  test('Multiple invalid list values returns empty', () => {
+    const out = filterSystems({ observedProperty: ['__bad1__', '__bad2__'] });
+    expect(out).toHaveLength(0);
+  });
+
   test('Combined filters with disjoint criteria produce no intersection', () => {
     const byProc = filterSystems({ procedure: ['proc-2'] });
     const byObs = filterSystems({ observedProperty: ['__invalid_prop__'] });
@@ -183,14 +188,38 @@ describe('Advanced Filtering negative / edge cases', () => {
     expect(combo).toHaveLength(0);
   });
 
+  test('Direct multi-filter mismatch (procedure + invalid controlledProperty) yields empty', () => {
+    const out = filterSystems({ procedure: ['proc-2'], controlledProperty: ['__invalid_cp__'] });
+    expect(out).toHaveLength(0);
+  });
+
+  test('Case-insensitive keyword positive (ALPHA matches alpha)', () => {
+    const out = filterSystems({ q: 'ALPHA' });
+    expect(out.length).toBe(1);
+    expect(out[0].name?.toLowerCase()).toContain('alpha');
+  });
+
+  test('Keyword no match returns empty array', () => {
+    const out = filterSystems({ q: 'ZZZ_NO_MATCH' });
+    expect(out).toHaveLength(0);
+  });
+
   test('Empty filter object returns all systems (baseline sanity)', () => {
     const out = filterSystems({});
-    // Should return full fixture set
     expect(out.length).toBe(systems.length);
   });
 
   test('Property Definitions invalid baseProperty returns empty', () => {
     const out = filterPropertyDefs({ baseProperty: ['__invalid_base__'] });
+    expect(out).toHaveLength(0);
+  });
+
+  test('Multiple invalid single-value filters combined returns empty', () => {
+    const out = filterSystems({
+      procedure: ['__bad_proc__'],
+      foi: ['__bad_foi__'],
+      observedProperty: ['__bad_prop__']
+    });
     expect(out).toHaveLength(0);
   });
 });

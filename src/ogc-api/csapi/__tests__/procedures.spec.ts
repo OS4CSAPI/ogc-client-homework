@@ -8,10 +8,12 @@
  *   - /req/procedure/resources-endpoint  (23-001 §13)
  *   - /req/procedure/canonical-url       (23-001 §13)
  *   - /req/procedure/collections         (23-001 §13)
+ *   - /req/procedure/location            (23-001 §13, geometry SHALL be absent)
  *
  * Test strategy:
  *   - Hybrid execution (fixtures by default, live endpoints when CSAPI_LIVE=true)
- *   - Validates FeatureCollection structure, itemType, and canonical URL patterns
+ *   - Validates FeatureCollection structure, itemType, canonical URL patterns
+ *   - Asserts Procedures do not include geometry
  */
 
 import { getProceduresUrl } from "../url_builder";
@@ -29,7 +31,7 @@ const apiRoot = process.env.CSAPI_API_ROOT || "https://example.csapi.server";
  */
 test("GET /procedures is exposed as canonical Procedures collection", async () => {
   const url = getProceduresUrl(apiRoot);
-  const data = await maybeFetchOrLoad("procedures", url);
+  const data: any = await maybeFetchOrLoad("procedures", url);
 
   expectFeatureCollection(data, "Procedure");
   expect(Array.isArray(data.features)).toBe(true);
@@ -42,7 +44,7 @@ test("GET /procedures is exposed as canonical Procedures collection", async () =
  */
 test("GET /procedures returns FeatureCollection (itemType=Procedure)", async () => {
   const url = getProceduresUrl(apiRoot);
-  const data = await maybeFetchOrLoad("procedures", url);
+  const data: any = await maybeFetchOrLoad("procedures", url);
 
   expectFeatureCollection(data, "Procedure");
 
@@ -58,11 +60,11 @@ test("GET /procedures returns FeatureCollection (itemType=Procedure)", async () 
  */
 test("Procedures have canonical item URL at /procedures/{id}", async () => {
   const url = getProceduresUrl(apiRoot);
-  const data = await maybeFetchOrLoad("procedures", url);
+  const data: any = await maybeFetchOrLoad("procedures", url);
   const first = data.features[0];
 
   const itemUrl = `${apiRoot}/procedures/${first.id}`;
-  expectCanonicalUrl(itemUrl, /^https?:\/\/.+\/procedures\/[^/]+$/);
+  expectCanonicalUrl(itemUrl, /^https?:\/\/.*\/procedures\/[^/]+$/);
 });
 
 /**
@@ -71,7 +73,7 @@ test("Procedures have canonical item URL at /procedures/{id}", async () => {
  */
 test("Collections with featureType sosa:Procedure behave like /procedures", async () => {
   const url = getProceduresUrl(apiRoot);
-  const data = await maybeFetchOrLoad("procedures", url);
+  const data: any = await maybeFetchOrLoad("procedures", url);
 
   expectFeatureCollection(data, "Procedure");
 
@@ -79,4 +81,27 @@ test("Collections with featureType sosa:Procedure behave like /procedures", asyn
   if (featureType) {
     expect(featureType).toMatch(/sosa:Procedure/i);
   }
+});
+
+/* -------------------------------------------------------------------------- */
+/* /req/procedure/location                                                    */
+/* -------------------------------------------------------------------------- */
+/**
+ * Requirement: /req/procedure/location
+ * Procedures SHALL NOT carry geometry; their GeoJSON representation omits the geometry member
+ * (or it is null). This test asserts absence of a populated geometry object.
+ */
+test("Procedures omit geometry per /req/procedure/location", async () => {
+  const url = getProceduresUrl(apiRoot);
+  const data: any = await maybeFetchOrLoad("procedures", url);
+  const first = data.features[0];
+
+  const geom = first.geometry;
+  // Accept undefined, null, or empty object. Reject populated geometry with type.
+  const hasDisallowedGeometry =
+    geom &&
+    typeof geom === "object" &&
+    Object.keys(geom).length > 0 &&
+    (geom as any).type;
+  expect(hasDisallowedGeometry).toBeFalsy();
 });

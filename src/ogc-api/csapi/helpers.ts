@@ -1,6 +1,7 @@
 import { CSAPIParameter } from "./model";
 import * as fs from "fs";
 import * as path from "path";
+import { loadFixtureEnv } from "./fixture_loader";
 
 /* -------------------------------------------------------------------------- */
 /*                Core Parameter Extraction Utility (Unchanged)               */
@@ -52,9 +53,10 @@ export async function csapiFetch(url: string, options: RequestInit = {}): Promis
  * OGC API – Connected Systems Helpers
  * Provides hybrid data-access utilities for tests and client modules.
  * Modes:
- *   - Default: load from local fixtures
+ *   - Default: load from local fixtures (profile 'default')
  *   - CSAPI_LIVE=true: fetch from live remote endpoint
  *   - CSAPI_CLIENT_MODE=true: call actual CSAPI client modules
+ *   - CSAPI_FIXTURE_PROFILE=(minimal|advanced|default): select fixture profile
  */
 
 /* -------------------------------------------------------------------------- */
@@ -77,21 +79,10 @@ export async function fetchCollection(url: string): Promise<unknown> {
 /* -------------------------------------------------------------------------- */
 
 /**
- * Load JSON from a local fixture path.
- * Example: fixtures/ogc-api/csapi/sample-data-hub/systems.json
+ * Profile-aware fixture loader wrapper.
  */
 export function loadFixture(fixtureName: string): unknown {
-  const fixturePath = path.resolve(
-    process.cwd(),
-    `fixtures/ogc-api/csapi/sample-data-hub/${fixtureName}.json`
-  );
-
-  if (!fs.existsSync(fixturePath)) {
-    throw new Error(`Fixture not found: ${fixturePath}`);
-  }
-
-  const raw = fs.readFileSync(fixturePath, "utf-8");
-  return JSON.parse(raw) as unknown;
+  return loadFixtureEnv(fixtureName);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -103,9 +94,9 @@ export function loadFixture(fixtureName: string): unknown {
  * Unified entry point for test data.
  *
  * Resolution order:
- *   1. If CSAPI_CLIENT_MODE=true → call corresponding *Client module
+ *   1. If CSAPI_CLIENT_MODE=true → dynamic client invocation
  *   2. Else if CSAPI_LIVE=true → fetch from remote URL
- *   3. Else → load local fixture JSON
+ *   3. Else → load local fixture JSON (profile-aware)
  */
 export async function maybeFetchOrLoad(
   fixtureName: string,
@@ -153,7 +144,7 @@ export async function maybeFetchOrLoad(
     return csapiFetch(liveUrl);
   }
 
-  // --- Mode 3: Fixture fallback (default) ---
+  // --- Mode 3: Fixture fallback (profile-aware) ---
   return loadFixture(fixtureName);
 }
 
@@ -170,8 +161,8 @@ export function expectFeatureCollection(
 ): void {
   expect(data).toBeDefined();
   expect(data.type).toBe("FeatureCollection");
-  expect(Array.isArray(data.features)).toBe(true);
-  if (itemType) expect(data.itemType).toBe(itemType);
+  expect(Array.isArray((data as any).features)).toBe(true);
+  if (itemType) expect((data as any).itemType).toBe(itemType);
 }
 
 /**

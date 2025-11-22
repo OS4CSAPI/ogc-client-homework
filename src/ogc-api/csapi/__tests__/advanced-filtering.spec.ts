@@ -154,3 +154,38 @@ describe('/req/advanced-filtering/combined-filters', () => {
     )).toBe(true);
   });
 });
+
+/* ---------------------- Negative / edge-case filtering ------------------ */
+describe('Advanced Filtering negative / edge cases', () => {
+  test('No match for non-existent system id yields empty array', () => {
+    const out = filterSystems({ id: ['__no_such_id__'] });
+    expect(out).toHaveLength(0);
+  });
+
+  test('Wildcard with no matches returns empty array', () => {
+    const out = filterDeployments({ id: ['zzz-*'] });
+    expect(out).toHaveLength(0);
+  });
+
+  test('List filter AND semantics: observedProperty list with one invalid returns empty', () => {
+    const out = filterSystems({ observedProperty: ['prop-temp', '__invalid_prop__'] });
+    expect(out).toHaveLength(0);
+  });
+
+  test('Combined filters with disjoint criteria produce no intersection', () => {
+    const byProc = filterSystems({ procedure: ['proc-2'] });
+    const byObs = filterSystems({ observedProperty: ['__invalid_prop__'] });
+    const combo = intersection(byProc, byObs);
+    expect(combo).toHaveLength(0);
+  });
+
+  test('Empty filter object returns all systems (baseline sanity)', () => {
+    const out = filterSystems({});
+    expect(out.length).toBe(systems.length);
+  });
+
+  test('Property Definitions invalid baseProperty returns empty', () => {
+    const out = filterPropertyDefs({ baseProperty: ['__invalid_base__'] });
+    expect(out).toHaveLength(0);
+  });
+});

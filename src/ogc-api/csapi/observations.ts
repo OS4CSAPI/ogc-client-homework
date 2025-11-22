@@ -11,9 +11,9 @@
  *   - ObservationsClient: main API client class
  */
 
-import { CSAPICollection } from "./model";
-import { maybeFetchOrLoad } from "./helpers";
-import { getObservationsUrl } from "./url_builder";
+import { CSAPICollection } from './model';
+import { maybeFetchOrLoad } from './helpers';
+import { getObservationsUrl } from './url_builder';
 
 /**
  * ObservationsClient
@@ -32,7 +32,7 @@ export class ObservationsClient {
    */
   async list(): Promise<CSAPICollection> {
     const url = getObservationsUrl(this.apiRoot);
-    const data = await maybeFetchOrLoad("observations", url);
+    const data = await maybeFetchOrLoad('observations', url);
     return data as CSAPICollection;
   }
 

@@ -11,9 +11,9 @@
  *   - ProceduresClient: main API client class
  */
 
-import { CSAPICollection } from "./model";
-import { maybeFetchOrLoad } from "./helpers";
-import { getProceduresUrl } from "./url_builder";
+import { CSAPICollection } from './model';
+import { maybeFetchOrLoad } from './helpers';
+import { getProceduresUrl } from './url_builder';
 
 /**
  * ProceduresClient
@@ -32,7 +32,7 @@ export class ProceduresClient {
    */
   async list(): Promise<CSAPICollection> {
     const url = getProceduresUrl(this.apiRoot);
-    const data = await maybeFetchOrLoad("procedures", url);
+    const data = await maybeFetchOrLoad('procedures', url);
     return data as CSAPICollection;
   }
 

@@ -11,9 +11,9 @@
  *   - SystemEventsClient: main API client class
  */
 
-import { CSAPICollection } from "./model";
-import { maybeFetchOrLoad } from "./helpers";
-import { getSystemEventsUrl } from "./url_builder";
+import { CSAPICollection } from './model';
+import { maybeFetchOrLoad } from './helpers';
+import { getSystemEventsUrl } from './url_builder';
 
 /**
  * SystemEventsClient
@@ -32,7 +32,7 @@ export class SystemEventsClient {
    */
   async list(): Promise<CSAPICollection> {
     const url = getSystemEventsUrl(this.apiRoot);
-    const data = await maybeFetchOrLoad("systemEvents", url);
+    const data = await maybeFetchOrLoad('systemEvents', url);
     return data as CSAPICollection;
   }
 

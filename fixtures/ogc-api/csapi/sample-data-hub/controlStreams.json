@@ -2,6 +2,10 @@
   "type": "FeatureCollection",
   "itemType": "ControlStream",
   "features": [
-    { "type": "Feature", "id": "ctrl-001", "properties": { "system": { "id": "sys-001" } } }
+    {
+      "type": "Feature",
+      "id": "ctrl-001",
+      "properties": { "system": { "id": "sys-001" } }
+    }
   ]
 }

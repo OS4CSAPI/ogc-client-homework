@@ -6,7 +6,8 @@
  * Aligned with tests under __tests__/endpoints.part2.canonical.spec.ts.
  */
 
-const DEFAULT_API_ROOT = process.env.CSAPI_API_ROOT ?? "https://example.csapi.server";
+const DEFAULT_API_ROOT =
+  process.env.CSAPI_API_ROOT ?? 'https://example.csapi.server';
 
 /* -------------------------------------------------------------------------- */
 /*                               Core Utilities                               */
@@ -15,7 +16,7 @@ const DEFAULT_API_ROOT = process.env.CSAPI_API_ROOT ?? "https://example.csapi.se
 export const buildCsapiUrl = (
   collection: string,
   apiRoot: string = DEFAULT_API_ROOT,
-  id?: string,
+  id?: string
 ): string => {
   const path = id ? `/${collection}/${id}` : `/${collection}`;
   return `${apiRoot}${path}`;
@@ -26,17 +27,17 @@ export const buildCsapiUrl = (
 /* -------------------------------------------------------------------------- */
 
 export const CANONICAL_ENDPOINTS = [
-  "systems",
-  "deployments",
-  "procedures",
-  "samplingFeatures",
-  "properties",
-  "datastreams",
-  "observations",
-  "controlStreams",
-  "commands",
-  "feasibility",
-  "systemEvents",
+  'systems',
+  'deployments',
+  'procedures',
+  'samplingFeatures',
+  'properties',
+  'datastreams',
+  'observations',
+  'controlStreams',
+  'commands',
+  'feasibility',
+  'systemEvents',
 ];
 
 /**
@@ -46,71 +47,71 @@ export const CANONICAL_ENDPOINTS = [
 
 export const getSystemsUrl = (
   apiRoot: string = DEFAULT_API_ROOT,
-  id?: string,
-) => buildCsapiUrl("systems", apiRoot, id);
+  id?: string
+) => buildCsapiUrl('systems', apiRoot, id);
 
 export const getDeploymentsUrl = (
   apiRoot: string = DEFAULT_API_ROOT,
-  id?: string,
-) => buildCsapiUrl("deployments", apiRoot, id);
+  id?: string
+) => buildCsapiUrl('deployments', apiRoot, id);
 
 export const getProceduresUrl = (
   apiRoot: string = DEFAULT_API_ROOT,
-  id?: string,
-) => buildCsapiUrl("procedures", apiRoot, id);
+  id?: string
+) => buildCsapiUrl('procedures', apiRoot, id);
 
 export const getSamplingFeaturesUrl = (
   apiRoot: string = DEFAULT_API_ROOT,
-  id?: string,
-) => buildCsapiUrl("samplingFeatures", apiRoot, id);
+  id?: string
+) => buildCsapiUrl('samplingFeatures', apiRoot, id);
 
 export const getPropertiesUrl = (
   apiRoot: string = DEFAULT_API_ROOT,
-  id?: string,
-) => buildCsapiUrl("properties", apiRoot, id);
+  id?: string
+) => buildCsapiUrl('properties', apiRoot, id);
 
 export const getDatastreamsUrl = (
   apiRoot: string = DEFAULT_API_ROOT,
-  id?: string,
-) => buildCsapiUrl("datastreams", apiRoot, id);
+  id?: string
+) => buildCsapiUrl('datastreams', apiRoot, id);
 
 export const getDatastreamByIdUrl = (
   apiRoot: string = DEFAULT_API_ROOT,
-  datastreamId: string,
-) => buildCsapiUrl("datastreams", apiRoot, datastreamId);
+  datastreamId: string
+) => buildCsapiUrl('datastreams', apiRoot, datastreamId);
 
 export const getObservationsUrl = (
   apiRoot: string = DEFAULT_API_ROOT,
-  id?: string,
-) => buildCsapiUrl("observations", apiRoot, id);
+  id?: string
+) => buildCsapiUrl('observations', apiRoot, id);
 
 export const getControlStreamsUrl = (
   apiRoot: string = DEFAULT_API_ROOT,
-  id?: string,
-) => buildCsapiUrl("controlStreams", apiRoot, id);
+  id?: string
+) => buildCsapiUrl('controlStreams', apiRoot, id);
 
 export const getCommandsUrl = (
   apiRoot: string = DEFAULT_API_ROOT,
-  id?: string,
-) => buildCsapiUrl("commands", apiRoot, id);
+  id?: string
+) => buildCsapiUrl('commands', apiRoot, id);
 
 export const getFeasibilityUrl = (
   apiRoot: string = DEFAULT_API_ROOT,
-  id?: string,
-) => buildCsapiUrl("feasibility", apiRoot, id);
+  id?: string
+) => buildCsapiUrl('feasibility', apiRoot, id);
 
 export const getSystemEventsUrl = (
   apiRoot: string = DEFAULT_API_ROOT,
-  id?: string,
-) => buildCsapiUrl("systemEvents", apiRoot, id);
+  id?: string
+) => buildCsapiUrl('systemEvents', apiRoot, id);
 
 /**
  * Nested and alias helpers for tests that call e.g. getSystemEventsForSystemUrl()
  */
 export const getSystemEventsForSystemUrl = (
   apiRoot: string = DEFAULT_API_ROOT,
-  systemId: string,
-) => `${buildCsapiUrl("systems", apiRoot, systemId)}/events`;
+  systemId: string
+) => `${buildCsapiUrl('systems', apiRoot, systemId)}/events`;
 
 /* -------------------------------------------------------------------------- */
 /*                              Aggregate Helpers                             */
@@ -118,6 +119,5 @@ export const getSystemEventsForSystemUrl = (
 
 export const allCsapiCollections = (): string[] => [...CANONICAL_ENDPOINTS];
 
-export const allCsapiUrls = (
-  apiRoot: string = DEFAULT_API_ROOT,
-): string[] => CANONICAL_ENDPOINTS.map((c) => buildCsapiUrl(c, apiRoot));
+export const allCsapiUrls = (apiRoot: string = DEFAULT_API_ROOT): string[] =>
+  CANONICAL_ENDPOINTS.map((c) => buildCsapiUrl(c, apiRoot));

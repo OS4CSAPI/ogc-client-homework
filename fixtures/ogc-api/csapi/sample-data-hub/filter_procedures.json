@@ -1,0 +1,39 @@
+{
+  "type": "FeatureCollection",
+  "itemType": "Procedure",
+  "features": [
+    {
+      "id": "proc-001",
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "name": "Standard Weather Observation",
+        "description": "Standard meteorological measurement procedure",
+        "observedProperty": ["prop-001", "prop-002"],
+        "controlledProperty": []
+      }
+    },
+    {
+      "id": "proc-002",
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "name": "Advanced Weather Monitoring",
+        "description": "High-precision weather measurement",
+        "observedProperty": ["prop-002", "prop-003"],
+        "controlledProperty": []
+      }
+    },
+    {
+      "id": "proc-003",
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "name": "Climate Control Protocol",
+        "description": "HVAC system control procedure",
+        "observedProperty": ["prop-001"],
+        "controlledProperty": ["prop-001", "prop-004"]
+      }
+    }
+  ]
+}

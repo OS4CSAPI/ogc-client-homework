@@ -12,9 +12,9 @@
  *   - SystemsClient: main API client class
  */
 
-import { CSAPISystem, CSAPISystemCollection } from "./model";
-import { maybeFetchOrLoad } from "./helpers";
-import { getSystemsUrl, getSystemEventsUrl } from "./url_builder";
+import { CSAPISystem, CSAPISystemCollection } from './model';
+import { maybeFetchOrLoad } from './helpers';
+import { getSystemsUrl, getSystemEventsUrl } from './url_builder';
 
 /**
  * SystemsClient
@@ -33,7 +33,7 @@ export class SystemsClient {
    */
   async list(): Promise<CSAPISystemCollection> {
     const url = getSystemsUrl(this.apiRoot);
-    const data = await maybeFetchOrLoad("systems", url);
+    const data = await maybeFetchOrLoad('systems', url);
     return data as CSAPISystemCollection;
   }
 

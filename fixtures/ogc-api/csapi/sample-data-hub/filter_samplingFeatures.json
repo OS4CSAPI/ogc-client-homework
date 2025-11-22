@@ -1,0 +1,51 @@
+{
+  "type": "FeatureCollection",
+  "itemType": "SamplingFeature",
+  "features": [
+    {
+      "id": "sf-001",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.4, 37.8]
+      },
+      "properties": {
+        "name": "Urban Site Alpha",
+        "description": "Downtown sampling location",
+        "foi": "sf-001",
+        "observedProperty": ["prop-001", "prop-002"],
+        "controlledProperty": []
+      }
+    },
+    {
+      "id": "sf-002",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.5, 37.7]
+      },
+      "properties": {
+        "name": "Suburban Site Beta",
+        "description": "Suburban sampling location",
+        "foi": "sf-002",
+        "observedProperty": ["prop-002", "prop-003"],
+        "controlledProperty": []
+      }
+    },
+    {
+      "id": "sf-003",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.3, 37.9]
+      },
+      "properties": {
+        "name": "Industrial Site Gamma",
+        "description": "Factory sampling point",
+        "foi": "sf-003",
+        "observedProperty": ["prop-001"],
+        "controlledProperty": ["prop-001", "prop-004"]
+      }
+    }
+  ]
+}

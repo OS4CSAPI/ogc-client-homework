@@ -2,6 +2,10 @@
   "type": "FeatureCollection",
   "itemType": "SamplingFeature",
   "features": [
-    { "type": "Feature", "id": "sf-001", "properties": { "featureType": "sosa:SamplingFeature" } }
+    {
+      "type": "Feature",
+      "id": "sf-001",
+      "properties": { "featureType": "sosa:SamplingFeature" }
+    }
   ]
 }

@@ -13,54 +13,62 @@
  *   - Confirms correct Content-Type, schema, and encoding-specific keys
  */
 
-import { getSystemsUrl } from "../url_builder";
-import { maybeFetchOrLoad } from "../helpers";
+import { getSystemsUrl } from '../url_builder';
+import { maybeFetchOrLoad } from '../helpers';
 
-const apiRoot = process.env.CSAPI_API_ROOT || "https://example.csapi.server";
+const apiRoot = process.env.CSAPI_API_ROOT || 'https://example.csapi.server';
 
 /**
  * Requirement: /req/encodings/geojson
  * All feature resources SHALL be available as GeoJSON.
  */
-test("GET /systems returns valid GeoJSON FeatureCollection encoding", async () => {
-  const url = getSystemsUrl(apiRoot) + "?f=geojson";
-  const data = await maybeFetchOrLoad("encodings_part1_geojson", url);
+test('GET /systems returns valid GeoJSON FeatureCollection encoding', async () => {
+  const url = getSystemsUrl(apiRoot) + '?f=geojson';
+  const data = await maybeFetchOrLoad('encodings_part1_geojson', url);
 
   expect(data).toBeDefined();
-  expect(data.type).toBe("FeatureCollection");
+  expect(data.type).toBe('FeatureCollection');
   expect(Array.isArray(data.features)).toBe(true);
 
   const first = data.features[0];
-  expect(first).toHaveProperty("type", "Feature");
-  expect(first).toHaveProperty("geometry");
+  expect(first).toHaveProperty('type', 'Feature');
+  expect(first).toHaveProperty('geometry');
 });
 
 /**
  * Requirement: /req/encodings/sensorml-json
  * Systems SHALL be available as SensorML-JSON documents.
  */
-test("GET /systems returns valid SensorML-JSON encoding", async () => {
-  const url = getSystemsUrl(apiRoot) + "?f=application/sensorml+json";
-  const data = await maybeFetchOrLoad("encodings_part1_sensorml", url);
+test('GET /systems returns valid SensorML-JSON encoding', async () => {
+  const url = getSystemsUrl(apiRoot) + '?f=application/sensorml+json';
+  const data = await maybeFetchOrLoad('encodings_part1_sensorml', url);
 
   expect(data).toBeDefined();
-  expect(data).toHaveProperty("type", "System");
-  expect(data).toHaveProperty("components");
-  expect(data).toHaveProperty("contacts");
+  expect(data).toHaveProperty('type', 'System');
+  expect(data).toHaveProperty('components');
+  expect(data).toHaveProperty('contacts');
 });
 
 /**
  * Requirement: /req/encodings/content-negotiation
  * The server SHALL support standard HTTP content negotiation for encodings.
  */
-test("Server supports content negotiation for GeoJSON and SensorML-JSON", async () => {
+test('Server supports content negotiation for GeoJSON and SensorML-JSON', async () => {
   const geojsonUrl = getSystemsUrl(apiRoot);
   const sensormlUrl = getSystemsUrl(apiRoot);
 
-  const geojsonData = await maybeFetchOrLoad("encodings_part1_geojson", geojsonUrl);
-  const sensormlData = await maybeFetchOrLoad("encodings_part1_sensorml", sensormlUrl);
+  const geojsonData = await maybeFetchOrLoad(
+    'encodings_part1_geojson',
+    geojsonUrl
+  );
+  const sensormlData = await maybeFetchOrLoad(
+    'encodings_part1_sensorml',
+    sensormlUrl
+  );
 
   // Hybrid mode: assume fixture names correspond to accepted media types
-  expect(geojsonData.type).toBe("FeatureCollection");
-  expect(sensormlData.type === "System" || sensormlData.type === "Procedure").toBe(true);
+  expect(geojsonData.type).toBe('FeatureCollection');
+  expect(
+    sensormlData.type === 'System' || sensormlData.type === 'Procedure'
+  ).toBe(true);
 });

@@ -11,9 +11,9 @@
  *   - SamplingFeaturesClient: main API client class
  */
 
-import { CSAPICollection } from "./model";
-import { maybeFetchOrLoad } from "./helpers";
-import { getSamplingFeaturesUrl } from "./url_builder";
+import { CSAPICollection } from './model';
+import { maybeFetchOrLoad } from './helpers';
+import { getSamplingFeaturesUrl } from './url_builder';
 
 /**
  * SamplingFeaturesClient
@@ -32,7 +32,7 @@ export class SamplingFeaturesClient {
    */
   async list(): Promise<CSAPICollection> {
     const url = getSamplingFeaturesUrl(this.apiRoot);
-    const data = await maybeFetchOrLoad("samplingFeatures", url);
+    const data = await maybeFetchOrLoad('samplingFeatures', url);
     return data as CSAPICollection;
   }
 

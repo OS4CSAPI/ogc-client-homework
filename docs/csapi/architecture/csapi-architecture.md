@@ -53,18 +53,22 @@ These types are used across CSAPI clients and tests to type fixture responses an
 Central utility module for CSAPI, providing:
 
 - **Parameter handling**
+
   - Functions to extract and normalize parameter structures from documents.
 
 - **Fetch abstraction**
+
   - `csapiFetch` wrapper enforcing JSON media types.
   - Ensures CSAPI clients perform consistent HTTP interactions when not using fixtures.
 
 - **Fixture handling**
+
   - `loadFixture` and related utilities for JSON resources under:
     - `fixtures/ogc-api/csapi/sample-data-hub/**`
   - This centralizes fixture paths and naming so tests and clients share the same conventions.
 
 - **Execution mode switching**
+
   - `maybeFetchOrLoad` implements the execution policy:
     - Use fixtures,
     - Or perform live HTTP requests,
@@ -87,6 +91,7 @@ This module is the main shared utility layer for CSAPI; tests and clients depend
 Single source of truth for **canonical CSAPI URLs**:
 
 - **Core helpers**
+
   - `buildCsapiUrl` — base URL builder, typically using `process.env.CSAPI_API_ROOT`.
   - `get*Url` family — per-resource helpers:
     - e.g., `getSystemsUrl`, `getDeploymentsUrl`, `getSystemEventsUrl`, etc.
@@ -176,6 +181,7 @@ This makes `helpers.ts` and `url_builder.ts` the core shared modules for CSAPI.
 ### 3.2 Relationship to Generic Models and Endpoint
 
 - `src/ogc-api/model.ts`
+
   - Defines generic OGC API models (e.g., `OgcApiCollectionInfo`), used heavily by EDR.
   - CSAPI currently has its own dedicated model definitions in `csapi/model.ts` and does not rely on `model.ts` for CSAPI resources.
 
@@ -198,6 +204,7 @@ While not part of CSAPI itself, the EDR and endpoint modules live alongside CSAP
 ### 4.1 EDR Models and Helpers
 
 - **`src/ogc-api/edr/model.ts`**
+
   - Provides EDR-specific structural types:
     - `WKT` aliases
     - BBox shapes
@@ -247,10 +254,12 @@ They are extensive and organized by topic.
 ### 5.1 Landing & Canonical Discovery
 
 - `common.spec.ts`
+
   - Validates landing and conformance documents.
   - Checks CSAPI-specific link relations (rels) and advertised resources.
 
 - `endpoints.part2.canonical.spec.ts`
+
   - Ensures every entry in `CANONICAL_ENDPOINTS` is advertised and reachable.
 
 - `clients.lifecycle.spec.ts`
@@ -306,6 +315,7 @@ These tests:
 ### 5.4 Encoding Coverage
 
 - `encodings.part1.spec.ts`
+
   - Exercises GeoJSON vs SensorML negotiation for Part 1 resources (e.g., systems).
 
 - `encodings.part2.spec.ts`
@@ -366,9 +376,11 @@ Tests use these builders to:
 The CSAPI implementation in this repo is:
 
 - **Well-structured:**
+
   - Clear separation of models, helpers, URL builders, and resource clients.
 
 - **Fixture-driven and test-rich:**
+
   - Extensive Jest test coverage for Part 1 and Part 2 resources, encoding behavior, and helper logic.
 
 - **Modular and decoupled:**

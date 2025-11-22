@@ -16,27 +16,24 @@
  *   - Ensures nested datastream references and schema operation exist
  */
 
-import {
-  getDatastreamsUrl,
-  getDatastreamByIdUrl,
-} from "../url_builder";
+import { getDatastreamsUrl, getDatastreamByIdUrl } from '../url_builder';
 import {
   maybeFetchOrLoad,
   expectFeatureCollection,
   expectCanonicalUrl,
-} from "../helpers";
+} from '../helpers';
 
-const apiRoot = process.env.CSAPI_API_ROOT || "https://example.csapi.server";
+const apiRoot = process.env.CSAPI_API_ROOT || 'https://example.csapi.server';
 
 /**
  * Requirement: /req/datastream/canonical-endpoint
  * The /datastreams endpoint SHALL be exposed as the canonical Datastreams collection.
  */
-test("GET /datastreams is exposed as canonical Datastreams collection", async () => {
+test('GET /datastreams is exposed as canonical Datastreams collection', async () => {
   const url = getDatastreamsUrl(apiRoot);
-  const data = await maybeFetchOrLoad("datastreams", url);
+  const data = await maybeFetchOrLoad('datastreams', url);
 
-  expectFeatureCollection(data, "Datastream");
+  expectFeatureCollection(data, 'Datastream');
   expect(Array.isArray(data.features)).toBe(true);
   expect(data.features.length).toBeGreaterThan(0);
 });
@@ -45,25 +42,25 @@ test("GET /datastreams is exposed as canonical Datastreams collection", async ()
  * Requirement: /req/datastream/resources-endpoint
  * The /datastreams collection SHALL conform to OGC API – Features collection rules.
  */
-test("GET /datastreams returns FeatureCollection (itemType=Datastream)", async () => {
+test('GET /datastreams returns FeatureCollection (itemType=Datastream)', async () => {
   const url = getDatastreamsUrl(apiRoot);
-  const data = await maybeFetchOrLoad("datastreams", url);
+  const data = await maybeFetchOrLoad('datastreams', url);
 
-  expectFeatureCollection(data, "Datastream");
+  expectFeatureCollection(data, 'Datastream');
 
   const first = data.features[0];
-  expect(first).toHaveProperty("id");
-  expect(first).toHaveProperty("type", "Feature");
-  expect(first).toHaveProperty("properties");
+  expect(first).toHaveProperty('id');
+  expect(first).toHaveProperty('type', 'Feature');
+  expect(first).toHaveProperty('properties');
 });
 
 /**
  * Requirement: /req/datastream/canonical-url
  * Each Datastream SHALL have a canonical item URL at /datastreams/{id}.
  */
-test("Datastreams have canonical item URL at /datastreams/{id}", async () => {
+test('Datastreams have canonical item URL at /datastreams/{id}', async () => {
   const url = getDatastreamsUrl(apiRoot);
-  const data = await maybeFetchOrLoad("datastreams", url);
+  const data = await maybeFetchOrLoad('datastreams', url);
   const first = data.features[0];
 
   const itemUrl = getDatastreamByIdUrl(apiRoot, first.id);
@@ -74,24 +71,27 @@ test("Datastreams have canonical item URL at /datastreams/{id}", async () => {
  * Requirement: /req/datastream/ref-from-system
  * Each System SHALL expose nested Datastreams at /systems/{systemId}/datastreams.
  */
-test("GET /systems/{id}/datastreams lists datastreams for a System", async () => {
-  const systemId = "sys-001"; // placeholder; can come from fixtures later
+test('GET /systems/{id}/datastreams lists datastreams for a System', async () => {
+  const systemId = 'sys-001'; // placeholder; can come from fixtures later
   const url = getDatastreamsUrl(apiRoot, systemId);
-  const data = await maybeFetchOrLoad("datastreams", url);
+  const data = await maybeFetchOrLoad('datastreams', url);
 
-  expectFeatureCollection(data, "Datastream");
+  expectFeatureCollection(data, 'Datastream');
 });
 
 /**
  * Requirement: /req/datastream/schema-op
  * The /datastreams/{id}/schema?obsFormat=… operation SHALL return an observation schema.
  */
-test("GET /datastreams/{id}/schema?obsFormat=… returns observation schema", async () => {
-  const datastreamId = "ds-001"; // placeholder; can come from fixtures later
-  const schemaUrl = `${getDatastreamByIdUrl(apiRoot, datastreamId)}/schema?obsFormat=application/json`;
-  const data = await maybeFetchOrLoad("datastreams_schema", schemaUrl);
+test('GET /datastreams/{id}/schema?obsFormat=… returns observation schema', async () => {
+  const datastreamId = 'ds-001'; // placeholder; can come from fixtures later
+  const schemaUrl = `${getDatastreamByIdUrl(
+    apiRoot,
+    datastreamId
+  )}/schema?obsFormat=application/json`;
+  const data = await maybeFetchOrLoad('datastreams_schema', schemaUrl);
 
   expect(data).toBeDefined();
   // minimal check for schema fields
-  expect(Object.keys(data)).toContain("type");
+  expect(Object.keys(data)).toContain('type');
 });

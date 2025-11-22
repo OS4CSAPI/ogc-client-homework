@@ -1,0 +1,57 @@
+{
+  "type": "FeatureCollection",
+  "itemType": "Deployment",
+  "features": [
+    {
+      "id": "dep-001",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.4, 37.8]
+      },
+      "properties": {
+        "name": "Urban Deployment Alpha",
+        "description": "City center monitoring deployment",
+        "parent": null,
+        "system": "sys-001",
+        "foi": ["sf-001"],
+        "observedProperty": ["prop-001", "prop-002"],
+        "controlledProperty": []
+      }
+    },
+    {
+      "id": "dep-002",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.5, 37.7]
+      },
+      "properties": {
+        "name": "Suburban Deployment Beta",
+        "description": "Suburban area monitoring",
+        "parent": "dep-001",
+        "system": "sys-002",
+        "foi": ["sf-002"],
+        "observedProperty": ["prop-002"],
+        "controlledProperty": []
+      }
+    },
+    {
+      "id": "dep-003",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.3, 37.9]
+      },
+      "properties": {
+        "name": "Industrial Deployment Gamma",
+        "description": "Factory floor deployment",
+        "parent": null,
+        "system": "sys-003",
+        "foi": ["sf-003"],
+        "observedProperty": ["prop-001"],
+        "controlledProperty": ["prop-001", "prop-004"]
+      }
+    }
+  ]
+}

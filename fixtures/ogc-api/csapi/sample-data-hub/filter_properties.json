@@ -1,0 +1,46 @@
+{
+  "type": "Collection",
+  "itemType": "Property",
+  "members": [
+    {
+      "id": "prop-001",
+      "name": "temperature",
+      "description": "Air temperature measurement",
+      "definition": "http://qudt.org/vocab/quantitykind/Temperature",
+      "type": "Quantity",
+      "unit": "http://qudt.org/vocab/unit/DegreeCelsius",
+      "baseProperty": null,
+      "objectType": "atmosphere"
+    },
+    {
+      "id": "prop-002",
+      "name": "humidity",
+      "description": "Relative humidity measurement",
+      "definition": "http://qudt.org/vocab/quantitykind/RelativeHumidity",
+      "type": "Quantity",
+      "unit": "http://qudt.org/vocab/unit/Percent",
+      "baseProperty": null,
+      "objectType": "atmosphere"
+    },
+    {
+      "id": "prop-003",
+      "name": "windSpeed",
+      "description": "Wind speed measurement",
+      "definition": "http://qudt.org/vocab/quantitykind/Speed",
+      "type": "Quantity",
+      "unit": "http://qudt.org/vocab/unit/MeterPerSecond",
+      "baseProperty": null,
+      "objectType": "atmosphere"
+    },
+    {
+      "id": "prop-004",
+      "name": "setpoint-temperature",
+      "description": "Target temperature for climate control",
+      "definition": "http://qudt.org/vocab/quantitykind/Temperature",
+      "type": "Quantity",
+      "unit": "http://qudt.org/vocab/unit/DegreeCelsius",
+      "baseProperty": "prop-001",
+      "objectType": "hvac-system"
+    }
+  ]
+}

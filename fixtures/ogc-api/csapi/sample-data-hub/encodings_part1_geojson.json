@@ -2,6 +2,10 @@
   "type": "FeatureCollection",
   "itemType": "System",
   "features": [
-    { "type": "Feature", "id": "sys-001", "geometry": { "type": "Point", "coordinates": [12.48, 41.89] } }
+    {
+      "type": "Feature",
+      "id": "sys-001",
+      "geometry": { "type": "Point", "coordinates": [12.48, 41.89] }
+    }
   ]
 }

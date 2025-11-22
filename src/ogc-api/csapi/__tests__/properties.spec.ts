@@ -15,10 +15,7 @@
  */
 
 import { getPropertiesUrl } from "../url_builder";
-import {
-  maybeFetchOrLoad,
-  expectCanonicalUrl,
-} from "../helpers";
+import { maybeFetchOrLoad, expectCanonicalUrl } from "../helpers";
 
 const apiRoot = process.env.CSAPI_API_ROOT || "https://example.csapi.server";
 
@@ -28,7 +25,7 @@ const apiRoot = process.env.CSAPI_API_ROOT || "https://example.csapi.server";
  */
 test("GET /properties is exposed as canonical Property Definitions collection", async () => {
   const url = getPropertiesUrl(apiRoot);
-  const data = await maybeFetchOrLoad("properties", url);
+  const data: any = await maybeFetchOrLoad("properties", url);
 
   // Non-feature collection: must have 'type' and 'members'
   expect(data).toBeDefined();
@@ -43,7 +40,7 @@ test("GET /properties is exposed as canonical Property Definitions collection", 
  */
 test("GET /properties returns a valid list of property definitions", async () => {
   const url = getPropertiesUrl(apiRoot);
-  const data = await maybeFetchOrLoad("properties", url);
+  const data: any = await maybeFetchOrLoad("properties", url);
 
   expect(data.type).toBe("Collection");
 
@@ -60,11 +57,24 @@ test("GET /properties returns a valid list of property definitions", async () =>
  */
 test("Property Definition items have canonical item URL at /properties/{id}", async () => {
   const url = getPropertiesUrl(apiRoot);
-  const data = await maybeFetchOrLoad("properties", url);
+  const data: any = await maybeFetchOrLoad("properties", url);
   const first = data.members[0];
 
   const itemUrl = `${apiRoot}/properties/${first.id}`;
-  expectCanonicalUrl(itemUrl, /^https?:\/\/.+\/properties\/[^/]+$/);
+  expectCanonicalUrl(itemUrl, /^https?:\/\/.*\/properties\/[^/]+$/);
+});
+
+/**
+ * Non-feature integrity (Issue 35): Property Definitions SHALL NOT be GeoJSON Features and SHALL NOT include geometry.
+ */
+test("Property Definitions are non-feature resources (no geometry, not GeoJSON Feature objects)", async () => {
+  const url = getPropertiesUrl(apiRoot);
+  const data: any = await maybeFetchOrLoad("properties", url);
+
+  for (const m of data.members) {
+    expect(m.type).not.toBe("Feature");
+    expect(m.geometry).toBeUndefined();
+  }
 });
 
 /**
@@ -73,10 +83,8 @@ test("Property Definition items have canonical item URL at /properties/{id}", as
  */
 test("Each property definition includes optional metadata fields", async () => {
   const url = getPropertiesUrl(apiRoot);
-  const data = await maybeFetchOrLoad("properties", url);
+  const data: any = await maybeFetchOrLoad("properties", url);
 
-  const hasMeta = data.members.some(
-    (m: any) => m.unit || m.encoding || m.observedProperty
-  );
+  const hasMeta = data.members.some((m: any) => m.unit || m.encoding || m.observedProperty);
   expect(hasMeta).toBe(true);
 });

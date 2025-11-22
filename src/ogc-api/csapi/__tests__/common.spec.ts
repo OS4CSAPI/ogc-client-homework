@@ -85,3 +85,43 @@ test("Landing page advertises CSAPI extension endpoints", async () => {
     expect(found).toBe(true);
   }
 });
+
+/* -------------------------------------------------------------------------- */
+/*  C1 — Common semantics (new tests appended for Issue #30)                  */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Requirement: /req/api-common/resources
+ * Non-feature resource collections follow Features collection semantics and expose itemType.
+ */
+test("/req/api-common/resources — properties collection shape", async () => {
+  const url = `${apiRoot}/properties`;
+  const data: Record<string, unknown> = await maybeFetchOrLoad("endpoint_properties", url);
+
+  expect(data).toBeDefined();
+  // Basic shape
+  expect(Array.isArray((data as any).features)).toBe(true);
+  // itemType or featureType adaptation
+  expect((data as any).itemType || (data as any).featureType).toBeDefined();
+  // Links present
+  expect(Array.isArray((data as any).links)).toBe(true);
+});
+
+/**
+ * Requirement: /req/api-common/resource-collection
+ * Resource collections SHALL declare itemType and include standard link semantics (self).
+ */
+test("/req/api-common/resource-collection — commands collection declares itemType", async () => {
+  const url = `${apiRoot}/commands`;
+  const data: Record<string, unknown> = await maybeFetchOrLoad("endpoint_commands", url);
+
+  expect(data).toBeDefined();
+  const itemType = (data as any).itemType || (data as any).featureType;
+  expect(itemType).toBeDefined();
+
+  const links = (data as any).links;
+  expect(Array.isArray(links)).toBe(true);
+
+  const rels = (links as any[]).map(l => l.rel?.toLowerCase()).filter(Boolean);
+  expect(rels).toContain("self");
+});

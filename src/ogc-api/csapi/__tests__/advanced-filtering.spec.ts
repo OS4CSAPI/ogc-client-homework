@@ -2,7 +2,17 @@
  * Advanced Filtering Tests (B7)
  * Requirement IDs appear verbatim for traceability.
  * Geometry test is skipped (placeholder until spatial parser exists).
+ *
+ * Uses profile-aware fixture loading; set 'advanced' here.
  */
+beforeAll(() => {
+  process.env.CSAPI_FIXTURE_PROFILE = 'advanced';
+});
+
+afterAll(() => {
+  delete process.env.CSAPI_FIXTURE_PROFILE;
+});
+
 import {
   filterSystems,
   filterDeployments,

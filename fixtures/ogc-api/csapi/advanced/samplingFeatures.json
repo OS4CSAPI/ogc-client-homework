@@ -1,0 +1,15 @@
+{
+  "type": "FeatureCollection",
+  "itemType": "SamplingFeature",
+  "features": [
+    {
+      "id": "sf-9",
+      "type": "Feature",
+      "properties": {
+        "foiIds": ["foi-9"],
+        "observedProperties": ["prop-temp"],
+        "controlledProperties": ["prop-valve"]
+      }
+    }
+  ]
+}

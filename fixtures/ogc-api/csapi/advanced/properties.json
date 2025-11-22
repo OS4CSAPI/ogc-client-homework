@@ -1,0 +1,13 @@
+{
+  "type": "Collection",
+  "members": [
+    {
+      "id": "prop-def-1",
+      "name": "temperature",
+      "definition": "http://qudt.org/vocab/quantitykind/Temperature",
+      "unit": "http://qudt.org/vocab/unit/DegreeCelsius",
+      "baseProperty": "prop-base-1",
+      "objectTypes": ["ObjectTypeA"]
+    }
+  ]
+}

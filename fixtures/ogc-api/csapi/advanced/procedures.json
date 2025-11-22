@@ -1,0 +1,14 @@
+{
+  "type": "FeatureCollection",
+  "itemType": "Procedure",
+  "features": [
+    {
+      "id": "proc-2",
+      "type": "Feature",
+      "properties": {
+        "observedProperties": ["prop-temp"],
+        "controlledProperties": ["prop-valve"]
+      }
+    }
+  ]
+}

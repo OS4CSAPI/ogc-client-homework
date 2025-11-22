@@ -1,11 +1,12 @@
 /**
- * Tests for OGC API – Connected Systems Part 2: Systems Client
+ * Tests for OGC API – Connected Systems Part 1/2: Systems Client
  *
  * Traces to:
- *   - /req/system/collection-endpoint    (23-002 §8.1)
- *   - /req/system/items-endpoint         (23-002 §8.2)
- *   - /req/system/canonical-url          (23-002 §7.4 Req37)
- *   - /req/system/ref-to-events          (23-002 §7.4 Req43)
+ *   - /req/system/resources-endpoint     (Systems collection endpoint)
+ *   - /req/system/canonical-endpoint     (Individual system item endpoint)
+ *   - /req/system/canonical-url          (Canonical URL pattern for item)
+ *   - /req/system/collections            (Collection structure semantics)
+ *   - /req/system/ref-to-events          (Nested system events)
  *
  * Strategy:
  *   - Hybrid fixture/live testing (maybeFetchOrLoad)
@@ -24,28 +25,43 @@ const apiRoot = process.env.CSAPI_API_ROOT || "https://example.csapi.server";
 const client = new SystemsClient(apiRoot);
 
 /* -------------------------------------------------------------------------- */
-/*                               Collection Tests                             */
+/*                          /req/system/resources-endpoint                    */
 /* -------------------------------------------------------------------------- */
 
 /**
- * Requirement: /req/system/collection-endpoint
- * The /systems endpoint SHALL expose a canonical FeatureCollection of Systems.
+ * Requirement: /req/system/resources-endpoint
+ * The /systems endpoint SHALL expose a canonical listing endpoint.
  */
-test("GET /systems is exposed as canonical Systems collection", async () => {
+test("GET /systems is exposed as systems resources endpoint", async () => {
   const url = getSystemsUrl(apiRoot);
-  const data = await maybeFetchOrLoad("systems", url);
+  const data: any = await maybeFetchOrLoad("systems", url);
 
   expectFeatureCollection(data, "System");
   expect(Array.isArray(data.features)).toBe(true);
+});
+
+/* -------------------------------------------------------------------------- */
+/*                           /req/system/collections                          */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Requirement: /req/system/collections
+ * The Systems collection SHALL be a valid FeatureCollection with >=1 features.
+ */
+test("Systems collection conforms to /req/system/collections semantics", async () => {
+  const url = getSystemsUrl(apiRoot);
+  const data: any = await maybeFetchOrLoad("systems", url);
+  expect(data.type).toBe("FeatureCollection");
+  expect(data.itemType).toBe("System");
   expect(data.features.length).toBeGreaterThan(0);
 });
 
 /* -------------------------------------------------------------------------- */
-/*                                  Item Tests                                */
+/*                          /req/system/canonical-endpoint                    */
 /* -------------------------------------------------------------------------- */
 
 /**
- * Requirement: /req/system/items-endpoint
+ * Requirement: /req/system/canonical-endpoint
  * Each /systems/{id} SHALL return a valid System resource.
  */
 test("GET /systems/{id} returns a valid System", async () => {
@@ -55,6 +71,10 @@ test("GET /systems/{id} returns a valid System", async () => {
   expect(system.type).toBeDefined();
   expect(Array.isArray(system.links)).toBe(true);
 });
+
+/* -------------------------------------------------------------------------- */
+/*                             /req/system/canonical-url                      */
+/* -------------------------------------------------------------------------- */
 
 /**
  * Requirement: /req/system/canonical-url
@@ -67,7 +87,7 @@ test("System items have canonical URL pattern /systems/{id}", async () => {
 });
 
 /* -------------------------------------------------------------------------- */
-/*                             Nested Event Tests                             */
+/*                             /req/system/ref-to-events                      */
 /* -------------------------------------------------------------------------- */
 
 /**
@@ -75,17 +95,17 @@ test("System items have canonical URL pattern /systems/{id}", async () => {
  * Systems SHALL expose nested events at /systems/{systemId}/events.
  */
 test("GET /systems/{id}/events lists events for a System", async () => {
-  const events = await client.listEvents("sys-001");
+  const events: any = await client.listEvents("sys-001");
   expectFeatureCollection(events, "SystemEvent");
   expect(Array.isArray(events.features)).toBe(true);
 });
 
 /* -------------------------------------------------------------------------- */
-/*                             Link Resolution Tests                          */
+/*                          Link Resolution Convenience                       */
 /* -------------------------------------------------------------------------- */
 
 /**
- * Client convenience: resolve link relations for a System.
+ * Client convenience: resolve link relations for a System (non-normative helper).
  */
 test("getLinkedResources() returns rel→href mapping for a System", async () => {
   const links = await client.getLinkedResources("sys-001");

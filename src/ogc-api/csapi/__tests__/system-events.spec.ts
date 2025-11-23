@@ -54,6 +54,12 @@ test("GET /systemEvents returns FeatureCollection (itemType=SystemEvent)", async
   expect(first).toHaveProperty("id");
   expect(first).toHaveProperty("type", "Feature");
   expect(first).toHaveProperty("properties");
+  
+  // Validate required SystemEvent properties
+  expect(first.properties).toHaveProperty("eventType");
+  expect(first.properties).toHaveProperty("timestamp");
+  expect(first.properties).toHaveProperty("system");
+  expect(first.properties.system).toHaveProperty("id");
 });
 
 /**
@@ -67,6 +73,13 @@ test("System Events have canonical item URL at /systemEvents/{id}", async () => 
 
   const itemUrl = `${apiRoot}/systemEvents/${first.id}`;
   expectCanonicalUrl(itemUrl, /^https?:\/\/.+\/systemEvents\/[^/]+$/);
+  
+  // Validate links array contains canonical self link
+  expect(first).toHaveProperty("links");
+  expect(Array.isArray(first.links)).toBe(true);
+  const selfLink = first.links.find((link: any) => link.rel === "self");
+  expect(selfLink).toBeDefined();
+  expect(selfLink.href).toMatch(/\/systemEvents\//);
 });
 
 /**

@@ -9,9 +9,10 @@
     { "rel": "properties", "href": "https://example.csapi.server/properties" },
     { "rel": "datastreams", "href": "https://example.csapi.server/datastreams" },
     { "rel": "observations", "href": "https://example.csapi.server/observations" },
-    { "rel": "controlstreams", "href": "https://example.csapi.server/controlstreams" },
+    { "rel": "controlStreams", "href": "https://example.csapi.server/controlStreams" },
     { "rel": "commands", "href": "https://example.csapi.server/commands" },
     { "rel": "feasibility", "href": "https://example.csapi.server/feasibility" },
-    { "rel": "systemEvents", "href": "https://example.csapi.server/systemEvents" }
+    { "rel": "systemEvents", "href": "https://example.csapi.server/systemEvents" },
+    { "rel": "systemHistory", "href": "https://example.csapi.server/systemHistory" }
   ]
 }

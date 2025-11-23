@@ -45,6 +45,12 @@ import {
 
 const apiRoot = process.env.CSAPI_API_ROOT || "https://example.csapi.server";
 
+// Test fixture IDs (aligned with sample-data-hub fixture set)
+const TEST_SYSTEM_ID = "sys-001";
+const TEST_DEPLOYMENT_ID = "dep-001";
+const TEST_DATASTREAM_ID = "ds-001";
+const TEST_OBSERVATION_ID = "obs-001";
+
 // Map client constructors to their expected fixture key
 const CLIENTS = [
   { name: "SystemsClient", cls: SystemsClient, fixture: "systems" },
@@ -200,7 +206,7 @@ describe("Cross-Resource Linkage", () => {
 
   test("System has valid link relations", async () => {
     const systemsClient = new SystemsClient(apiRoot);
-    const system = await systemsClient.get("sys-001");
+    const system = await systemsClient.get(TEST_SYSTEM_ID);
     
     expect(system).toBeDefined();
     expect(system.links).toBeDefined();
@@ -213,17 +219,17 @@ describe("Cross-Resource Linkage", () => {
 
   test("Deployment references system correctly", async () => {
     const deploymentsClient = new DeploymentsClient(apiRoot);
-    const deployment = await deploymentsClient.get("dep-001");
+    const deployment = await deploymentsClient.get(TEST_DEPLOYMENT_ID);
     
     expect(deployment).toBeDefined();
     expect(deployment.properties).toBeDefined();
     expect(deployment.properties.system).toBeDefined();
-    expect(deployment.properties.system.id).toBe("sys-001");
+    expect(deployment.properties.system.id).toBe(TEST_SYSTEM_ID);
   });
 
   test("Datastream contains valid reference structure", async () => {
     const datastreamsClient = new DatastreamsClient(apiRoot);
-    const datastream = await datastreamsClient.get("ds-001");
+    const datastream = await datastreamsClient.get(TEST_DATASTREAM_ID);
     
     expect(datastream).toBeDefined();
     expect(datastream.properties).toBeDefined();
@@ -231,12 +237,12 @@ describe("Cross-Resource Linkage", () => {
 
   test("Observation references datastream correctly", async () => {
     const observationsClient = new ObservationsClient(apiRoot);
-    const observation = await observationsClient.get("obs-001");
+    const observation = await observationsClient.get(TEST_OBSERVATION_ID);
     
     expect(observation).toBeDefined();
     expect(observation.properties).toBeDefined();
     expect(observation.properties.datastream).toBeDefined();
-    expect(observation.properties.datastream.id).toBe("ds-001");
+    expect(observation.properties.datastream.id).toBe(TEST_DATASTREAM_ID);
   });
 });
 
@@ -273,10 +279,10 @@ describe("Fixture Mode Consistency", () => {
 
   test("Individual items have IDs and expected structure", async () => {
     const systemsClient = new SystemsClient(apiRoot);
-    const system = await systemsClient.get("sys-001");
+    const system = await systemsClient.get(TEST_SYSTEM_ID);
     
     expect(system).toBeDefined();
-    expect(system).toHaveProperty("id", "sys-001");
+    expect(system).toHaveProperty("id", TEST_SYSTEM_ID);
     expect(system).toHaveProperty("type", "Feature");
     expect(system).toHaveProperty("properties");
   });

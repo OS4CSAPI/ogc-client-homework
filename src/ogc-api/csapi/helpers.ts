@@ -181,3 +181,85 @@ export function expectCanonicalUrl(
 ): void {
   expect(url).toMatch(pattern);
 }
+
+/* -------------------------------------------------------------------------- */
+/*                         GeoJSON B8 Assertion Helpers                       */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Validates that an object is a valid GeoJSON Feature.
+ */
+export function expectGeoJSONFeature(
+  feature: Record<string, unknown>,
+  options: { requireGeometry?: boolean; requireProperties?: boolean } = {}
+): void {
+  const { requireGeometry = false, requireProperties = true } = options;
+  expect(feature).toBeDefined();
+  expect(feature.type).toBe('Feature');
+  expect(feature).toHaveProperty('id');
+  if (requireProperties) {
+    expect(feature).toHaveProperty('properties');
+    expect(typeof feature.properties).toBe('object');
+  }
+  if (requireGeometry) {
+    expect(feature).toHaveProperty('geometry');
+    expect(feature.geometry).not.toBeNull();
+    expect(typeof feature.geometry).toBe('object');
+  }
+}
+
+/**
+ * Validates that an object is a valid GeoJSON FeatureCollection.
+ */
+export function expectGeoJSONFeatureCollection(
+  collection: Record<string, unknown>,
+  itemType?: string
+): void {
+  expect(collection).toBeDefined();
+  expect(collection.type).toBe('FeatureCollection');
+  expect(Array.isArray((collection as any).features)).toBe(true);
+  if (itemType) expect((collection as any).itemType).toBe(itemType);
+  const features = (collection as any).features;
+  if (features.length > 0) {
+    features.forEach((feature: any) => {
+      expect(feature.type).toBe('Feature');
+      expect(feature).toHaveProperty('id');
+    });
+  }
+}
+
+/**
+ * Validates that a feature has expected link relations.
+ */
+export function expectLinkRelations(
+  feature: Record<string, unknown>,
+  expectedRels: string[]
+): void {
+  expect(feature).toHaveProperty('links');
+  expect(Array.isArray((feature as any).links)).toBe(true);
+  const links = (feature as any).links;
+  const actualRels = links.map((link: any) => link.rel);
+  expectedRels.forEach((expectedRel) => {
+    expect(actualRels).toContain(expectedRel);
+  });
+  links.forEach((link: any) => {
+    expect(link).toHaveProperty('rel');
+    expect(link).toHaveProperty('href');
+    expect(typeof link.href).toBe('string');
+  });
+}
+
+/**
+ * Validates that feature properties include expected attribute mappings.
+ */
+export function expectFeatureAttributeMapping(
+  feature: Record<string, unknown>,
+  requiredAttributes: string[]
+): void {
+  expect(feature).toHaveProperty('properties');
+  const properties = (feature as any).properties;
+  expect(typeof properties).toBe('object');
+  requiredAttributes.forEach((attr) => {
+    expect(properties).toHaveProperty(attr);
+  });
+}

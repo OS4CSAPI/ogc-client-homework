@@ -1,7 +1,7 @@
 {
   "type": "PhysicalSystem",
   "id": "sys-001",
-  "definition": "http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_Measurement",
+  "definition": "http://www.opengis.net/def/type/OGC-CS/PhysicalSystem",
   "uniqueId": "urn:x-ogc:sensor:sys-001",
   "label": "Environmental Monitoring System",
   "description": "SensorML-JSON encoding for Part 1 requirements - comprehensive system description",

@@ -20,6 +20,17 @@ import { maybeFetchOrLoad } from '../helpers';
 const apiRoot = process.env.CSAPI_API_ROOT || 'https://example.csapi.server';
 
 /**
+ * Valid SensorML-JSON type values for system-like resources.
+ * Per OGC SensorML 2.0 JSON encoding specification.
+ */
+const VALID_SENSORML_TYPES = [
+  'System',
+  'PhysicalSystem',
+  'PhysicalComponent',
+  'Procedure',
+];
+
+/**
  * Requirement: /req/encodings/geojson
  * All feature resources SHALL be available as GeoJSON.
  *
@@ -91,12 +102,7 @@ test('GET /systems returns valid SensorML-JSON encoding', async () => {
   // Validate root SensorML-JSON structure
   expect(data).toBeDefined();
   expect(data.type).toBeDefined();
-  expect([
-    'System',
-    'PhysicalSystem',
-    'PhysicalComponent',
-    'Procedure',
-  ]).toContain(data.type);
+  expect(VALID_SENSORML_TYPES).toContain(data.type);
 
   // Validate required identification fields
   expect(data.id).toBeDefined();
@@ -177,12 +183,7 @@ test('Server supports content negotiation for GeoJSON and SensorML-JSON', async 
   // Verify SensorML-JSON encoding has valid System-like structure
   expect(sensormlData).toBeDefined();
   expect(sensormlData.type).toBeDefined();
-  expect([
-    'System',
-    'PhysicalSystem',
-    'PhysicalComponent',
-    'Procedure',
-  ]).toContain(sensormlData.type);
+  expect(VALID_SENSORML_TYPES).toContain(sensormlData.type);
 
   // Both encodings should represent the same underlying resource
   expect(geojsonData.features[0].id).toBeDefined();

@@ -7,8 +7,12 @@
       "id": "cmd-001",
       "properties": {
         "featureType": "sosa:Command",
-        "status": { "href": "https://example.csapi.server/commands/cmd-001/status" },
-        "result": { "href": "https://example.csapi.server/commands/cmd-001/result" }
+        "status": {
+          "href": "https://example.csapi.server/commands/cmd-001/status"
+        },
+        "result": {
+          "href": "https://example.csapi.server/commands/cmd-001/result"
+        }
       }
     }
   ]

@@ -18,23 +18,23 @@
  *   - Verifies ControlStream schema operation (graceful skip if fixture not available)
  *   - Confirms collections with featureType sosa:ControlStream behave like canonical collection
  */
-import { getControlStreamsUrl, getSystemsUrl } from "../url_builder";
+import { getControlStreamsUrl, getSystemsUrl } from '../url_builder';
 import {
   maybeFetchOrLoad,
   expectFeatureCollection,
   expectCanonicalUrl,
-} from "../helpers";
+} from '../helpers';
 
-const apiRoot = process.env.CSAPI_API_ROOT || "https://example.csapi.server";
+const apiRoot = process.env.CSAPI_API_ROOT || 'https://example.csapi.server';
 
 /**
  * Requirement: /req/controlstream/canonical-endpoint
  */
-test("GET /controlStreams is exposed as canonical ControlStreams collection", async () => {
+test('GET /controlStreams is exposed as canonical ControlStreams collection', async () => {
   const url = getControlStreamsUrl(apiRoot);
-  const data: any = await maybeFetchOrLoad("controlStreams", url);
+  const data: any = await maybeFetchOrLoad('controlStreams', url);
 
-  expectFeatureCollection(data, "ControlStream");
+  expectFeatureCollection(data, 'ControlStream');
   expect(Array.isArray(data.features)).toBe(true);
   expect(data.features.length).toBeGreaterThan(0);
 });
@@ -42,24 +42,24 @@ test("GET /controlStreams is exposed as canonical ControlStreams collection", as
 /**
  * Requirement: /req/controlstream/resources-endpoint
  */
-test("GET /controlStreams returns FeatureCollection (itemType=ControlStream)", async () => {
+test('GET /controlStreams returns FeatureCollection (itemType=ControlStream)', async () => {
   const url = getControlStreamsUrl(apiRoot);
-  const data: any = await maybeFetchOrLoad("controlStreams", url);
+  const data: any = await maybeFetchOrLoad('controlStreams', url);
 
-  expectFeatureCollection(data, "ControlStream");
+  expectFeatureCollection(data, 'ControlStream');
 
   const first = data.features[0];
-  expect(first).toHaveProperty("id");
-  expect(first).toHaveProperty("type", "Feature");
-  expect(first).toHaveProperty("properties");
+  expect(first).toHaveProperty('id');
+  expect(first).toHaveProperty('type', 'Feature');
+  expect(first).toHaveProperty('properties');
 });
 
 /**
  * Requirement: /req/controlstream/canonical-url
  */
-test("ControlStreams have canonical item URL at /controlStreams/{id}", async () => {
+test('ControlStreams have canonical item URL at /controlStreams/{id}', async () => {
   const url = getControlStreamsUrl(apiRoot);
-  const data: any = await maybeFetchOrLoad("controlStreams", url);
+  const data: any = await maybeFetchOrLoad('controlStreams', url);
   const first = data.features[0];
 
   const itemUrl = `${apiRoot}/controlStreams/${first.id}`;
@@ -70,11 +70,11 @@ test("ControlStreams have canonical item URL at /controlStreams/{id}", async () 
  * Requirement: /req/controlstream/collections
  * A collection with featureType sosa:ControlStream SHALL behave like /controlStreams.
  */
-test("Collections with featureType sosa:ControlStream behave like /controlStreams", async () => {
+test('Collections with featureType sosa:ControlStream behave like /controlStreams', async () => {
   const url = getControlStreamsUrl(apiRoot);
-  const data: any = await maybeFetchOrLoad("controlStreams", url);
+  const data: any = await maybeFetchOrLoad('controlStreams', url);
 
-  expectFeatureCollection(data, "ControlStream");
+  expectFeatureCollection(data, 'ControlStream');
   const featureType = data.features?.[0]?.properties?.featureType;
   if (featureType) {
     expect(featureType).toMatch(/sosa:ControlStream/i);
@@ -86,45 +86,63 @@ test("Collections with featureType sosa:ControlStream behave like /controlStream
  * Each System SHALL expose nested ControlStreams at /systems/{id}/controlStreams.
  * Derive systemId from ControlStream properties if present; skip gracefully if absent.
  */
-test("GET /systems/{id}/controlStreams lists control streams for a System", async () => {
-  const root: any = await maybeFetchOrLoad("controlStreams", getControlStreamsUrl(apiRoot));
+test('GET /systems/{id}/controlStreams lists control streams for a System', async () => {
+  const root: any = await maybeFetchOrLoad(
+    'controlStreams',
+    getControlStreamsUrl(apiRoot)
+  );
 
   if (!root.features?.length) {
     // eslint-disable-next-line no-console
-    console.warn("[controlstreams.spec] No controlStreams features; skipping /req/controlstream/ref-from-system.");
+    console.warn(
+      '[controlstreams.spec] No controlStreams features; skipping /req/controlstream/ref-from-system.'
+    );
     return;
   }
 
   const withSystem = root.features.filter((f: any) => {
     const p = f.properties || {};
-    return p.system?.id || (Array.isArray(p.systemIds) && p.systemIds.length > 0);
+    return (
+      p.system?.id || (Array.isArray(p.systemIds) && p.systemIds.length > 0)
+    );
   });
 
   if (!withSystem.length) {
     // eslint-disable-next-line no-console
-    console.warn("[controlstreams.spec] No system linkage present; skipping /req/controlstream/ref-from-system.");
+    console.warn(
+      '[controlstreams.spec] No system linkage present; skipping /req/controlstream/ref-from-system.'
+    );
     return;
   }
 
   const props = withSystem[0].properties;
-  const systemId = props.system?.id || (Array.isArray(props.systemIds) ? props.systemIds[0] : undefined);
+  const systemId =
+    props.system?.id ||
+    (Array.isArray(props.systemIds) ? props.systemIds[0] : undefined);
   if (!systemId) {
     // eslint-disable-next-line no-console
-    console.warn("[controlstreams.spec] Could not derive systemId; skipping /req/controlstream/ref-from-system.");
+    console.warn(
+      '[controlstreams.spec] Could not derive systemId; skipping /req/controlstream/ref-from-system.'
+    );
     return;
   }
 
   const nestedUrl = `${apiRoot}/systems/${systemId}/controlStreams`;
   let nested: any;
   try {
-    nested = await maybeFetchOrLoad(`controlStreams_system_${systemId}`, nestedUrl);
+    nested = await maybeFetchOrLoad(
+      `controlStreams_system_${systemId}`,
+      nestedUrl
+    );
   } catch (e) {
     // eslint-disable-next-line no-console
-    console.warn(`[controlstreams.spec] Nested controlStreams not available for system '${systemId}'; skipping assertion.`);
+    console.warn(
+      `[controlstreams.spec] Nested controlStreams not available for system '${systemId}'; skipping assertion.`
+    );
     return;
   }
 
-  expectFeatureCollection(nested, "ControlStream");
+  expectFeatureCollection(nested, 'ControlStream');
 });
 
 /**
@@ -132,11 +150,16 @@ test("GET /systems/{id}/controlStreams lists control streams for a System", asyn
  * The /controlStreams/{id}/schema?cmdFormat=… operation SHALL return a control command schema.
  * Derive controlStreamId dynamically; skip if unavailable or fixture missing.
  */
-test("GET /controlStreams/{id}/schema?cmdFormat=… returns control command schema", async () => {
-  const root: any = await maybeFetchOrLoad("controlStreams", getControlStreamsUrl(apiRoot));
+test('GET /controlStreams/{id}/schema?cmdFormat=… returns control command schema', async () => {
+  const root: any = await maybeFetchOrLoad(
+    'controlStreams',
+    getControlStreamsUrl(apiRoot)
+  );
   if (!root.features?.length) {
     // eslint-disable-next-line no-console
-    console.warn("[controlstreams.spec] No controlStreams features; skipping /req/controlstream/schema-op.");
+    console.warn(
+      '[controlstreams.spec] No controlStreams features; skipping /req/controlstream/schema-op.'
+    );
     return;
   }
 
@@ -145,31 +168,36 @@ test("GET /controlStreams/{id}/schema?cmdFormat=… returns control command sche
 
   let schema: any;
   try {
-    schema = await maybeFetchOrLoad(`controlStream_schema_${controlStreamId}`, schemaUrl);
+    schema = await maybeFetchOrLoad(
+      `controlStream_schema_${controlStreamId}`,
+      schemaUrl
+    );
   } catch (e) {
     // eslint-disable-next-line no-console
-    console.warn(`[controlstreams.spec] No schema fixture or response for controlStream '${controlStreamId}'; skipping /req/controlstream/schema-op.`);
+    console.warn(
+      `[controlstreams.spec] No schema fixture or response for controlStream '${controlStreamId}'; skipping /req/controlstream/schema-op.`
+    );
     return;
   }
 
   expect(schema).toBeDefined();
-  expect(Object.keys(schema)).toContain("type");
+  expect(Object.keys(schema)).toContain('type');
 });
 
 /**
  * Optional lifecycle linkage (non-normative)
  */
-test("ControlStreams optionally link to related Systems or Commands", async () => {
+test('ControlStreams optionally link to related Systems or Commands', async () => {
   const url = getControlStreamsUrl(apiRoot);
-  const data: any = await maybeFetchOrLoad("controlStreams", url);
+  const data: any = await maybeFetchOrLoad('controlStreams', url);
 
   const first = data.features[0];
   const props = first.properties ?? {};
 
   if (props.system) {
-    expect(props.system).toHaveProperty("id");
+    expect(props.system).toHaveProperty('id');
   }
   if (props.command) {
-    expect(props.command).toHaveProperty("id");
+    expect(props.command).toHaveProperty('id');
   }
 });

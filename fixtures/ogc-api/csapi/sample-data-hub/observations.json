@@ -2,6 +2,10 @@
   "type": "FeatureCollection",
   "itemType": "Observation",
   "features": [
-    { "type": "Feature", "id": "obs-001", "properties": { "result": 23.5, "datastream": { "id": "ds-001" } } }
+    {
+      "type": "Feature",
+      "id": "obs-001",
+      "properties": { "result": 23.5, "datastream": { "id": "ds-001" } }
+    }
   ]
 }

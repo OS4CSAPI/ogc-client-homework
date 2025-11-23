@@ -5,71 +5,7 @@
     {
       "type": "Feature",
       "id": "sys-001",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [12.48, 41.89]
-      },
-      "properties": {
-        "name": "Environmental Monitoring System",
-        "description": "GeoJSON encoding test fixture for Part 1 requirements",
-        "featureType": "System",
-        "validTime": {
-          "start": "2024-01-01T00:00:00Z",
-          "end": null
-        }
-      },
-      "links": [
-        {
-          "rel": "self",
-          "href": "https://example.csapi.server/systems/sys-001",
-          "type": "application/geo+json",
-          "title": "This System"
-        },
-        {
-          "rel": "collection",
-          "href": "https://example.csapi.server/systems",
-          "type": "application/json",
-          "title": "Systems Collection"
-        },
-        {
-          "rel": "datastreams",
-          "href": "https://example.csapi.server/systems/sys-001/datastreams",
-          "type": "application/json",
-          "title": "System Datastreams"
-        }
-      ]
-    },
-    {
-      "type": "Feature",
-      "id": "sys-002",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-73.98, 40.75]
-      },
-      "properties": {
-        "name": "Weather Station NYC",
-        "description": "Urban weather monitoring system",
-        "featureType": "System",
-        "validTime": {
-          "start": "2023-06-15T00:00:00Z",
-          "end": null
-        }
-      },
-      "links": [
-        {
-          "rel": "self",
-          "href": "https://example.csapi.server/systems/sys-002",
-          "type": "application/geo+json"
-        }
-      ]
-    }
-  ],
-  "links": [
-    {
-      "rel": "self",
-      "href": "https://example.csapi.server/systems?f=geojson",
-      "type": "application/geo+json",
-      "title": "This collection"
+      "geometry": { "type": "Point", "coordinates": [12.48, 41.89] }
     }
   ]
 }

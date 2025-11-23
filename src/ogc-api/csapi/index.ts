@@ -2,37 +2,35 @@
 /*                     OGC API – Connected Systems Index                      */
 /* -------------------------------------------------------------------------- */
 
-export * from './systems.js';
-export * from './deployments.js';
-export * from './procedures.js';
-export * from './samplingFeatures.js';
-export * from './properties.js';
-export * from './datastreams.js';
-export * from './observations.js';
-export * from './controlStreams.js';
-export * from './commands.js';
-export * from './feasibility.js';
-export * from './systemEvents.js';
-export * from './systemHistory.js';
-export * from './helpers.js';
-export * from './model.js';
+export * from './systems';
+export * from './deployments';
+export * from './procedures';
+export * from './samplingFeatures';
+export * from './properties';
+export * from './datastreams';
+export * from './observations';
+export * from './controlStreams';
+export * from './commands';
+export * from './feasibility';
+export * from './systemEvents';
+export * from './helpers';
+export * from './model';
 
 /* -------------------------------------------------------------------------- */
 /*                            Client Class Imports                            */
 /* -------------------------------------------------------------------------- */
 
-import { SystemsClient } from './systems.js';
-import { DeploymentsClient } from './deployments.js';
-import { ProceduresClient } from './procedures.js';
-import { SamplingFeaturesClient } from './samplingFeatures.js';
-import { PropertiesClient } from './properties.js';
-import { DatastreamsClient } from './datastreams.js';
-import { ObservationsClient } from './observations.js';
-import { ControlStreamsClient } from './controlStreams.js';
-import { CommandsClient } from './commands.js';
-import { FeasibilityClient } from './feasibility.js';
-import { SystemEventsClient } from './systemEvents.js';
-import { SystemHistoryClient } from './systemHistory.js';
+import { SystemsClient } from './systems';
+import { DeploymentsClient } from './deployments';
+import { ProceduresClient } from './procedures';
+import { SamplingFeaturesClient } from './samplingFeatures';
+import { PropertiesClient } from './properties';
+import { DatastreamsClient } from './datastreams';
+import { ObservationsClient } from './observations';
+import { ControlStreamsClient } from './controlStreams';
+import { CommandsClient } from './commands';
+import { FeasibilityClient } from './feasibility';
+import { SystemEventsClient } from './systemEvents';
 
 /* -------------------------------------------------------------------------- */
 /*                        Connected Systems Client Map                        */
@@ -55,7 +53,6 @@ export const CSAPIClients = {
   CommandsClient,
   FeasibilityClient,
   SystemEventsClient,
-  SystemHistoryClient,
 };
 
 /* -------------------------------------------------------------------------- */

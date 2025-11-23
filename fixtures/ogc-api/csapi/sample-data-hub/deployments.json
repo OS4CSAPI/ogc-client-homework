@@ -14,9 +14,18 @@
         "system": { "id": "sys-001" }
       },
       "links": [
-        { "rel": "self", "href": "https://example.csapi.server/deployments/dep-001" },
-        { "rel": "system", "href": "https://example.csapi.server/systems/sys-001" },
-        { "rel": "procedure", "href": "https://example.csapi.server/procedures/proc-001" }
+        {
+          "rel": "self",
+          "href": "https://example.csapi.server/deployments/dep-001"
+        },
+        {
+          "rel": "system",
+          "href": "https://example.csapi.server/systems/sys-001"
+        },
+        {
+          "rel": "procedure",
+          "href": "https://example.csapi.server/procedures/proc-001"
+        }
       ]
     },
     {
@@ -28,8 +37,14 @@
         "systemIds": ["sys-001"]
       },
       "links": [
-        { "rel": "self", "href": "https://example.csapi.server/deployments/dep-002" },
-        { "rel": "parent", "href": "https://example.csapi.server/deployments/dep-001" }
+        {
+          "rel": "self",
+          "href": "https://example.csapi.server/deployments/dep-002"
+        },
+        {
+          "rel": "parent",
+          "href": "https://example.csapi.server/deployments/dep-001"
+        }
       ]
     },
     {
@@ -41,10 +56,15 @@
         "systemIds": ["sys-001"]
       },
       "links": [
-        { "rel": "self", "href": "https://example.csapi.server/deployments/dep-003" },
-        { "rel": "parent", "href": "https://example.csapi.server/deployments/dep-001" }
+        {
+          "rel": "self",
+          "href": "https://example.csapi.server/deployments/dep-003"
+        },
+        {
+          "rel": "parent",
+          "href": "https://example.csapi.server/deployments/dep-001"
+        }
       ]
     }
   ]
 }
-

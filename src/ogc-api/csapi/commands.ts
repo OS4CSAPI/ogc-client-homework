@@ -11,9 +11,9 @@
  *   - CommandsClient: main API client class
  */
 
-import { CSAPICollection } from "./model";
-import { maybeFetchOrLoad } from "./helpers";
-import { getCommandsUrl } from "./url_builder";
+import { CSAPICollection } from './model';
+import { maybeFetchOrLoad } from './helpers';
+import { getCommandsUrl } from './url_builder';
 
 /**
  * CommandsClient
@@ -32,7 +32,7 @@ export class CommandsClient {
    */
   async list(): Promise<CSAPICollection> {
     const url = getCommandsUrl(this.apiRoot);
-    const data = await maybeFetchOrLoad("commands", url);
+    const data = await maybeFetchOrLoad('commands', url);
     return data as CSAPICollection;
   }
 

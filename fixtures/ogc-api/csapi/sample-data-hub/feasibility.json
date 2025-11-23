@@ -6,11 +6,6 @@
       "type": "Feature",
       "id": "feas-001",
       "properties": {
-        "name": "Example Feasibility Request",
-        "description": "Test feasibility request for CSAPI C6 requirements",
-        "status": {
-          "href": "https://example.csapi.server/feasibility/feas-001/status"
-        },
         "result": {
           "href": "https://example.csapi.server/feasibility/feas-001/result"
         }

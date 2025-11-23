@@ -18,19 +18,19 @@ const {
   filterPropertyDefs,
   intersection,
   geometryFilterPlaceholder,
-  systems
+  systems,
 } = require('../advanced_filtering_helpers');
 
 /* ---------------- /req/advanced-filtering/resource-by-id ---------------- */
 describe('/req/advanced-filtering/resource-by-id', () => {
   test('Systems id list', () => {
     const out = filterSystems({ id: ['sys-1', 'sys-3'] });
-    expect(out.map(o => o.id)).toEqual(['sys-1', 'sys-3']);
+    expect(out.map((o) => o.id)).toEqual(['sys-1', 'sys-3']);
   });
   test('Deployments wildcard prefix', () => {
     const out = filterDeployments({ id: ['dep-*'] });
     expect(out.length).toBeGreaterThan(0);
-    expect(out.every(d => d.id.startsWith('dep-'))).toBe(true);
+    expect(out.every((d) => d.id.startsWith('dep-'))).toBe(true);
   });
 });
 
@@ -55,23 +55,27 @@ describe('/req/advanced-filtering/feature-by-geom', () => {
 describe('System filters', () => {
   test('/req/advanced-filtering/system-by-parent', () => {
     const out = filterSystems({ parent: ['sys-root'] });
-    expect(out.every(s => s.parentId === 'sys-root')).toBe(true);
+    expect(out.every((s) => s.parentId === 'sys-root')).toBe(true);
   });
   test('/req/advanced-filtering/system-by-procedure', () => {
     const out = filterSystems({ procedure: ['proc-2'] });
-    expect(out.every(s => s.procedureIds?.includes('proc-2'))).toBe(true);
+    expect(out.every((s) => s.procedureIds?.includes('proc-2'))).toBe(true);
   });
   test('/req/advanced-filtering/system-by-foi', () => {
     const out = filterSystems({ foi: ['foi-9'] });
-    expect(out.every(s => s.foiIds?.includes('foi-9'))).toBe(true);
+    expect(out.every((s) => s.foiIds?.includes('foi-9'))).toBe(true);
   });
   test('/req/advanced-filtering/system-by-obsprop', () => {
     const out = filterSystems({ observedProperty: ['prop-temp'] });
-    expect(out.every(s => s.observedProperties?.includes('prop-temp'))).toBe(true);
+    expect(out.every((s) => s.observedProperties?.includes('prop-temp'))).toBe(
+      true
+    );
   });
   test('/req/advanced-filtering/system-by-controlprop', () => {
     const out = filterSystems({ controlledProperty: ['prop-valve'] });
-    expect(out.every(s => s.controlledProperties?.includes('prop-valve'))).toBe(true);
+    expect(
+      out.every((s) => s.controlledProperties?.includes('prop-valve'))
+    ).toBe(true);
   });
 });
 
@@ -79,23 +83,27 @@ describe('System filters', () => {
 describe('Deployment filters', () => {
   test('/req/advanced-filtering/deployment-by-parent', () => {
     const out = filterDeployments({ parent: ['dep-root'] });
-    expect(out.every(d => d.parentId === 'dep-root')).toBe(true);
+    expect(out.every((d) => d.parentId === 'dep-root')).toBe(true);
   });
   test('/req/advanced-filtering/deployment-by-system', () => {
     const out = filterDeployments({ system: ['sys-1'] });
-    expect(out.every(d => d.systemIds?.includes('sys-1'))).toBe(true);
+    expect(out.every((d) => d.systemIds?.includes('sys-1'))).toBe(true);
   });
   test('/req/advanced-filtering/deployment-by-foi', () => {
     const out = filterDeployments({ foi: ['foi-9'] });
-    expect(out.every(d => d.foiIds?.includes('foi-9'))).toBe(true);
+    expect(out.every((d) => d.foiIds?.includes('foi-9'))).toBe(true);
   });
   test('/req/advanced-filtering/deployment-by-obsprop', () => {
     const out = filterDeployments({ observedProperty: ['prop-temp'] });
-    expect(out.every(d => d.observedProperties?.includes('prop-temp'))).toBe(true);
+    expect(out.every((d) => d.observedProperties?.includes('prop-temp'))).toBe(
+      true
+    );
   });
   test('/req/advanced-filtering/deployment-by-controlprop', () => {
     const out = filterDeployments({ controlledProperty: ['prop-valve'] });
-    expect(out.every(d => d.controlledProperties?.includes('prop-valve'))).toBe(true);
+    expect(
+      out.every((d) => d.controlledProperties?.includes('prop-valve'))
+    ).toBe(true);
   });
 });
 
@@ -103,11 +111,15 @@ describe('Deployment filters', () => {
 describe('Procedure filters', () => {
   test('/req/advanced-filtering/procedure-by-obsprop', () => {
     const out = filterProcedures({ observedProperty: ['prop-temp'] });
-    expect(out.every(p => p.observedProperties?.includes('prop-temp'))).toBe(true);
+    expect(out.every((p) => p.observedProperties?.includes('prop-temp'))).toBe(
+      true
+    );
   });
   test('/req/advanced-filtering/procedure-by-controlprop', () => {
     const out = filterProcedures({ controlledProperty: ['prop-valve'] });
-    expect(out.every(p => p.controlledProperties?.includes('prop-valve'))).toBe(true);
+    expect(
+      out.every((p) => p.controlledProperties?.includes('prop-valve'))
+    ).toBe(true);
   });
 });
 
@@ -115,15 +127,19 @@ describe('Procedure filters', () => {
 describe('Sampling Feature filters', () => {
   test('/req/advanced-filtering/sf-by-foi', () => {
     const out = filterSamplingFeatures({ foi: ['foi-9'] });
-    expect(out.every(sf => sf.foiIds?.includes('foi-9'))).toBe(true);
+    expect(out.every((sf) => sf.foiIds?.includes('foi-9'))).toBe(true);
   });
   test('/req/advanced-filtering/sf-by-obsprop', () => {
     const out = filterSamplingFeatures({ observedProperty: ['prop-temp'] });
-    expect(out.every(sf => sf.observedProperties?.includes('prop-temp'))).toBe(true);
+    expect(
+      out.every((sf) => sf.observedProperties?.includes('prop-temp'))
+    ).toBe(true);
   });
   test('/req/advanced-filtering/sf-by-controlprop', () => {
     const out = filterSamplingFeatures({ controlledProperty: ['prop-valve'] });
-    expect(out.every(sf => sf.controlledProperties?.includes('prop-valve'))).toBe(true);
+    expect(
+      out.every((sf) => sf.controlledProperties?.includes('prop-valve'))
+    ).toBe(true);
   });
 });
 
@@ -131,11 +147,11 @@ describe('Sampling Feature filters', () => {
 describe('Property Definition filters', () => {
   test('/req/advanced-filtering/prop-by-baseprop', () => {
     const out = filterPropertyDefs({ baseProperty: ['prop-base-1'] });
-    expect(out.every(p => p.baseProperty === 'prop-base-1')).toBe(true);
+    expect(out.every((p) => p.baseProperty === 'prop-base-1')).toBe(true);
   });
   test('/req/advanced-filtering/prop-by-object', () => {
     const out = filterPropertyDefs({ objectType: ['ObjectTypeA'] });
-    expect(out.every(p => p.objectTypes?.includes('ObjectTypeA'))).toBe(true);
+    expect(out.every((p) => p.objectTypes?.includes('ObjectTypeA'))).toBe(true);
   });
 });
 
@@ -146,9 +162,13 @@ describe('/req/advanced-filtering/combined-filters', () => {
     const byFoi = filterDeployments({ foi: ['foi-9'] });
     const combo = intersection(bySystem, byFoi);
     expect(combo.length).toBeGreaterThan(0);
-    expect(combo.every(d =>
-      bySystem.some(x => x.id === d.id) && byFoi.some(y => y.id === d.id)
-    )).toBe(true);
+    expect(
+      combo.every(
+        (d) =>
+          bySystem.some((x) => x.id === d.id) &&
+          byFoi.some((y) => y.id === d.id)
+      )
+    ).toBe(true);
   });
 
   test('Systems procedure + observedProperty AND', () => {
@@ -156,9 +176,13 @@ describe('/req/advanced-filtering/combined-filters', () => {
     const byObs = filterSystems({ observedProperty: ['prop-temp'] });
     const combo = intersection(byProc, byObs);
     expect(combo.length).toBeGreaterThan(0);
-    expect(combo.every(s =>
-      s.procedureIds?.includes('proc-2') && s.observedProperties?.includes('prop-temp')
-    )).toBe(true);
+    expect(
+      combo.every(
+        (s) =>
+          s.procedureIds?.includes('proc-2') &&
+          s.observedProperties?.includes('prop-temp')
+      )
+    ).toBe(true);
   });
 });
 
@@ -179,7 +203,9 @@ describe('Advanced Filtering negative / edge cases', () => {
   });
 
   test('List filter AND semantics: observedProperty list with one invalid returns empty', () => {
-    const out = filterSystems({ observedProperty: ['prop-temp', '__invalid_prop__'] });
+    const out = filterSystems({
+      observedProperty: ['prop-temp', '__invalid_prop__'],
+    });
     expect(out).toHaveLength(0);
   });
 
@@ -196,7 +222,10 @@ describe('Advanced Filtering negative / edge cases', () => {
   });
 
   test('Direct multi-filter mismatch (procedure + invalid controlledProperty) yields empty', () => {
-    const out = filterSystems({ procedure: ['proc-2'], controlledProperty: ['__invalid_cp__'] });
+    const out = filterSystems({
+      procedure: ['proc-2'],
+      controlledProperty: ['__invalid_cp__'],
+    });
     expect(out).toHaveLength(0);
   });
 
@@ -225,7 +254,7 @@ describe('Advanced Filtering negative / edge cases', () => {
     const out = filterSystems({
       procedure: ['__bad_proc__'],
       foi: ['__bad_foi__'],
-      observedProperty: ['__bad_prop__']
+      observedProperty: ['__bad_prop__'],
     });
     expect(out).toHaveLength(0);
   });

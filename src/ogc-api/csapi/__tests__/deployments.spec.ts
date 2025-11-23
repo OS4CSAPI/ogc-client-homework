@@ -21,18 +21,14 @@
  *   - Provides guarded tests for subdeployment semantics (skip if fixture lacks structure)
  */
 
-import { getDeploymentsUrl } from "../url_builder";
+import { getDeploymentsUrl } from '../url_builder';
 import {
   maybeFetchOrLoad,
   expectFeatureCollection,
   expectCanonicalUrl,
-  expectGeoJSONFeature,
-  expectGeoJSONFeatureCollection,
-  expectLinkRelations,
-  expectFeatureAttributeMapping,
-} from "../helpers";
+} from '../helpers';
 
-const apiRoot = process.env.CSAPI_API_ROOT || "https://example.csapi.server";
+const apiRoot = process.env.CSAPI_API_ROOT || 'https://example.csapi.server';
 
 /* -------------------------------------------------------------------------- */
 /* /req/deployment/canonical-endpoint                                         */
@@ -42,11 +38,11 @@ const apiRoot = process.env.CSAPI_API_ROOT || "https://example.csapi.server";
  * Requirement: /req/deployment/canonical-endpoint
  * The /deployments endpoint SHALL be exposed as the canonical Deployments collection.
  */
-test("GET /deployments is exposed as canonical Deployments collection", async () => {
+test('GET /deployments is exposed as canonical Deployments collection', async () => {
   const url = getDeploymentsUrl(apiRoot);
-  const data: any = await maybeFetchOrLoad("deployments", url);
+  const data: any = await maybeFetchOrLoad('deployments', url);
 
-  expectFeatureCollection(data, "Deployment");
+  expectFeatureCollection(data, 'Deployment');
   expect(Array.isArray(data.features)).toBe(true);
   expect(data.features.length).toBeGreaterThan(0);
 });
@@ -59,16 +55,16 @@ test("GET /deployments is exposed as canonical Deployments collection", async ()
  * Requirement: /req/deployment/resources-endpoint
  * The /deployments collection SHALL conform to OGC API – Features collection rules.
  */
-test("GET /deployments returns FeatureCollection (itemType=Deployment)", async () => {
+test('GET /deployments returns FeatureCollection (itemType=Deployment)', async () => {
   const url = getDeploymentsUrl(apiRoot);
-  const data: any = await maybeFetchOrLoad("deployments", url);
+  const data: any = await maybeFetchOrLoad('deployments', url);
 
-  expectFeatureCollection(data, "Deployment");
+  expectFeatureCollection(data, 'Deployment');
 
   const first = data.features[0];
-  expect(first).toHaveProperty("id");
-  expect(first).toHaveProperty("type", "Feature");
-  expect(first).toHaveProperty("properties");
+  expect(first).toHaveProperty('id');
+  expect(first).toHaveProperty('type', 'Feature');
+  expect(first).toHaveProperty('properties');
 });
 
 /* -------------------------------------------------------------------------- */
@@ -79,9 +75,9 @@ test("GET /deployments returns FeatureCollection (itemType=Deployment)", async (
  * Requirement: /req/deployment/canonical-url
  * Each Deployment SHALL have a canonical item URL at /deployments/{id}.
  */
-test("Deployments have canonical item URL at /deployments/{id}", async () => {
+test('Deployments have canonical item URL at /deployments/{id}', async () => {
   const url = getDeploymentsUrl(apiRoot);
-  const data: any = await maybeFetchOrLoad("deployments", url);
+  const data: any = await maybeFetchOrLoad('deployments', url);
   const first = data.features[0];
   const itemUrl = `${apiRoot}/deployments/${first.id}`;
   expectCanonicalUrl(itemUrl, /^https?:\/\/.[^/]+\/deployments\/[^/]+$/);
@@ -95,11 +91,11 @@ test("Deployments have canonical item URL at /deployments/{id}", async () => {
  * Requirement: /req/deployment/collections
  * Any collection with featureType sosa:Deployment SHALL behave like /deployments.
  */
-test("Collections with featureType sosa:Deployment behave like /deployments", async () => {
+test('Collections with featureType sosa:Deployment behave like /deployments', async () => {
   const url = getDeploymentsUrl(apiRoot);
-  const data: any = await maybeFetchOrLoad("deployments", url);
+  const data: any = await maybeFetchOrLoad('deployments', url);
 
-  expectFeatureCollection(data, "Deployment");
+  expectFeatureCollection(data, 'Deployment');
 
   const featureType = data.features?.[0]?.properties?.featureType;
   if (featureType) {
@@ -107,7 +103,9 @@ test("Collections with featureType sosa:Deployment behave like /deployments", as
   } else {
     // Graceful note if fixture does not annotate featureType
     // eslint-disable-next-line no-console
-    console.warn("[deployments.spec] No featureType property in first deployment feature (acceptable stub).");
+    console.warn(
+      '[deployments.spec] No featureType property in first deployment feature (acceptable stub).'
+    );
   }
 });
 
@@ -120,22 +118,29 @@ test("Collections with featureType sosa:Deployment behave like /deployments", as
  * Deployments SHALL be discoverable via system-scoped references (/systems/{id}/deployments).
  * Test constructs a canonical system-scoped URL pattern using systemIds present in fixture.
  */
-test("System-scoped deployments reference (/systems/{systemId}/deployments)", async () => {
+test('System-scoped deployments reference (/systems/{systemId}/deployments)', async () => {
   const url = getDeploymentsUrl(apiRoot);
-  const data: any = await maybeFetchOrLoad("deployments", url);
+  const data: any = await maybeFetchOrLoad('deployments', url);
   const withSystemIds = data.features.filter(
-    (f: any) => Array.isArray(f.properties?.systemIds) && f.properties.systemIds.length > 0
+    (f: any) =>
+      Array.isArray(f.properties?.systemIds) &&
+      f.properties.systemIds.length > 0
   );
 
   if (withSystemIds.length === 0) {
     // eslint-disable-next-line no-console
-    console.warn("[deployments.spec] No systemIds present; skipping /req/deployment/ref-from-system assertion.");
+    console.warn(
+      '[deployments.spec] No systemIds present; skipping /req/deployment/ref-from-system assertion.'
+    );
     return;
   }
 
   const systemId = withSystemIds[0].properties.systemIds[0];
   const systemScopedUrl = `${apiRoot}/systems/${systemId}/deployments`;
-  expectCanonicalUrl(systemScopedUrl, /^https?:\/\/.[^/]+\/systems\/[^/]+\/deployments$/);
+  expectCanonicalUrl(
+    systemScopedUrl,
+    /^https?:\/\/.[^/]+\/systems\/[^/]+\/deployments$/
+  );
 });
 
 /* -------------------------------------------------------------------------- */
@@ -150,12 +155,17 @@ test("System-scoped deployments reference (/systems/{systemId}/deployments)", as
  * Requirement: /req/subdeployment/collection
  * Subdeployments SHALL form a collection subset distinguishable by parentId.
  */
-test("Subdeployments collection subset is derivable from deployments with parentId", async () => {
-  const data: any = await maybeFetchOrLoad("deployments", getDeploymentsUrl(apiRoot));
+test('Subdeployments collection subset is derivable from deployments with parentId', async () => {
+  const data: any = await maybeFetchOrLoad(
+    'deployments',
+    getDeploymentsUrl(apiRoot)
+  );
   const subs = data.features.filter((f: any) => !!f.properties?.parentId);
   if (subs.length === 0) {
     // eslint-disable-next-line no-console
-    console.warn("[deployments.spec] No parentId fields; skipping /req/subdeployment/collection.");
+    console.warn(
+      '[deployments.spec] No parentId fields; skipping /req/subdeployment/collection.'
+    );
     return;
   }
   expect(subs.length).toBeGreaterThan(0);
@@ -166,15 +176,20 @@ test("Subdeployments collection subset is derivable from deployments with parent
  * A hypothetical recursive parameter (?recursive=true) would include both top-level and subdeployments.
  * (Simulated logic only; no live param parsing.)
  */
-test("Recursive parameter simulation merges top-level + subdeployments", async () => {
-  const data: any = await maybeFetchOrLoad("deployments", getDeploymentsUrl(apiRoot));
+test('Recursive parameter simulation merges top-level + subdeployments', async () => {
+  const data: any = await maybeFetchOrLoad(
+    'deployments',
+    getDeploymentsUrl(apiRoot)
+  );
   const all = data.features;
   const subs = all.filter((f: any) => !!f.properties?.parentId);
   const top = all.filter((f: any) => !f.properties?.parentId);
 
   if (subs.length === 0) {
     // eslint-disable-next-line no-console
-    console.warn("[deployments.spec] No subdeployment fixtures; skipping /req/subdeployment/recursive-param.");
+    console.warn(
+      '[deployments.spec] No subdeployment fixtures; skipping /req/subdeployment/recursive-param.'
+    );
     return;
   }
 
@@ -188,13 +203,18 @@ test("Recursive parameter simulation merges top-level + subdeployments", async (
  * Requirement: /req/subdeployment/recursive-search-deployments
  * Searching deployments without recursion returns only top-level entries.
  */
-test("Non-recursive search returns only top-level deployments", async () => {
-  const data: any = await maybeFetchOrLoad("deployments", getDeploymentsUrl(apiRoot));
+test('Non-recursive search returns only top-level deployments', async () => {
+  const data: any = await maybeFetchOrLoad(
+    'deployments',
+    getDeploymentsUrl(apiRoot)
+  );
   const all = data.features;
   const subs = all.filter((f: any) => !!f.properties?.parentId);
   if (subs.length === 0) {
     // eslint-disable-next-line no-console
-    console.warn("[deployments.spec] No subdeployment fixtures; skipping /req/subdeployment/recursive-search-deployments.");
+    console.warn(
+      '[deployments.spec] No subdeployment fixtures; skipping /req/subdeployment/recursive-search-deployments.'
+    );
     return;
   }
   const top = all.filter((f: any) => !f.properties?.parentId);
@@ -205,12 +225,17 @@ test("Non-recursive search returns only top-level deployments", async () => {
  * Requirement: /req/subdeployment/recursive-search-subdeployments
  * Recursive search includes both top-level and subdeployment entries.
  */
-test("Recursive search includes subdeployments", async () => {
-  const data: any = await maybeFetchOrLoad("deployments", getDeploymentsUrl(apiRoot));
+test('Recursive search includes subdeployments', async () => {
+  const data: any = await maybeFetchOrLoad(
+    'deployments',
+    getDeploymentsUrl(apiRoot)
+  );
   const subs = data.features.filter((f: any) => !!f.properties?.parentId);
   if (subs.length === 0) {
     // eslint-disable-next-line no-console
-    console.warn("[deployments.spec] No subdeployment fixtures; skipping /req/subdeployment/recursive-search-subdeployments.");
+    console.warn(
+      '[deployments.spec] No subdeployment fixtures; skipping /req/subdeployment/recursive-search-subdeployments.'
+    );
     return;
   }
   expect(subs.length).toBeGreaterThan(0);
@@ -221,19 +246,27 @@ test("Recursive search includes subdeployments", async () => {
  * Parent deployment SHALL have an association path /deployments/{id}/subdeployments.
  * (We construct the URL based on a parentId field.)
  */
-test("Parent deployment association URL /deployments/{id}/subdeployments is canonical", async () => {
-  const data: any = await maybeFetchOrLoad("deployments", getDeploymentsUrl(apiRoot));
+test('Parent deployment association URL /deployments/{id}/subdeployments is canonical', async () => {
+  const data: any = await maybeFetchOrLoad(
+    'deployments',
+    getDeploymentsUrl(apiRoot)
+  );
   const subs = data.features.filter((f: any) => !!f.properties?.parentId);
   if (subs.length === 0) {
     // eslint-disable-next-line no-console
-    console.warn("[deployments.spec] No subdeployment fixtures; skipping /req/subdeployment/recursive-assoc.");
+    console.warn(
+      '[deployments.spec] No subdeployment fixtures; skipping /req/subdeployment/recursive-assoc.'
+    );
     return;
   }
   // Pick a subdeployment; emulate link to its parent
   const sub = subs[0];
   const parentId = sub.properties.parentId;
   const assocUrl = `${apiRoot}/deployments/${parentId}/subdeployments`;
-  expectCanonicalUrl(assocUrl, /^https?:\/\/.[^/]+\/deployments\/[^/]+\/subdeployments$/);
+  expectCanonicalUrl(
+    assocUrl,
+    /^https?:\/\/.[^/]+\/deployments\/[^/]+\/subdeployments$/
+  );
 });
 
 /* -------------------------------------------------------------------------- */

@@ -11,9 +11,9 @@
  *   - DatastreamsClient: main API client class
  */
 
-import { CSAPICollection } from "./model";
-import { maybeFetchOrLoad } from "./helpers";
-import { getDatastreamsUrl } from "./url_builder";
+import { CSAPICollection } from './model';
+import { maybeFetchOrLoad } from './helpers';
+import { getDatastreamsUrl } from './url_builder';
 
 /**
  * DatastreamsClient
@@ -32,7 +32,7 @@ export class DatastreamsClient {
    */
   async list(): Promise<CSAPICollection> {
     const url = getDatastreamsUrl(this.apiRoot);
-    const data = await maybeFetchOrLoad("datastreams", url);
+    const data = await maybeFetchOrLoad('datastreams', url);
     return data as CSAPICollection;
   }
 

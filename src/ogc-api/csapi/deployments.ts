@@ -11,9 +11,9 @@
  *   - DeploymentsClient: main API client class
  */
 
-import { CSAPICollection } from "./model";
-import { maybeFetchOrLoad } from "./helpers";
-import { getDeploymentsUrl } from "./url_builder";
+import { CSAPICollection } from './model';
+import { maybeFetchOrLoad } from './helpers';
+import { getDeploymentsUrl } from './url_builder';
 
 /**
  * DeploymentsClient
@@ -32,7 +32,7 @@ export class DeploymentsClient {
    */
   async list(): Promise<CSAPICollection> {
     const url = getDeploymentsUrl(this.apiRoot);
-    const data = await maybeFetchOrLoad("deployments", url);
+    const data = await maybeFetchOrLoad('deployments', url);
     return data as CSAPICollection;
   }
 

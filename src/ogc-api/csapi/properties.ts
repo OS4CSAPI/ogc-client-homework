@@ -11,9 +11,9 @@
  *   - PropertiesClient: main API client class
  */
 
-import { CSAPICollection } from "./model";
-import { maybeFetchOrLoad } from "./helpers";
-import { getPropertiesUrl } from "./url_builder";
+import { CSAPICollection } from './model';
+import { maybeFetchOrLoad } from './helpers';
+import { getPropertiesUrl } from './url_builder';
 
 /**
  * PropertiesClient
@@ -32,7 +32,7 @@ export class PropertiesClient {
    */
   async list(): Promise<CSAPICollection> {
     const url = getPropertiesUrl(this.apiRoot);
-    const data = await maybeFetchOrLoad("properties", url);
+    const data = await maybeFetchOrLoad('properties', url);
     return data as CSAPICollection;
   }
 

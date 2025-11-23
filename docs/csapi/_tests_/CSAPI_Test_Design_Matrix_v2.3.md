@@ -1,7 +1,9 @@
 # CSAPI Test Design Matrix v2.3
+
 Author: Sam Bolling · Date: 2025-11-20
 
-This matrix lists *all* requirements (Inherited, Specialized, New) and their corresponding Jest test plans.
+This matrix lists _all_ requirements (Inherited, Specialized, New) and their corresponding Jest test plans.
+
 - **Inherited**: verified by existing OGC API Features tests (no new stub generated).
 - **Specialized / New**: include a Jest stub snippet for implementation.
 

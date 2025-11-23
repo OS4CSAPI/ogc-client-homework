@@ -26,7 +26,11 @@ import {
   maybeFetchOrLoad,
   expectFeatureCollection,
   expectCanonicalUrl,
-} from '../helpers';
+  expectGeoJSONFeature,
+  expectGeoJSONFeatureCollection,
+  expectLinkRelations,
+  expectFeatureAttributeMapping,
+} from "../helpers";
 
 const apiRoot = process.env.CSAPI_API_ROOT || 'https://example.csapi.server';
 

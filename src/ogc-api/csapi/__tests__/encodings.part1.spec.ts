@@ -135,6 +135,7 @@ test('GET /systems returns valid SensorML-JSON encoding', async () => {
   // If contacts exist, validate their structure
   if (data.contacts.length > 0) {
     const contact = data.contacts[0];
+    // Contact should have at least role or organizationName (or both)
     expect(contact.role || contact.organizationName).toBeDefined();
   }
 

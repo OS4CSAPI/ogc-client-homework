@@ -7,7 +7,9 @@
       "id": "sf-001",
       "properties": {
         "featureType": "sosa:SamplingFeature",
-        "system": { "id": "sys-001" }
+        "system": { "id": "sys-001" },
+        "systemId": "sys-001",
+        "systemIds": ["sys-001"]
       }
     }
   ]

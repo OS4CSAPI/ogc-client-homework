@@ -122,7 +122,7 @@ test("Landing page endpoints use correct canonical URL patterns", async () => {
 
   // Filter to only resource endpoint links (exclude self, conformance, etc.)
   const resourceLinks = data.links.filter((l: any) => 
-    CANONICAL_ENDPOINTS.includes(l.rel) || 
+    CANONICAL_ENDPOINTS.some(ep => ep.toLowerCase() === l.rel?.toLowerCase()) || 
     CANONICAL_ENDPOINTS.some(ep => l.href?.includes(`/${ep}`))
   );
 
@@ -136,7 +136,9 @@ test("Landing page endpoints use correct canonical URL patterns", async () => {
     if (matchingEndpoint) {
       // Verify href follows canonical pattern
       expect(link.href).toMatch(new RegExp(`/${matchingEndpoint}$`));
-      // Verify rel matches the endpoint name (case-insensitive due to spec flexibility)
+      // Verify rel matches the endpoint name
+      // Note: Case-insensitive comparison is used because the OGC API specification
+      // allows flexibility in link relation casing, though we prefer camelCase
       expect(link.rel.toLowerCase()).toBe(matchingEndpoint.toLowerCase());
     }
   }

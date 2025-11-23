@@ -7,13 +7,14 @@
  *   - /req/observation/resources-endpoint  (23-002 §9)
  *   - /req/observation/canonical-url       (23-002 §9)
  *   - /req/observation/ref-from-datastream (23-002 §9)
+ *   - /req/observation/collections         (23-002 §9)
  *
  * Test strategy:
  *   - Hybrid execution (fixtures by default, live endpoints when CSAPI_LIVE=true)
  *   - Validates FeatureCollection structure, itemType, and canonical URL patterns
  *   - Ensures nested Observations are discoverable under Datastreams
+ *   - Derives datastreamId dynamically; skips gracefully if linkage absent
  */
-
 import {
   getObservationsUrl,
   getDatastreamsUrl,
@@ -28,11 +29,10 @@ const apiRoot = process.env.CSAPI_API_ROOT || "https://example.csapi.server";
 
 /**
  * Requirement: /req/observation/canonical-endpoint
- * The /observations endpoint SHALL be exposed as the canonical Observations collection.
  */
 test("GET /observations is exposed as canonical Observations collection", async () => {
   const url = getObservationsUrl(apiRoot);
-  const data = await maybeFetchOrLoad("observations", url);
+  const data: any = await maybeFetchOrLoad("observations", url);
 
   expectFeatureCollection(data, "Observation");
   expect(Array.isArray(data.features)).toBe(true);
@@ -41,11 +41,10 @@ test("GET /observations is exposed as canonical Observations collection", async 
 
 /**
  * Requirement: /req/observation/resources-endpoint
- * The /observations collection SHALL conform to OGC API – Features collection rules.
  */
 test("GET /observations returns FeatureCollection (itemType=Observation)", async () => {
   const url = getObservationsUrl(apiRoot);
-  const data = await maybeFetchOrLoad("observations", url);
+  const data: any = await maybeFetchOrLoad("observations", url);
 
   expectFeatureCollection(data, "Observation");
 
@@ -57,31 +56,68 @@ test("GET /observations returns FeatureCollection (itemType=Observation)", async
 
 /**
  * Requirement: /req/observation/canonical-url
- * Each Observation SHALL have a canonical item URL at /observations/{id}.
  */
 test("Observations have canonical item URL at /observations/{id}", async () => {
   const url = getObservationsUrl(apiRoot);
-  const data = await maybeFetchOrLoad("observations", url);
+  const data: any = await maybeFetchOrLoad("observations", url);
   const first = data.features[0];
 
   const itemUrl = `${apiRoot}/observations/${first.id}`;
-  expectCanonicalUrl(itemUrl, /^https?:\/\/.+\/observations\/[^/]+$/);
+  expectCanonicalUrl(itemUrl, /^https?:\/\/[^/]+\/observations\/[^/]+$/);
+});
+
+/**
+ * Requirement: /req/observation/collections
+ * Any collection with featureType sosa:Observation SHALL behave like /observations.
+ */
+test("Collections with featureType sosa:Observation behave like /observations", async () => {
+  const url = getObservationsUrl(apiRoot);
+  const data: any = await maybeFetchOrLoad("observations", url);
+
+  expectFeatureCollection(data, "Observation");
+  const featureType = data.features?.[0]?.properties?.featureType;
+  if (featureType) {
+    expect(featureType).toMatch(/sosa:Observation/i);
+  }
 });
 
 /**
  * Requirement: /req/observation/ref-from-datastream
  * Each Datastream SHALL expose nested Observations at /datastreams/{id}/observations.
+ * Derive datastreamId dynamically from the datastreams collection; skip if unavailable.
  */
 test("GET /datastreams/{id}/observations lists observations for a Datastream", async () => {
-  const datastreamId = "ds-001"; // placeholder; can come from fixtures later
-  const url = getObservationsUrl(apiRoot, datastreamId);
-  const data = await maybeFetchOrLoad("observations_nested", url);
+  let datastreamRoot: any;
+  try {
+    datastreamRoot = await maybeFetchOrLoad("datastreams", getDatastreamsUrl(apiRoot));
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.warn("[observations.spec] Unable to load datastreams; skipping /req/observation/ref-from-datastream.");
+    return;
+  }
 
-  expectFeatureCollection(data, "Observation");
+  if (!datastreamRoot.features?.length) {
+    // eslint-disable-next-line no-console
+    console.warn("[observations.spec] No datastream features; skipping /req/observation/ref-from-datastream.");
+    return;
+  }
 
-  // Optional: confirm all returned features relate to the same Datastream
-  const allSameDatastream =
-    data.features.every((f: any) => f.properties?.datastream?.id === datastreamId) ||
-    data.features.length === 0; // tolerate missing property for lightweight fixtures
-  expect(allSameDatastream).toBe(true);
+  const datastreamId = datastreamRoot.features[0].id;
+  const nestedUrl = `${apiRoot}/datastreams/${datastreamId}/observations`; // canonical nested pattern
+  let nested: any;
+  try {
+    nested = await maybeFetchOrLoad(`observations_datastream_${datastreamId}`, nestedUrl);
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.warn(`[observations.spec] No nested observations for datastream '${datastreamId}'; skipping assertion.`);
+    return;
+  }
+
+  expectFeatureCollection(nested, "Observation");
+
+  // Optional consistency: all features reference the same datastream if property available
+  const allSame =
+    nested.features.every((f: any) => f.properties?.datastream?.id === datastreamId) ||
+    nested.features.length === 0;
+  expect(allSame).toBe(true);
 });

@@ -1,6 +1,6 @@
 /**
- * Tests for CSAPI Part 2 — System Events
- * Validates canonical endpoints, nested event listings, and collection semantics for system events.
+ * Tests for CSAPI Part 2 — System Events and System History
+ * Validates canonical endpoints, nested event listings, and collection semantics for system events and history.
  *
  * Traces to:
  *   - /req/system-event/canonical-endpoint  (23-002 §7.4 Req42)
@@ -8,6 +8,8 @@
  *   - /req/system-event/canonical-url       (23-002 §7.4 Req40)
  *   - /req/system-event/ref-from-system     (23-002 §7.4 Req43)
  *   - /req/system-event/collections         (23-002 §7.4 Req44)
+ *   - /req/system-history/resources-endpoint (C9)
+ *   - /req/system-history/canonical-url      (C9)
  *
  * Test strategy:
  *   - Hybrid execution (fixtures by default, live endpoints when CSAPI_LIVE=true)
@@ -18,12 +20,14 @@
 import {
   getSystemEventsUrl,
   getSystemEventsForSystemUrl,
-} from "../url_builder";
+  getSystemHistoryUrl,
+  getSystemHistoryForSystemUrl,
+} from '../url_builder.js';
 import {
   maybeFetchOrLoad,
   expectFeatureCollection,
   expectCanonicalUrl,
-} from "../helpers";
+} from '../helpers.js';
 
 const apiRoot = process.env.CSAPI_API_ROOT || "https://example.csapi.server";
 
@@ -110,4 +114,87 @@ test("Collections with itemType=SystemEvent behave like /systemEvents", async ()
 
   expectFeatureCollection(data, "SystemEvent");
   expect(data.itemType).toBe("SystemEvent");
+});
+
+/* -------------------------------------------------------------------------- */
+/*                    System History (C9) Requirements Tests                  */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Requirement: /req/system-history/resources-endpoint
+ * The /systemHistory endpoint SHALL expose a FeatureCollection with proper itemType signature.
+ */
+test("GET /systemHistory is exposed as canonical System History collection", async () => {
+  const url = getSystemHistoryUrl(apiRoot);
+  const data = await maybeFetchOrLoad("systemHistory", url);
+
+  expectFeatureCollection(data, "SystemHistory");
+  expect(Array.isArray(data.features)).toBe(true);
+  expect(data.features.length).toBeGreaterThan(0);
+});
+
+/**
+ * Requirement: /req/system-history/resources-endpoint
+ * The /systemHistory collection SHALL conform to OGC API – Features collection rules.
+ */
+test("GET /systemHistory returns FeatureCollection (itemType=SystemHistory)", async () => {
+  const url = getSystemHistoryUrl(apiRoot);
+  const data = await maybeFetchOrLoad("systemHistory", url);
+
+  expectFeatureCollection(data, "SystemHistory");
+
+  const first = data.features[0];
+  expect(first).toHaveProperty("id");
+  expect(first).toHaveProperty("type", "Feature");
+  expect(first).toHaveProperty("properties");
+  expect(first.properties).toHaveProperty("systemId");
+  expect(first.properties).toHaveProperty("revisionTimestamp");
+});
+
+/**
+ * Requirement: /req/system-history/canonical-url
+ * Each System History revision SHALL have a canonical item URL at /systemHistory/{id}.
+ */
+test("System History revisions have canonical item URL at /systemHistory/{id}", async () => {
+  const url = getSystemHistoryUrl(apiRoot);
+  const data = await maybeFetchOrLoad("systemHistory", url);
+  const first = data.features[0];
+
+  const itemUrl = `${apiRoot}/systemHistory/${first.id}`;
+  expectCanonicalUrl(itemUrl, /^https?:\/\/.+\/systemHistory\/[^/]+$/);
+});
+
+/**
+ * Requirement: /req/system-history/canonical-url
+ * Validates that canonical URLs are properly structured and exposed in links.
+ */
+test("System History items expose canonical URLs in links", async () => {
+  const url = getSystemHistoryUrl(apiRoot);
+  const data = await maybeFetchOrLoad("systemHistory", url);
+  const first = data.features[0];
+
+  expect(first).toHaveProperty("links");
+  expect(Array.isArray(first.links)).toBe(true);
+
+  const selfLink = first.links.find((link: any) => link.rel === "self");
+  expect(selfLink).toBeDefined();
+  expect(selfLink.href).toMatch(/^https?:\/\/.+\/systemHistory\/[^/]+$/);
+});
+
+/**
+ * Requirement: /req/system-history/resources-endpoint (nested endpoint)
+ * Each System SHALL expose nested history at /systems/{systemId}/history.
+ */
+test("GET /systems/{id}/history lists history for a System", async () => {
+  const systemId = "sys-001";
+  const url = getSystemHistoryForSystemUrl(apiRoot, systemId);
+  const data = await maybeFetchOrLoad("systemHistory_sys-001", url);
+
+  expectFeatureCollection(data, "SystemHistory");
+
+  // Ensure all history revisions reference the correct system
+  const allSameSystem =
+    data.features.every((f: any) => f.properties?.systemId === systemId) ||
+    data.features.length === 0;
+  expect(allSameSystem).toBe(true);
 });

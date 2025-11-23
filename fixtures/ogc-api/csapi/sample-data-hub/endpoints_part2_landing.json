@@ -12,6 +12,7 @@
     { "rel": "controlstreams", "href": "https://example.csapi.server/controlstreams" },
     { "rel": "commands", "href": "https://example.csapi.server/commands" },
     { "rel": "feasibility", "href": "https://example.csapi.server/feasibility" },
-    { "rel": "systemEvents", "href": "https://example.csapi.server/systemEvents" }
+    { "rel": "systemEvents", "href": "https://example.csapi.server/systemEvents" },
+    { "rel": "systemHistory", "href": "https://example.csapi.server/systemHistory" }
   ]
 }

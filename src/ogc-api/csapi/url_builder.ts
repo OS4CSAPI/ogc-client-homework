@@ -37,6 +37,7 @@ export const CANONICAL_ENDPOINTS = [
   "commands",
   "feasibility",
   "systemEvents",
+  "systemHistory",
 ];
 
 /**
@@ -104,6 +105,11 @@ export const getSystemEventsUrl = (
   id?: string,
 ) => buildCsapiUrl("systemEvents", apiRoot, id);
 
+export const getSystemHistoryUrl = (
+  apiRoot: string = DEFAULT_API_ROOT,
+  id?: string,
+) => buildCsapiUrl("systemHistory", apiRoot, id);
+
 /**
  * Nested and alias helpers for tests that call e.g. getSystemEventsForSystemUrl()
  */
@@ -111,6 +117,11 @@ export const getSystemEventsForSystemUrl = (
   apiRoot: string = DEFAULT_API_ROOT,
   systemId: string,
 ) => `${buildCsapiUrl("systems", apiRoot, systemId)}/events`;
+
+export const getSystemHistoryForSystemUrl = (
+  apiRoot: string = DEFAULT_API_ROOT,
+  systemId: string,
+) => `${buildCsapiUrl("systems", apiRoot, systemId)}/history`;
 
 /* -------------------------------------------------------------------------- */
 /*                              Aggregate Helpers                             */

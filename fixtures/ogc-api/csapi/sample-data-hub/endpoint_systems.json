@@ -10,7 +10,10 @@
         "name": "Example System",
         "description": "Stub System entry for endpoint tests",
         "properties": [
-          { "name": "temperature", "unit": "http://qudt.org/vocab/unit/DegreeCelsius" }
+          {
+            "name": "temperature",
+            "unit": "http://qudt.org/vocab/unit/DegreeCelsius"
+          }
         ]
       }
     }

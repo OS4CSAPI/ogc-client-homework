@@ -19,7 +19,9 @@ export function loadFixture(profile: CSAPIFixtureProfile, name: string): any {
   const dir = profileDir(profile);
   const filePath = path.resolve(process.cwd(), `${dir}/${name}.json`);
   if (!fs.existsSync(filePath)) {
-    throw new Error(`[CSAPI fixtures] Fixture not found for profile='${profile}': ${filePath}`);
+    throw new Error(
+      `[CSAPI fixtures] Fixture not found for profile='${profile}': ${filePath}`
+    );
   }
   return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
 }
@@ -27,7 +29,9 @@ export function loadFixture(profile: CSAPIFixtureProfile, name: string): any {
 export function loadFixtureEnv(name: string): any {
   const raw = (process.env.CSAPI_FIXTURE_PROFILE || 'default').toLowerCase();
   const profile: CSAPIFixtureProfile =
-    raw === 'minimal' || raw === 'advanced' ? (raw as CSAPIFixtureProfile) : 'default';
+    raw === 'minimal' || raw === 'advanced'
+      ? (raw as CSAPIFixtureProfile)
+      : 'default';
   return loadFixture(profile, name);
 }
 

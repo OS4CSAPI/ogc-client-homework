@@ -107,14 +107,16 @@ export function checkHasEnvironmentalDataRetrieval([conformance]: [
 // Connected Systems API — Conformance Detection
 // Mirrors checkHasEnvironmentalDataRetrieval pattern
 // -----------------------------------------------------------------------------
-export function checkHasConnectedSystemsApi([conformance]: [ConformanceClass[]]) {
+export function checkHasConnectedSystemsApi([conformance]: [
+  ConformanceClass[]
+]) {
   if (!conformance || !Array.isArray(conformance)) return false;
 
-  return conformance.some((uri) =>
-    typeof uri === 'string' && (
-      uri.includes('ogcapi-connected-systems-1/1.0/conf/core') ||
-      uri.includes('ogcapi-connected-systems-2/1.0/conf/dynamic-data')
-    )
+  return conformance.some(
+    (uri) =>
+      typeof uri === 'string' &&
+      (uri.includes('ogcapi-connected-systems-1/1.0/conf/core') ||
+        uri.includes('ogcapi-connected-systems-2/1.0/conf/dynamic-data'))
   );
 }
 

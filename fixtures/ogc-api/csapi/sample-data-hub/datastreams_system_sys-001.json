@@ -14,7 +14,10 @@
         "deploymentIds": ["dep-001"]
       },
       "links": [
-        { "rel": "self", "href": "https://example.csapi.server/datastreams/ds-001" }
+        {
+          "rel": "self",
+          "href": "https://example.csapi.server/datastreams/ds-001"
+        }
       ]
     }
   ]

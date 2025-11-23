@@ -18,26 +18,23 @@
  *   - Derives parent IDs (system/deployment) from fixture properties when available
  */
 
-import {
-  getDatastreamsUrl,
-  getDatastreamByIdUrl,
-} from "../url_builder";
+import { getDatastreamsUrl, getDatastreamByIdUrl } from '../url_builder';
 import {
   maybeFetchOrLoad,
   expectFeatureCollection,
   expectCanonicalUrl,
-} from "../helpers";
+} from '../helpers';
 
-const apiRoot = process.env.CSAPI_API_ROOT || "https://example.csapi.server";
+const apiRoot = process.env.CSAPI_API_ROOT || 'https://example.csapi.server';
 
 /**
  * Requirement: /req/datastream/canonical-endpoint
  */
-test("GET /datastreams is exposed as canonical Datastreams collection", async () => {
+test('GET /datastreams is exposed as canonical Datastreams collection', async () => {
   const url = getDatastreamsUrl(apiRoot);
-  const data: any = await maybeFetchOrLoad("datastreams", url);
+  const data: any = await maybeFetchOrLoad('datastreams', url);
 
-  expectFeatureCollection(data, "Datastream");
+  expectFeatureCollection(data, 'Datastream');
   expect(Array.isArray(data.features)).toBe(true);
   expect(data.features.length).toBeGreaterThan(0);
 });
@@ -45,24 +42,24 @@ test("GET /datastreams is exposed as canonical Datastreams collection", async ()
 /**
  * Requirement: /req/datastream/resources-endpoint
  */
-test("GET /datastreams returns FeatureCollection (itemType=Datastream)", async () => {
+test('GET /datastreams returns FeatureCollection (itemType=Datastream)', async () => {
   const url = getDatastreamsUrl(apiRoot);
-  const data: any = await maybeFetchOrLoad("datastreams", url);
+  const data: any = await maybeFetchOrLoad('datastreams', url);
 
-  expectFeatureCollection(data, "Datastream");
+  expectFeatureCollection(data, 'Datastream');
 
   const first = data.features[0];
-  expect(first).toHaveProperty("id");
-  expect(first).toHaveProperty("type", "Feature");
-  expect(first).toHaveProperty("properties");
+  expect(first).toHaveProperty('id');
+  expect(first).toHaveProperty('type', 'Feature');
+  expect(first).toHaveProperty('properties');
 });
 
 /**
  * Requirement: /req/datastream/canonical-url
  */
-test("Datastreams have canonical item URL at /datastreams/{id}", async () => {
+test('Datastreams have canonical item URL at /datastreams/{id}', async () => {
   const url = getDatastreamsUrl(apiRoot);
-  const data: any = await maybeFetchOrLoad("datastreams", url);
+  const data: any = await maybeFetchOrLoad('datastreams', url);
   const first = data.features[0];
 
   const itemUrl = getDatastreamByIdUrl(apiRoot, first.id);
@@ -72,11 +69,11 @@ test("Datastreams have canonical item URL at /datastreams/{id}", async () => {
 /**
  * Requirement: /req/datastream/collections
  */
-test("Collections with featureType sosa:Datastream behave like /datastreams", async () => {
+test('Collections with featureType sosa:Datastream behave like /datastreams', async () => {
   const url = getDatastreamsUrl(apiRoot);
-  const data: any = await maybeFetchOrLoad("datastreams", url);
+  const data: any = await maybeFetchOrLoad('datastreams', url);
 
-  expectFeatureCollection(data, "Datastream");
+  expectFeatureCollection(data, 'Datastream');
   const featureType = data.features?.[0]?.properties?.featureType;
   if (featureType) {
     expect(featureType).toMatch(/sosa:Datastream/i);
@@ -87,9 +84,9 @@ test("Collections with featureType sosa:Datastream behave like /datastreams", as
  * Requirement: /req/datastream/ref-from-system
  * Derive systemId from feature properties when available.
  */
-test("GET /systems/{id}/datastreams lists datastreams for a System", async () => {
+test('GET /systems/{id}/datastreams lists datastreams for a System', async () => {
   const rootUrl = getDatastreamsUrl(apiRoot);
-  const rootData: any = await maybeFetchOrLoad("datastreams", rootUrl);
+  const rootData: any = await maybeFetchOrLoad('datastreams', rootUrl);
 
   const withSystem = rootData.features.filter((f: any) => {
     const p = f.properties || {};
@@ -98,16 +95,23 @@ test("GET /systems/{id}/datastreams lists datastreams for a System", async () =>
 
   if (withSystem.length === 0) {
     // eslint-disable-next-line no-console
-    console.warn("[datastreams.spec] No system linkage present; skipping /req/datastream/ref-from-system assertion.");
+    console.warn(
+      '[datastreams.spec] No system linkage present; skipping /req/datastream/ref-from-system assertion.'
+    );
     return;
   }
 
   const props = withSystem[0].properties;
-  const systemId = Array.isArray(props.systemIds) ? props.systemIds[0] : props.systemId;
+  const systemId = Array.isArray(props.systemIds)
+    ? props.systemIds[0]
+    : props.systemId;
   const nestedUrl = `${apiRoot}/systems/${systemId}/datastreams`;
-  const nestedData: any = await maybeFetchOrLoad(`datastreams_system_${systemId}`, nestedUrl);
+  const nestedData: any = await maybeFetchOrLoad(
+    `datastreams_system_${systemId}`,
+    nestedUrl
+  );
 
-  expectFeatureCollection(nestedData, "Datastream");
+  expectFeatureCollection(nestedData, 'Datastream');
   expect(Array.isArray(nestedData.features)).toBe(true);
 });
 
@@ -115,27 +119,37 @@ test("GET /systems/{id}/datastreams lists datastreams for a System", async () =>
  * Requirement: /req/datastream/ref-from-deployment
  * Derive deploymentId from feature properties when available.
  */
-test("GET /deployments/{id}/datastreams lists datastreams for a Deployment", async () => {
+test('GET /deployments/{id}/datastreams lists datastreams for a Deployment', async () => {
   const rootUrl = getDatastreamsUrl(apiRoot);
-  const rootData: any = await maybeFetchOrLoad("datastreams", rootUrl);
+  const rootData: any = await maybeFetchOrLoad('datastreams', rootUrl);
 
   const withDeployment = rootData.features.filter((f: any) => {
     const p = f.properties || {};
-    return (Array.isArray(p.deploymentIds) && p.deploymentIds.length > 0) || p.deploymentId;
+    return (
+      (Array.isArray(p.deploymentIds) && p.deploymentIds.length > 0) ||
+      p.deploymentId
+    );
   });
 
   if (withDeployment.length === 0) {
     // eslint-disable-next-line no-console
-    console.warn("[datastreams.spec] No deployment linkage present; skipping /req/datastream/ref-from-deployment assertion.");
+    console.warn(
+      '[datastreams.spec] No deployment linkage present; skipping /req/datastream/ref-from-deployment assertion.'
+    );
     return;
   }
 
   const props = withDeployment[0].properties;
-  const deploymentId = Array.isArray(props.deploymentIds) ? props.deploymentIds[0] : props.deploymentId;
+  const deploymentId = Array.isArray(props.deploymentIds)
+    ? props.deploymentIds[0]
+    : props.deploymentId;
   const nestedUrl = `${apiRoot}/deployments/${deploymentId}/datastreams`;
-  const nestedData: any = await maybeFetchOrLoad(`datastreams_deployment_${deploymentId}`, nestedUrl);
+  const nestedData: any = await maybeFetchOrLoad(
+    `datastreams_deployment_${deploymentId}`,
+    nestedUrl
+  );
 
-  expectFeatureCollection(nestedData, "Datastream");
+  expectFeatureCollection(nestedData, 'Datastream');
   expect(Array.isArray(nestedData.features)).toBe(true);
 });
 
@@ -143,20 +157,28 @@ test("GET /deployments/{id}/datastreams lists datastreams for a Deployment", asy
  * Requirement: /req/datastream/schema-op
  * Derive datastreamId from collection; skip if none.
  */
-test("GET /datastreams/{id}/schema?obsFormat=… returns observation schema", async () => {
+test('GET /datastreams/{id}/schema?obsFormat=… returns observation schema', async () => {
   const url = getDatastreamsUrl(apiRoot);
-  const data: any = await maybeFetchOrLoad("datastreams", url);
+  const data: any = await maybeFetchOrLoad('datastreams', url);
 
   if (!data.features?.length) {
     // eslint-disable-next-line no-console
-    console.warn("[datastreams.spec] No datastreams available; skipping schema operation assertion.");
+    console.warn(
+      '[datastreams.spec] No datastreams available; skipping schema operation assertion.'
+    );
     return;
   }
 
   const datastreamId = data.features[0].id;
-  const schemaUrl = `${getDatastreamByIdUrl(apiRoot, datastreamId)}/schema?obsFormat=application/json`;
-  const schema: any = await maybeFetchOrLoad(`datastream_schema_${datastreamId}`, schemaUrl);
+  const schemaUrl = `${getDatastreamByIdUrl(
+    apiRoot,
+    datastreamId
+  )}/schema?obsFormat=application/json`;
+  const schema: any = await maybeFetchOrLoad(
+    `datastream_schema_${datastreamId}`,
+    schemaUrl
+  );
 
   expect(schema).toBeDefined();
-  expect(Object.keys(schema)).toContain("type");
+  expect(Object.keys(schema)).toContain('type');
 });

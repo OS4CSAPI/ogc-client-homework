@@ -15,24 +15,24 @@
  *   - Guards system-scoped reference test if fixture lacks system linkage
  */
 
-import { getSamplingFeaturesUrl } from "../url_builder";
+import { getSamplingFeaturesUrl } from '../url_builder';
 import {
   maybeFetchOrLoad,
   expectFeatureCollection,
   expectCanonicalUrl,
-} from "../helpers";
+} from '../helpers';
 
-const apiRoot = process.env.CSAPI_API_ROOT || "https://example.csapi.server";
+const apiRoot = process.env.CSAPI_API_ROOT || 'https://example.csapi.server';
 
 /**
  * Requirement: /req/sf/canonical-endpoint
  * The /samplingFeatures endpoint SHALL be exposed as the canonical SamplingFeatures collection.
  */
-test("GET /samplingFeatures is exposed as canonical SamplingFeatures collection", async () => {
+test('GET /samplingFeatures is exposed as canonical SamplingFeatures collection', async () => {
   const url = getSamplingFeaturesUrl(apiRoot);
-  const data: any = await maybeFetchOrLoad("samplingFeatures", url);
+  const data: any = await maybeFetchOrLoad('samplingFeatures', url);
 
-  expectFeatureCollection(data, "SamplingFeature");
+  expectFeatureCollection(data, 'SamplingFeature');
   expect(Array.isArray(data.features)).toBe(true);
   expect(data.features.length).toBeGreaterThan(0);
 });
@@ -41,25 +41,25 @@ test("GET /samplingFeatures is exposed as canonical SamplingFeatures collection"
  * Requirement: /req/sf/resources-endpoint
  * The /samplingFeatures collection SHALL conform to OGC API – Features collection rules.
  */
-test("GET /samplingFeatures returns FeatureCollection (itemType=SamplingFeature)", async () => {
+test('GET /samplingFeatures returns FeatureCollection (itemType=SamplingFeature)', async () => {
   const url = getSamplingFeaturesUrl(apiRoot);
-  const data: any = await maybeFetchOrLoad("samplingFeatures", url);
+  const data: any = await maybeFetchOrLoad('samplingFeatures', url);
 
-  expectFeatureCollection(data, "SamplingFeature");
+  expectFeatureCollection(data, 'SamplingFeature');
 
   const first = data.features[0];
-  expect(first).toHaveProperty("id");
-  expect(first).toHaveProperty("type", "Feature");
-  expect(first).toHaveProperty("properties");
+  expect(first).toHaveProperty('id');
+  expect(first).toHaveProperty('type', 'Feature');
+  expect(first).toHaveProperty('properties');
 });
 
 /**
  * Requirement: /req/sf/canonical-url
  * Each SamplingFeature SHALL have a canonical item URL at /samplingFeatures/{id}.
  */
-test("SamplingFeatures have canonical item URL at /samplingFeatures/{id}", async () => {
+test('SamplingFeatures have canonical item URL at /samplingFeatures/{id}', async () => {
   const url = getSamplingFeaturesUrl(apiRoot);
-  const data: any = await maybeFetchOrLoad("samplingFeatures", url);
+  const data: any = await maybeFetchOrLoad('samplingFeatures', url);
   const first = data.features[0];
 
   const itemUrl = `${apiRoot}/samplingFeatures/${first.id}`;
@@ -70,11 +70,11 @@ test("SamplingFeatures have canonical item URL at /samplingFeatures/{id}", async
  * Requirement: /req/sf/collections
  * Any collection with featureType sosa:SamplingFeature SHALL behave like /samplingFeatures.
  */
-test("Collections with featureType sosa:SamplingFeature behave like /samplingFeatures", async () => {
+test('Collections with featureType sosa:SamplingFeature behave like /samplingFeatures', async () => {
   const url = getSamplingFeaturesUrl(apiRoot);
-  const data: any = await maybeFetchOrLoad("samplingFeatures", url);
+  const data: any = await maybeFetchOrLoad('samplingFeatures', url);
 
-  expectFeatureCollection(data, "SamplingFeature");
+  expectFeatureCollection(data, 'SamplingFeature');
 
   const featureType = data.features?.[0]?.properties?.featureType;
   if (featureType) {
@@ -95,8 +95,11 @@ test("Collections with featureType sosa:SamplingFeature behave like /samplingFea
  *    construct a canonical system-scoped URL and assert its pattern.
  *  - If no linkage exists in the fixture data, log a warning and skip (non-failing).
  */
-test("System-scoped sampling features reference (/systems/{systemId}/samplingFeatures)", async () => {
-  const data: any = await maybeFetchOrLoad("samplingFeatures", getSamplingFeaturesUrl(apiRoot));
+test('System-scoped sampling features reference (/systems/{systemId}/samplingFeatures)', async () => {
+  const data: any = await maybeFetchOrLoad(
+    'samplingFeatures',
+    getSamplingFeaturesUrl(apiRoot)
+  );
 
   const linked = data.features.filter((f: any) => {
     const p = f.properties || {};
@@ -105,13 +108,20 @@ test("System-scoped sampling features reference (/systems/{systemId}/samplingFea
 
   if (linked.length === 0) {
     // eslint-disable-next-line no-console
-    console.warn("[sampling-features.spec] No system linkage present; skipping /req/sf/ref-from-system assertion.");
+    console.warn(
+      '[sampling-features.spec] No system linkage present; skipping /req/sf/ref-from-system assertion.'
+    );
     return;
   }
 
   const feature = linked[0];
   const props = feature.properties;
-  const systemId = Array.isArray(props.systemIds) ? props.systemIds[0] : props.systemId;
+  const systemId = Array.isArray(props.systemIds)
+    ? props.systemIds[0]
+    : props.systemId;
   const systemScopedUrl = `${apiRoot}/systems/${systemId}/samplingFeatures`;
-  expectCanonicalUrl(systemScopedUrl, /^https?:\/\/[^/]+\/systems\/[^/]+\/samplingFeatures$/);
+  expectCanonicalUrl(
+    systemScopedUrl,
+    /^https?:\/\/[^/]+\/systems\/[^/]+\/samplingFeatures$/
+  );
 });

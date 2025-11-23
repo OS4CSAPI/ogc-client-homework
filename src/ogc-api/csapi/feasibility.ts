@@ -11,9 +11,9 @@
  *   - FeasibilityClient: main API client class
  */
 
-import { CSAPICollection } from "./model";
-import { maybeFetchOrLoad } from "./helpers";
-import { getFeasibilityUrl } from "./url_builder";
+import { CSAPICollection } from './model';
+import { maybeFetchOrLoad } from './helpers';
+import { getFeasibilityUrl } from './url_builder';
 
 /**
  * FeasibilityClient
@@ -32,7 +32,7 @@ export class FeasibilityClient {
    */
   async list(): Promise<CSAPICollection> {
     const url = getFeasibilityUrl(this.apiRoot);
-    const data = await maybeFetchOrLoad("feasibility", url);
+    const data = await maybeFetchOrLoad('feasibility', url);
     return data as CSAPICollection;
   }
 

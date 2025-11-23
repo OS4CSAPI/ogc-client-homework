@@ -295,7 +295,7 @@ ${e.message}`);
     return result;
   }
 
-    /**
+  /**
    * A Promise which resolves to a boolean indicating whether the endpoint offers Connected Systems API (CSAPI) capabilities.
    */
   get hasConnectedSystemsApi(): Promise<boolean> {

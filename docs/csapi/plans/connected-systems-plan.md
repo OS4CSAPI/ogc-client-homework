@@ -8,14 +8,14 @@ This implementation follows a Test-Driven Development (TDD) workflow: each metho
 
 ## ✅ Goals
 
-- Modular client using composition  
-- Flexible query interface using `Record<string, string>`  
-- Support for Systems, Observations, System History, Commands  
-- Full test coverage and documentation  
-- Capability detection for conditional exposure  
-- Compliance with CSAPI spec via modular implementation  
-- Contribution to upstream repo with maintainable design  
-- Test-Driven Development (TDD) as a foundational workflow  
+- Modular client using composition
+- Flexible query interface using `Record<string, string>`
+- Support for Systems, Observations, System History, Commands
+- Full test coverage and documentation
+- Capability detection for conditional exposure
+- Compliance with CSAPI spec via modular implementation
+- Contribution to upstream repo with maintainable design
+- Test-Driven Development (TDD) as a foundational workflow
 
 ---
 
@@ -27,12 +27,12 @@ This approach mirrors how EDR support is integrated — using capability detecti
 
 ### Key Design Principles
 
-- **Composition over inheritance**: CSAPI logic is injected as a property (`connectedSystems`) only if the server advertises support  
-- **Modular client structure**: Each API (Features, EDR, CSAPI) lives in its own folder and namespace  
-- **Capability detection**: The main client will expose `.connectedSystems` only if CSAPI-specific links or metadata are present  
-- **Type safety**: All query parameters and responses will use TypeScript interfaces and `Record<string, string>` for flexible filtering  
-- **Testability**: Each method will be covered by unit tests using Jest, with mock responses for isolated validation  
-- **TDD-first workflow**: All behavior will be defined via failing tests before implementation begins, following the Red → Green → Refactor cycle  
+- **Composition over inheritance**: CSAPI logic is injected as a property (`connectedSystems`) only if the server advertises support
+- **Modular client structure**: Each API (Features, EDR, CSAPI) lives in its own folder and namespace
+- **Capability detection**: The main client will expose `.connectedSystems` only if CSAPI-specific links or metadata are present
+- **Type safety**: All query parameters and responses will use TypeScript interfaces and `Record<string, string>` for flexible filtering
+- **Testability**: Each method will be covered by unit tests using Jest, with mock responses for isolated validation
+- **TDD-first workflow**: All behavior will be defined via failing tests before implementation begins, following the Red → Green → Refactor cycle
 
 This design ensures that CSAPI support can be added without disrupting existing functionality, and can be cleanly merged back into the upstream repo via a pull request referencing [Issue #118](https://github.com/camptocamp/ogc-client/issues/118).
 
@@ -89,12 +89,12 @@ This repo uses Jest and colocates tests with implementation files using `.spec.t
 <details>
 <summary>🟨 Phase 0: Planning & Setup</summary>
 
-- [x] Fork `camptocamp/ogc-client` and clone locally or use GitHub.dev  
-- [x] Create feature branch `capability/ogc-connected-systems`  
+- [x] Fork `camptocamp/ogc-client` and clone locally or use GitHub.dev
+- [x] Create feature branch `capability/ogc-connected-systems`
 - [x] Enable Issues tab in fork
 - [x] Create GitHub Project board
-- [x] Document implementation plan (`docs/connected-systems-plan.md`)  
-- [x] Add issues to repo and update project board  
+- [x] Document implementation plan (`docs/connected-systems-plan.md`)
+- [x] Add issues to repo and update project board
 
 </details>
 
@@ -105,20 +105,20 @@ This repo uses Jest and colocates tests with implementation files using `.spec.t
 - [x] Remove ConnectedSystemsClient.ts in favor of modular layout
 - [x] Create placeholder files for `model.ts`, `endpoint.ts`, `helpers.ts`, etc.
 - [x] Rename folder from connected-systems to csapi
-- [X] Create `.spec.ts` test files for each module  
-- [ ] Add mock fixture file under `fixtures/ogc-api/connected-systems/sample-data-hub.json`  
-- [ ] Set up Jest test framework (already present in repo)  
+- [x] Create `.spec.ts` test files for each module
+- [ ] Add mock fixture file under `fixtures/ogc-api/connected-systems/sample-data-hub.json`
+- [ ] Set up Jest test framework (already present in repo)
 
 </details>
 
 <details>
 <summary>🟩 Phase 2: Capability Detection </summary>
 
-- [ ] Write test: `.connectedSystems` is undefined when CSAPI is not supported  
-- [ ] Write test: `.connectedSystems` is defined when CSAPI endpoints are present  
-- [ ] Implement detection logic to pass tests  
-- [ ] Integrate CSAPI into main client using composition  
-- [ ] Update `OgcApiEndpoint.vue` to expose CSAPI conditionally  
+- [ ] Write test: `.connectedSystems` is undefined when CSAPI is not supported
+- [ ] Write test: `.connectedSystems` is defined when CSAPI endpoints are present
+- [ ] Implement detection logic to pass tests
+- [ ] Integrate CSAPI into main client using composition
+- [ ] Update `OgcApiEndpoint.vue` to expose CSAPI conditionally
 
 </details>
 
@@ -127,46 +127,46 @@ This repo uses Jest and colocates tests with implementation files using `.spec.t
 
 For each method:
 
-1. Write a failing test that defines expected behavior  
-2. Implement minimal code to pass the test  
-3. Refactor for clarity and reuse  
-4. Add JSDoc comments and upstream spec references  
+1. Write a failing test that defines expected behavior
+2. Implement minimal code to pass the test
+3. Refactor for clarity and reuse
+4. Add JSDoc comments and upstream spec references
 
 Methods to implement:
 
-- [ ] `getSystems(params: Record<string, string>)`  
-- [ ] `getObservations(params: Record<string, string>)`  
-- [ ] `getSystemHistory(params: Record<string, string>)`  
-- [ ] `getCommands(params: Record<string, string>)`  
+- [ ] `getSystems(params: Record<string, string>)`
+- [ ] `getObservations(params: Record<string, string>)`
+- [ ] `getSystemHistory(params: Record<string, string>)`
+- [ ] `getCommands(params: Record<string, string>)`
 
 </details>
 
 <details>
 <summary>🟧 Phase 4: Shared Patterns & Fixtures</summary>
 
-- [ ] Extract reusable fetch logic  
-- [ ] Add utility functions for query param encoding  
-- [ ] Create mock data fixtures for CSAPI responses  
-- [ ] Ensure consistent mocking and assertions across tests  
+- [ ] Extract reusable fetch logic
+- [ ] Add utility functions for query param encoding
+- [ ] Create mock data fixtures for CSAPI responses
+- [ ] Ensure consistent mocking and assertions across tests
 
 </details>
 
 <details>
 <summary>🟨 Phase 5: Documentation & Contributor Experience</summary>
 
-- [ ] Add usage examples to `app/examples/connected-systems.ts`  
-- [ ] Document TDD workflow in `CONTRIBUTING.md`  
-- [ ] Tag “Good First Issues” for scoped tasks  
-- [ ] Create GitHub milestone and label for CSAPI implementation  
+- [ ] Add usage examples to `app/examples/connected-systems.ts`
+- [ ] Document TDD workflow in `CONTRIBUTING.md`
+- [ ] Tag “Good First Issues” for scoped tasks
+- [ ] Create GitHub milestone and label for CSAPI implementation
 
 </details>
 
 <details>
 <summary>🟥 Phase 6: Finalization</summary>
 
-- [ ] Open pull request to your fork’s `main` branch  
-- [ ] Review and test integration  
-- [ ] Respond to feedback or prepare for upstream contribution  
+- [ ] Open pull request to your fork’s `main` branch
+- [ ] Review and test integration
+- [ ] Respond to feedback or prepare for upstream contribution
 
 </details>
 
@@ -175,13 +175,13 @@ Methods to implement:
 
 These methods will be considered after MVP completion:
 
-- [ ] `getProcedures()`  
-- [ ] `getDeployments()`  
-- [ ] `getProperties()`  
-- [ ] `getSamplingFeatures()`  
-- [ ] `getDatastreams()`  
-- [ ] `getControlChannels()`  
-- [ ] `getSystemEvents()`  
+- [ ] `getProcedures()`
+- [ ] `getDeployments()`
+- [ ] `getProperties()`
+- [ ] `getSamplingFeatures()`
+- [ ] `getDatastreams()`
+- [ ] `getControlChannels()`
+- [ ] `getSystemEvents()`
 
 </details>
 
@@ -190,7 +190,3 @@ These methods will be considered after MVP completion:
 ## 📜 Compliance Note
 
 This implementation is compliant with the OGC API - Connected Systems specification based on modular support for core entities. Additional entities will be added incrementally. Capability detection ensures that unsupported endpoints are not exposed, preserving interoperability and graceful degradation.
-
-
-
-

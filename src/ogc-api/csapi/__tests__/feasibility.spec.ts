@@ -15,26 +15,24 @@
  *     Status/Result resources for feasibility lifecycle
  */
 
-import {
-  getFeasibilityUrl,
-} from "../url_builder";
+import { getFeasibilityUrl } from '../url_builder';
 import {
   maybeFetchOrLoad,
   expectFeatureCollection,
   expectCanonicalUrl,
-} from "../helpers";
+} from '../helpers';
 
-const apiRoot = process.env.CSAPI_API_ROOT || "https://example.csapi.server";
+const apiRoot = process.env.CSAPI_API_ROOT || 'https://example.csapi.server';
 
 /**
  * Requirement: /req/feasibility/canonical-endpoint
  * The /feasibility endpoint SHALL be exposed as the canonical Feasibility collection.
  */
-test("GET /feasibility is exposed as canonical Feasibility collection", async () => {
+test('GET /feasibility is exposed as canonical Feasibility collection', async () => {
   const url = getFeasibilityUrl(apiRoot);
-  const data = await maybeFetchOrLoad("feasibility", url);
+  const data = await maybeFetchOrLoad('feasibility', url);
 
-  expectFeatureCollection(data, "Feasibility");
+  expectFeatureCollection(data, 'Feasibility');
   expect(Array.isArray(data.features)).toBe(true);
   expect(data.features.length).toBeGreaterThan(0);
 });
@@ -43,25 +41,25 @@ test("GET /feasibility is exposed as canonical Feasibility collection", async ()
  * Requirement: /req/feasibility/resources-endpoint
  * The /feasibility collection SHALL conform to OGC API – Features collection rules.
  */
-test("GET /feasibility returns FeatureCollection (itemType=Feasibility)", async () => {
+test('GET /feasibility returns FeatureCollection (itemType=Feasibility)', async () => {
   const url = getFeasibilityUrl(apiRoot);
-  const data = await maybeFetchOrLoad("feasibility", url);
+  const data = await maybeFetchOrLoad('feasibility', url);
 
-  expectFeatureCollection(data, "Feasibility");
+  expectFeatureCollection(data, 'Feasibility');
 
   const first = data.features[0];
-  expect(first).toHaveProperty("id");
-  expect(first).toHaveProperty("type", "Feature");
-  expect(first).toHaveProperty("properties");
+  expect(first).toHaveProperty('id');
+  expect(first).toHaveProperty('type', 'Feature');
+  expect(first).toHaveProperty('properties');
 });
 
 /**
  * Requirement: /req/feasibility/canonical-url
  * Each Feasibility item SHALL have a canonical URL at /feasibility/{id}.
  */
-test("Feasibility items have canonical item URL at /feasibility/{id}", async () => {
+test('Feasibility items have canonical item URL at /feasibility/{id}', async () => {
   const url = getFeasibilityUrl(apiRoot);
-  const data = await maybeFetchOrLoad("feasibility", url);
+  const data = await maybeFetchOrLoad('feasibility', url);
   const first = data.features[0];
 
   const itemUrl = `${apiRoot}/feasibility/${first.id}`;
@@ -72,19 +70,27 @@ test("Feasibility items have canonical item URL at /feasibility/{id}", async () 
  * Requirement: /req/feasibility/status-result
  * Each Feasibility request SHALL expose separate Status and Result resources.
  */
-test("Each Feasibility request exposes Status and Result resources", async () => {
+test('Each Feasibility request exposes Status and Result resources', async () => {
   const url = getFeasibilityUrl(apiRoot);
-  const data = await maybeFetchOrLoad("feasibility", url);
+  const data = await maybeFetchOrLoad('feasibility', url);
   const first = data.features[0];
 
   const statusUrl =
     first.properties?.status?.href ||
-    first.links?.find((l: any) => l.rel?.toLowerCase() === "status")?.href;
+    first.links?.find((l: any) => l.rel?.toLowerCase() === 'status')?.href;
   const resultUrl =
     first.properties?.result?.href ||
-    first.links?.find((l: any) => l.rel?.toLowerCase() === "result")?.href;
+    first.links?.find((l: any) => l.rel?.toLowerCase() === 'result')?.href;
 
   expect(statusUrl || resultUrl).toBeDefined();
-  if (statusUrl) expectCanonicalUrl(statusUrl, /^https?:\/\/.+\/feasibility\/[^/]+\/status$/);
-  if (resultUrl) expectCanonicalUrl(resultUrl, /^https?:\/\/.+\/feasibility\/[^/]+\/result$/);
+  if (statusUrl)
+    expectCanonicalUrl(
+      statusUrl,
+      /^https?:\/\/.+\/feasibility\/[^/]+\/status$/
+    );
+  if (resultUrl)
+    expectCanonicalUrl(
+      resultUrl,
+      /^https?:\/\/.+\/feasibility\/[^/]+\/result$/
+    );
 });

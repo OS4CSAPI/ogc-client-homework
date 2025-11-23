@@ -1,7 +1,7 @@
-import { CSAPIParameter } from "./model";
-import * as fs from "fs";
-import * as path from "path";
-import { loadFixtureEnv } from "./fixture_loader";
+import { CSAPIParameter } from './model';
+import * as fs from 'fs';
+import * as path from 'path';
+import { loadFixtureEnv } from './fixture_loader';
 
 /* -------------------------------------------------------------------------- */
 /*                Core Parameter Extraction Utility (Unchanged)               */
@@ -14,7 +14,7 @@ import { loadFixtureEnv } from "./fixture_loader";
 export function extractParameters(
   parameterBlock: Record<string, unknown> | null | undefined
 ): CSAPIParameter[] {
-  if (!parameterBlock || typeof parameterBlock !== "object") {
+  if (!parameterBlock || typeof parameterBlock !== 'object') {
     return [];
   }
   return Object.values(parameterBlock) as CSAPIParameter[];
@@ -29,9 +29,12 @@ export function extractParameters(
  * Conformance-neutral: enforces OGC API media types only.
  * @see OGC 23-001 §7.3, 23-002 §7.4
  */
-export async function csapiFetch(url: string, options: RequestInit = {}): Promise<unknown> {
+export async function csapiFetch(
+  url: string,
+  options: RequestInit = {}
+): Promise<unknown> {
   const headers = {
-    Accept: "application/json,application/schema+json",
+    Accept: 'application/json,application/schema+json',
     ...(options.headers || {}),
   };
 
@@ -102,39 +105,43 @@ export async function maybeFetchOrLoad(
   fixtureName: string,
   liveUrl?: string
 ): Promise<unknown> {
-  const USE_CLIENT_MODE = process.env.CSAPI_CLIENT_MODE === "true";
-  const USE_LIVE_MODE = process.env.CSAPI_LIVE === "true";
+  const USE_CLIENT_MODE = process.env.CSAPI_CLIENT_MODE === 'true';
+  const USE_LIVE_MODE = process.env.CSAPI_LIVE === 'true';
 
   // --- Mode 1: Dynamic client invocation ---
   if (USE_CLIENT_MODE) {
     try {
-      const module: Record<string, any> = await import("./index");
+      const module: Record<string, any> = await import('./index');
 
       // Normalize fixture name (e.g., endpoint_systemEvents → SystemEventsClient)
-      const base = fixtureName.replace(/^endpoint_/, "");
+      const base = fixtureName.replace(/^endpoint_/, '');
       const parts = base.split(/[^a-zA-Z0-9]/).filter(Boolean);
       const clientKey = parts
         .map((p) => p.charAt(0).toUpperCase() + p.slice(1))
-        .join("");
+        .join('');
       const clientName = `${clientKey}Client`;
 
       const client = module[clientName];
       const apiRoot =
-        process.env.CSAPI_API_ROOT || "https://example.csapi.server";
+        process.env.CSAPI_API_ROOT || 'https://example.csapi.server';
 
-      if (typeof client?.list === "function") {
+      if (typeof client?.list === 'function') {
         return await client.list(apiRoot);
       }
-      if (typeof client?.get === "function") {
+      if (typeof client?.get === 'function') {
         return await client.get(apiRoot);
       }
 
-      console.warn(`[csapi:helpers] No callable client found for ${clientName}`);
+      console.warn(
+        `[csapi:helpers] No callable client found for ${clientName}`
+      );
     } catch (err) {
       if (err instanceof Error) {
-        console.error(`[csapi:helpers] Client invocation failed: ${err.message}`);
+        console.error(
+          `[csapi:helpers] Client invocation failed: ${err.message}`
+        );
       } else {
-        console.error("[csapi:helpers] Unknown client invocation error");
+        console.error('[csapi:helpers] Unknown client invocation error');
       }
     }
   }
@@ -160,7 +167,7 @@ export function expectFeatureCollection(
   itemType?: string
 ): void {
   expect(data).toBeDefined();
-  expect(data.type).toBe("FeatureCollection");
+  expect(data.type).toBe('FeatureCollection');
   expect(Array.isArray((data as any).features)).toBe(true);
   if (itemType) expect((data as any).itemType).toBe(itemType);
 }
@@ -168,6 +175,9 @@ export function expectFeatureCollection(
 /**
  * Validates that a URL matches a canonical CSAPI pattern.
  */
-export function expectCanonicalUrl(url: string, pattern: string | RegExp): void {
+export function expectCanonicalUrl(
+  url: string,
+  pattern: string | RegExp
+): void {
   expect(url).toMatch(pattern);
 }

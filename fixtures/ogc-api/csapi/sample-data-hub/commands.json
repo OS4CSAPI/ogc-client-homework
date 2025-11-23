@@ -8,8 +8,12 @@
       "properties": {
         "featureType": "sosa:Command",
         "controlStream": { "id": "ctrl-001" },
-        "status": { "href": "https://example.csapi.server/commands/cmd-001/status" },
-        "result": { "href": "https://example.csapi.server/commands/cmd-001/result" }
+        "status": {
+          "href": "https://example.csapi.server/commands/cmd-001/status"
+        },
+        "result": {
+          "href": "https://example.csapi.server/commands/cmd-001/result"
+        }
       }
     }
   ]

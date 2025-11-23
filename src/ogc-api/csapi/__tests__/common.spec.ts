@@ -13,16 +13,20 @@
  *   - Verifies the existence of key service links and declared conformance classes
  */
 
-import { maybeFetchOrLoad } from "../helpers";
+import { maybeFetchOrLoad } from '../helpers';
 
-const apiRoot: string = process.env.CSAPI_API_ROOT || "https://example.csapi.server";
+const apiRoot: string =
+  process.env.CSAPI_API_ROOT || 'https://example.csapi.server';
 
 /**
  * Requirement: /req/landing-page/content
  * The API landing page SHALL provide a title and link relations for all primary resources.
  */
-test("Landing page contains expected metadata and canonical links", async () => {
-  const data: Record<string, unknown> = await maybeFetchOrLoad("common_landing", apiRoot);
+test('Landing page contains expected metadata and canonical links', async () => {
+  const data: Record<string, unknown> = await maybeFetchOrLoad(
+    'common_landing',
+    apiRoot
+  );
 
   expect(data).toBeDefined();
   expect((data as any).title).toBeDefined();
@@ -30,11 +34,11 @@ test("Landing page contains expected metadata and canonical links", async () => 
 
   const links = (data as any).links as Array<{ rel: string }>;
   const rels = links.map((l) => l.rel);
-  expect(rels).toContain("self");
-  expect(rels).toContain("conformance");
+  expect(rels).toContain('self');
+  expect(rels).toContain('conformance');
 
   // Verify CSAPI-specific link relations are present
-  const csapiRels = ["systems", "deployments", "datastreams"];
+  const csapiRels = ['systems', 'deployments', 'datastreams'];
   const hasCsapiLinks = csapiRels.every((r) =>
     rels.some((x: string) => x.toLowerCase().includes(r))
   );
@@ -45,9 +49,12 @@ test("Landing page contains expected metadata and canonical links", async () => 
  * Requirement: /req/conformance/content
  * The /conformance endpoint SHALL list implemented conformance classes as URIs.
  */
-test("Conformance declaration lists valid CSAPI conformance classes", async () => {
+test('Conformance declaration lists valid CSAPI conformance classes', async () => {
   const url = `${apiRoot}/conformance`;
-  const data: Record<string, unknown> = await maybeFetchOrLoad("common_conformance", url);
+  const data: Record<string, unknown> = await maybeFetchOrLoad(
+    'common_conformance',
+    url
+  );
 
   expect(data).toBeDefined();
   const conformsTo = (data as any).conformsTo as string[];
@@ -55,7 +62,7 @@ test("Conformance declaration lists valid CSAPI conformance classes", async () =
   expect(conformsTo.length).toBeGreaterThan(0);
 
   // Check for at least one CSAPI and one Features conformance URI
-  const joined = conformsTo.join(" ");
+  const joined = conformsTo.join(' ');
   expect(joined).toMatch(/connected-systems/i);
   expect(joined).toMatch(/ogcapi-features/i);
 });
@@ -64,20 +71,23 @@ test("Conformance declaration lists valid CSAPI conformance classes", async () =
  * Requirement: /req/landing-page/csapi-extensions
  * The landing page SHALL reference all canonical CSAPI extensions from Parts 1 & 2.
  */
-test("Landing page advertises CSAPI extension endpoints", async () => {
-  const data: Record<string, unknown> = await maybeFetchOrLoad("common_landing", apiRoot);
-  const links = (data as any).links as Array<{ rel: string }>;  
+test('Landing page advertises CSAPI extension endpoints', async () => {
+  const data: Record<string, unknown> = await maybeFetchOrLoad(
+    'common_landing',
+    apiRoot
+  );
+  const links = (data as any).links as Array<{ rel: string }>;
   const rels = links.map((l) => l.rel.toLowerCase());
 
   const expected = [
-    "systems",
-    "deployments",
-    "procedures",
-    "samplingfeatures",
-    "datastreams",
-    "observations",
-    "commands",
-    "feasibility",
+    'systems',
+    'deployments',
+    'procedures',
+    'samplingfeatures',
+    'datastreams',
+    'observations',
+    'commands',
+    'feasibility',
   ];
 
   for (const rel of expected) {
@@ -94,9 +104,12 @@ test("Landing page advertises CSAPI extension endpoints", async () => {
  * Requirement: /req/api-common/resources
  * Non-feature resource collections follow Features collection semantics and expose itemType.
  */
-test("/req/api-common/resources — properties collection shape", async () => {
+test('/req/api-common/resources — properties collection shape', async () => {
   const url = `${apiRoot}/properties`;
-  const data: Record<string, unknown> = await maybeFetchOrLoad("endpoint_properties", url);
+  const data: Record<string, unknown> = await maybeFetchOrLoad(
+    'endpoint_properties',
+    url
+  );
 
   expect(data).toBeDefined();
   // Basic shape
@@ -104,16 +117,21 @@ test("/req/api-common/resources — properties collection shape", async () => {
   // itemType or featureType adaptation
   expect((data as any).itemType || (data as any).featureType).toBeDefined();
   // Links may be absent in minimal fixtures; if present must be an array.
-  expect((data as any).links === undefined || Array.isArray((data as any).links)).toBe(true);
+  expect(
+    (data as any).links === undefined || Array.isArray((data as any).links)
+  ).toBe(true);
 });
 
 /**
  * Requirement: /req/api-common/resource-collection
  * Resource collections SHALL declare itemType and include standard link semantics (self).
  */
-test("/req/api-common/resource-collection — commands collection declares itemType", async () => {
+test('/req/api-common/resource-collection — commands collection declares itemType', async () => {
   const url = `${apiRoot}/commands`;
-  const data: Record<string, unknown> = await maybeFetchOrLoad("endpoint_commands", url);
+  const data: Record<string, unknown> = await maybeFetchOrLoad(
+    'endpoint_commands',
+    url
+  );
 
   expect(data).toBeDefined();
   const itemType = (data as any).itemType || (data as any).featureType;
@@ -122,7 +140,9 @@ test("/req/api-common/resource-collection — commands collection declares itemT
   const links = (data as any).links;
   expect(links === undefined || Array.isArray(links)).toBe(true);
   if (Array.isArray(links)) {
-    const rels = (links as any[]).map(l => l.rel?.toLowerCase()).filter(Boolean);
-    expect(rels).toContain("self");
+    const rels = (links as any[])
+      .map((l) => l.rel?.toLowerCase())
+      .filter(Boolean);
+    expect(rels).toContain('self');
   }
 });

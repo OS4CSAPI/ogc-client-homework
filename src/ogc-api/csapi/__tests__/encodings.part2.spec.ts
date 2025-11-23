@@ -4,6 +4,7 @@
  * support encodings based on SWE Common 3.0, as required by Part 2 Table 1.
  *
  * Traces to CSAPI Test Design Matrix v2.4:
+ *   - Location: docs/csapi/_tests_/CSAPI_Test_Design_Matrix_v2.4.md
  *   - Row: "Part 2 encodings" (Section D - Encodings)
  *   - Requirements:
  *     • /req/encodings/swe-common        (23-002 Table 1)
@@ -55,7 +56,7 @@ test('GET /datastreams advertises SWE Common 3.0 encodings', async () => {
   // Validate SWE Common schema structure
   expect(data).toHaveProperty('resultSchema');
   expect(data.resultSchema).toHaveProperty('type');
-  expect(data.resultSchema.type).toMatch(/DataRecord|DataArray/i);
+  expect(data.resultSchema.type).toMatch(/^(DataRecord|DataArray)$/i);
 
   // Validate SWE Common fields structure
   expect(data.resultSchema).toHaveProperty('fields');
@@ -137,7 +138,7 @@ test('GET /observations returns SWE Common JSON representation', async () => {
 
       // Validate encoding metadata
       expect(arrayResult.encoding).toHaveProperty('type');
-      expect(arrayResult.encoding.type).toMatch(/TextEncoding|BinaryEncoding/i);
+      expect(arrayResult.encoding.type).toMatch(/^(TextEncoding|BinaryEncoding)$/i);
 
       // Validate elementType has uom
       expect(arrayResult.elementType).toHaveProperty('uom');
@@ -199,5 +200,5 @@ test('Server supports content negotiation for SWE JSON and OM JSON', async () =>
   // SWE format should have result with SWE Common type
   const sweFeature = sweData.features[0];
   expect(sweFeature.properties.result).toHaveProperty('type');
-  expect(sweFeature.properties.result.type).toMatch(/DataRecord|DataArray/i);
+  expect(sweFeature.properties.result.type).toMatch(/^(DataRecord|DataArray)$/i);
 });

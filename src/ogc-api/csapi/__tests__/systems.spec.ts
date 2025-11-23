@@ -18,6 +18,10 @@ import {
   maybeFetchOrLoad,
   expectFeatureCollection,
   expectCanonicalUrl,
+  expectGeoJSONFeature,
+  expectGeoJSONFeatureCollection,
+  expectLinkRelations,
+  expectFeatureAttributeMapping,
 } from "../helpers";
 import { getSystemsUrl, getSystemEventsUrl } from "../url_builder";
 
@@ -113,4 +117,125 @@ test("getLinkedResources() returns rel→href mapping for a System", async () =>
   expect(Object.keys(links)).toContain("self");
   expect(Object.keys(links)).toContain("events");
   expect(links.events).toMatch(/\/systems\/sys-001\/events/);
+});
+
+/* -------------------------------------------------------------------------- */
+/*                         GeoJSON B8 Requirements: Systems                   */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Requirement: /req/geojson/mediatype-read
+ * Systems collection SHALL be available as GeoJSON FeatureCollection.
+ * Systems items SHALL be GeoJSON Features.
+ */
+test("/req/geojson/mediatype-read – Systems collection is valid GeoJSON FeatureCollection", async () => {
+  const url = getSystemsUrl(apiRoot);
+  const data: any = await maybeFetchOrLoad("systems", url);
+
+  expectGeoJSONFeatureCollection(data, "System");
+  expect(data.features.length).toBeGreaterThan(0);
+});
+
+test("/req/geojson/mediatype-read – System item is valid GeoJSON Feature", async () => {
+  const system = await client.get("sys-001");
+  expectGeoJSONFeature(system as any, { requireProperties: true });
+});
+
+/**
+ * Requirement: /req/geojson/relation-types
+ * System features SHALL include standard link relations in their links array.
+ * Expected relations: self, deployments, events (at minimum).
+ */
+test("/req/geojson/relation-types – System features include expected link relations", async () => {
+  const url = getSystemsUrl(apiRoot);
+  const data: any = await maybeFetchOrLoad("systems", url);
+  const first = data.features[0];
+
+  expectLinkRelations(first, ["self"]);
+  
+  // Systems typically link to deployments and events
+  const allRels = first.links.map((l: any) => l.rel);
+  const hasSystemRelations = allRels.some((rel: string) => 
+    ["deployments", "events", "system"].includes(rel)
+  );
+  expect(hasSystemRelations).toBe(true);
+});
+
+/**
+ * Requirement: /req/geojson/feature-attribute-mapping
+ * System attributes SHALL be mapped to the properties member of the GeoJSON Feature.
+ * Core attributes like id and type must be present; name and description are typical.
+ */
+test("/req/geojson/feature-attribute-mapping – System attributes mapped to properties", async () => {
+  const url = getSystemsUrl(apiRoot);
+  const data: any = await maybeFetchOrLoad("systems", url);
+  const first = data.features[0];
+
+  expect(first).toHaveProperty("properties");
+  expect(typeof first.properties).toBe("object");
+  
+  // Verify common system attributes are in properties
+  const hasSystemAttributes = 
+    first.properties.name !== undefined || 
+    first.properties.description !== undefined;
+  expect(hasSystemAttributes).toBe(true);
+});
+
+/**
+ * Requirement: /req/geojson/system-schema
+ * System GeoJSON representation SHALL conform to the required schema structure:
+ * - type: "Feature"
+ * - id: unique identifier
+ * - properties: object containing system attributes
+ * - links: array of link objects
+ */
+test("/req/geojson/system-schema – System features conform to required GeoJSON schema", async () => {
+  const url = getSystemsUrl(apiRoot);
+  const data: any = await maybeFetchOrLoad("systems", url);
+  const first = data.features[0];
+
+  // Validate schema structure
+  expect(first.type).toBe("Feature");
+  expect(first).toHaveProperty("id");
+  expect(typeof first.id).toBe("string");
+  expect(first).toHaveProperty("properties");
+  expect(typeof first.properties).toBe("object");
+  expect(first).toHaveProperty("links");
+  expect(Array.isArray(first.links)).toBe(true);
+  
+  // Validate links structure
+  first.links.forEach((link: any) => {
+    expect(link).toHaveProperty("rel");
+    expect(link).toHaveProperty("href");
+    expect(typeof link.href).toBe("string");
+  });
+});
+
+/**
+ * Requirement: /req/geojson/system-mappings
+ * System properties SHALL be correctly mapped from the CSAPI System model to GeoJSON properties.
+ * This includes: name, description, status, and other system-specific fields.
+ */
+test("/req/geojson/system-mappings – System properties correctly mapped to GeoJSON", async () => {
+  const url = getSystemsUrl(apiRoot);
+  const data: any = await maybeFetchOrLoad("systems", url);
+  const first = data.features[0];
+
+  // Validate that system-specific properties are present
+  const properties = first.properties;
+  expect(properties).toBeDefined();
+  
+  // At least one of the typical system properties should be present
+  const hasRequiredProperties = 
+    properties.name !== undefined ||
+    properties.description !== undefined;
+  expect(hasRequiredProperties).toBe(true);
+  
+  // Verify the properties are of correct types when present
+  if (properties.name) {
+    expect(typeof properties.name).toBe("string");
+  }
+  if (properties.description) {
+    expect(typeof properties.description).toBe("string");
+  }
 });

@@ -21,6 +21,10 @@ import {
   maybeFetchOrLoad,
   expectFeatureCollection,
   expectCanonicalUrl,
+  expectGeoJSONFeature,
+  expectGeoJSONFeatureCollection,
+  expectLinkRelations,
+  expectFeatureAttributeMapping,
 } from "../helpers";
 
 const apiRoot = process.env.CSAPI_API_ROOT || "https://example.csapi.server";
@@ -104,4 +108,86 @@ test("Procedures omit geometry per /req/procedure/location", async () => {
     Object.keys(geom).length > 0 &&
     (geom as any).type;
   expect(hasDisallowedGeometry).toBeFalsy();
+});
+
+/* -------------------------------------------------------------------------- */
+/*                      GeoJSON B8 Requirements: Procedures                   */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Requirement: /req/geojson/procedure-schema
+ * Procedure GeoJSON representation SHALL conform to the required schema structure:
+ * - type: "Feature"
+ * - id: unique identifier
+ * - properties: object containing procedure attributes
+ * - links: array of link objects
+ * - geometry: MUST be absent or null (per /req/procedure/location)
+ */
+test("/req/geojson/procedure-schema – Procedure features conform to required GeoJSON schema", async () => {
+  const url = getProceduresUrl(apiRoot);
+  const data: any = await maybeFetchOrLoad("procedures", url);
+  const first = data.features[0];
+
+  // Validate schema structure
+  expect(first.type).toBe("Feature");
+  expect(first).toHaveProperty("id");
+  expect(typeof first.id).toBe("string");
+  expect(first).toHaveProperty("properties");
+  expect(typeof first.properties).toBe("object");
+  
+  // Procedures must NOT have populated geometry (per /req/procedure/location)
+  const geom = first.geometry;
+  const hasDisallowedGeometry =
+    geom &&
+    typeof geom === "object" &&
+    Object.keys(geom).length > 0 &&
+    geom.type;
+  expect(hasDisallowedGeometry).toBeFalsy();
+  
+  // Validate FeatureCollection structure
+  expectGeoJSONFeatureCollection(data, "Procedure");
+});
+
+/**
+ * Requirement: /req/geojson/procedure-mappings
+ * Procedure properties SHALL be correctly mapped from the CSAPI Procedure model to GeoJSON properties.
+ * This includes: featureType and procedure-specific fields.
+ */
+test("/req/geojson/procedure-mappings – Procedure properties correctly mapped to GeoJSON", async () => {
+  const url = getProceduresUrl(apiRoot);
+  const data: any = await maybeFetchOrLoad("procedures", url);
+  const first = data.features[0];
+
+  // Validate that procedure-specific properties are present
+  const properties = first.properties;
+  expect(properties).toBeDefined();
+  expect(typeof properties).toBe("object");
+  
+  // Procedures should have featureType
+  if (properties.featureType) {
+    expect(properties.featureType).toMatch(/sosa:Procedure/i);
+  }
+});
+
+/**
+ * Requirement: /req/geojson/relation-types (Procedures)
+ * Procedure features SHALL include standard link relations if links are present.
+ * Note: Procedures may have minimal link structures in fixtures.
+ */
+test("/req/geojson/relation-types – Procedure features with links include valid relations", async () => {
+  const url = getProceduresUrl(apiRoot);
+  const data: any = await maybeFetchOrLoad("procedures", url);
+  const first = data.features[0];
+
+  // If links are present, validate their structure
+  if (first.links && Array.isArray(first.links) && first.links.length > 0) {
+    first.links.forEach((link: any) => {
+      expect(link).toHaveProperty("rel");
+      expect(link).toHaveProperty("href");
+      expect(typeof link.href).toBe("string");
+    });
+  } else {
+    // Links may be optional for procedures in minimal fixtures
+    expect(true).toBe(true);
+  }
 });

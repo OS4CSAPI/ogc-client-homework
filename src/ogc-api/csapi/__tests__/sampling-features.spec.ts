@@ -209,8 +209,6 @@ test("/req/geojson/relation-types – SamplingFeature features with links includ
       ["system", "self"].includes(rel)
     );
     expect(hasSFRelations).toBe(true);
-  } else {
-    // Links may be optional in minimal fixtures
-    expect(true).toBe(true);
   }
+  // Note: Links may be optional in minimal fixtures
 });

@@ -186,8 +186,6 @@ test("/req/geojson/relation-types – Procedure features with links include vali
       expect(link).toHaveProperty("href");
       expect(typeof link.href).toBe("string");
     });
-  } else {
-    // Links may be optional for procedures in minimal fixtures
-    expect(true).toBe(true);
   }
+  // Note: Links may be optional for procedures in minimal fixtures
 });

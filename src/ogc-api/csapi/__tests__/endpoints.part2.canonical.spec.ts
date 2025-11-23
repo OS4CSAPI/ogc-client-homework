@@ -121,8 +121,10 @@ test("Landing page endpoints use correct canonical URL patterns", async () => {
   expect(Array.isArray(data.links)).toBe(true);
 
   // Filter to only resource endpoint links (exclude self, conformance, etc.)
+  // Create lowercase set for efficient lookup
+  const canonicalLowerCase = new Set(CANONICAL_ENDPOINTS.map(ep => ep.toLowerCase()));
   const resourceLinks = data.links.filter((l: any) => 
-    CANONICAL_ENDPOINTS.some(ep => ep.toLowerCase() === l.rel?.toLowerCase()) || 
+    canonicalLowerCase.has(l.rel?.toLowerCase()) || 
     CANONICAL_ENDPOINTS.some(ep => l.href?.includes(`/${ep}`))
   );
 
@@ -130,7 +132,7 @@ test("Landing page endpoints use correct canonical URL patterns", async () => {
   for (const link of resourceLinks) {
     // Find matching canonical endpoint
     const matchingEndpoint = CANONICAL_ENDPOINTS.find(ep => 
-      link.href?.includes(`/${ep}`) || link.rel === ep
+      link.href?.includes(`/${ep}`) || link.rel?.toLowerCase() === ep.toLowerCase()
     );
     
     if (matchingEndpoint) {

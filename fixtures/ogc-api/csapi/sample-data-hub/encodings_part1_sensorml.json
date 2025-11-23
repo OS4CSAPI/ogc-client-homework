@@ -1,7 +1,74 @@
 {
-  "type": "System",
+  "type": "PhysicalSystem",
   "id": "sys-001",
-  "description": "SensorML-JSON encoding for SystemA",
-  "components": [],
-  "contacts": []
+  "definition": "http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_Measurement",
+  "uniqueId": "urn:x-ogc:sensor:sys-001",
+  "label": "Environmental Monitoring System",
+  "description": "SensorML-JSON encoding for Part 1 requirements - comprehensive system description",
+  "contacts": [
+    {
+      "role": "operator",
+      "organizationName": "OGC Test Organization",
+      "contactInfo": {
+        "address": {
+          "deliveryPoint": "123 Sensor Street",
+          "city": "Rome",
+          "postalCode": "00100",
+          "country": "Italy"
+        },
+        "onlineResource": "https://example.csapi.server"
+      }
+    }
+  ],
+  "documentation": [
+    {
+      "role": "userManual",
+      "linkage": "https://example.csapi.server/docs/sys-001/manual.pdf",
+      "description": "System operation manual"
+    }
+  ],
+  "validTime": {
+    "start": "2024-01-01T00:00:00Z",
+    "end": null
+  },
+  "components": [
+    {
+      "name": "temperatureSensor",
+      "type": "PhysicalComponent",
+      "definition": "http://www.opengis.net/def/property/OGC/0/Temperature",
+      "label": "Temperature Sensor",
+      "description": "Digital temperature measurement component"
+    },
+    {
+      "name": "humiditySensor",
+      "type": "PhysicalComponent",
+      "definition": "http://www.opengis.net/def/property/OGC/0/Humidity",
+      "label": "Humidity Sensor",
+      "description": "Relative humidity measurement component"
+    }
+  ],
+  "position": {
+    "type": "Point",
+    "coordinates": [12.48, 41.89]
+  },
+  "outputs": [
+    {
+      "name": "temperature",
+      "type": "Quantity",
+      "definition": "http://www.opengis.net/def/property/OGC/0/Temperature",
+      "label": "Air Temperature",
+      "uom": {
+        "code": "Cel"
+      }
+    },
+    {
+      "name": "humidity",
+      "type": "Quantity",
+      "definition": "http://www.opengis.net/def/property/OGC/0/Humidity",
+      "label": "Relative Humidity",
+      "uom": {
+        "code": "%"
+      }
+    }
+  ]
 }

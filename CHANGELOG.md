@@ -84,11 +84,15 @@ const systemsClient = new SystemsClient('https://your-csapi-server.com');
 const systems = await systemsClient.list();
 
 // Get datastreams
-const datastreamsClient = new DatastreamsClient('https://your-csapi-server.com');
+const datastreamsClient = new DatastreamsClient(
+  'https://your-csapi-server.com'
+);
 const datastreams = await datastreamsClient.list();
 
 // Retrieve observations
-const observationsClient = new ObservationsClient('https://your-csapi-server.com');
+const observationsClient = new ObservationsClient(
+  'https://your-csapi-server.com'
+);
 const observations = await observationsClient.list();
 ```
 

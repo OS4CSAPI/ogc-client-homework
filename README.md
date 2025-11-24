@@ -108,7 +108,11 @@ node examples/csapi-demo.js
 The library provides comprehensive support for the OGC API - Connected Systems standard:
 
 ```js
-import { SystemsClient, DatastreamsClient, ObservationsClient } from '@camptocamp/ogc-client';
+import {
+  SystemsClient,
+  DatastreamsClient,
+  ObservationsClient,
+} from '@camptocamp/ogc-client';
 
 // Initialize clients
 const systemsClient = new SystemsClient('https://your-csapi-server.com');
@@ -121,10 +125,14 @@ console.log(`Found ${systems.features.length} systems`);
 const system = await systemsClient.get('system-id');
 
 // Query datastreams and observations
-const datastreamsClient = new DatastreamsClient('https://your-csapi-server.com');
+const datastreamsClient = new DatastreamsClient(
+  'https://your-csapi-server.com'
+);
 const datastreams = await datastreamsClient.list();
 
-const observationsClient = new ObservationsClient('https://your-csapi-server.com');
+const observationsClient = new ObservationsClient(
+  'https://your-csapi-server.com'
+);
 const observations = await observationsClient.list();
 ```
 

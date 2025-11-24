@@ -47,20 +47,23 @@ Each spec maps directly to normative requirements (`/req/...`) and references a 
 
 ## 🧰 Fixtures
 
-### Profiles
+### Unified Examples Suite
 
-Fixtures are now organized into profiles and loaded via a profile-aware loader:
+All fixtures are now located in a single unified directory:
 
-- default (legacy):  
-  `fixtures/ogc-api/csapi/sample-data-hub/`
-- minimal (optional, if created):  
-  `fixtures/ogc-api/csapi/minimal/`
-- advanced (enriched semantics for filtering):  
-  `fixtures/ogc-api/csapi/advanced/`
+**`fixtures/ogc-api/csapi/examples/`**
 
-Most suites continue to use the default fixtures. The advanced filtering spec uses the advanced profile for richer semantics (multiple resources and relationship arrays).
+This directory replaces the previous separate `sample-data-hub` and `advanced` fixture directories. The unified suite provides:
 
-See the [Fixture Index](./Fixture_Index.md) for descriptions, referenced tests, and requirement traceability.
+- **Standards-compliant geometry**: Spatial resources include valid GeoJSON geometry (Point, Polygon, LineString)
+- **Complete metadata**: All features include proper `links` arrays, `featureType`, and relationship metadata
+- **Rich relationships**: Resources include relationship arrays (procedureIds, foiIds, observedProperties, controlledProperties, systemIds)
+- **Advanced filtering support**: Dedicated resources (sys-1, sys-3, dep-1, dep-2, proc-2, sf-9) for comprehensive filter testing
+- **Diverse coverage**: Multiple geometry types, parent-child hierarchies, temporal scopes, nested collections
+
+The fixture loader automatically uses this unified directory - no profile selection is needed.
+
+See `fixtures/ogc-api/csapi/examples/README.md` for detailed documentation of the unified suite.
 
 ---
 
@@ -68,7 +71,7 @@ See the [Fixture Index](./Fixture_Index.md) for descriptions, referenced tests, 
 
 ### 1) Fixture Mode (default — offline)
 
-Uses static JSON fixtures (no network calls). By default, the loader uses the `sample-data-hub` directory.
+Uses static JSON fixtures from the unified examples directory (no network calls).
 
 ```bash
 npm test -- src/ogc-api/csapi/__tests__/
@@ -82,27 +85,15 @@ Fetches responses from a live CSAPI-compliant server.
 CSAPI_LIVE=true CSAPI_API_ROOT=https://example.csapi.server npm test
 ```
 
-### 3) Selecting a Fixture Profile
-
-You can select a fixture profile globally by setting:
-
-```bash
-CSAPI_FIXTURE_PROFILE=advanced npm test
-# or
-CSAPI_FIXTURE_PROFILE=minimal npm test
-```
-
-Note: Some specs may set the profile internally. In particular, `advanced-filtering.spec.ts` sets the profile to `advanced` before importing the filtering helpers (see “Advanced Filtering Note” below).
-
 **Environment Variables**
 
 | Name                    | Description                                                                      |
 | :---------------------- | :------------------------------------------------------------------------------- |
 | `CSAPI_LIVE`            | When set to `"true"`, enables live network testing.                              |
 | `CSAPI_API_ROOT`        | Base URL of the CSAPI service under test.                                        |
-| `CSAPI_FIXTURE_PROFILE` | Selects fixture profile: `default` (legacy, implicit), `minimal`, or `advanced`. |
+| ~~`CSAPI_FIXTURE_PROFILE`~~ | **Deprecated** - No longer used. All fixtures load from unified examples/    |
 
-> When `CSAPI_LIVE` is **not** set, the harness automatically falls back to **fixture mode** using the selected profile (default if unset).
+> When `CSAPI_LIVE` is **not** set, the harness automatically falls back to **fixture mode** using the unified examples directory.
 
 ---
 
@@ -123,7 +114,7 @@ src/ogc-api/csapi/fixture_loader.ts
 | Function                                   | Purpose                                                        |
 | :----------------------------------------- | :------------------------------------------------------------- |
 | `fetchCollection(url)`                     | Performs live HTTP fetch.                                      |
-| `loadFixture(name)`                        | Loads a local fixture file by name (profile-aware wrapper).    |
+| `loadFixture(name)`                        | Loads a local fixture file by name from unified examples/.     |
 | `maybeFetchOrLoad(name, url)`              | Chooses client mode, live mode, or fixture mode automatically. |
 | `expectFeatureCollection(data, itemType?)` | Standard assertion for FeatureCollection validity.             |
 | `expectCanonicalUrl(url, pattern)`         | Asserts endpoint URL conformance.                              |
@@ -132,13 +123,14 @@ src/ogc-api/csapi/fixture_loader.ts
 
 ## 🔎 Advanced Filtering Note
 
-The advanced filtering spec requires profile selection to occur before importing the filtering helpers so that the advanced fixtures are loaded at module load time.
+The advanced filtering spec uses resources from the unified fixtures suite that include rich relationship data (procedureIds, foiIds, observedProperties, controlledProperties, systemIds).
+
+All resources needed for advanced filtering tests are automatically available in the unified examples directory.
 
 Pattern used in `advanced-filtering.spec.ts`:
 
 ```ts
-// Set profile before requiring the helpers
-process.env.CSAPI_FIXTURE_PROFILE = 'advanced';
+// Import filtering helpers - automatically uses unified fixtures
 const {
   filterSystems,
   filterDeployments,
@@ -151,7 +143,12 @@ const {
 } = require('../advanced_filtering_helpers');
 ```
 
-If you switch back to ESM `import` statements at the top of the file, make sure the profile is set by your test runner (e.g., via CLI env) before Jest resolves imports.
+The unified fixtures include dedicated resources for advanced filtering:
+- **sys-1, sys-3**: Systems with parent, procedure, FOI, and property associations
+- **dep-1, dep-2**: Deployments with system, FOI, and property arrays
+- **proc-2**: Procedure with property associations
+- **sf-9**: Sampling feature with FOI and property arrays
+- **prop-def-1**: Property definition with baseProperty and objectTypes
 
 ---
 

@@ -56,10 +56,9 @@ export async function csapiFetch(
  * OGC API – Connected Systems Helpers
  * Provides hybrid data-access utilities for tests and client modules.
  * Modes:
- *   - Default: load from local fixtures (profile 'default')
+ *   - Default: load from local unified fixtures (examples/)
  *   - CSAPI_LIVE=true: fetch from live remote endpoint
  *   - CSAPI_CLIENT_MODE=true: call actual CSAPI client modules
- *   - CSAPI_FIXTURE_PROFILE=(minimal|advanced|default): select fixture profile
  */
 
 /* -------------------------------------------------------------------------- */
@@ -82,7 +81,8 @@ export async function fetchCollection(url: string): Promise<unknown> {
 /* -------------------------------------------------------------------------- */
 
 /**
- * Profile-aware fixture loader wrapper.
+ * Unified fixture loader.
+ * Loads fixtures from the unified examples directory.
  */
 export function loadFixture(fixtureName: string): unknown {
   return loadFixtureEnv(fixtureName);
@@ -99,7 +99,7 @@ export function loadFixture(fixtureName: string): unknown {
  * Resolution order:
  *   1. If CSAPI_CLIENT_MODE=true → dynamic client invocation
  *   2. Else if CSAPI_LIVE=true → fetch from remote URL
- *   3. Else → load local fixture JSON (profile-aware)
+ *   3. Else → load local fixture JSON from unified examples/
  */
 export async function maybeFetchOrLoad(
   fixtureName: string,

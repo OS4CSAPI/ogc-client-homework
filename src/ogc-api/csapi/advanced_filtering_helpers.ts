@@ -1,6 +1,6 @@
 /**
  * Advanced Filtering Helpers (B7)
- * Profile-aware fixture loading (minimal | advanced | default).
+ * Uses unified fixtures from examples/ directory.
  * Geometry filtering remains a placeholder.
  */
 import { loadFixtureEnv } from './fixture_loader';

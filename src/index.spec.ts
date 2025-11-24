@@ -95,8 +95,6 @@ describe('Main Index Exports', () => {
     });
   });
 
-
-
   describe('CSAPI Instantiation', () => {
     it('should be able to instantiate SystemsClient from main export', () => {
       const apiRoot = 'https://test.api/csapi';

@@ -24,19 +24,36 @@ import { maybeFetchOrLoad, expectFeatureCollection } from '../helpers';
 
 const apiRoot = process.env.CSAPI_API_ROOT || 'https://example.csapi.server';
 
+/** Type for landing page response with links */
+type LandingPageData = {
+  links: Array<{ rel?: string; href?: string }>;
+};
+
+/** Type for collection responses which may be FeatureCollection or Collection */
+type CollectionData = {
+  type?: string;
+  links?: Array<{ rel?: string; href?: string }>;
+  title?: string;
+  features?: unknown[];
+  members?: unknown[];
+};
+
 /**
  * Requirement: /req/canonical-endpoints/listing
  * The API landing page SHALL advertise all canonical CSAPI Part 2 endpoints.
  */
 test('Landing page advertises all canonical CSAPI Part 2 endpoints', async () => {
-  const data = await maybeFetchOrLoad('endpoints_part2_landing', apiRoot);
+  const data = (await maybeFetchOrLoad(
+    'endpoints_part2_landing',
+    apiRoot
+  )) as LandingPageData;
 
   expect(data).toBeDefined();
   expect(Array.isArray(data.links)).toBe(true);
 
   // Extract rel or href identifiers for comparison
-  const linkHrefs = data.links.map((l: any) => l.href || '');
-  const linkRels = data.links.map((l: any) => l.rel || '');
+  const linkHrefs = data.links.map((l) => l.href || '');
+  const linkRels = data.links.map((l) => l.rel || '');
 
   // Each canonical endpoint should appear either by href or rel
   for (const endpoint of CANONICAL_ENDPOINTS) {
@@ -57,14 +74,14 @@ test('All canonical CSAPI Part 2 endpoints are accessible and return collections
   for (const endpoint of CANONICAL_ENDPOINTS) {
     const url = `${apiRoot}/${endpoint}`;
     const fixtureKey = `endpoint_${endpoint}`; // ✅ direct lowerCamelCase key
-    const data = await maybeFetchOrLoad(fixtureKey, url);
+    const data = (await maybeFetchOrLoad(fixtureKey, url)) as CollectionData;
 
     // Some endpoints (e.g., properties) may use "Collection" instead of "FeatureCollection"
     if (data.type === 'Collection' || data.members) {
       expect(data).toHaveProperty('type', 'Collection');
       expect(Array.isArray(data.members)).toBe(true);
     } else {
-      expectFeatureCollection(data);
+      expectFeatureCollection(data as Record<string, unknown>);
     }
   }
 });
@@ -77,7 +94,7 @@ test('Each canonical endpoint collection includes expected metadata', async () =
   for (const endpoint of CANONICAL_ENDPOINTS) {
     const url = `${apiRoot}/${endpoint}`;
     const fixtureKey = `endpoint_${endpoint}`; // ✅ direct lowerCamelCase key
-    const data = await maybeFetchOrLoad(fixtureKey, url);
+    const data = (await maybeFetchOrLoad(fixtureKey, url)) as CollectionData;
 
     if (data.links) {
       expect(Array.isArray(data.links)).toBe(true);

@@ -23,13 +23,29 @@ import { maybeFetchOrLoad } from '../helpers';
 
 const apiRoot = process.env.CSAPI_API_ROOT || 'https://example.csapi.server';
 
+/** Type for GeoJSON FeatureCollection responses */
+type FeatureCollectionData = {
+  type: string;
+  features: Array<{ type: string; geometry?: unknown; properties?: unknown }>;
+};
+
+/** Type for SensorML-JSON responses */
+type SensorMLData = {
+  type: string;
+  components?: unknown;
+  contacts?: unknown;
+};
+
 /**
  * Requirement: /req/encodings/geojson
  * All feature resources SHALL be available as GeoJSON.
  */
 test('GET /systems returns valid GeoJSON FeatureCollection encoding', async () => {
   const url = getSystemsUrl(apiRoot) + '?f=geojson';
-  const data = await maybeFetchOrLoad('encodings_part1_geojson', url);
+  const data = (await maybeFetchOrLoad(
+    'encodings_part1_geojson',
+    url
+  )) as FeatureCollectionData;
 
   expect(data).toBeDefined();
   expect(data.type).toBe('FeatureCollection');
@@ -62,14 +78,14 @@ test('Server supports content negotiation for GeoJSON and SensorML-JSON', async 
   const geojsonUrl = getSystemsUrl(apiRoot);
   const sensormlUrl = getSystemsUrl(apiRoot);
 
-  const geojsonData = await maybeFetchOrLoad(
+  const geojsonData = (await maybeFetchOrLoad(
     'encodings_part1_geojson',
     geojsonUrl
-  );
-  const sensormlData = await maybeFetchOrLoad(
+  )) as FeatureCollectionData;
+  const sensormlData = (await maybeFetchOrLoad(
     'encodings_part1_sensorml',
     sensormlUrl
-  );
+  )) as SensorMLData;
 
   // Hybrid mode: assume fixture names correspond to accepted media types
   expect(geojsonData.type).toBe('FeatureCollection');

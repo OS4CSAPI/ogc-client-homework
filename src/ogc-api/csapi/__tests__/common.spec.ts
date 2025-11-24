@@ -28,10 +28,10 @@ const apiRoot: string =
  * The API landing page SHALL provide a title and link relations for all primary resources.
  */
 test('Landing page contains expected metadata and canonical links', async () => {
-  const data: Record<string, unknown> = await maybeFetchOrLoad(
-    'common_landing',
-    apiRoot
-  );
+  const data = (await maybeFetchOrLoad('common_landing', apiRoot)) as Record<
+    string,
+    unknown
+  >;
 
   expect(data).toBeDefined();
   expect((data as any).title).toBeDefined();
@@ -56,10 +56,10 @@ test('Landing page contains expected metadata and canonical links', async () => 
  */
 test('Conformance declaration lists valid CSAPI conformance classes', async () => {
   const url = `${apiRoot}/conformance`;
-  const data: Record<string, unknown> = await maybeFetchOrLoad(
-    'common_conformance',
-    url
-  );
+  const data = (await maybeFetchOrLoad('common_conformance', url)) as Record<
+    string,
+    unknown
+  >;
 
   expect(data).toBeDefined();
   const conformsTo = (data as any).conformsTo as string[];
@@ -77,10 +77,10 @@ test('Conformance declaration lists valid CSAPI conformance classes', async () =
  * The landing page SHALL reference all canonical CSAPI extensions from Parts 1 & 2.
  */
 test('Landing page advertises CSAPI extension endpoints', async () => {
-  const data: Record<string, unknown> = await maybeFetchOrLoad(
-    'common_landing',
-    apiRoot
-  );
+  const data = (await maybeFetchOrLoad('common_landing', apiRoot)) as Record<
+    string,
+    unknown
+  >;
   const links = (data as any).links as Array<{ rel: string }>;
   const rels = links.map((l) => l.rel.toLowerCase());
 
@@ -111,10 +111,10 @@ test('Landing page advertises CSAPI extension endpoints', async () => {
  */
 test('/req/api-common/resources — properties collection shape', async () => {
   const url = `${apiRoot}/properties`;
-  const data: Record<string, unknown> = await maybeFetchOrLoad(
-    'endpoint_properties',
-    url
-  );
+  const data = (await maybeFetchOrLoad('endpoint_properties', url)) as Record<
+    string,
+    unknown
+  >;
 
   expect(data).toBeDefined();
   // Basic shape
@@ -133,10 +133,10 @@ test('/req/api-common/resources — properties collection shape', async () => {
  */
 test('/req/api-common/resource-collection — commands collection declares itemType', async () => {
   const url = `${apiRoot}/commands`;
-  const data: Record<string, unknown> = await maybeFetchOrLoad(
-    'endpoint_commands',
-    url
-  );
+  const data = (await maybeFetchOrLoad('endpoint_commands', url)) as Record<
+    string,
+    unknown
+  >;
 
   expect(data).toBeDefined();
   const itemType = (data as any).itemType || (data as any).featureType;

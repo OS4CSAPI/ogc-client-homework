@@ -1,9 +1,0 @@
-{
-  "commandId": "cmd-001",
-  "outcome": "success",
-  "completed": "2025-01-01T00:05:00Z",
-  "data": {
-    "recordsProcessed": 123,
-    "notes": "Execution completed normally."
-  }
-}

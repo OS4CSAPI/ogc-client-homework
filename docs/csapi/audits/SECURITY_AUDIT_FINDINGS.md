@@ -28,23 +28,27 @@ A comprehensive security audit was conducted on all CSAPI fixture data and docum
 The following sensitive data patterns were searched across all files:
 
 1. **Credentials & Authentication:**
+
    - `secret`, `password`, `credential`, `auth`
    - `api_key`, `apikey`, `token`, `bearer`, `oauth`, `jwt`
    - `x-api-key`, `authorization`
 
 2. **Contact Information:**
+
    - Email addresses (pattern: `[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}`)
    - Phone numbers
    - Physical addresses
    - Organization details
 
 3. **System Information:**
+
    - IP addresses (pattern: `([0-9]{1,3}\.){3}[0-9]{1,3}`)
    - Localhost URLs with ports
    - Production/staging server URLs
    - Real domain names (non-example)
 
 4. **Personal Information:**
+
    - Usernames (non-example)
    - SSN, credit card numbers
    - Bank account information
@@ -60,12 +64,14 @@ The following sensitive data patterns were searched across all files:
 ### ✅ Safe Items (No Action Required)
 
 #### 1. Example Email Address
+
 - **Location:** `fixtures/ogc-api/csapi/examples/systemHistory_rev-001.json:10`
 - **Content:** `"author": "admin@example.com"`
 - **Assessment:** ✅ Safe - Uses RFC 2606 reserved domain `example.com`
 - **Action:** None required
 
 #### 2. Example URLs
+
 - **Locations:** Throughout fixtures and documentation
 - **Patterns:**
   - `https://example.csapi.server/*`
@@ -74,6 +80,7 @@ The following sensitive data patterns were searched across all files:
 - **Action:** None required
 
 #### 3. Standard Vocabulary URIs
+
 - **Locations:** Various fixture files
 - **Domains Found:**
   - `http://qudt.org/*` - Quantities, Units, Dimensions and Data Types (QUDT) ontology
@@ -85,12 +92,14 @@ The following sensitive data patterns were searched across all files:
 - **Action:** None required
 
 #### 4. "contacts" Field
+
 - **Location:** `fixtures/ogc-api/csapi/examples/encodings_part1_sensorml.json:6`
 - **Content:** `"contacts": []`
 - **Assessment:** ✅ Safe - Empty array, schema field only
 - **Action:** None required
 
 #### 5. Test Configuration Keywords
+
 - **Locations:** Documentation files
 - **Keywords:** `CSAPI_LIVE`, `CSAPI_API_ROOT`, `live mode`, `production`
 - **Context:** Test harness configuration documentation
@@ -124,17 +133,21 @@ The following potentially sensitive items were specifically searched for and con
 ## Compliance Verification
 
 ### RFC 2606 - Reserved Domains ✅
+
 All example data uses appropriate reserved domains:
+
 - `example.com` ✅
 - `example.csapi.server` ✅ (fictional subdomain)
 - `your.csapi.server` ✅ (placeholder)
 
 ### OWASP Secure Coding Practices ✅
+
 - No hardcoded credentials
 - No sensitive data in fixtures
 - No production configuration in test data
 
 ### Data Privacy (GDPR/CCPA) ✅
+
 - No personal data (PII) present
 - No contact information requiring anonymization
 - No user tracking or identification data
@@ -144,18 +157,22 @@ All example data uses appropriate reserved domains:
 ## Recommendations
 
 ### Immediate Actions
+
 ✅ **None Required** - No sensitive data found that requires remediation.
 
 ### Future Prevention
+
 To maintain security hygiene in future contributions:
 
 1. **Fixture Data Guidelines:**
+
    - Always use RFC 2606 reserved domains: `example.com`, `example.org`, `example.net`
    - Use placeholder email format: `user@example.com`
    - Use fictional server names: `example.csapi.server`
    - Never include real production URLs
 
 2. **Code Review Checklist:**
+
    - Review all fixture additions for sensitive data
    - Verify example domains are used
    - Check for hardcoded credentials before commits

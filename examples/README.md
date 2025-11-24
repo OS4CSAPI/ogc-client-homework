@@ -39,3 +39,27 @@ The example queries the public STAC API at:
 - https://api.stac.teledetection.fr
 - https://catalog.maap.eo.esa.int/catalogue
 - https://stac.dataspace.copernicus.eu/v1/
+
+### OGC API - Connected Systems (CSAPI) Query Example
+
+Demonstrates querying an OGC API - Connected Systems endpoint:
+
+```bash
+node examples/csapi-query.js
+```
+
+This example shows how to:
+
+- Connect to a CSAPI endpoint
+- List and retrieve system details
+- Get linked resources for systems
+- List system events
+- Query datastreams and their metadata
+- Retrieve observations
+- List deployments
+
+By default, the example uses fixture data. To test with a live endpoint:
+
+```bash
+CSAPI_API_ROOT=https://your-csapi-endpoint.com node examples/csapi-query.js
+```

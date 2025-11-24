@@ -46,12 +46,6 @@ Demonstrates working with OGC API - Connected Systems endpoints:
 
 ```bash
 node examples/csapi-demo.js
-### OGC API - Connected Systems (CSAPI) Query Example
-
-Demonstrates querying an OGC API - Connected Systems endpoint:
-
-```bash
-node examples/csapi-query.js
 ```
 
 This example shows how to:
@@ -64,6 +58,7 @@ This example shows how to:
 - Access system events
 
 **Related documentation:**
+
 - [OGC API - Connected Systems Standard](https://github.com/opengeospatial/ogcapi-connected-systems)
 - [Part 1: Feature Resources](https://docs.ogc.org/DRAFTS/23-001.html)
 - [Part 2: Sampling Resources](https://docs.ogc.org/DRAFTS/23-002.html)
@@ -74,16 +69,4 @@ The example uses fixture data by default. To test with a live CSAPI endpoint:
 export CSAPI_API_ROOT=https://your-csapi-server.com
 export CSAPI_LIVE=true
 node examples/csapi-demo.js
-- Connect to a CSAPI endpoint
-- List and retrieve system details
-- Get linked resources for systems
-- List system events
-- Query datastreams and their metadata
-- Retrieve observations
-- List deployments
-
-By default, the example uses fixture data. To test with a live endpoint:
-
-```bash
-CSAPI_API_ROOT=https://your-csapi-endpoint.com node examples/csapi-query.js
 ```

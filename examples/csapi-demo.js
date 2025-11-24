@@ -21,7 +21,8 @@ import {
 
 // CSAPI endpoint base URL
 // Replace with your actual CSAPI server endpoint
-const CSAPI_API_ROOT = process.env.CSAPI_API_ROOT || 'https://example.csapi.server';
+const CSAPI_API_ROOT =
+  process.env.CSAPI_API_ROOT || 'https://example.csapi.server';
 
 async function main() {
   try {
@@ -53,20 +54,28 @@ async function main() {
       }
       if (system.description) {
         const desc = system.description.substring(0, 60);
-        console.log(`         Description: ${desc}${system.description.length > 60 ? '...' : ''}`);
+        console.log(
+          `         Description: ${desc}${
+            system.description.length > 60 ? '...' : ''
+          }`
+        );
       }
     });
     if (systemsCollection.features.length > 3) {
-      console.log(`      ... and ${systemsCollection.features.length - 3} more`);
+      console.log(
+        `      ... and ${systemsCollection.features.length - 3} more`
+      );
     }
     console.log('');
 
     // Get a specific system
     if (systemsCollection.features.length > 0) {
       const systemId = systemsCollection.features[0].id;
-      console.log(`   b) Getting detailed information for system: "${systemId}"`);
+      console.log(
+        `   b) Getting detailed information for system: "${systemId}"`
+      );
       const system = await systemsClient.get(systemId);
-      
+
       console.log(`      ID: ${system.id}`);
       console.log(`      Type: ${system.type}`);
       if (system.name) {
@@ -135,7 +144,9 @@ async function main() {
     // List all datastreams
     console.log('   a) Listing all datastreams:');
     const datastreamsCollection = await datastreamsClient.list();
-    console.log(`      Found ${datastreamsCollection.features.length} datastream(s)`);
+    console.log(
+      `      Found ${datastreamsCollection.features.length} datastream(s)`
+    );
     console.log(`      Collection type: ${datastreamsCollection.type}\n`);
 
     // Display first few datastreams
@@ -146,20 +157,28 @@ async function main() {
       }
       if (datastream.properties?.description) {
         const desc = datastream.properties.description.substring(0, 60);
-        console.log(`         Description: ${desc}${datastream.properties.description.length > 60 ? '...' : ''}`);
+        console.log(
+          `         Description: ${desc}${
+            datastream.properties.description.length > 60 ? '...' : ''
+          }`
+        );
       }
     });
     if (datastreamsCollection.features.length > 3) {
-      console.log(`      ... and ${datastreamsCollection.features.length - 3} more`);
+      console.log(
+        `      ... and ${datastreamsCollection.features.length - 3} more`
+      );
     }
     console.log('');
 
     // Get a specific datastream
     if (datastreamsCollection.features.length > 0) {
       const datastreamId = datastreamsCollection.features[0].id;
-      console.log(`   b) Getting detailed information for datastream: "${datastreamId}"`);
+      console.log(
+        `   b) Getting detailed information for datastream: "${datastreamId}"`
+      );
       const datastream = await datastreamsClient.get(datastreamId);
-      
+
       console.log(`      ID: ${datastream.id}`);
       console.log(`      Type: ${datastream.type}`);
       if (datastream.properties) {
@@ -167,13 +186,23 @@ async function main() {
           console.log(`      Name: ${datastream.properties.name}`);
         }
         if (datastream.properties.description) {
-          console.log(`      Description: ${datastream.properties.description}`);
+          console.log(
+            `      Description: ${datastream.properties.description}`
+          );
         }
         if (datastream.properties.observedProperty) {
-          console.log(`      Observed Property: ${JSON.stringify(datastream.properties.observedProperty)}`);
+          console.log(
+            `      Observed Property: ${JSON.stringify(
+              datastream.properties.observedProperty
+            )}`
+          );
         }
         if (datastream.properties.unitOfMeasurement) {
-          console.log(`      Unit: ${JSON.stringify(datastream.properties.unitOfMeasurement)}`);
+          console.log(
+            `      Unit: ${JSON.stringify(
+              datastream.properties.unitOfMeasurement
+            )}`
+          );
         }
       }
 
@@ -197,7 +226,9 @@ async function main() {
     // List all observations
     console.log('   a) Listing all observations:');
     const observationsCollection = await observationsClient.list();
-    console.log(`      Found ${observationsCollection.features.length} observation(s)`);
+    console.log(
+      `      Found ${observationsCollection.features.length} observation(s)`
+    );
     console.log(`      Collection type: ${observationsCollection.type}\n`);
 
     // Display first few observations
@@ -205,42 +236,62 @@ async function main() {
       console.log(`      ${idx + 1}. ${observation.id}`);
       if (observation.properties) {
         if (observation.properties.phenomenonTime) {
-          console.log(`         Time: ${observation.properties.phenomenonTime}`);
+          console.log(
+            `         Time: ${observation.properties.phenomenonTime}`
+          );
         }
         if (observation.properties.result !== undefined) {
-          console.log(`         Result: ${JSON.stringify(observation.properties.result)}`);
+          console.log(
+            `         Result: ${JSON.stringify(observation.properties.result)}`
+          );
         }
         if (observation.properties.resultTime) {
-          console.log(`         Result Time: ${observation.properties.resultTime}`);
+          console.log(
+            `         Result Time: ${observation.properties.resultTime}`
+          );
         }
       }
     });
     if (observationsCollection.features.length > 5) {
-      console.log(`      ... and ${observationsCollection.features.length - 5} more`);
+      console.log(
+        `      ... and ${observationsCollection.features.length - 5} more`
+      );
     }
     console.log('');
 
     // Get a specific observation
     if (observationsCollection.features.length > 0) {
       const observationId = observationsCollection.features[0].id;
-      console.log(`   b) Getting detailed information for observation: "${observationId}"`);
+      console.log(
+        `   b) Getting detailed information for observation: "${observationId}"`
+      );
       const observation = await observationsClient.get(observationId);
-      
+
       console.log(`      ID: ${observation.id}`);
       console.log(`      Type: ${observation.type}`);
       if (observation.properties) {
         console.log('      Properties:');
         if (observation.properties.phenomenonTime) {
-          console.log(`        Phenomenon Time: ${observation.properties.phenomenonTime}`);
+          console.log(
+            `        Phenomenon Time: ${observation.properties.phenomenonTime}`
+          );
         }
         if (observation.properties.result !== undefined) {
-          console.log(`        Result: ${JSON.stringify(observation.properties.result)}`);
+          console.log(
+            `        Result: ${JSON.stringify(observation.properties.result)}`
+          );
         }
         if (observation.properties.resultTime) {
-          console.log(`        Result Time: ${observation.properties.resultTime}`);
+          console.log(
+            `        Result Time: ${observation.properties.resultTime}`
+          );
         }
         if (observation.properties.resultQuality) {
-          console.log(`        Quality: ${JSON.stringify(observation.properties.resultQuality)}`);
+          console.log(
+            `        Quality: ${JSON.stringify(
+              observation.properties.resultQuality
+            )}`
+          );
         }
       }
 
@@ -249,7 +300,11 @@ async function main() {
         console.log(`\n      Geometry:`);
         console.log(`        Type: ${observation.geometry.type}`);
         if (observation.geometry.coordinates) {
-          console.log(`        Coordinates: ${JSON.stringify(observation.geometry.coordinates)}`);
+          console.log(
+            `        Coordinates: ${JSON.stringify(
+              observation.geometry.coordinates
+            )}`
+          );
         }
       }
 
@@ -273,15 +328,18 @@ async function main() {
     console.log('  • ObservationsClient - Query observation data');
     console.log('  • Link resolution - Navigate between related resources');
     console.log('  • System events - Access temporal events for systems\n');
-    
+
     console.log('Next Steps:');
-    console.log('  • Explore other CSAPI clients: DeploymentsClient, ProceduresClient,');
-    console.log('    SamplingFeaturesClient, PropertiesClient, ControlStreamsClient,');
+    console.log(
+      '  • Explore other CSAPI clients: DeploymentsClient, ProceduresClient,'
+    );
+    console.log(
+      '    SamplingFeaturesClient, PropertiesClient, ControlStreamsClient,'
+    );
     console.log('    CommandsClient, FeasibilityClient, SystemEventsClient');
     console.log('  • Implement filtering and pagination for large datasets');
     console.log('  • Use link relations to navigate between resources');
     console.log('  • Integrate with your sensor data processing workflows\n');
-
   } catch (error) {
     console.error('\n❌ Error:', error.message);
     if (error.stack) {
@@ -289,7 +347,9 @@ async function main() {
       console.error(error.stack);
     }
     console.error('\nNote: This example uses fixture data by default.');
-    console.error('To test with a live CSAPI endpoint, set the CSAPI_API_ROOT environment variable:');
+    console.error(
+      'To test with a live CSAPI endpoint, set the CSAPI_API_ROOT environment variable:'
+    );
     console.error('  export CSAPI_API_ROOT=https://your-csapi-server.com');
     console.error('  export CSAPI_LIVE=true');
     console.error('  node examples/csapi-demo.js');

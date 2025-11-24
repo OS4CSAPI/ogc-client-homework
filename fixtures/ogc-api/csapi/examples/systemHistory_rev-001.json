@@ -20,6 +20,5 @@
       "rel": "system",
       "href": "https://example.csapi.server/systems/sys-001"
     }
-    { "rel": "system", "href": "https://example.csapi.server/systems/sys-001" }
   ]
 }

@@ -32,11 +32,13 @@ A quick audit script that provides a summary of CSAPI files and status.
 Comprehensive security scanner that detects sensitive information in fixtures and documentation.
 
 **Usage:**
+
 ```bash
 ./security_scan.sh
 ```
 
 **Checks for:**
+
 - API keys, tokens, and credentials
 - Email addresses (except example.com)
 - IP addresses
@@ -46,6 +48,7 @@ Comprehensive security scanner that detects sensitive information in fixtures an
 - Authentication headers
 
 **Exit Codes:**
+
 - `0` - No sensitive data found (PASS)
 - `1` - Sensitive data detected (FAIL)
 - `2` - Script error
@@ -73,10 +76,11 @@ Additional audit scripts can be added here to automate:
    ```
 
 2. Run from repository root:
+
    ```bash
    # Quick audit
    ./docs/csapi/audits/scripts/csapi_quick_audit.sh
-   
+
    # Security scan
    ./docs/csapi/audits/scripts/security_scan.sh
    ```

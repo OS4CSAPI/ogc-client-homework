@@ -86,6 +86,25 @@ $ npm start
 The app is based on [Vue.js](https://vuejs.org/) and will showcase most features implemented in the library.
 You will need to supply it with valid OGC service urls.
 
+#### CSAPI Capabilities Display
+
+When analyzing a Connected Systems API endpoint, the demo app displays granular capability booleans for each CSAPI resource type under a dedicated "CSAPI Capabilities" section. This includes:
+
+- **Has Systems** - Whether the endpoint supports Systems resources
+- **Has Datastreams** - Whether the endpoint supports Datastreams resources
+- **Has Observations** - Whether the endpoint supports Observations resources
+- **Has Deployments** - Whether the endpoint supports Deployments resources
+- **Has Procedures** - Whether the endpoint supports Procedures resources
+- **Has Sampling Features** - Whether the endpoint supports Sampling Features resources
+- **Has Properties** - Whether the endpoint supports Properties resources
+- **Has Commands** - Whether the endpoint supports Commands resources
+- **Has Control Streams** - Whether the endpoint supports Control Streams resources
+- **Has System Events** - Whether the endpoint supports System Events resources
+- **Has System History** - Whether the endpoint supports System History resources
+- **Has Feasibility** - Whether the endpoint supports Feasibility resources
+
+The CSAPI capabilities section is only displayed when a Connected Systems API endpoint is detected.
+
 ## Quick Examples
 
 ### STAC API

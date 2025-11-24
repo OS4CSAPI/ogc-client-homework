@@ -9,12 +9,14 @@ import {
   parseBasicStyleInfo,
   parseCollectionParameters,
   parseConformance,
+  parseCSAPICapabilities,
   parseEndpointInfo,
   parseFullStyleInfo,
   parseTileMatrixSets,
 } from './info.js';
 import {
   ConformanceClass,
+  CSAPICapabilities,
   OgcApiCollectionInfo,
   OgcApiCollectionItem,
   OgcApiDocument,
@@ -301,6 +303,17 @@ ${e.message}`);
   get hasConnectedSystemsApi(): Promise<boolean> {
     return this.conformanceClasses.then((classes) =>
       checkHasConnectedSystemsApi([classes])
+    );
+  }
+
+  /**
+   * A Promise which resolves to an object indicating granular CSAPI resource capabilities.
+   * Each property indicates whether a specific CSAPI resource type is available.
+   */
+  get csapiCapabilities(): Promise<CSAPICapabilities> {
+    return Promise.all([this.root, this.data, this.conformanceClasses]).then(
+      ([root, data, conformance]) =>
+        parseCSAPICapabilities(root, data, conformance)
     );
   }
 

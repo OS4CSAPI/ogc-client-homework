@@ -10,6 +10,9 @@
 #   0 - No sensitive data found (PASS)
 #   1 - Sensitive data detected (FAIL)
 #   2 - Script error
+#
+# Note: Regex patterns are intentionally broad to catch potential issues.
+# False positives are acceptable in security scanning - better safe than sorry.
 
 set -e
 

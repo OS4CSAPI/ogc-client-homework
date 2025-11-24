@@ -187,12 +187,12 @@ This PR adds comprehensive support for the OGC API - Connected Systems standard 
 ## 10. Final Pre-Submission Review
 
 - [x] Double-check code/tests/docs are present and passing CI
-    - ✅ All tests passing (51 test suites, 568 passed)
+  - ✅ All tests passing (51 test suites, 568 passed)
 - [x] No secrets, debug files, credentials, or sensitive data
-    - ✅ **Security audit completed (2024-11-24)** - No sensitive data found
-    - ✅ All fixtures use example/placeholder domains only
-    - ✅ No credentials, API keys, or secrets detected
-    - 📄 See: [`SECURITY_AUDIT_FINDINGS.md`](./SECURITY_AUDIT_FINDINGS.md)
+  - ✅ **Security audit completed (2024-11-24)** - No sensitive data found
+  - ✅ All fixtures use example/placeholder domains only
+  - ✅ No credentials, API keys, or secrets detected
+  - 📄 See: [`SECURITY_AUDIT_FINDINGS.md`](./SECURITY_AUDIT_FINDINGS.md)
   - ✅ All tests passing (51 test suites, 568 passed)
 - [ ] No secrets, debug files, credentials, or sensitive data
   - Need final review of fixture files

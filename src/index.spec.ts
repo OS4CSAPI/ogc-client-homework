@@ -61,7 +61,6 @@ describe('Main Index Exports', () => {
       expect(mainExports.SystemEventsClient).toBeDefined();
       expect(typeof mainExports.SystemEventsClient).toBe('function');
     });
-
   });
 
   describe('CSAPI Aggregated Clients', () => {

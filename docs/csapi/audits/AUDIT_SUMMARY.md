@@ -126,25 +126,25 @@ Copyright (c) 2024 OS4CSAPI contributors
 
 ## Quality Metrics
 
-| Aspect | Status | Notes |
-|--------|--------|-------|
-| Tests | ✅ Excellent | 100% passing, 0 skipped |
-| Coverage | ✅ Good | All resources tested |
-| Documentation | ✅ Excellent | Comprehensive docs |
-| Security | ✅ Excellent | No sensitive data found (audited 2024-11-24) |
-| Code Style | ⚠️ Needs Fix | 18 formatting issues |
-| Linting | ⚠️ Needs Fix | 1 unused import |
-| Technical Debt | ✅ None | 0 TODO comments |
-| TypeScript | ✅ Complete | Full type safety |
-| Aspect         | Status       | Notes                   |
-| -------------- | ------------ | ----------------------- |
-| Tests          | ✅ Excellent | 100% passing, 0 skipped |
-| Coverage       | ✅ Good      | All resources tested    |
-| Documentation  | ✅ Excellent | Comprehensive docs      |
-| Code Style     | ⚠️ Needs Fix | 18 formatting issues    |
-| Linting        | ⚠️ Needs Fix | 1 unused import         |
-| Technical Debt | ✅ None      | 0 TODO comments         |
-| TypeScript     | ✅ Complete  | Full type safety        |
+| Aspect         | Status       | Notes                                        |
+| -------------- | ------------ | -------------------------------------------- |
+| Tests          | ✅ Excellent | 100% passing, 0 skipped                      |
+| Coverage       | ✅ Good      | All resources tested                         |
+| Documentation  | ✅ Excellent | Comprehensive docs                           |
+| Security       | ✅ Excellent | No sensitive data found (audited 2024-11-24) |
+| Code Style     | ⚠️ Needs Fix | 18 formatting issues                         |
+| Linting        | ⚠️ Needs Fix | 1 unused import                              |
+| Technical Debt | ✅ None      | 0 TODO comments                              |
+| TypeScript     | ✅ Complete  | Full type safety                             |
+| Aspect         | Status       | Notes                                        |
+| -------------- | ------------ | -----------------------                      |
+| Tests          | ✅ Excellent | 100% passing, 0 skipped                      |
+| Coverage       | ✅ Good      | All resources tested                         |
+| Documentation  | ✅ Excellent | Comprehensive docs                           |
+| Code Style     | ⚠️ Needs Fix | 18 formatting issues                         |
+| Linting        | ⚠️ Needs Fix | 1 unused import                              |
+| Technical Debt | ✅ None      | 0 TODO comments                              |
+| TypeScript     | ✅ Complete  | Full type safety                             |
 
 ---
 

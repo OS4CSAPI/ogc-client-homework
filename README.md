@@ -2,7 +2,7 @@
 
 > ⚙️ This fork is actively developing support for the **OGC API - Connected Systems** standard, with the goal of contributing back to [camptocamp/ogc-client](https://github.com/camptocamp/ogc-client).
 
-📋 [Implementation Plan](https://github.com/Sam-Bolling/ogc-client/blob/main/docs/connected-systems-plan.md)
+📋 [Implementation Plan](./docs/csapi/plans/connected-systems-plan.md)
 
 # ogc-client [![Latest version on NPM](https://img.shields.io/npm/v/%40camptocamp%2Fogc-client)](https://www.npmjs.com/package/@camptocamp/ogc-client) [![Latest @dev version on NPM](https://img.shields.io/npm/v/%40camptocamp%2Fogc-client/dev)](https://www.npmjs.com/package/@camptocamp/ogc-client?activeTab=versions)
 
@@ -43,7 +43,7 @@ $ npm install --save @camptocamp/ogc-client
 To use, import API symbols like so:
 
 ```js
-import { WmsEndpoint, WfsEndpoint, StacEndpoint } from '@camptocamp/ogc-client';
+import { WmsEndpoint, WfsEndpoint, StacEndpoint, SystemsClient, DatastreamsClient } from '@camptocamp/ogc-client';
 ```
 
 Note: if you want to disable web worker usage, for example to solve issues with the `Referer` header on outgoing
@@ -102,11 +102,17 @@ The library provides comprehensive support for the OGC API - Connected Systems s
 #### Quick Start
 
 ```typescript
-import { SystemsClient, DatastreamsClient, ObservationsClient } from '@camptocamp/ogc-client';
+import {
+  SystemsClient,
+  DatastreamsClient,
+  ObservationsClient,
+} from '@camptocamp/ogc-client';
 
 // Create client instances
 const systemsClient = new SystemsClient('https://your-csapi-endpoint.com');
-const datastreamsClient = new DatastreamsClient('https://your-csapi-endpoint.com');
+const datastreamsClient = new DatastreamsClient(
+  'https://your-csapi-endpoint.com'
+);
 
 // List all systems
 const systems = await systemsClient.list();
@@ -120,7 +126,9 @@ console.log(`System: ${system.properties.name}`);
 const datastreams = await datastreamsClient.list();
 
 // Get observations
-const observationsClient = new ObservationsClient('https://your-csapi-endpoint.com');
+const observationsClient = new ObservationsClient(
+  'https://your-csapi-endpoint.com'
+);
 const observations = await observationsClient.list();
 ```
 

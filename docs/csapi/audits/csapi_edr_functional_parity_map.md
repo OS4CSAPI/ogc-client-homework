@@ -1,3 +1,8 @@
+<!--
+@license BSD-3-Clause
+Copyright (c) 2024 OS4CSAPI contributors
+-->
+
 # OGC Client — EDR ↔ CSAPI Functional Parity Map v1.0
 
 **Date:** 2025‑10‑22  

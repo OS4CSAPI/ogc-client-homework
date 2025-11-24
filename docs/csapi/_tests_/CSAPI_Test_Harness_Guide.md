@@ -1,3 +1,8 @@
+<!--
+@license BSD-3-Clause
+Copyright (c) 2024 OS4CSAPI contributors
+-->
+
 # OGC API – Connected Systems (CSAPI) Test Harness Guide
 
 _(Phase 2 · Step 3 — Test Harness Wiring Completion; updated for profile-aware fixtures)_

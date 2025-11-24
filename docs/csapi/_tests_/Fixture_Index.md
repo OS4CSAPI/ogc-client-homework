@@ -1,3 +1,8 @@
+<!--
+@license BSD-3-Clause
+Copyright (c) 2024 OS4CSAPI contributors
+-->
+
 # CSAPI Fixture Index
 
 _(Updated for unified fixtures suite)_

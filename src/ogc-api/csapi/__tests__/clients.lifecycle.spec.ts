@@ -1,4 +1,9 @@
 /**
+ * @license BSD-3-Clause
+ * Copyright (c) 2024 OS4CSAPI contributors
+ */
+
+/**
  * CSAPI Client Lifecycle Integration Tests
  * ----------------------------------------
  * Verifies .list() and .get() behaviors for all canonical CSAPI client classes.

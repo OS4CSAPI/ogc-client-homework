@@ -1,4 +1,9 @@
 /**
+ * @license BSD-3-Clause
+ * Copyright (c) 2024 OS4CSAPI contributors
+ */
+
+/**
  * Tests for CSAPI Part 2 — Datastreams
  * Validates canonical endpoints, nested references, and schema operations for Datastreams.
  *

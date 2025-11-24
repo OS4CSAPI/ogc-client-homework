@@ -1,3 +1,8 @@
+<!--
+@license BSD-3-Clause
+Copyright (c) 2024 OS4CSAPI contributors
+-->
+
 # CSAPI Unified Fixtures - Examples Suite
 
 This directory contains a unified, comprehensive set of fixtures for testing OGC API – Connected Systems (CSAPI) Parts 1 and 2 implementations.

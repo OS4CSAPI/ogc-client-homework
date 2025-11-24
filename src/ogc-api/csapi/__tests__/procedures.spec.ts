@@ -1,4 +1,9 @@
 /**
+ * @license BSD-3-Clause
+ * Copyright (c) 2024 OS4CSAPI contributors
+ */
+
+/**
  * Tests for CSAPI Part 1 — Procedures
  * Verifies that Procedures resources expose canonical endpoints and conform
  * to OGC API – Features collection semantics.

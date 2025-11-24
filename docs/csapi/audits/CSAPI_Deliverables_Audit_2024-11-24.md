@@ -1,3 +1,8 @@
+<!--
+@license BSD-3-Clause
+Copyright (c) 2024 OS4CSAPI contributors
+-->
+
 # OGC API Connected Systems - Comprehensive Deliverables Audit
 
 Generated: 2024-11-24

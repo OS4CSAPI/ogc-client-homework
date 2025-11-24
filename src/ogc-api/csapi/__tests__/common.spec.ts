@@ -1,4 +1,9 @@
 /**
+ * @license BSD-3-Clause
+ * Copyright (c) 2024 OS4CSAPI contributors
+ */
+
+/**
  * Tests for CSAPI Common API-Level Behavior
  * Validates the API landing page, conformance declaration, and core service links
  * required by OGC API – Features and OGC API – Connected Systems Parts 1 & 2.

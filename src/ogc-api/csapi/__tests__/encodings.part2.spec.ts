@@ -1,4 +1,9 @@
 /**
+ * @license BSD-3-Clause
+ * Copyright (c) 2024 OS4CSAPI contributors
+ */
+
+/**
  * Tests for CSAPI Part 2 — Encodings (Dynamic Data)
  * Validates that dynamic data resources (Datastreams, Observations)
  * support encodings based on SWE Common 3.0, as required by Part 2 Table 1.

@@ -1,4 +1,9 @@
 /**
+ * @license BSD-3-Clause
+ * Copyright (c) 2024 OS4CSAPI contributors
+ */
+
+/**
  * Tests for CSAPI Part 2 — System Events
  * Validates canonical endpoints, nested event listings, and collection semantics for system events.
  *

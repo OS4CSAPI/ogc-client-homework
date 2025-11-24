@@ -1,3 +1,8 @@
+<!--
+@license BSD-3-Clause
+Copyright (c) 2024 OS4CSAPI contributors
+-->
+
 # OGC Client – CSAPI Implementation Audit Trace v2.4
 
 _Automated audit mapping of requirements, test coverage, and implementation for full OGC API – Connected Systems Parts 1 & 2 support._

@@ -1,3 +1,8 @@
+<!--
+@license BSD-3-Clause
+Copyright (c) 2024 OS4CSAPI contributors
+-->
+
 # OGC API Connected Systems — Upstream Submission Checklist
 
 Use this checklist to prepare your work for upstreaming to the main OGC API client repo (e.g., camptocamp/ogc-client).

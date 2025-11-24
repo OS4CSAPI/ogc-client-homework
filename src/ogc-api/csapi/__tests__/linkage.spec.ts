@@ -1,4 +1,9 @@
 /**
+ * @license BSD-3-Clause
+ * Copyright (c) 2024 OS4CSAPI contributors
+ */
+
+/**
  * Tests for OGC API – Connected Systems Part 2: Cross-Collection Linkage
  *
  * Validates that canonical link relations between CSAPI resources resolve

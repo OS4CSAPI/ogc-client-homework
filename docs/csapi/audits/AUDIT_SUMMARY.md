@@ -1,3 +1,8 @@
+<!--
+@license BSD-3-Clause
+Copyright (c) 2024 OS4CSAPI contributors
+-->
+
 # CSAPI Audit - Quick Reference Summary
 
 **Audit Date:** 2024-11-24  

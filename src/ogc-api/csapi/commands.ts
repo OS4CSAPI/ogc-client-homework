@@ -1,4 +1,9 @@
 /**
+ * @license BSD-3-Clause
+ * Copyright (c) 2024 OS4CSAPI contributors
+ */
+
+/**
  * OGC API – Connected Systems Part 2: Commands Client
  * Implements client-side access for the /commands collection.
  *

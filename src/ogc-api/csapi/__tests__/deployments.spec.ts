@@ -1,4 +1,9 @@
 /**
+ * @license BSD-3-Clause
+ * Copyright (c) 2024 OS4CSAPI contributors
+ */
+
+/**
  * Tests for CSAPI Part 1 — Deployments & Subdeployments
  * Ensures Deployments are exposed as canonical collections with correct item URLs
  * and reuse of OGC API – Features collection behavior.

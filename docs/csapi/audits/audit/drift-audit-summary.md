@@ -1,3 +1,8 @@
+<!--
+@license BSD-3-Clause
+Copyright (c) 2024 OS4CSAPI contributors
+-->
+
 # **OGC Client — CSAPI Integration Drift Audit Summary**
 
 _(Fork vs Upstream Alignment Report)_

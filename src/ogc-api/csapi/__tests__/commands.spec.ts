@@ -1,4 +1,9 @@
 /**
+ * @license BSD-3-Clause
+ * Copyright (c) 2024 OS4CSAPI contributors
+ */
+
+/**
  * Tests for CSAPI Part 2 — Commands (C5)
  * Validates canonical endpoints, collection semantics, nested listing from ControlStreams,
  * and separate Status + Result resources for Command items.

@@ -1,4 +1,6 @@
 {
+  "_license": "BSD-3-Clause",
+  "_copyright": "Copyright (c) 2024 OS4CSAPI contributors",
   "title": "Sample Connected Systems API (CSAPI)",
   "description": "Dummy landing page for testing Connected Systems API integration.",
   "links": [

@@ -1,3 +1,8 @@
+<!--
+@license BSD-3-Clause
+Copyright (c) 2024 OS4CSAPI contributors
+-->
+
 # CSAPI Audit Scripts
 
 This directory contains automation scripts for auditing the OGC API Connected Systems implementation.

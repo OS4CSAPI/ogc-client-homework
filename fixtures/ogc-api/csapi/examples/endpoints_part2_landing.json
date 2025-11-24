@@ -50,6 +50,10 @@
     {
       "rel": "systemEvents",
       "href": "https://example.csapi.server/systemEvents"
+    },
+    {
+      "rel": "systemHistory",
+      "href": "https://example.csapi.server/systemHistory"
     }
   ]
 }

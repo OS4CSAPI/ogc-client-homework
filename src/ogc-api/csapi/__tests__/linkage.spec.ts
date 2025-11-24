@@ -70,7 +70,8 @@ test('Systems include link rel=deployments referencing /deployments', async () =
   const first = data.features[0];
   const deploymentLink = first.links?.find((l) => l.rel === 'deployments');
   expect(deploymentLink).toBeDefined();
-  expectCanonicalUrl(deploymentLink!.href!, /\/deployments/);
+  expect(deploymentLink?.href).toBeDefined();
+  expectCanonicalUrl(deploymentLink?.href ?? '', /\/deployments/);
 });
 
 /* -------------------------------------------------------------------------- */
@@ -91,7 +92,8 @@ test('Deployments include link rel=system referencing /systems/{id}', async () =
   const first = data.features[0];
   const systemLink = first.links?.find((l) => l.rel === 'system');
   expect(systemLink).toBeDefined();
-  expectCanonicalUrl(systemLink!.href!, /\/systems\/[A-Za-z0-9\-_]+$/);
+  expect(systemLink?.href).toBeDefined();
+  expectCanonicalUrl(systemLink?.href ?? '', /\/systems\/[A-Za-z0-9\-_]+$/);
 });
 
 /**
@@ -106,7 +108,8 @@ test('Deployments include link rel=procedure referencing /procedures/{id}', asyn
   const first = data.features[0];
   const procLink = first.links?.find((l) => l.rel === 'procedure');
   expect(procLink).toBeDefined();
-  expectCanonicalUrl(procLink!.href!, /\/procedures\/[A-Za-z0-9\-_]+$/);
+  expect(procLink?.href).toBeDefined();
+  expectCanonicalUrl(procLink?.href ?? '', /\/procedures\/[A-Za-z0-9\-_]+$/);
 });
 
 /* -------------------------------------------------------------------------- */
@@ -127,7 +130,8 @@ test('Datastreams include link rel=observations referencing /observations', asyn
   const first = data.features[0];
   const obsLink = first.links?.find((l) => l.rel === 'observations');
   expect(obsLink).toBeDefined();
-  expectCanonicalUrl(obsLink!.href!, /\/observations/);
+  expect(obsLink?.href).toBeDefined();
+  expectCanonicalUrl(obsLink?.href ?? '', /\/observations/);
 });
 
 /* -------------------------------------------------------------------------- */

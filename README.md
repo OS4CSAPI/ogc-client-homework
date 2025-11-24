@@ -43,7 +43,13 @@ $ npm install --save @camptocamp/ogc-client
 To use, import API symbols like so:
 
 ```js
-import { WmsEndpoint, WfsEndpoint, StacEndpoint, SystemsClient, DatastreamsClient } from '@camptocamp/ogc-client';
+import {
+  WmsEndpoint,
+  WfsEndpoint,
+  StacEndpoint,
+  SystemsClient,
+  DatastreamsClient,
+} from '@camptocamp/ogc-client';
 ```
 
 Note: if you want to disable web worker usage, for example to solve issues with the `Referer` header on outgoing

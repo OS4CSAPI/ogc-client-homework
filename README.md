@@ -86,10 +86,39 @@ You will need to supply it with valid OGC service urls.
 See the [`examples/`](./examples/) directory for more complete examples, including:
 
 - `examples/stac-query.js` - Full STAC API query example with spatial and temporal filters
+- `examples/csapi-demo.js` - OGC API - Connected Systems example demonstrating systems, datastreams, and observations
 
 Run examples with:
 
 ```bash
 npm run build
 node examples/stac-query.js
+node examples/csapi-demo.js
 ```
+
+### OGC API - Connected Systems (CSAPI)
+
+The library provides comprehensive support for the OGC API - Connected Systems standard:
+
+```js
+import { SystemsClient, DatastreamsClient, ObservationsClient } from '@camptocamp/ogc-client';
+
+// Initialize clients
+const systemsClient = new SystemsClient('https://your-csapi-server.com');
+
+// Query systems
+const systems = await systemsClient.list();
+console.log(`Found ${systems.features.length} systems`);
+
+// Get specific system details
+const system = await systemsClient.get('system-id');
+
+// Query datastreams and observations
+const datastreamsClient = new DatastreamsClient('https://your-csapi-server.com');
+const datastreams = await datastreamsClient.list();
+
+const observationsClient = new ObservationsClient('https://your-csapi-server.com');
+const observations = await observationsClient.list();
+```
+
+For a complete example with detailed usage patterns, see [`examples/csapi-demo.js`](./examples/csapi-demo.js).

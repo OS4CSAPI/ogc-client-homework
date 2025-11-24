@@ -3,6 +3,8 @@
 # Performs a quick audit of CSAPI deliverables
 # Usage: ./csapi_quick_audit.sh
 
+set -e
+
 echo "=== CSAPI Quick Audit ==="
 echo ""
 
@@ -22,12 +24,12 @@ echo "  Documentation: $DOC_FILES"
 echo ""
 
 # Check TODOs
-TODO_COUNT=$(grep -r "TODO\|FIXME" src/ogc-api/csapi/ --include="*.ts" 2>/dev/null | wc -l || echo "0")
+TODO_COUNT=$(grep -rE "TODO|FIXME" src/ogc-api/csapi/ --include="*.ts" 2>/dev/null | wc -l || echo "0")
 echo "Code Quality:"
 echo "  TODO/FIXME comments: $TODO_COUNT"
 
 # Check skipped tests
-SKIPPED_COUNT=$(grep -r "it.skip\|describe.skip\|xit\|xdescribe" src/ogc-api/csapi/__tests__/ --include="*.spec.ts" 2>/dev/null | wc -l || echo "0")
+SKIPPED_COUNT=$(grep -rE "it\.skip|describe\.skip|xit|xdescribe" src/ogc-api/csapi/__tests__/ --include="*.spec.ts" 2>/dev/null | wc -l || echo "0")
 echo "  Skipped tests: $SKIPPED_COUNT"
 echo ""
 

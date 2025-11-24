@@ -1,3 +1,8 @@
+<!--
+@license BSD-3-Clause
+Copyright (c) 2024 OS4CSAPI contributors
+-->
+
 # CSAPI Test Design Matrix v1.0
 
 Author: Sam Bolling · Date: 2025-10-13

@@ -1,4 +1,6 @@
 {
+  "_license": "BSD-3-Clause",
+  "_copyright": "Copyright (c) 2024 OS4CSAPI contributors",
   "type": "FeatureCollection",
   "itemType": "System",
   "features": [
@@ -47,7 +49,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-122.4000, 37.7900]
+        "coordinates": [-122.4, 37.79]
       },
       "properties": {
         "name": "Air Quality Sensor Network",
@@ -148,7 +150,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-71.0600, 42.3650]
+        "coordinates": [-71.06, 42.365]
       },
       "properties": {
         "name": "Beta Node",

@@ -1,4 +1,9 @@
 /**
+ * @license BSD-3-Clause
+ * Copyright (c) 2024 OS4CSAPI contributors
+ */
+
+/**
  * OGC API – Connected Systems Part 2: SystemHistory Client
  * Implements client-side access for the /systemHistory collection.
  *
@@ -31,7 +36,7 @@ export class SystemHistoryClient {
    */
   async list(): Promise<CSAPICollection> {
     const url = getSystemHistoryUrl(this.apiRoot);
-    const data = await maybeFetchOrLoad("systemHistory", url);
+    const data = await maybeFetchOrLoad('systemHistory', url);
     return data as CSAPICollection;
   }
 

@@ -1,4 +1,6 @@
 {
+  "_license": "BSD-3-Clause",
+  "_copyright": "Copyright (c) 2024 OS4CSAPI contributors",
   "type": "FeatureCollection",
   "itemType": "ControlStream",
   "features": [
@@ -6,7 +8,9 @@
       "type": "Feature",
       "id": "ctrl-001",
       "properties": {
-        "system": { "id": "sys-001" }
+        "system": {
+          "id": "sys-001"
+        }
       }
     }
   ]

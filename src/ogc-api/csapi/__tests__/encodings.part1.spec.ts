@@ -1,4 +1,9 @@
 /**
+ * @license BSD-3-Clause
+ * Copyright (c) 2024 OS4CSAPI contributors
+ */
+
+/**
  * Tests for CSAPI Part 1 — Encodings (GeoJSON, SensorML-JSON)
  * Verifies that all feature resources support mandatory encodings
  * and provide responses in both GeoJSON and SensorML-JSON formats.

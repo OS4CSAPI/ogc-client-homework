@@ -1,4 +1,6 @@
 {
+  "_license": "BSD-3-Clause",
+  "_copyright": "Copyright (c) 2024 OS4CSAPI contributors",
   "type": "FeatureCollection",
   "itemType": "SystemHistory",
   "features": [
@@ -12,8 +14,14 @@
         "changeDescription": "Firmware updated to v1.2.3 for new protocol compliance."
       },
       "links": [
-        { "rel": "self", "href": "https://example.csapi.server/systems/sys-001/history/rev-001" },
-        { "rel": "system", "href": "https://example.csapi.server/systems/sys-001" }
+        {
+          "rel": "self",
+          "href": "https://example.csapi.server/systems/sys-001/history/rev-001"
+        },
+        {
+          "rel": "system",
+          "href": "https://example.csapi.server/systems/sys-001"
+        }
       ]
     },
     {
@@ -26,13 +34,26 @@
         "changeDescription": "Sensor calibration parameters updated."
       },
       "links": [
-        { "rel": "self", "href": "https://example.csapi.server/systems/sys-001/history/rev-002" },
-        { "rel": "system", "href": "https://example.csapi.server/systems/sys-001" }
+        {
+          "rel": "self",
+          "href": "https://example.csapi.server/systems/sys-001/history/rev-002"
+        },
+        {
+          "rel": "system",
+          "href": "https://example.csapi.server/systems/sys-001"
+        }
       ]
     }
   ],
   "links": [
-    { "rel": "self", "href": "https://example.csapi.server/systems/sys-001/history" },
+    {
+      "rel": "self",
+      "href": "https://example.csapi.server/systems/sys-001/history"
+    },
+    {
+      "rel": "system",
+      "href": "https://example.csapi.server/systems/sys-001"
+    }
     { "rel": "system", "href": "https://example.csapi.server/systems/sys-001" }
   ]
 }

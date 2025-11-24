@@ -1,4 +1,6 @@
 {
+  "_license": "BSD-3-Clause",
+  "_copyright": "Copyright (c) 2024 OS4CSAPI contributors",
   "id": "feas-001",
   "type": "Feature",
   "geometry": null,
@@ -6,6 +8,8 @@
     "name": "Example Feasibility Record",
     "description": "Test fixture for single Feasibility resource",
     "status": "feasible",
-    "relatedSystem": { "id": "sys-001" }
+    "relatedSystem": {
+      "id": "sys-001"
+    }
   }
 }

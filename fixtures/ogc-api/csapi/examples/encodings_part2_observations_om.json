@@ -1,4 +1,6 @@
 {
+  "_license": "BSD-3-Clause",
+  "_copyright": "Copyright (c) 2024 OS4CSAPI contributors",
   "type": "FeatureCollection",
   "itemType": "Observation",
   "features": [
@@ -7,7 +9,7 @@
       "id": "obs-001",
       "geometry": {
         "type": "Point",
-        "coordinates": [-117.3, 34.2, 340.0]
+        "coordinates": [-117.3, 34.2, 340]
       },
       "properties": {
         "phenomenonTime": "2025-11-23T09:00:00Z",
@@ -34,7 +36,7 @@
       "id": "obs-002",
       "geometry": {
         "type": "Point",
-        "coordinates": [-117.3, 34.2, 340.0]
+        "coordinates": [-117.3, 34.2, 340]
       },
       "properties": {
         "phenomenonTime": "2025-11-23T09:05:00Z",

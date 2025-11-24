@@ -1,4 +1,9 @@
 /**
+ * @license BSD-3-Clause
+ * Copyright (c) 2024 OS4CSAPI contributors
+ */
+
+/**
  * @file helpers.spec.ts
  * Unit tests for extractParameters() in CSAPI helpers.ts.
  *

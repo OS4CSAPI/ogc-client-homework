@@ -1,4 +1,9 @@
 /**
+ * @license BSD-3-Clause
+ * Copyright (c) 2024 OS4CSAPI contributors
+ */
+
+/**
  * Tests for CSAPI Part 2 — Feasibility
  * Verifies canonical endpoints and lifecycle resources (Status/Result)
  * for feasibility requests as defined in Part 2 §11.

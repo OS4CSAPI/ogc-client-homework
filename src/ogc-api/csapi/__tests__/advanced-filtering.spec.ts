@@ -2,14 +2,10 @@
  * Advanced Filtering Tests (B7)
  * Requirement IDs appear verbatim for traceability.
  * Geometry test is skipped (placeholder until spatial parser exists).
- * Uses profile-aware fixture loading; 'advanced' profile must be set
- * BEFORE importing filtering helpers so the fixtures resolve correctly.
+ * Now uses unified fixtures from examples/ directory.
  */
 
-// Set profile before requiring the helper module.
-process.env.CSAPI_FIXTURE_PROFILE = 'advanced';
-
-// Dynamically load after env var set.
+// Import filtering helpers - now automatically uses unified fixtures
 const {
   filterSystems,
   filterDeployments,

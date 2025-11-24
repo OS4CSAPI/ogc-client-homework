@@ -1,0 +1,16 @@
+{
+  "type": "FeatureCollection",
+  "itemType": "Feasibility",
+  "features": [
+    {
+      "id": "feas-001",
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "command": "cmd-001",
+        "result": "feasible",
+        "description": "Stub Feasibility entry for canonical endpoint tests"
+      }
+    }
+  ]
+}

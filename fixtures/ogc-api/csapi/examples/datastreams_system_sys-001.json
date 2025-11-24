@@ -1,0 +1,24 @@
+{
+  "type": "FeatureCollection",
+  "itemType": "Datastream",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "ds-001",
+      "properties": {
+        "system": { "id": "sys-001" },
+        "systemId": "sys-001",
+        "systemIds": ["sys-001"],
+        "deployment": { "id": "dep-001" },
+        "deploymentId": "dep-001",
+        "deploymentIds": ["dep-001"]
+      },
+      "links": [
+        {
+          "rel": "self",
+          "href": "https://example.csapi.server/datastreams/ds-001"
+        }
+      ]
+    }
+  ]
+}

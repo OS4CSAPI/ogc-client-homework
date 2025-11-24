@@ -1,43 +1,61 @@
 import fs from 'fs';
 import path from 'path';
 
-export type CSAPIFixtureProfile = 'minimal' | 'advanced' | 'default';
+/**
+ * Legacy type maintained for backward compatibility.
+ * All profiles now resolve to the unified 'examples' directory.
+ * @deprecated Profile-based loading is no longer used. All fixtures load from examples/.
+ */
+export type CSAPIFixtureProfile = 'minimal' | 'advanced' | 'default' | 'examples';
 
-function profileDir(profile: CSAPIFixtureProfile): string {
-  switch (profile) {
-    case 'minimal':
-      return 'fixtures/ogc-api/csapi/minimal';
-    case 'advanced':
-      return 'fixtures/ogc-api/csapi/advanced';
-    case 'default':
-    default:
-      return 'fixtures/ogc-api/csapi/sample-data-hub';
-  }
+/**
+ * Returns the unified examples directory path.
+ * Profile parameter is ignored - all fixtures now load from the examples suite.
+ * @param _profile - Ignored, maintained for backward compatibility
+ * @returns Path to unified examples directory
+ */
+function profileDir(_profile: CSAPIFixtureProfile): string {
+  // All profiles now resolve to the unified examples directory
+  return 'fixtures/ogc-api/csapi/examples';
 }
 
+/**
+ * Loads a fixture from the unified examples directory.
+ * @param profile - Ignored, maintained for backward compatibility
+ * @param name - Fixture name (without .json extension)
+ * @returns Parsed fixture data
+ */
 export function loadFixture(profile: CSAPIFixtureProfile, name: string): any {
   const dir = profileDir(profile);
   const filePath = path.resolve(process.cwd(), `${dir}/${name}.json`);
   if (!fs.existsSync(filePath)) {
     throw new Error(
-      `[CSAPI fixtures] Fixture not found for profile='${profile}': ${filePath}`
+      `[CSAPI fixtures] Fixture not found: ${filePath}`
     );
   }
   return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
 }
 
+/**
+ * Loads a fixture using environment variable (legacy compatibility).
+ * Environment variable CSAPI_FIXTURE_PROFILE is now ignored.
+ * All fixtures load from the unified examples directory.
+ * @param name - Fixture name (without .json extension)
+ * @returns Parsed fixture data
+ */
 export function loadFixtureEnv(name: string): any {
-  const raw = (process.env.CSAPI_FIXTURE_PROFILE || 'default').toLowerCase();
-  const profile: CSAPIFixtureProfile =
-    raw === 'minimal' || raw === 'advanced'
-      ? (raw as CSAPIFixtureProfile)
-      : 'default';
-  return loadFixture(profile, name);
+  // Ignore environment variable - always use examples
+  return loadFixture('default', name);
 }
 
 const cache = new Map<string, any>();
+/**
+ * Loads and caches a fixture from the unified examples directory.
+ * @param name - Fixture name (without .json extension)
+ * @returns Cached fixture data
+ */
 export function cachedFixture(name: string): any {
-  const key = `${process.env.CSAPI_FIXTURE_PROFILE || 'default'}:${name}`;
+  const key = `examples:${name}`;
   if (!cache.has(key)) {
     cache.set(key, loadFixtureEnv(name));
   }

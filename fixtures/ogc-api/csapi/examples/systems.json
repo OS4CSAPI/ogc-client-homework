@@ -47,7 +47,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-122.4000, 37.7900]
+        "coordinates": [-122.4, 37.79]
       },
       "properties": {
         "name": "Air Quality Sensor Network",
@@ -148,7 +148,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-71.0600, 42.3650]
+        "coordinates": [-71.06, 42.365]
       },
       "properties": {
         "name": "Beta Node",

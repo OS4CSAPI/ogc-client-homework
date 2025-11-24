@@ -138,7 +138,9 @@ test('GET /observations returns SWE Common JSON representation', async () => {
 
       // Validate encoding metadata
       expect(arrayResult.encoding).toHaveProperty('type');
-      expect(arrayResult.encoding.type).toMatch(/^(TextEncoding|BinaryEncoding)$/i);
+      expect(arrayResult.encoding.type).toMatch(
+        /^(TextEncoding|BinaryEncoding)$/i
+      );
 
       // Validate elementType has uom
       expect(arrayResult.elementType).toHaveProperty('uom');
@@ -200,5 +202,7 @@ test('Server supports content negotiation for SWE JSON and OM JSON', async () =>
   // SWE format should have result with SWE Common type
   const sweFeature = sweData.features[0];
   expect(sweFeature.properties.result).toHaveProperty('type');
-  expect(sweFeature.properties.result.type).toMatch(/^(DataRecord|DataArray)$/i);
+  expect(sweFeature.properties.result.type).toMatch(
+    /^(DataRecord|DataArray)$/i
+  );
 });

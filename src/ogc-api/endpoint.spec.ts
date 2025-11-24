@@ -2849,10 +2849,46 @@ describe('OgcApiEndpoint with CSAPI', () => {
       const collections = await endpoint.allCollections;
       expect(collections.length).toBeGreaterThan(0);
     });
+
+    it('returns granular CSAPI resource capabilities', async () => {
+      const capabilities = await endpoint.csapiCapabilities;
+      expect(capabilities).toBeDefined();
+      // Systems and datastreams are in the fixture
+      expect(capabilities.hasSystems).toBe(true);
+      expect(capabilities.hasDatastreams).toBe(true);
+      // Other capabilities should be false as they're not in the fixture
+      expect(typeof capabilities.hasObservations).toBe('boolean');
+      expect(typeof capabilities.hasDeployments).toBe('boolean');
+      expect(typeof capabilities.hasProcedures).toBe('boolean');
+      expect(typeof capabilities.hasSamplingFeatures).toBe('boolean');
+      expect(typeof capabilities.hasProperties).toBe('boolean');
+      expect(typeof capabilities.hasCommands).toBe('boolean');
+      expect(typeof capabilities.hasControlStreams).toBe('boolean');
+      expect(typeof capabilities.hasSystemEvents).toBe('boolean');
+      expect(typeof capabilities.hasSystemHistory).toBe('boolean');
+      expect(typeof capabilities.hasFeasibility).toBe('boolean');
+    });
   });
 });
 
 it('does not report CSAPI support on a non-CSAPI endpoint', async () => {
   const nonCsapiEndpoint = new OgcApiEndpoint('http://local/sample-data/');
   await expect(nonCsapiEndpoint.hasConnectedSystemsApi).resolves.toBe(false);
+});
+
+it('returns all false CSAPI capabilities on a non-CSAPI endpoint', async () => {
+  const nonCsapiEndpoint = new OgcApiEndpoint('http://local/sample-data/');
+  const capabilities = await nonCsapiEndpoint.csapiCapabilities;
+  expect(capabilities.hasSystems).toBe(false);
+  expect(capabilities.hasDatastreams).toBe(false);
+  expect(capabilities.hasObservations).toBe(false);
+  expect(capabilities.hasDeployments).toBe(false);
+  expect(capabilities.hasProcedures).toBe(false);
+  expect(capabilities.hasSamplingFeatures).toBe(false);
+  expect(capabilities.hasProperties).toBe(false);
+  expect(capabilities.hasCommands).toBe(false);
+  expect(capabilities.hasControlStreams).toBe(false);
+  expect(capabilities.hasSystemEvents).toBe(false);
+  expect(capabilities.hasSystemHistory).toBe(false);
+  expect(capabilities.hasFeasibility).toBe(false);
 });

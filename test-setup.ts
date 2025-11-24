@@ -8,45 +8,47 @@ import { Buffer } from './node_modules/buffer/index.js';
 
 globalThis.Buffer = Buffer;
 
-// mock the global fetch API
-globalThis.fetchPreHandler = (url, options) => {};
-globalThis.fetchResponseFactory = (url, options) => '<empty></empty>';
-globalThis.originalFetch = globalThis.fetch;
-globalThis.mockFetch = jest.fn().mockImplementation(async (url, options) => {
-  const preResult = await globalThis.fetchPreHandler(url, options);
-  if (preResult) return preResult;
-  return {
-    text: () => Promise.resolve(globalThis.fetchResponseFactory(url, options)),
-    json: () =>
-      Promise.resolve(
-        JSON.parse(globalThis.fetchResponseFactory(url, options))
-      ),
-    arrayBuffer: () =>
-      Promise.resolve(
-        Buffer.from(globalThis.fetchResponseFactory(url, options), 'utf-8')
-      ),
-    clone: function () {
-      return this;
-    },
-    status: 200,
-    ok: true,
-    headers: { get: () => null },
-  };
-});
-globalThis.fetch = globalThis.mockFetch;
+// --- Only mock fetch if we're NOT in live mode (CSAPI_LIVE !== 'true') ---
+const isLiveTestMode = process.env.CSAPI_LIVE === 'true';
 
-// reset fetch response to XML by default
-beforeEach(() => {
-  globalThis.fetchResponseFactory = (url) => '<empty></empty>';
-});
+// Set up fetch mocking only if not live mode.
+if (!isLiveTestMode) {
+  globalThis.fetchPreHandler = (url, options) => {};
+  globalThis.fetchResponseFactory = (url, options) => '<empty></empty>';
+  globalThis.originalFetch = globalThis.fetch;
+  globalThis.mockFetch = jest.fn().mockImplementation(async (url, options) => {
+    const preResult = await globalThis.fetchPreHandler(url, options);
+    if (preResult) return preResult;
+    return {
+      text: () => Promise.resolve(globalThis.fetchResponseFactory(url, options)),
+      json: () =>
+        Promise.resolve(
+          JSON.parse(globalThis.fetchResponseFactory(url, options))
+        ),
+      arrayBuffer: () =>
+        Promise.resolve(
+          Buffer.from(globalThis.fetchResponseFactory(url, options), 'utf-8')
+        ),
+      clone: function () { return this; },
+      status: 200,
+      ok: true,
+      headers: { get: () => null },
+    };
+  });
+  globalThis.fetch = globalThis.mockFetch;
 
+  // reset fetch response to XML by default
+  beforeEach(() => {
+    globalThis.fetchResponseFactory = (url) => '<empty></empty>';
+  });
+}
+
+// Always set up caches mock
 globalThis.caches = {
   open: async () => new CacheMock(),
 };
 
-// mock Worker class to work synchronously
-// requires an absolute file path
-// this is mainly ripped off of https://github.com/developit/jsdom-worker
+// mock Worker class to work synchronously (no change here)
 globalThis.Worker = function Worker(filePath) {
   let getScopeVar;
   let messageQueue = [];
@@ -77,11 +79,8 @@ globalThis.Worker = function Worker(filePath) {
     if (messageQueue != null) messageQueue.push(data);
     else inside.emit('message', { data });
   };
-  this.terminate = () => {
-    throw Error('Not Supported');
-  };
+  this.terminate = () => { throw Error('Not Supported'); };
 
-  // bundle the worker code and create a function from it
   import('esbuild')
     .then((esbuild) =>
       esbuild.build({
@@ -111,10 +110,7 @@ globalThis.Worker = function Worker(filePath) {
       console.error(e);
     });
 
-  // mock global scope
   globalThis.WorkerGlobalScope = scope;
 };
 
-// globalThis.TextDecoder = StringDecoder
-// globalThis.TextDecoder.prototype.decode = StringDecoder.prototype.write
 globalThis.TextDecoder = TextDecoder;

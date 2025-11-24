@@ -83,7 +83,7 @@ describe('CSAPI Client Lifecycle Tests', () => {
         ).toBe(true);
       } else {
         // All other canonical resources should expose a FeatureCollection response
-        expectFeatureCollection(result);
+        expectFeatureCollection(result as unknown as Record<string, unknown>);
       }
     });
 

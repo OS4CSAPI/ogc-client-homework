@@ -29,15 +29,33 @@ import {
 
 const apiRoot = process.env.CSAPI_API_ROOT || 'https://example.csapi.server';
 
+/** Type for FeatureCollection with features array */
+type FeatureCollectionData = {
+  type: string;
+  features: Array<{
+    id?: string;
+    type?: string;
+    properties?: {
+      status?: { href?: string };
+      result?: { href?: string };
+    };
+    links?: Array<{ rel?: string; href?: string }>;
+  }>;
+  itemType?: string;
+};
+
 /**
  * Requirement: /req/feasibility/canonical-endpoint
  * The /feasibility endpoint SHALL be exposed as the canonical Feasibility collection.
  */
 test('GET /feasibility is exposed as canonical Feasibility collection', async () => {
   const url = getFeasibilityUrl(apiRoot);
-  const data = await maybeFetchOrLoad('feasibility', url);
+  const data = (await maybeFetchOrLoad(
+    'feasibility',
+    url
+  )) as FeatureCollectionData;
 
-  expectFeatureCollection(data, 'Feasibility');
+  expectFeatureCollection(data as Record<string, unknown>, 'Feasibility');
   expect(Array.isArray(data.features)).toBe(true);
   expect(data.features.length).toBeGreaterThan(0);
 });
@@ -48,9 +66,12 @@ test('GET /feasibility is exposed as canonical Feasibility collection', async ()
  */
 test('GET /feasibility returns FeatureCollection (itemType=Feasibility)', async () => {
   const url = getFeasibilityUrl(apiRoot);
-  const data = await maybeFetchOrLoad('feasibility', url);
+  const data = (await maybeFetchOrLoad(
+    'feasibility',
+    url
+  )) as FeatureCollectionData;
 
-  expectFeatureCollection(data, 'Feasibility');
+  expectFeatureCollection(data as Record<string, unknown>, 'Feasibility');
 
   const first = data.features[0];
   expect(first).toHaveProperty('id');
@@ -64,7 +85,10 @@ test('GET /feasibility returns FeatureCollection (itemType=Feasibility)', async 
  */
 test('Feasibility items have canonical item URL at /feasibility/{id}', async () => {
   const url = getFeasibilityUrl(apiRoot);
-  const data = await maybeFetchOrLoad('feasibility', url);
+  const data = (await maybeFetchOrLoad(
+    'feasibility',
+    url
+  )) as FeatureCollectionData;
   const first = data.features[0];
 
   const itemUrl = `${apiRoot}/feasibility/${first.id}`;
@@ -77,15 +101,18 @@ test('Feasibility items have canonical item URL at /feasibility/{id}', async () 
  */
 test('Each Feasibility request exposes Status and Result resources', async () => {
   const url = getFeasibilityUrl(apiRoot);
-  const data = await maybeFetchOrLoad('feasibility', url);
+  const data = (await maybeFetchOrLoad(
+    'feasibility',
+    url
+  )) as FeatureCollectionData;
   const first = data.features[0];
 
   const statusUrl =
     first.properties?.status?.href ||
-    first.links?.find((l: any) => l.rel?.toLowerCase() === 'status')?.href;
+    first.links?.find((l) => l.rel?.toLowerCase() === 'status')?.href;
   const resultUrl =
     first.properties?.result?.href ||
-    first.links?.find((l: any) => l.rel?.toLowerCase() === 'result')?.href;
+    first.links?.find((l) => l.rel?.toLowerCase() === 'result')?.href;
 
   expect(statusUrl || resultUrl).toBeDefined();
   if (statusUrl)

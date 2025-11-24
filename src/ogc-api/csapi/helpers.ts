@@ -105,6 +105,33 @@ export function loadFixture(fixtureName: string): unknown {
  *   1. If CSAPI_CLIENT_MODE=true → dynamic client invocation
  *   2. Else if CSAPI_LIVE=true → fetch from remote URL
  *   3. Else → load local fixture JSON from unified examples/
+ *
+ * **Type Safety in Tests**
+ *
+ * Since this function returns `Promise<unknown>`, callers must apply type
+ * assertions or guards before accessing properties. Recommended patterns:
+ *
+ * Pattern 1: Type Assertion (when shape is known)
+ * ```typescript
+ * type FeatureCollectionData = { type: string; features: Array<{...}> };
+ * const data = (await maybeFetchOrLoad('fixture', url)) as FeatureCollectionData;
+ * expect(data.features.length).toBeGreaterThan(0);
+ * ```
+ *
+ * Pattern 2: Double Cast for Helpers (when passing to typed functions)
+ * ```typescript
+ * const data = await maybeFetchOrLoad('fixture', url);
+ * expectFeatureCollection(data as Record<string, unknown>);
+ * ```
+ *
+ * Pattern 3: Runtime Guard (when shape may vary)
+ * ```typescript
+ * const data = await maybeFetchOrLoad('fixture', url);
+ * if (typeof data === 'object' && data !== null && 'features' in data) {
+ *   const features = (data as { features: any[] }).features;
+ *   expect(Array.isArray(features)).toBe(true);
+ * }
+ * ```
  */
 export async function maybeFetchOrLoad(
   fixtureName: string,

@@ -32,15 +32,31 @@ import {
 
 const apiRoot = process.env.CSAPI_API_ROOT || 'https://example.csapi.server';
 
+/** Type for FeatureCollection responses with system events */
+type SystemEventCollectionData = {
+  type: string;
+  features: Array<{
+    id?: string;
+    type?: string;
+    properties?: {
+      system?: { id?: string };
+    };
+  }>;
+  itemType?: string;
+};
+
 /**
  * Requirement: /req/system-event/canonical-endpoint
  * The /systemEvents endpoint SHALL be exposed as the canonical System Events collection.
  */
 test('GET /systemEvents is exposed as canonical System Events collection', async () => {
   const url = getSystemEventsUrl(apiRoot);
-  const data = await maybeFetchOrLoad('systemEvents', url);
+  const data = (await maybeFetchOrLoad(
+    'systemEvents',
+    url
+  )) as SystemEventCollectionData;
 
-  expectFeatureCollection(data, 'SystemEvent');
+  expectFeatureCollection(data as Record<string, unknown>, 'SystemEvent');
   expect(Array.isArray(data.features)).toBe(true);
   expect(data.features.length).toBeGreaterThan(0);
 });
@@ -51,9 +67,12 @@ test('GET /systemEvents is exposed as canonical System Events collection', async
  */
 test('GET /systemEvents returns FeatureCollection (itemType=SystemEvent)', async () => {
   const url = getSystemEventsUrl(apiRoot);
-  const data = await maybeFetchOrLoad('systemEvents', url);
+  const data = (await maybeFetchOrLoad(
+    'systemEvents',
+    url
+  )) as SystemEventCollectionData;
 
-  expectFeatureCollection(data, 'SystemEvent');
+  expectFeatureCollection(data as Record<string, unknown>, 'SystemEvent');
 
   const first = data.features[0];
   expect(first).toHaveProperty('id');
@@ -67,7 +86,10 @@ test('GET /systemEvents returns FeatureCollection (itemType=SystemEvent)', async
  */
 test('System Events have canonical item URL at /systemEvents/{id}', async () => {
   const url = getSystemEventsUrl(apiRoot);
-  const data = await maybeFetchOrLoad('systemEvents', url);
+  const data = (await maybeFetchOrLoad(
+    'systemEvents',
+    url
+  )) as SystemEventCollectionData;
   const first = data.features[0];
 
   const itemUrl = `${apiRoot}/systemEvents/${first.id}`;
@@ -81,13 +103,16 @@ test('System Events have canonical item URL at /systemEvents/{id}', async () => 
 test('GET /systems/{id}/events lists events for a System', async () => {
   const systemId = 'sys-001'; // placeholder; can come from fixtures later
   const url = getSystemEventsForSystemUrl(apiRoot, systemId);
-  const data = await maybeFetchOrLoad('systemEvents_sys-001', url);
+  const data = (await maybeFetchOrLoad(
+    'systemEvents_sys-001',
+    url
+  )) as SystemEventCollectionData;
 
-  expectFeatureCollection(data, 'SystemEvent');
+  expectFeatureCollection(data as Record<string, unknown>, 'SystemEvent');
 
   // Optional: ensure events reference the correct system
   const allSameSystem =
-    data.features.every((f: any) => f.properties?.system?.id === systemId) ||
+    data.features.every((f) => f.properties?.system?.id === systemId) ||
     data.features.length === 0;
   expect(allSameSystem).toBe(true);
 });
@@ -98,8 +123,11 @@ test('GET /systems/{id}/events lists events for a System', async () => {
  */
 test('Collections with itemType=SystemEvent behave like /systemEvents', async () => {
   const url = getSystemEventsUrl(apiRoot);
-  const data = await maybeFetchOrLoad('systemEvents', url);
+  const data = (await maybeFetchOrLoad(
+    'systemEvents',
+    url
+  )) as SystemEventCollectionData;
 
-  expectFeatureCollection(data, 'SystemEvent');
+  expectFeatureCollection(data as Record<string, unknown>, 'SystemEvent');
   expect(data.itemType).toBe('SystemEvent');
 });

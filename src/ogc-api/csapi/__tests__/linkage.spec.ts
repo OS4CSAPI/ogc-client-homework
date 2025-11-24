@@ -38,6 +38,20 @@ import {
 
 const apiRoot = process.env.CSAPI_API_ROOT || 'https://example.csapi.server';
 
+/** Type for FeatureCollection responses with features and links */
+type FeatureCollectionData = {
+  type: string;
+  features: Array<{
+    id?: string;
+    type?: string;
+    properties?: {
+      system?: { id?: string };
+    };
+    links?: Array<{ rel?: string; href?: string }>;
+  }>;
+  itemType?: string;
+};
+
 /* -------------------------------------------------------------------------- */
 /*                           Systems → Deployments                            */
 /* -------------------------------------------------------------------------- */
@@ -47,13 +61,16 @@ const apiRoot = process.env.CSAPI_API_ROOT || 'https://example.csapi.server';
  * Each System SHALL include a link (rel="deployments") referencing /deployments.
  */
 test('Systems include link rel=deployments referencing /deployments', async () => {
-  const data = await maybeFetchOrLoad('systems', getSystemsUrl(apiRoot));
-  expectFeatureCollection(data, 'System');
+  const data = (await maybeFetchOrLoad(
+    'systems',
+    getSystemsUrl(apiRoot)
+  )) as FeatureCollectionData;
+  expectFeatureCollection(data as Record<string, unknown>, 'System');
 
   const first = data.features[0];
-  const deploymentLink = first.links?.find((l: any) => l.rel === 'deployments');
+  const deploymentLink = first.links?.find((l) => l.rel === 'deployments');
   expect(deploymentLink).toBeDefined();
-  expectCanonicalUrl(deploymentLink.href, /\/deployments/);
+  expectCanonicalUrl(deploymentLink!.href!, /\/deployments/);
 });
 
 /* -------------------------------------------------------------------------- */
@@ -65,16 +82,16 @@ test('Systems include link rel=deployments referencing /deployments', async () =
  * Each Deployment SHALL include a link (rel="system") referencing /systems/{id}.
  */
 test('Deployments include link rel=system referencing /systems/{id}', async () => {
-  const data = await maybeFetchOrLoad(
+  const data = (await maybeFetchOrLoad(
     'deployments',
     getDeploymentsUrl(apiRoot)
-  );
-  expectFeatureCollection(data, 'Deployment');
+  )) as FeatureCollectionData;
+  expectFeatureCollection(data as Record<string, unknown>, 'Deployment');
 
   const first = data.features[0];
-  const systemLink = first.links?.find((l: any) => l.rel === 'system');
+  const systemLink = first.links?.find((l) => l.rel === 'system');
   expect(systemLink).toBeDefined();
-  expectCanonicalUrl(systemLink.href, /\/systems\/[A-Za-z0-9\-_]+$/);
+  expectCanonicalUrl(systemLink!.href!, /\/systems\/[A-Za-z0-9\-_]+$/);
 });
 
 /**
@@ -82,14 +99,14 @@ test('Deployments include link rel=system referencing /systems/{id}', async () =
  * Each Deployment SHALL include a link (rel="procedure") referencing /procedures/{id}.
  */
 test('Deployments include link rel=procedure referencing /procedures/{id}', async () => {
-  const data = await maybeFetchOrLoad(
+  const data = (await maybeFetchOrLoad(
     'deployments',
     getDeploymentsUrl(apiRoot)
-  );
+  )) as FeatureCollectionData;
   const first = data.features[0];
-  const procLink = first.links?.find((l: any) => l.rel === 'procedure');
+  const procLink = first.links?.find((l) => l.rel === 'procedure');
   expect(procLink).toBeDefined();
-  expectCanonicalUrl(procLink.href, /\/procedures\/[A-Za-z0-9\-_]+$/);
+  expectCanonicalUrl(procLink!.href!, /\/procedures\/[A-Za-z0-9\-_]+$/);
 });
 
 /* -------------------------------------------------------------------------- */
@@ -101,16 +118,16 @@ test('Deployments include link rel=procedure referencing /procedures/{id}', asyn
  * Each Datastream SHALL include a link (rel="observations") referencing /observations.
  */
 test('Datastreams include link rel=observations referencing /observations', async () => {
-  const data = await maybeFetchOrLoad(
+  const data = (await maybeFetchOrLoad(
     'datastreams',
     getDatastreamsUrl(apiRoot)
-  );
-  expectFeatureCollection(data, 'Datastream');
+  )) as FeatureCollectionData;
+  expectFeatureCollection(data as Record<string, unknown>, 'Datastream');
 
   const first = data.features[0];
-  const obsLink = first.links?.find((l: any) => l.rel === 'observations');
+  const obsLink = first.links?.find((l) => l.rel === 'observations');
   expect(obsLink).toBeDefined();
-  expectCanonicalUrl(obsLink.href, /\/observations/);
+  expectCanonicalUrl(obsLink!.href!, /\/observations/);
 });
 
 /* -------------------------------------------------------------------------- */
@@ -123,12 +140,12 @@ test('Datastreams include link rel=observations referencing /observations', asyn
  */
 test('Systems expose nested events at /systems/{id}/events', async () => {
   const systemId = 'sys-001';
-  const data = await maybeFetchOrLoad(
+  const data = (await maybeFetchOrLoad(
     `systemEvents_${systemId}`,
     getSystemEventsUrl(apiRoot, systemId)
-  );
+  )) as FeatureCollectionData;
 
-  expectFeatureCollection(data, 'SystemEvent');
+  expectFeatureCollection(data as Record<string, unknown>, 'SystemEvent');
   if (data.features.length > 0) {
     const first = data.features[0];
     expect(first.properties?.system?.id).toBe(systemId);

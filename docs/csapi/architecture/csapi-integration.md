@@ -1,3 +1,8 @@
+<!--
+@license BSD-3-Clause
+Copyright (c) 2024 OS4CSAPI contributors
+-->
+
 # OGC Client – CSAPI Integration Architecture
 
 **Last updated:** 22 Oct 2025  

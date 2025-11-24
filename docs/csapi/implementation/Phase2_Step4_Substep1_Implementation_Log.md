@@ -1,3 +1,8 @@
+<!--
+@license BSD-3-Clause
+Copyright (c) 2024 OS4CSAPI contributors
+-->
+
 # Phase 2 · Step 4 · Sub-Step 1 — Implement Systems Client
 
 _(OGC Client CSAPI Implementation Project)_

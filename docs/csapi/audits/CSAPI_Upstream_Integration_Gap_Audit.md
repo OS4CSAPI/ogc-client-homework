@@ -1,3 +1,8 @@
+<!--
+@license BSD-3-Clause
+Copyright (c) 2024 OS4CSAPI contributors
+-->
+
 # 🧩 OGC Client CSAPI Integration Gap Audit — Final Summary (v0.4)
 
 **Date:** 22 Oct 2025  

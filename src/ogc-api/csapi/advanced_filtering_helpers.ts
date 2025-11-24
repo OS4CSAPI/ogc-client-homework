@@ -1,4 +1,9 @@
 /**
+ * @license BSD-3-Clause
+ * Copyright (c) 2024 OS4CSAPI contributors
+ */
+
+/**
  * Advanced Filtering Helpers (B7)
  * Uses unified fixtures from examples/ directory.
  * Geometry filtering remains a placeholder.

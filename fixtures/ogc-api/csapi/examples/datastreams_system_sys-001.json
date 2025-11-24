@@ -1,4 +1,6 @@
 {
+  "_license": "BSD-3-Clause",
+  "_copyright": "Copyright (c) 2024 OS4CSAPI contributors",
   "type": "FeatureCollection",
   "itemType": "Datastream",
   "features": [
@@ -6,10 +8,14 @@
       "type": "Feature",
       "id": "ds-001",
       "properties": {
-        "system": { "id": "sys-001" },
+        "system": {
+          "id": "sys-001"
+        },
         "systemId": "sys-001",
         "systemIds": ["sys-001"],
-        "deployment": { "id": "dep-001" },
+        "deployment": {
+          "id": "dep-001"
+        },
         "deploymentId": "dep-001",
         "deploymentIds": ["dep-001"]
       },

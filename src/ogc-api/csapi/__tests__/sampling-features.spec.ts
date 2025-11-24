@@ -1,4 +1,9 @@
 /**
+ * @license BSD-3-Clause
+ * Copyright (c) 2024 OS4CSAPI contributors
+ */
+
+/**
  * Tests for CSAPI Part 1 — Sampling Features
  * Confirms canonical endpoints, item URLs, and collection behavior for SamplingFeature resources.
  *

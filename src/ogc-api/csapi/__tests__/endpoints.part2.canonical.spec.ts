@@ -1,4 +1,9 @@
 /**
+ * @license BSD-3-Clause
+ * Copyright (c) 2024 OS4CSAPI contributors
+ */
+
+/**
  * Tests for CSAPI Part 2 — Canonical Endpoints
  * Validates presence, discoverability, and accessibility of all canonical endpoints
  * defined in OGC API – Connected Systems Part 2 (§7.4, Req30–34).

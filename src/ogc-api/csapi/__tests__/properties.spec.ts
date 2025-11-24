@@ -1,4 +1,9 @@
 /**
+ * @license BSD-3-Clause
+ * Copyright (c) 2024 OS4CSAPI contributors
+ */
+
+/**
  * Tests for CSAPI Part 1 — Property Definitions
  * Ensures non-feature Property Definition resources are exposed via canonical endpoints
  * and follow listing semantics consistent with OGC API – Features collections.

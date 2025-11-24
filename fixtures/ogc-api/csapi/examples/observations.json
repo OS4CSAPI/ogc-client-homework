@@ -1,11 +1,18 @@
 {
+  "_license": "BSD-3-Clause",
+  "_copyright": "Copyright (c) 2024 OS4CSAPI contributors",
   "type": "FeatureCollection",
   "itemType": "Observation",
   "features": [
     {
       "type": "Feature",
       "id": "obs-001",
-      "properties": { "result": 23.5, "datastream": { "id": "ds-001" } }
+      "properties": {
+        "result": 23.5,
+        "datastream": {
+          "id": "ds-001"
+        }
+      }
     }
   ]
 }

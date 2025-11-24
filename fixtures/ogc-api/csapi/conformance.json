@@ -1,4 +1,6 @@
 {
+  "_license": "BSD-3-Clause",
+  "_copyright": "Copyright (c) 2024 OS4CSAPI contributors",
   "conformsTo": [
     "http://www.opengis.net/spec/ogcapi-common-2/1.0/req/core",
     "http://www.opengis.net/spec/ogcapi-common-2/1.0/req/collections",

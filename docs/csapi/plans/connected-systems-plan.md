@@ -1,3 +1,8 @@
+<!--
+@license BSD-3-Clause
+Copyright (c) 2024 OS4CSAPI contributors
+-->
+
 # 🧭 Implementation Plan: OGC API Connected Systems Client
 
 This document outlines the step-by-step plan for integrating support for the OGC API - Connected Systems standard into the [`camptocamp/ogc-client`](https://github.com/camptocamp/ogc-client) TypeScript library. Development is performed in [Sam-Bolling/ogc-client](https://github.com/Sam-Bolling/ogc-client) and tracked in [OS4CSAPI](https://github.com/users/Sam-Bolling/projects/1) with the intent to contribute upstream via [Issue #118](https://github.com/camptocamp/ogc-client/issues/118).

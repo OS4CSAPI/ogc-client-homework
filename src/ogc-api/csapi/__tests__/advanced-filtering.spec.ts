@@ -1,4 +1,9 @@
 /**
+ * @license BSD-3-Clause
+ * Copyright (c) 2024 OS4CSAPI contributors
+ */
+
+/**
  * Advanced Filtering Tests (B7)
  * Requirement IDs appear verbatim for traceability.
  * Geometry test is skipped (placeholder until spatial parser exists).

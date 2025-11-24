@@ -1,4 +1,9 @@
 /**
+ * @license BSD-3-Clause
+ * Copyright (c) 2024 OS4CSAPI contributors
+ */
+
+/**
  * Tests for CSAPI Part 2 — ControlStreams
  * Validates canonical endpoints, collection semantics, nested references, and schema operations
  * for ControlStream resources.

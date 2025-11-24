@@ -1,3 +1,8 @@
+<!--
+@license BSD-3-Clause
+Copyright (c) 2024 OS4CSAPI contributors
+-->
+
 # CSAPI Test Harness – Traceability Index
 
 _(Phase 2 · Step 2 – Grouped Jest Specs; updated for profile-aware fixtures)_

@@ -1,3 +1,8 @@
+<!--
+@license BSD-3-Clause
+Copyright (c) 2024 OS4CSAPI contributors
+-->
+
 # Phase 3 Consistency Audit Report
 
 **Project:** OGC Client – CSAPI Implementation  

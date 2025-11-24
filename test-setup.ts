@@ -20,7 +20,8 @@ if (!isLiveTestMode) {
     const preResult = await globalThis.fetchPreHandler(url, options);
     if (preResult) return preResult;
     return {
-      text: () => Promise.resolve(globalThis.fetchResponseFactory(url, options)),
+      text: () =>
+        Promise.resolve(globalThis.fetchResponseFactory(url, options)),
       json: () =>
         Promise.resolve(
           JSON.parse(globalThis.fetchResponseFactory(url, options))
@@ -29,7 +30,9 @@ if (!isLiveTestMode) {
         Promise.resolve(
           Buffer.from(globalThis.fetchResponseFactory(url, options), 'utf-8')
         ),
-      clone: function () { return this; },
+      clone: function () {
+        return this;
+      },
       status: 200,
       ok: true,
       headers: { get: () => null },
@@ -79,7 +82,9 @@ globalThis.Worker = function Worker(filePath) {
     if (messageQueue != null) messageQueue.push(data);
     else inside.emit('message', { data });
   };
-  this.terminate = () => { throw Error('Not Supported'); };
+  this.terminate = () => {
+    throw Error('Not Supported');
+  };
 
   import('esbuild')
     .then((esbuild) =>

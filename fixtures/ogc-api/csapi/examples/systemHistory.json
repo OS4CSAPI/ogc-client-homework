@@ -12,8 +12,14 @@
         "changeDescription": "Firmware updated to v1.2.3 for new protocol compliance."
       },
       "links": [
-        { "rel": "self", "href": "https://example.csapi.server/systemHistory/rev-001" },
-        { "rel": "system", "href": "https://example.csapi.server/systems/sys-001" }
+        {
+          "rel": "self",
+          "href": "https://example.csapi.server/systemHistory/rev-001"
+        },
+        {
+          "rel": "system",
+          "href": "https://example.csapi.server/systems/sys-001"
+        }
       ]
     },
     {
@@ -26,8 +32,14 @@
         "changeDescription": "Sensor calibration parameters updated."
       },
       "links": [
-        { "rel": "self", "href": "https://example.csapi.server/systemHistory/rev-002" },
-        { "rel": "system", "href": "https://example.csapi.server/systems/sys-001" }
+        {
+          "rel": "self",
+          "href": "https://example.csapi.server/systemHistory/rev-002"
+        },
+        {
+          "rel": "system",
+          "href": "https://example.csapi.server/systems/sys-001"
+        }
       ]
     },
     {
@@ -40,13 +52,22 @@
         "changeDescription": "Major hardware upgrade to new sensor array."
       },
       "links": [
-        { "rel": "self", "href": "https://example.csapi.server/systemHistory/rev-003" },
-        { "rel": "system", "href": "https://example.csapi.server/systems/sys-002" }
+        {
+          "rel": "self",
+          "href": "https://example.csapi.server/systemHistory/rev-003"
+        },
+        {
+          "rel": "system",
+          "href": "https://example.csapi.server/systems/sys-002"
+        }
       ]
     }
   ],
   "links": [
     { "rel": "self", "href": "https://example.csapi.server/systemHistory" },
-    { "rel": "collection", "href": "https://example.csapi.server/systemHistory" }
+    {
+      "rel": "collection",
+      "href": "https://example.csapi.server/systemHistory"
+    }
   ]
 }

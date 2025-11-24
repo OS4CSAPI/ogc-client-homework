@@ -34,25 +34,25 @@ These fixtures replace the previous separate `sample-data-hub` and `advanced` fi
 
 ### Feature Resources (Part 1)
 
-| File | Description | Geometry | Key Features |
-|------|-------------|----------|--------------|
-| `systems.json` | System collection | ✅ Point, Polygon | Multiple systems with parent/child relationships, procedure/FOI associations |
-| `deployments.json` | Deployment collection | ✅ Point | Parent-child hierarchy, system associations, temporal validity |
-| `procedures.json` | Procedure collection | ❌ null | Method documentation, property associations |
-| `samplingFeatures.json` | Sampling feature collection | ✅ Point, LineString | System associations, FOI references |
-| `properties.json` | Property definitions | ❌ N/A | Observable and controllable properties, units, definitions |
+| File                    | Description                 | Geometry             | Key Features                                                                 |
+| ----------------------- | --------------------------- | -------------------- | ---------------------------------------------------------------------------- |
+| `systems.json`          | System collection           | ✅ Point, Polygon    | Multiple systems with parent/child relationships, procedure/FOI associations |
+| `deployments.json`      | Deployment collection       | ✅ Point             | Parent-child hierarchy, system associations, temporal validity               |
+| `procedures.json`       | Procedure collection        | ❌ null              | Method documentation, property associations                                  |
+| `samplingFeatures.json` | Sampling feature collection | ✅ Point, LineString | System associations, FOI references                                          |
+| `properties.json`       | Property definitions        | ❌ N/A               | Observable and controllable properties, units, definitions                   |
 
 ### Dynamic Resources (Part 2)
 
-| File | Description | Geometry | Key Features |
-|------|-------------|----------|--------------|
-| `datastreams.json` | Datastream collection | ❌ null | System/deployment associations, schema references |
-| `observations.json` | Observation collection | ❌ null | Results, phenomenon times, observed properties |
-| `commands.json` | Command collection | ❌ null | Status and result references |
-| `controlStreams.json` | Control stream collection | ❌ null | System control interfaces |
-| `feasibility.json` | Feasibility collection | ❌ null | Planning and scheduling |
-| `systemEvents.json` | System event collection | ❌ null | Event types, timestamps, system references |
-| `systemHistory.json` | System history collection | ❌ null | Revision tracking, versioning |
+| File                  | Description               | Geometry | Key Features                                      |
+| --------------------- | ------------------------- | -------- | ------------------------------------------------- |
+| `datastreams.json`    | Datastream collection     | ❌ null  | System/deployment associations, schema references |
+| `observations.json`   | Observation collection    | ❌ null  | Results, phenomenon times, observed properties    |
+| `commands.json`       | Command collection        | ❌ null  | Status and result references                      |
+| `controlStreams.json` | Control stream collection | ❌ null  | System control interfaces                         |
+| `feasibility.json`    | Feasibility collection    | ❌ null  | Planning and scheduling                           |
+| `systemEvents.json`   | System event collection   | ❌ null  | Event types, timestamps, system references        |
+| `systemHistory.json`  | System history collection | ❌ null  | Revision tracking, versioning                     |
 
 ### Individual Resources
 
@@ -61,6 +61,7 @@ Individual resource files (e.g., `system_sys-001.json`, `deployment_dep-001.json
 ### Encodings
 
 Files prefixed with `encodings_` demonstrate various encoding formats:
+
 - GeoJSON (Part 1)
 - SensorML-JSON (Part 1)
 - SWE Common 3.0 JSON (Part 2)
@@ -102,6 +103,7 @@ CSAPI_LIVE=true CSAPI_API_ROOT=https://your.csapi.server npm test
 ## Test Traceability
 
 Each fixture maps to:
+
 1. **Requirement(s)**: Normative `/req/...` clauses from OGC 23-001 and OGC 23-002
 2. **Test File(s)**: Jest specs in `src/ogc-api/csapi/__tests__/`
 3. **Use Cases**: Specific testing scenarios (basic CRUD, filtering, relationships, encodings)
@@ -119,6 +121,7 @@ Resources designed specifically for advanced filtering tests include:
 - **prop-def-1**: Property definition with baseProperty and objectTypes
 
 These enable testing of:
+
 - ID-based filtering with wildcards
 - Keyword search (case-insensitive)
 - Parent/child relationship filtering
@@ -129,7 +132,9 @@ These enable testing of:
 ## Geometry Examples
 
 ### Point Geometry
+
 Used for individual sensors, stations, or specific locations:
+
 ```json
 "geometry": {
   "type": "Point",
@@ -138,7 +143,9 @@ Used for individual sensors, stations, or specific locations:
 ```
 
 ### Polygon Geometry
+
 Used for area-based systems or coverage zones:
+
 ```json
 "geometry": {
   "type": "Polygon",
@@ -147,7 +154,9 @@ Used for area-based systems or coverage zones:
 ```
 
 ### LineString Geometry
+
 Used for transect-based sampling or linear features:
+
 ```json
 "geometry": {
   "type": "LineString",
@@ -156,7 +165,9 @@ Used for transect-based sampling or linear features:
 ```
 
 ### Null Geometry
+
 Explicitly set for non-spatial resources:
+
 ```json
 "geometry": null
 ```

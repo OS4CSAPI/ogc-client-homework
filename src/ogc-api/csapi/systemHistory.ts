@@ -31,7 +31,7 @@ export class SystemHistoryClient {
    */
   async list(): Promise<CSAPICollection> {
     const url = getSystemHistoryUrl(this.apiRoot);
-    const data = await maybeFetchOrLoad("systemHistory", url);
+    const data = await maybeFetchOrLoad('systemHistory', url);
     return data as CSAPICollection;
   }
 

@@ -87,11 +87,11 @@ CSAPI_LIVE=true CSAPI_API_ROOT=https://example.csapi.server npm test
 
 **Environment Variables**
 
-| Name                    | Description                                                                      |
-| :---------------------- | :------------------------------------------------------------------------------- |
-| `CSAPI_LIVE`            | When set to `"true"`, enables live network testing.                              |
-| `CSAPI_API_ROOT`        | Base URL of the CSAPI service under test.                                        |
-| ~~`CSAPI_FIXTURE_PROFILE`~~ | **Deprecated** - No longer used. All fixtures load from unified examples/    |
+| Name                        | Description                                                               |
+| :-------------------------- | :------------------------------------------------------------------------ |
+| `CSAPI_LIVE`                | When set to `"true"`, enables live network testing.                       |
+| `CSAPI_API_ROOT`            | Base URL of the CSAPI service under test.                                 |
+| ~~`CSAPI_FIXTURE_PROFILE`~~ | **Deprecated** - No longer used. All fixtures load from unified examples/ |
 
 > When `CSAPI_LIVE` is **not** set, the harness automatically falls back to **fixture mode** using the unified examples directory.
 
@@ -144,6 +144,7 @@ const {
 ```
 
 The unified fixtures include dedicated resources for advanced filtering:
+
 - **sys-1, sys-3**: Systems with parent, procedure, FOI, and property associations
 - **dep-1, dep-2**: Deployments with system, FOI, and property arrays
 - **proc-2**: Procedure with property associations

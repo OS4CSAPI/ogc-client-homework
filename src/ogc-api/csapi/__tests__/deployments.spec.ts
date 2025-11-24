@@ -30,7 +30,7 @@ import {
   expectGeoJSONFeatureCollection,
   expectLinkRelations,
   expectFeatureAttributeMapping,
-} from "../helpers";
+} from '../helpers';
 
 const apiRoot = process.env.CSAPI_API_ROOT || 'https://example.csapi.server';
 
@@ -286,29 +286,29 @@ test('Parent deployment association URL /deployments/{id}/subdeployments is cano
  * - links: array of link objects
  * - geometry: optional (may be present for geospatial deployments)
  */
-test("/req/geojson/deployment-schema – Deployment features conform to required GeoJSON schema", async () => {
+test('/req/geojson/deployment-schema – Deployment features conform to required GeoJSON schema', async () => {
   const url = getDeploymentsUrl(apiRoot);
-  const data: any = await maybeFetchOrLoad("deployments", url);
+  const data: any = await maybeFetchOrLoad('deployments', url);
   const first = data.features[0];
 
   // Validate schema structure
-  expect(first.type).toBe("Feature");
-  expect(first).toHaveProperty("id");
-  expect(typeof first.id).toBe("string");
-  expect(first).toHaveProperty("properties");
-  expect(typeof first.properties).toBe("object");
-  expect(first).toHaveProperty("links");
+  expect(first.type).toBe('Feature');
+  expect(first).toHaveProperty('id');
+  expect(typeof first.id).toBe('string');
+  expect(first).toHaveProperty('properties');
+  expect(typeof first.properties).toBe('object');
+  expect(first).toHaveProperty('links');
   expect(Array.isArray(first.links)).toBe(true);
-  
+
   // Validate links structure
   first.links.forEach((link: any) => {
-    expect(link).toHaveProperty("rel");
-    expect(link).toHaveProperty("href");
-    expect(typeof link.href).toBe("string");
+    expect(link).toHaveProperty('rel');
+    expect(link).toHaveProperty('href');
+    expect(typeof link.href).toBe('string');
   });
-  
+
   // Validate FeatureCollection structure
-  expectGeoJSONFeatureCollection(data, "Deployment");
+  expectGeoJSONFeatureCollection(data, 'Deployment');
 });
 
 /**
@@ -316,34 +316,34 @@ test("/req/geojson/deployment-schema – Deployment features conform to required
  * Deployment properties SHALL be correctly mapped from the CSAPI Deployment model to GeoJSON properties.
  * This includes: systemId(s), featureType, parentId (for subdeployments), and deployment-specific fields.
  */
-test("/req/geojson/deployment-mappings – Deployment properties correctly mapped to GeoJSON", async () => {
+test('/req/geojson/deployment-mappings – Deployment properties correctly mapped to GeoJSON', async () => {
   const url = getDeploymentsUrl(apiRoot);
-  const data: any = await maybeFetchOrLoad("deployments", url);
+  const data: any = await maybeFetchOrLoad('deployments', url);
   const first = data.features[0];
 
   // Validate that deployment-specific properties are present
   const properties = first.properties;
   expect(properties).toBeDefined();
-  expect(typeof properties).toBe("object");
-  
+  expect(typeof properties).toBe('object');
+
   // Deployments should have featureType
   if (properties.featureType) {
     expect(properties.featureType).toMatch(/sosa:Deployment/i);
   }
-  
+
   // Deployments typically reference system(s)
-  const hasSystemReference = 
+  const hasSystemReference =
     properties.systemId !== undefined ||
     properties.systemIds !== undefined ||
     properties.system !== undefined;
   expect(hasSystemReference).toBe(true);
-  
+
   // Verify system references are correctly typed
   if (properties.systemIds) {
     expect(Array.isArray(properties.systemIds)).toBe(true);
   }
   if (properties.systemId) {
-    expect(typeof properties.systemId).toBe("string");
+    expect(typeof properties.systemId).toBe('string');
   }
 });
 
@@ -352,17 +352,17 @@ test("/req/geojson/deployment-mappings – Deployment properties correctly mappe
  * Deployment features SHALL include standard link relations.
  * Expected relations: self, system, procedure (at minimum).
  */
-test("/req/geojson/relation-types – Deployment features include expected link relations", async () => {
+test('/req/geojson/relation-types – Deployment features include expected link relations', async () => {
   const url = getDeploymentsUrl(apiRoot);
-  const data: any = await maybeFetchOrLoad("deployments", url);
+  const data: any = await maybeFetchOrLoad('deployments', url);
   const first = data.features[0];
 
-  expectLinkRelations(first, ["self"]);
-  
+  expectLinkRelations(first, ['self']);
+
   // Deployments typically link to systems and procedures
   const allRels = first.links.map((l: any) => l.rel);
-  const hasDeploymentRelations = allRels.some((rel: string) => 
-    ["system", "procedure", "parent"].includes(rel)
+  const hasDeploymentRelations = allRels.some((rel: string) =>
+    ['system', 'procedure', 'parent'].includes(rel)
   );
   expect(hasDeploymentRelations).toBe(true);
 });

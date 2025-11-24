@@ -9,11 +9,13 @@ This directory contains automation scripts for auditing the OGC API Connected Sy
 A quick audit script that provides a summary of CSAPI files and status.
 
 **Usage:**
+
 ```bash
 ./csapi_quick_audit.sh
 ```
 
 **Output:**
+
 - File counts by category
 - Code quality metrics (TODOs, skipped tests)
 - Integration status
@@ -23,6 +25,7 @@ A quick audit script that provides a summary of CSAPI files and status.
 ### Future Scripts
 
 Additional audit scripts can be added here to automate:
+
 - Test coverage reports
 - Formatting and linting checks
 - Conformance test execution
@@ -32,6 +35,7 @@ Additional audit scripts can be added here to automate:
 ## Running the Scripts
 
 1. Make scripts executable (if not already):
+
    ```bash
    chmod +x *.sh
    ```
@@ -44,6 +48,7 @@ Additional audit scripts can be added here to automate:
 ## Integration with CI/CD
 
 These scripts can be integrated into CI/CD pipelines to:
+
 - Automatically audit changes on PRs
 - Track metrics over time
 - Enforce quality gates before merging
@@ -51,6 +56,7 @@ These scripts can be integrated into CI/CD pipelines to:
 ## Contributing
 
 When adding new audit scripts:
+
 1. Follow the naming convention: `csapi_*_audit.sh`
 2. Include usage instructions in comments
 3. Update this README with the new script

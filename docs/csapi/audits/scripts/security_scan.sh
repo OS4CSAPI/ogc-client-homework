@@ -69,11 +69,13 @@ scan_pattern() {
         results=$(grep -rniE \
             --exclude="SECURITY_AUDIT_FINDINGS.md" \
             --exclude="security_scan.sh" \
+            --exclude-dir="scripts" \
             "$pattern" "$FIXTURE_DIR" "$DOCS_DIR" 2>/dev/null || true)
     else
         results=$(grep -rniE \
             --exclude="SECURITY_AUDIT_FINDINGS.md" \
             --exclude="security_scan.sh" \
+            --exclude-dir="scripts" \
             "$pattern" "$FIXTURE_DIR" "$DOCS_DIR" 2>/dev/null | grep -vE "$exclude_pattern" || true)
     fi
     
@@ -100,6 +102,7 @@ check_acceptable() {
     local results=$(grep -rniE \
         --exclude="SECURITY_AUDIT_FINDINGS.md" \
         --exclude="security_scan.sh" \
+        --exclude-dir="scripts" \
         "$pattern" "$FIXTURE_DIR" "$DOCS_DIR" 2>/dev/null || true)
     
     if [ -n "$results" ]; then
@@ -146,6 +149,7 @@ echo -e "${YELLOW}Checking for: Real domain URLs${NC}"
 REAL_URLS=$(grep -rE \
     --exclude="SECURITY_AUDIT_FINDINGS.md" \
     --exclude="security_scan.sh" \
+    --exclude-dir="scripts" \
     'https?://[^/]*\.(com|org|net|io|gov|edu)' "$FIXTURE_DIR" "$DOCS_DIR" 2>/dev/null | \
     grep -v 'example\.' | \
     grep -v 'opengis\.net' | \

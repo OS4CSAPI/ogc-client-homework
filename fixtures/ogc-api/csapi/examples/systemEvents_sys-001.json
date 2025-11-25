@@ -7,6 +7,7 @@
     {
       "type": "Feature",
       "id": "evt-001",
+      "geometry": null,
       "properties": {
         "name": "Temperature Sensor Calibration",
         "description": "System automatically recalibrated its primary temperature sensor.",
@@ -41,6 +42,7 @@
     {
       "type": "Feature",
       "id": "evt-002",
+      "geometry": null,
       "properties": {
         "name": "Maintenance Alert",
         "description": "Detected abnormal humidity readings; maintenance required.",

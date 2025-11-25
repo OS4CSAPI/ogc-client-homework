@@ -7,6 +7,7 @@
     {
       "id": "rev-001",
       "type": "Feature",
+      "geometry": null,
       "properties": {
         "systemId": "sys-001",
         "revisionTimestamp": "2025-02-10T08:00:00Z",
@@ -27,6 +28,7 @@
     {
       "id": "rev-002",
       "type": "Feature",
+      "geometry": null,
       "properties": {
         "systemId": "sys-001",
         "revisionTimestamp": "2025-01-15T10:30:00Z",
@@ -47,6 +49,7 @@
     {
       "id": "rev-003",
       "type": "Feature",
+      "geometry": null,
       "properties": {
         "systemId": "sys-002",
         "revisionTimestamp": "2025-03-01T14:00:00Z",

@@ -7,6 +7,7 @@
     {
       "type": "Feature",
       "id": "ds-001",
+      "geometry": null,
       "properties": {
         "deployment": {
           "id": "dep-001"

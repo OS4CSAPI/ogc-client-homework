@@ -7,6 +7,7 @@
     {
       "type": "Feature",
       "id": "feas-001",
+      "geometry": null,
       "properties": {
         "result": {
           "href": "https://example.csapi.server/feasibility/feas-001/result"

@@ -7,6 +7,7 @@
     {
       "type": "Feature",
       "id": "cmd-001",
+      "geometry": null,
       "properties": {
         "featureType": "sosa:Command",
         "status": {

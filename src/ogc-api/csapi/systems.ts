@@ -23,11 +23,25 @@ import { getSystemsUrl, getSystemEventsUrl } from './url_builder';
 
 /**
  * SystemsClient
+ *
  * Provides typed access to the /systems collection and related resources.
+ * Systems represent physical or virtual entities that can observe or control phenomena.
+ *
+ * @see OGC 23-002 §8
+ *
+ * @example
+ * const client = new SystemsClient('https://api.example.com');
+ * const systems = await client.list();
+ * const system = await client.get('sys-001');
  */
 export class SystemsClient {
+  /** The base URL of the CSAPI server */
   readonly apiRoot: string;
 
+  /**
+   * Creates a new SystemsClient instance.
+   * @param apiRoot - The base URL of the CSAPI server
+   */
   constructor(apiRoot: string) {
     this.apiRoot = apiRoot;
   }

@@ -23,27 +23,29 @@ The CSAPI implementation adds support for the **OGC API – Connected Systems** 
 
 | Category | Count | Description |
 |----------|-------|-------------|
-| **Total Changed Files** | 143 | All files different from upstream |
-| **KEEP** | 52 | Essential for migration |
-| **DISCARD** | 91 | Internal/homework files |
-| **AMBIGUOUS** | 0 | All files clearly categorized |
+| **Total Changed Files** | 145 | All files different from upstream |
+| **KEEP** | 118 | Essential for migration |
+| **DISCARD** | 27 | Internal/homework files |
 
 ### Breakdown by Type
 
 | Type | KEEP | DISCARD |
 |------|------|---------|
-| Source Code (`src/`) | 20 | 0 |
+| Source Code (`src/ogc-api/csapi/`) | 18 | 0 |
+| Source Code (`src/ogc-api/` modified) | 4 | 0 |
+| Source Code (`src/` modified) | 2 | 0 |
 | Tests (`__tests__/`) | 20 | 0 |
-| Fixtures (`fixtures/`) | 5 core + 60 examples | 0 |
-| Documentation (`docs/csapi/`) | 2 (architecture) | 21 |
+| Fixtures (`fixtures/ogc-api/csapi/`) | 64 | 0 |
+| Documentation (`docs/csapi/`) | 2 | 27 |
 | Examples (`examples/`) | 2 | 0 |
-| Config/Other | 3 | 0 |
+| Demo App (`app/`) | 1 | 0 |
+| Config/Other | 5 | 0 |
 
 ---
 
-## 1. Source Code Files – KEEP (20 files)
+## 1. Source Code Files – KEEP (24 files)
 
-### 1.1 Core CSAPI Client Module (`src/ogc-api/csapi/`)
+### 1.1 Core CSAPI Client Module (`src/ogc-api/csapi/` – 18 files)
 
 | File | Category | Purpose | Impact |
 |------|----------|---------|--------|
@@ -73,7 +75,7 @@ The CSAPI implementation adds support for the **OGC API – Connected Systems** 
 
 **Why KEEP:** These are the core implementation files for CSAPI support. Each provides a typed client class for a CSAPI resource collection with `list()`, `get()`, and resource-specific methods.
 
-### 1.2 Integration with OgcApiEndpoint (`src/ogc-api/`)
+### 1.2 Integration with OgcApiEndpoint (`src/ogc-api/` – 4 files)
 
 | File | Category | Changes | Impact |
 |------|----------|---------|--------|
@@ -84,7 +86,7 @@ The CSAPI implementation adds support for the **OGC API – Connected Systems** 
 
 **Why KEEP:** These integrate CSAPI detection into the existing `OgcApiEndpoint` class following the same pattern as EDR (Environmental Data Retrieval).
 
-### 1.3 Main Library Export (`src/`)
+### 1.3 Main Library Export (`src/` – 2 files)
 
 | File | Category | Changes | Impact |
 |------|----------|---------|--------|
@@ -128,9 +130,9 @@ All test files in `src/ogc-api/csapi/__tests__/` are categorized as **KEEP**.
 
 ---
 
-## 3. Fixtures – KEEP (65 files)
+## 3. Fixtures – KEEP (64 files)
 
-### 3.1 Core Fixtures (`fixtures/ogc-api/csapi/`)
+### 3.1 Core Fixtures (`fixtures/ogc-api/csapi/` – 4 JSON files)
 
 | File | Category | Purpose |
 |------|----------|---------|
@@ -139,7 +141,7 @@ All test files in `src/ogc-api/csapi/__tests__/` are categorized as **KEEP**.
 | `conformance.json` | **KEEP** | CSAPI conformance declaration |
 | `sample-data-hub.json` | **KEEP** | Sample data hub fixture |
 
-### 3.2 Example Fixtures (`fixtures/ogc-api/csapi/examples/`)
+### 3.2 Example Fixtures (`fixtures/ogc-api/csapi/examples/` – 59 JSON files + 1 README)
 
 | Category | Files | Purpose |
 |----------|-------|---------|
@@ -160,7 +162,7 @@ All test files in `src/ogc-api/csapi/__tests__/` are categorized as **KEEP**.
 | Common | `common_*.json` | Shared conformance/landing |
 | README.md | **KEEP** | Documentation for fixtures |
 
-**Total: ~65 fixture files**
+**Total: 64 fixture files (63 JSON + 1 README)**
 
 **Why KEEP:** These fixtures are essential for running tests and provide real-world examples of CSAPI responses. They contain no sensitive data (security audit completed 2024-11-24).
 
@@ -199,9 +201,9 @@ All test files in `src/ogc-api/csapi/__tests__/` are categorized as **KEEP**.
 
 ---
 
-## 7. Documentation – DISCARD (21 files)
+## 7. Documentation – DISCARD (27 files)
 
-### 7.1 Internal Audit Files (`docs/csapi/audits/`)
+### 7.1 Internal Audit Files (`docs/csapi/audits/` – 14 files)
 
 | File | Category | Reason for Discard |
 |------|----------|-------------------|
@@ -222,7 +224,7 @@ All test files in `src/ogc-api/csapi/__tests__/` are categorized as **KEEP**.
 
 **Why DISCARD:** These are internal homework/audit files used during development. They contain process tracking and internal notes that are not relevant to the upstream project.
 
-### 7.2 Test Design Documentation (`docs/csapi/_tests_/`)
+### 7.2 Test Design Documentation (`docs/csapi/_tests_/` – 7 files)
 
 | File | Category | Reason for Discard |
 |------|----------|-------------------|
@@ -236,7 +238,7 @@ All test files in `src/ogc-api/csapi/__tests__/` are categorized as **KEEP**.
 
 **Why DISCARD:** These are internal test design documents used during development. The actual tests in `__tests__/` are self-documenting.
 
-### 7.3 Implementation Logs (`docs/csapi/implementation/`)
+### 7.3 Implementation Logs (`docs/csapi/implementation/` – 1 file)
 
 | File | Category | Reason for Discard |
 |------|----------|-------------------|
@@ -244,7 +246,7 @@ All test files in `src/ogc-api/csapi/__tests__/` are categorized as **KEEP**.
 
 **Why DISCARD:** Internal development log, not relevant to upstream.
 
-### 7.4 Planning Documents (`docs/csapi/plans/`)
+### 7.4 Planning Documents (`docs/csapi/plans/` – 2 files)
 
 | File | Category | Reason for Discard |
 |------|----------|-------------------|
@@ -253,7 +255,7 @@ All test files in `src/ogc-api/csapi/__tests__/` are categorized as **KEEP**.
 
 **Why DISCARD:** Internal planning documents, not relevant to upstream.
 
-### 7.5 Requirements Documents (`docs/csapi/requirements/`)
+### 7.5 Requirements Documents (`docs/csapi/requirements/` – 3 files)
 
 | File | Category | Reason for Discard |
 |------|----------|-------------------|
@@ -265,7 +267,7 @@ All test files in `src/ogc-api/csapi/__tests__/` are categorized as **KEEP**.
 
 ---
 
-## 8. Architecture Documentation – AMBIGUOUS → KEEP (2 files)
+## 8. Architecture Documentation – KEEP (2 files)
 
 | File | Category | Recommendation |
 |------|----------|----------------|
@@ -291,17 +293,15 @@ The following modifications to existing upstream files should be reviewed:
 
 ### What to Include in Upstream PR
 
-1. **Source Code** (20 files)
-   - All files in `src/ogc-api/csapi/`
-   - Changes to `src/ogc-api/endpoint.ts`, `info.ts`, `model.ts`
-   - Changes to `src/index.ts`
+1. **Source Code** (24 files)
+   - 18 files in `src/ogc-api/csapi/`
+   - 4 modified files in `src/ogc-api/`: `endpoint.ts`, `info.ts`, `model.ts`, `endpoint.spec.ts`
+   - 2 modified files in `src/`: `index.ts`, `index.spec.ts`
 
 2. **Tests** (20 files)
    - All files in `src/ogc-api/csapi/__tests__/`
-   - Changes to `src/ogc-api/endpoint.spec.ts`
-   - New `src/index.spec.ts`
 
-3. **Fixtures** (65 files)
+3. **Fixtures** (64 files)
    - All files in `fixtures/ogc-api/csapi/`
 
 4. **Examples** (2 files)

@@ -262,16 +262,17 @@ This section defines the logical, atomic commit sequence for rebuilding the CSAP
 | 2 | Utilities: Helpers & URL Builder | 4 | Shared infrastructure |
 | 3 | Part 1 Resource Clients | 4 | Static feature resources |
 | 4 | Part 2 Resource Clients | 8 | Dynamic data resources |
-| 5 | Test Fixtures: Core | 4 | Base test data |
-| 6 | Test Fixtures: Examples | 60 | Complete fixture set |
-| 7 | Test Suite: Core Clients | 12 | Client-specific tests |
-| 8 | Test Suite: Common & Integration | 8 | Cross-cutting tests |
-| 9 | OgcApiEndpoint Integration | 4 | Endpoint detection |
-| 10 | Main Export & Library Integration | 2 | Public API exposure |
-| 11 | Examples | 2 | Usage examples |
-| 12 | Demo App Integration | 1 | UI integration |
-| 13 | Documentation & Config | 5 | README, CHANGELOG |
-| 14 | Architecture Docs | 2 | Design documentation |
+| 5 | Module Index & Exports | 1 | Public API surface |
+| 6 | Test Fixtures: Core | 4 | Base test data |
+| 7 | Test Fixtures: Examples | 60 | Complete fixture set |
+| 8 | Test Suite: Core Clients | 12 | Client-specific tests |
+| 9 | Test Suite: Common & Integration | 8 | Cross-cutting tests |
+| 10 | OgcApiEndpoint Integration | 3 | Endpoint detection |
+| 11 | Main Export & Library Integration | 2 | Public API exposure |
+| 12 | Examples | 2 | Usage examples |
+| 13 | Demo App Integration | 1 | UI integration |
+| 14 | Documentation & Config | 4 | README, CHANGELOG |
+| 15 | Architecture Docs | 2 | Design documentation |
 
 ---
 
@@ -592,13 +593,14 @@ Total: 568+ tests, 85%+ coverage across CSAPI module.
 
 ### Commit 10: OgcApiEndpoint Integration
 
-**Files (4):**
+**Files (3):**
 ```
 src/ogc-api/endpoint.ts (modify)
 src/ogc-api/info.ts (modify)
-src/ogc-api/model.ts (modify - if not done in Commit 1)
 src/ogc-api/endpoint.spec.ts (modify)
 ```
+
+**Note:** `src/ogc-api/model.ts` was already modified in Commit 1 to add `CSAPICapabilities` types.
 
 **Commit Message:**
 ```
@@ -710,13 +712,12 @@ Enables visual verification of CSAPI endpoint detection.
 
 ### Commit 14: Documentation & Configuration
 
-**Files (5):**
+**Files (4):**
 ```
 README.md (modify)
 CHANGELOG.md (modify)
 examples/README.md (modify)
 test-setup.ts (modify)
-docs/csapi/architecture/ (create directory)
 ```
 
 **Commit Message:**

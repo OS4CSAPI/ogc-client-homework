@@ -4,14 +4,14 @@
  */
 
 /**
- * OGC API – Connected Systems Part 2: Systems Client
+ * OGC API - Connected Systems Part 2: Systems Client
  * Implements client-side access for the /systems collection and related resources.
  *
  * Traces to:
- *   - /req/system/collection-endpoint    (23-002 §8.1)
- *   - /req/system/items-endpoint         (23-002 §8.2)
- *   - /req/system/canonical-url          (23-002 §7.4 Req37)
- *   - /req/system/ref-to-events          (23-002 §7.4 Req43)
+ *   - /req/system/collection-endpoint    (23-002 Section 8.1)
+ *   - /req/system/items-endpoint         (23-002 Section 8.2)
+ *   - /req/system/canonical-url          (23-002 Section 7.4 Req37)
+ *   - /req/system/ref-to-events          (23-002 Section 7.4 Req43)
  *
  * Exports:
  *   - SystemsClient: main API client class
@@ -23,11 +23,25 @@ import { getSystemsUrl, getSystemEventsUrl } from './url_builder';
 
 /**
  * SystemsClient
+ *
  * Provides typed access to the /systems collection and related resources.
+ * Systems represent physical or virtual entities that can observe or control phenomena.
+ *
+ * @see OGC 23-002 Section 8
+ *
+ * @example
+ * const client = new SystemsClient('https://api.example.com');
+ * const systems = await client.list();
+ * const system = await client.get('sys-001');
  */
 export class SystemsClient {
+  /** The base URL of the CSAPI server */
   readonly apiRoot: string;
 
+  /**
+   * Creates a new SystemsClient instance.
+   * @param {string} apiRoot - The base URL of the CSAPI server
+   */
   constructor(apiRoot: string) {
     this.apiRoot = apiRoot;
   }
@@ -35,6 +49,7 @@ export class SystemsClient {
   /**
    * Retrieves the systems collection.
    * Uses fixture "systems" by default, or fetches live data when CSAPI_LIVE=true.
+   * @returns {Promise<CSAPISystemCollection>} Promise resolving to a collection of systems
    */
   async list(): Promise<CSAPISystemCollection> {
     const url = getSystemsUrl(this.apiRoot);
@@ -44,7 +59,10 @@ export class SystemsClient {
 
   /**
    * Retrieves a single System by ID.
-   * Example canonical path: /systems/{systemId}
+   * @param {string} id - The unique identifier of the system
+   * @returns {Promise<CSAPISystem>} Promise resolving to the system resource
+   * @example
+   * const system = await client.get('sys-001');
    */
   async get(id: string): Promise<CSAPISystem> {
     const url = `${getSystemsUrl(this.apiRoot)}/${id}`;
@@ -54,7 +72,8 @@ export class SystemsClient {
 
   /**
    * Lists all System Events for a given System.
-   * Canonical path: /systems/{systemId}/events
+   * @param {string} systemId - The unique identifier of the system
+   * @returns {Promise<any>} Promise resolving to the system events collection
    */
   async listEvents(systemId: string): Promise<any> {
     const url = getSystemEventsUrl(this.apiRoot, systemId);
@@ -63,8 +82,9 @@ export class SystemsClient {
   }
 
   /**
-   * Resolves all related link relations from a System’s metadata.
-   * Returns a map of rel→href pairs.
+   * Resolves all related link relations from a System's metadata.
+   * @param {string} id - The unique identifier of the system
+   * @returns {Promise<Record<string, string>>} Promise resolving to a map of rel to href pairs
    */
   async getLinkedResources(id: string): Promise<Record<string, string>> {
     const system = await this.get(id);
